@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { TouchableOpacity , StyleSheet, Text, TextInput ,View , Image} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { useSelector } from 'react-redux';
+import { isWhiteSpaceLike } from 'typescript';
 
 export default function Login() {
   const navigation = useNavigation();  
@@ -8,7 +10,8 @@ export default function Login() {
     user: '',
     password: '',
   });
-  const users = [{user: 'franco' , password: '1234'},{user: 'juani' , password: '1234'}]
+  const {users} = useSelector(state => state)
+  //const users = [{user: 'franco' , password: '1234'},{user: 'juani' , password: '1234'}]
   function onPressBtn() {
     console.log(inputs)
     const user = users.find((element) => element.user === inputs.user && element.password === inputs.password )
@@ -19,9 +22,13 @@ export default function Login() {
       alert ("Usuario no valido")
     }
   }
-
   return (
       <View>
+        <Image 
+        style={styles.img}
+        source={
+          require('./Logo.jpg')
+        } />
         <View style={styles.inputContainers}>
         <Image source={require('./Logo.jpg')} />
           <TextInput
@@ -54,6 +61,15 @@ export default function Login() {
   }
 
 const styles = StyleSheet.create({
+  
+  img:{
+    width: 150,
+    height: 100,
+    alignSelf: 'center',
+    marginTop: 50,
+    marginBottom: 20,
+
+  },
   input: {
     width: 280,
     height: 40,

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer , DefaultTheme } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import Login from './src/components/Login/Login';
 import Register from './src/components/Register/Register';
@@ -8,14 +8,15 @@ import { Provider } from 'react-redux';
 import store from './src/store';
 import reducer from './src/store/reducer/index';
 
-
+const navTheme = DefaultTheme;
+navTheme.colors.background = 'white';
 const Stack = createStackNavigator();
 
 export default function App() {
   return (
     <Provider store={store}>
-      <NavigationContainer>
-        <Stack.Navigator>
+      <NavigationContainer theme={navTheme}>
+        <Stack.Navigator screenOptions={{headerShown:false }}>
           <Stack.Screen name="Login" component={Login} />
           <Stack.Screen name="Register" component={Register} />
         </Stack.Navigator>
