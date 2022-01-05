@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { TouchableOpacity , StyleSheet, Text, TextInput ,View , Image} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useSelector } from 'react-redux';
-import { isWhiteSpaceLike } from 'typescript';
+
 
 export default function Login() {
   const navigation = useNavigation();  
@@ -30,7 +30,6 @@ export default function Login() {
           require('./Logo.jpg')
         } />
         <View style={styles.inputContainers}>
-        <Image source={require('./Logo.jpg')} />
           <TextInput
           placeholder="Usuario"
           style={styles.input}
