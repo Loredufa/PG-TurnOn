@@ -8,12 +8,6 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    id: {
-      type:DataTypes.UUID,
-      defaultValue:DataTypes.UUIDV4,
-      allowNull:false,
-      primaryKey:true,
-    },   
     address: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -59,14 +53,12 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
     comments: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull: false,
     },
-    re
-  
-    reputacion
-
-  
-
+    reputation: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    }
     })
   }
