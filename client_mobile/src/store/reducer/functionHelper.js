@@ -3,3 +3,8 @@ export function findEmail(arr, email) {
   if (userCreated.length !== 0) return true;
   return false;
 }
+
+export function findCourtByName(arr, name) {
+  console.log(arr?.find((court) => court.name === name));
+  return arr?.find((court) => court.name === name);
+}

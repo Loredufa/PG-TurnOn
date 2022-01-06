@@ -1,5 +1,6 @@
 export const ADD_USER = "ADD_USER";
 export const FIND_CREATED_USER = "FIND_CREATED_USER";
+export const GET_COURT = "GET_COURT";
 
 export function addUser(data) {
   return {
@@ -12,3 +13,9 @@ export const findCreatedUser = (email) => (dispatch) =>
     type: FIND_CREATED_USER,
     payload: email,
   });
+export function getCourt(name) {
+  return {
+    type: GET_COURT,
+    payload: name,
+  };
+}
