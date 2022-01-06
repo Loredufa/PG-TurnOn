@@ -3,7 +3,7 @@ const { DataTypes } = require('sequelize');
 // Luego le injectamos la conexion a sequelize.
 module.exports = (sequelize) => {
   // defino el modelo
-  sequelize.define('proveedor', {
+  sequelize.define('field', {
     name: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -14,7 +14,23 @@ module.exports = (sequelize) => {
       allowNull:false,
       primaryKey:true,
     },   
-    lastname: {
+    address: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    city: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    state: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    postcode: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    phone: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -26,18 +42,31 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    access: {
+    sport: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    cuit: {
+    price: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    documents: {
+    image: {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    coordinates: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    comments: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    re
+  
+    reputacion
+
+  
 
     })
   }
