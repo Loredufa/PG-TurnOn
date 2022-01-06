@@ -8,7 +8,9 @@ import {
   Image,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { useDispatch, useSelector } from "react-redux";
 import { validationFunc } from "./validationFunc";
+import { addUser, findCreatedUser } from "../../store/actions/index";
 
 export default function Register() {
   const navigation = useNavigation();
@@ -20,44 +22,23 @@ export default function Register() {
     password: "",
   });
 
-  // este estado se va a hacer con redux y se checkea en la base de datos
-  const [uniqueEmail, setUniqueEmail] = useState(false);
+  const dispatch = useDispatch();
+  const allReadyCreated = useSelector((state) => state.boolean);
 
   const [inputFullfilled, setInputFullfilled] = useState(false);
   const [readyToDispatch, setReadyToDispatch] = useState(false);
   const [errors, setErrors] = useState({});
 
-  const users = [
-    {
-      name: "juan",
-      lastname: "huarte",
-      phone: "29946875239",
-      email: "juan@gmail.com",
-      password: "hola123*",
-    },
-    {
-      name: "paula",
-      lastname: "pandolfi",
-      phone: "29946875237",
-      email: "pau@gmail.com",
-      password: "chau123*",
-    },
-  ];
-
   const handleChange = (name, value) => {
-    console.log("5", users);
     setInputs((input) => {
       const newInput = {
         ...input,
         [name]: value,
       };
       const errors = validationFunc(newInput);
-      console.log(newInput);
       setErrors(errors);
       if (name === "email") {
-        const user = users.find((element) => element.email === newInput.email);
-        if (user) setUniqueEmail(true);
-        else setUniqueEmail(false);
+        dispatch(findCreatedUser(newInput.email));
       }
       if (!Object.keys(errors).length) {
         setReadyToDispatch(true);
@@ -69,11 +50,9 @@ export default function Register() {
   function onPressBtn(event) {
     event.preventDefault();
     if (readyToDispatch === true) {
-      console.log("4", uniqueEmail);
-      if (!uniqueEmail) {
-        users.push(inputs); // despacharia la accion para crear el usuario
-        console.log(inputs);
-        //setInputFullfilled({...inputFullfilled, boolean: true}) // chequear si es necesario
+      if (!allReadyCreated) {
+        console.log("2", inputs);
+        dispatch(addUser(inputs));
         setReadyToDispatch(false);
         alert("Usuario Creado");
         navigation.navigate("Login");
@@ -89,7 +68,6 @@ export default function Register() {
         alert("Email no valido");
       }
     } else {
-      //setInputFullfilled({...inputFullfilled, clicked: true})
       setInputFullfilled(true);
       const errors = validationFunc(inputs);
       setErrors(errors);
