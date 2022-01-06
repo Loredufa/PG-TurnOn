@@ -10,4 +10,4 @@ var resp = {
   dbPassword: process.env.DB_PASSWORD || "admin", //DB_PASSWORD || "admin", //process.env.DB_PASSWORD || "admin",
 };
 // console.log(resp);
-module.export = resp;
+module.exports = resp;

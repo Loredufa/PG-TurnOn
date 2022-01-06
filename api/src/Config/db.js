@@ -14,6 +14,12 @@ const sequelize = new Sequelize(
   }
 );
 
+// console.log("dbUser", dbUser);
+// console.log("dbHost", dbHost);
+// console.log("dbPassword", dbPassword);
+// console.log("dbName", dbName);
+// console.log("process.env", process.env);
+
 const User = UserModel(sequelize);
 const Proveedor = ProveedorModel(sequelize);
 const Available = AvailableModel(sequelize);
