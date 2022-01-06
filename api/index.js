@@ -2,6 +2,7 @@ const express = require("express")
 const PORT=3001
 const morgan=require ("morgan")
 const app= express()
+const routes =require ("./src/routes/index")
 
 // aca vamos a setear los headers 
 app.use(express.urlencoded({ extended: true, limit: '50mb' }));
@@ -18,8 +19,8 @@ app.use((req, res, next) => {
 
 
 // aca vamos a setear el listen
-app.get ("/" , (req, res) => {
-res.send("HOla esta es una prueba")})
+app.use ("/supplier", routes)
+app.use ("/user" , routes)
 
 app.listen (PORT, () => {
 console.log (`El servidor esta escuchando el puerto ${PORT}`)})
