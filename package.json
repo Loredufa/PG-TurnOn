@@ -1,0 +1,28 @@
+{
+  "name": "pg-turnon",
+  "version": "1.0.0",
+  "description": "Proyecto final",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/juanhuarte/PG-TurnOn.git"
+  },
+  "author": "Lorena",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/juanhuarte/PG-TurnOn/issues"
+  },
+  "homepage": "https://github.com/juanhuarte/PG-TurnOn#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  },
+  "dependencies": {
+    "express": "^4.17.2",
+    "morgan": "^1.10.0",
+    "pg": "^8.7.1",
+    "sequelize": "^6.12.5"
+  }
+}
