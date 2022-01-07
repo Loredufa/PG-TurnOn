@@ -8,7 +8,8 @@ import {
   Image,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { findCreatedUser } from "../../store/actions/index";
 
 export default function Login() {
   const navigation = useNavigation();
@@ -16,20 +17,17 @@ export default function Login() {
     user: "",
     password: "",
   });
-  const users = useSelector((state) => state.users);
+  const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
 
   function onPressBtn() {
-    console.log(inputs);
-    const user = users.find(
-      (element) =>
-        element.email === inputs.user && element.password === inputs.password
-    );
-    if (user) {
-      //alert("Usuario valido");
-      navigation.navigate("HomeTab");
-    } else {
-      alert("Usuario no valido");
-    }
+    dispatch(findCreatedUser(inputs));
+  }
+
+  if (user.user) {
+    navigation.navigate("HomeTab");
+  } else if (user.message) {
+    alert("Usuario no valido");
   }
   return (
     <View>
