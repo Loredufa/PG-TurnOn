@@ -2,8 +2,8 @@ const { User } = require("../../../db")
 const bcrypt = require("bcrypt")
 
 const register = async (req, res) => {
-    console.log(req.body)
-    const { mail, password, /* etc */ } = req.body
+    
+    const { mail, password, name, lastname, phone } = req.body
     
     const encryptedPassword = bcrypt.hashSync(password, 10)
 
@@ -13,7 +13,10 @@ const register = async (req, res) => {
     
     let newUser = new User({ 
         mail, 
-        password: encryptedPassword 
+        password: encryptedPassword,
+        name,
+        lastname,
+        phone
     })
     newUser = await newUser.save().catch(err => {
         console.log(err)
