@@ -1,0 +1,298 @@
+.back-ground-register{
+    background-image: url('../Assets/Images/cancha-cesped.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100vw;
+    height: 100vh;
+    background-attachment: fixed;
+    padding-top: 50px;
+}
+.formulario-registro{
+background-color: #6bac48;
+width: 800px;
+height: 500px;
+padding-top: 40px;
+padding-bottom: 180px;
+margin-top: 0px;
+margin-left: 50px;
+border-radius: 30px;
+
+
+}
+
+.titulo-registro{
+font-family:'Be Vietnam Pro', sans-serif;
+color:#ffffff;
+margin-left: -450px;
+margin-bottom: 10px;
+ 
+}
+
+.parrafo-reg{
+font-family: 'Be Vietnam Pro', sans-serif;
+font-size: 16px;  
+color:#dedede;
+text-align: left;
+margin-left: 90px;
+margin-bottom: 20px;
+ 
+}
+
+.labelnombre{
+margin-bottom: 15px;
+margin-left: -180px;
+}
+
+.labelapellido{
+margin-bottom: 15px;
+margin-left: -180px;
+}
+
+.labelcuit{
+margin-bottom: 15px;
+margin-left: -180px;
+
+}
+
+.labelrazonsoc{
+margin-bottom: 15px;
+margin-left: -180px;
+}
+
+.labelemail{
+margin-bottom: 15px;
+margin-left: -180px;
+}
+
+.labelcontraseña{
+margin-bottom: 15px;
+margin-left: -180px;
+
+}
+
+.labelcontraseña2{
+margin-bottom: 15px;
+margin-left: -180px;
+}
+
+.innombre{
+
+/* position: absolute; */
+width: 450px;
+height: 41px;
+/* left: 18px;
+top: 187px; */
+padding-left: 20px;
+padding-right: 20px;
+background: #FFFFFF;
+border: 1px solid #b1afaf;
+box-sizing: border-box;
+border-radius: 30px;
+font-family: 'Be Vietnam Pro', sans-serif;
+font-size: 18px;
+
+}
+
+.error-nombre{
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 12px;  
+    color:#ffffff;
+    margin-bottom: 10px;
+    text-align: left;
+    margin-left: 90px; 
+}
+
+.in-apellido{
+/* position: absolute; */
+width: 450px;
+height: 41px;
+/* left: 18px;
+top: 187px; */
+padding-left: 20px;
+padding-right: 20px;
+background: #FFFFFF;
+border: 1px solid #b1afaf;
+box-sizing: border-box;
+border-radius: 30px;
+font-family: 'Be Vietnam Pro', sans-serif;
+font-size: 18px;
+
+}
+
+.error-apellido{
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 12px;  
+    color:#ffffff;
+    margin-bottom: 10px;
+    text-align: left;
+    margin-left: 90px;
+    
+}
+
+.in-cuit{
+/* position: absolute; */
+width: 450px;
+height: 41px;
+/* left: 18px;
+top: 187px; */
+padding-left: 20px;
+padding-right: 20px;
+background: #FFFFFF;
+border: 1px solid #b1afaf;
+box-sizing: border-box;
+border-radius: 30px;
+font-family: 'Be Vietnam Pro', sans-serif;
+font-size: 18px;
+}
+
+.error-cuit{
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 12px;  
+    color:#ffffff;
+    margin-bottom: 10px;
+    text-align: left;
+    margin-left: 90px;
+    
+}
+
+.in-razon-social{
+/* position: absolute; */
+width: 450px;
+height: 41px;
+/* left: 18px;
+top: 187px; */
+padding-left: 20px;
+padding-right: 20px;
+background: #FFFFFF;
+border: 1px solid #b1afaf;
+box-sizing: border-box;
+border-radius: 30px;
+font-family: 'Be Vietnam Pro', sans-serif;
+font-size: 18px;
+}
+
+.error-razon-social{
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 12px;  
+    color:#ffffff;
+    margin-bottom: 10px;
+    text-align: left;
+    margin-left: 90px;
+    
+}
+
+.in-e-mail{
+/* position: absolute; */
+width: 450px;
+height: 41px;
+/* left: 18px;
+top: 187px; */
+padding-left: 20px;
+padding-right: 20px;
+background: #FFFFFF;
+border: 1px solid #b1afaf;
+box-sizing: border-box;
+border-radius: 30px;
+font-family: 'Be Vietnam Pro', sans-serif;
+font-size: 18px;
+}
+
+.error-email{
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 12px;  
+    color:#ffffff;
+    margin-bottom: 10px;
+    text-align: left;
+    margin-left: 90px;
+    
+}
+
+.in-contraseña{
+/* position: absolute; */
+width: 450px;
+height: 41px;
+/* left: 18px;
+top: 187px; */
+padding-left: 20px;
+padding-right: 20px;
+background: #FFFFFF;
+border: 1px solid #b1afaf;
+box-sizing: border-box;
+border-radius: 30px;
+font-family: 'Be Vietnam Pro', sans-serif;
+font-size: 18px;
+}
+
+.error-contraseña{
+font-family: 'Be Vietnam Pro', sans-serif;
+font-size: 12px;  
+color:#ffffff;
+margin-bottom: 10px;
+text-align: left;
+margin-left: 90px;
+
+}
+
+.in-contraseña-2{
+
+/* position: absolute; */
+width: 450px;
+height: 41px;
+/* left: 18px;
+top: 187px; */
+padding-left: 20px;
+padding-right: 20px;
+background: #FFFFFF;
+border: 1px solid #b1afaf;
+box-sizing: border-box;
+border-radius: 30px;
+font-family: 'Be Vietnam Pro', sans-serif;
+font-size: 18px;
+
+}
+
+.error-contraseña-2{
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 12px;  
+    color:#ffffff;
+    margin-bottom: 10px;
+    text-align: left;
+    margin-left: 90px;
+    
+}
+
+
+.buttonSubmitReg{
+
+/* position: absolute; */
+width: 180px;
+height: 45px;
+margin-left: 500px;
+margin-top: 20px;
+background: #FFFFFF;
+border: 1px solid #fdfcfc;
+box-sizing: border-box;
+border-radius: 30px;
+font-family: 'Be Vietnam Pro', sans-serif;
+font-size: 18px;
+
+}
+
+.buttonSubmitReg:hover{
+background: #dedede;    
+}
+
+.estas-registrado{
+    position: absolute;
+    margin-left: 80px;
+    font-family: 'Be Vietnam Pro', sans-serif;
+
+}
+
+.inciar-sesion{
+    position: absolute;
+    margin-left: 300px;
+    font-family: 'Be Vietnam Pro', sans-serif;
+
+}
