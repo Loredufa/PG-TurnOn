@@ -13,6 +13,7 @@ import { findCreatedUser } from "../../store/actions/index";
 
 export default function Login() {
   const navigation = useNavigation();
+  const [clicked, setClicked] = useState(false);
   const [inputs, setInput] = useState({
     user: "",
     password: "",
@@ -22,12 +23,14 @@ export default function Login() {
 
   function onPressBtn() {
     dispatch(findCreatedUser(inputs));
+    setClicked(true);
   }
 
   if (user.user) {
     navigation.navigate("HomeTab");
-  } else if (user.message) {
+  } else if (clicked && user.message) {
     alert("Usuario no valido");
+    setClicked(false);
   }
   return (
     <View>
