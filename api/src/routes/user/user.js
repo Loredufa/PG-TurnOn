@@ -2,6 +2,7 @@ const {Router} = require ("express")
 const router = Router () 
 const { register } = require("./controllers/register")
 const { login } = require("./controllers/login")
+const { updateUser } = require("./controllers/updateUser")
 
 router.get ("/" , (req, res, next) => {
     // res.send ("Soy la ruta usuario")
@@ -15,6 +16,7 @@ router.get ("/" , (req, res, next) => {
 
 router.post("/user", register)
 router.get("/user", login)
+router.put("/user/:id", updateUser)
 
 
 
