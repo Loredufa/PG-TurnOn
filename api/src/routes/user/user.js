@@ -1,6 +1,6 @@
 const {Router} = require ("express")
 const router = Router () 
-
+const { register } = require("./controllers/register")
 
 router.get ("/" , (req, res, next) => {
     // res.send ("Soy la ruta usuario")
@@ -11,6 +11,8 @@ router.get ("/" , (req, res, next) => {
 
     }
 });
+
+router.post("/user", register)
 
 
 

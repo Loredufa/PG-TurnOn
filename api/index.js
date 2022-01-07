@@ -29,7 +29,7 @@ app.use("/user", routes);
 // });
 
 // const server = require("./src/app.js");
-const { conn } = require("./src/Config/db");
+const { conn } = require("./src/db");
 // const { setDefaultDiets } = require("./src/funciones/funciones");
 
 conn.sync({ force: true }).then(() => {
