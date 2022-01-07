@@ -4,7 +4,7 @@ const bcrypt = require("bcrypt")
 
 const login = async (req, res) => {
     
-    const { mail, password } = req.body
+    const { mail, password } = req.query
     const supplier = await Proveedor.findOne({ where: { mail: mail } }).catch(err => console.log(err)) 
    
     if (!supplier) {

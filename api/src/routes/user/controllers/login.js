@@ -4,7 +4,7 @@ const bcrypt = require("bcrypt")
 
 const login = async (req, res) => {
     
-    const { mail, password } = req.body
+    const { mail, password } = req.query
     const user = await User.findOne({ where: { mail: mail } }).catch(err => console.log(err)) 
    
     if (!user) {
