@@ -49,6 +49,17 @@ console.log(UserModel) */
 // Recipe.belongsToMany(Diet, { through: "intermediateTable" }); // Relacion de muchos a muchos con la taabla intermedia "intermediateTable"
 // Diet.belongsToMany(Recipe, { through: "intermediateTable" }); // Relacion de muchos a muchos con la taabla intermedia "intermediateTable"
 
+Proveedor.hasMany(Field)
+Field.belongsTo(Proveedor)
+
+Field.belongsToMany(User, {through: "Booking"} )
+Booking.belongsToMany(User, {through: "Field"})
+
+
+
+
+
+
 module.exports = {
   conn: sequelize, // para importart la conexión { conn } = require('./db.js');
   User,
