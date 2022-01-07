@@ -17,7 +17,7 @@ const courts = [
 ];
 
 const initialState = {
-  users: [],
+  user: {},
   boolean: false,
   court: {},
 };
@@ -25,14 +25,17 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_USER:
-      return {
+      return { ...state };
+    /*return {
         ...state,
         users: state.users.concat(action.payload),
       };
+      */
     case FIND_CREATED_USER:
       return {
         ...state,
-        boolean: findEmail(state.users, action.payload),
+        boolean: action.payload.user ? true : false,
+        user: action.payload,
       };
     case GET_COURT:
       return {
