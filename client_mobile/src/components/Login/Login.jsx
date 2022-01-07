@@ -25,7 +25,8 @@ export default function Login() {
         element.email === inputs.user && element.password === inputs.password
     );
     if (user) {
-      alert("Usuario valido");
+      //alert("Usuario valido");
+      navigation.navigate("HomeTab");
     } else {
       alert("Usuario no valido");
     }
