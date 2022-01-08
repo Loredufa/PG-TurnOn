@@ -2,6 +2,8 @@ import axios from "axios";
 export const ADD_USER = "ADD_USER";
 export const FIND_CREATED_USER = "FIND_CREATED_USER";
 export const GET_COURT = "GET_COURT";
+export const CLOSE_SESSION = "CLOSE_SESSION";
+export const CHANGE_USER_INFO = "CHANGE_USER_INFO"
 
 /*
 export function addUser(data) {
@@ -11,6 +13,14 @@ export function addUser(data) {
   };
 }
 */
+
+export function closeSession () {
+  return function (dispatch) {
+    dispatch({
+      type: CLOSE_SESSION,
+    })
+  }
+}
 
 export function addUser({ name, lastname, phone, email, password }) {
   return async function (dispatch) {
@@ -27,6 +37,15 @@ export function addUser({ name, lastname, phone, email, password }) {
       console.log(error);
     }
   };
+}
+
+export function changeUserInfo (newInfo) {
+  return async function (dispatch) {
+    dispatch ({
+      type: CHANGE_USER_INFO,
+      payload: newInfo,
+    })
+  }
 }
 
 export function findCreatedUser({ user, password }) {

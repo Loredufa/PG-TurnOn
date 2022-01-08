@@ -24,6 +24,7 @@ export default function HomeTab() {
         name="Home"
         component={Home}
         options={{
+          headerShown: false,
           tabBarIcon: (
             { color, size } // color y size lo tomaria del tab navigator si lo configuro
           ) => <MaterialCommunityIcons name="home" color={color} size={size} />,
@@ -33,6 +34,7 @@ export default function HomeTab() {
         name="Bookings"
         component={Bookings}
         options={{
+          headerShown: false,
           tabBarIcon: (
             { color, size } // color y size lo tomaria del tab navigator si lo configuro
           ) => (
@@ -48,6 +50,7 @@ export default function HomeTab() {
         name="FavoritesCourts"
         component={FavoritesCourts}
         options={{
+          headerShown: false,
           tabBarIcon: (
             { color, size } // color y size lo tomaria del tab navigator si lo configuro
           ) => (
@@ -63,6 +66,7 @@ export default function HomeTab() {
         name="User"
         component={User}
         options={{
+          headerShown: false,
           tabBarIcon: (
             { color, size } // color y size lo tomaria del tab navigator si lo configuro
           ) => (
@@ -78,6 +82,7 @@ export default function HomeTab() {
         name="Location"
         component={Location}
         options={{
+          headerShown: false,
           tabBarIcon: (
             { color, size } // color y size lo tomaria del tab navigator si lo configuro
           ) => (
