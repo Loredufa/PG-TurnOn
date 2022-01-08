@@ -1,4 +1,4 @@
-const { Proveedor } = require("../../../db")
+const { Supplier } = require("../../../db")
 const bcrypt = require("bcrypt")
 
 const register = async (req, res) => {
@@ -7,11 +7,11 @@ const register = async (req, res) => {
     
     const encryptedPassword = bcrypt.hashSync(password, 10)
 
-    const alreadyExists = await Proveedor.findOne({ where: { mail: mail }}).catch(err => console.log(err))
+    const alreadyExists = await Supplier.findOne({ where: { mail: mail }}).catch(err => console.log(err))
 
     if(alreadyExists) return res.json({ message: "Ya existe un usuario con ese email" })
     
-    let newSupplier = new Proveedor({ 
+    let newSupplier = new Supplier({ 
         mail, 
         password: encryptedPassword,
         name,
