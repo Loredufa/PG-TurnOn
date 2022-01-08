@@ -1,19 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import MaterialCommunityIcons from "react-native-vector-icons/Ionicons";
-import {
-  TouchableOpacity,
-  StyleSheet,
-  Text,
-  TextInput,
-  View,
-  Image,
-} from "react-native";
 import User from "../User/User";
 import FavoritesCourts from "../FavoritesCourts/FavoritesCourts";
 import Bookings from "../Bookings/Bookings";
 import Location from "../Location/Location";
-import Home from "./Home";
+import HomeStack from "../HomeStack/HomaStack";
 
 const Tab = createBottomTabNavigator();
 
@@ -21,8 +13,8 @@ export default function HomeTab() {
   return (
     <Tab.Navigator>
       <Tab.Screen
-        name="Home"
-        component={Home}
+        name="HomeStack"
+        component={HomeStack}
         options={{
           headerShown: false,
           tabBarIcon: (
