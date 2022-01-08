@@ -20,6 +20,7 @@ export default function Register() {
     phone: "",
     email: "",
     password: "",
+    repassword: "",
   });
 
   const dispatch = useDispatch();
@@ -89,7 +90,7 @@ export default function Register() {
         />
         <TextInput
           placeholder={
-            inputFullfilled && errors.lastname ? errors.lastname : "Last Name"
+            inputFullfilled && errors.lastname ? errors.lastname : "Apellido"
           }
           name="lastname"
           style={
@@ -102,7 +103,7 @@ export default function Register() {
         />
         <TextInput
           placeholder={
-            inputFullfilled && errors.phone ? errors.phone : "Phone Number"
+            inputFullfilled && errors.phone ? errors.phone : "Telefono"
           }
           name="phone"
           style={
@@ -134,6 +135,22 @@ export default function Register() {
           }
           onChangeText={(e) => handleChange("password", e)}
           defaultValue={inputs.password}
+          secureTextEntry={true}
+        />
+        <TextInput
+          placeholder={
+            inputFullfilled && errors.repassword
+              ? errors.repassword
+              : "Repita Contraseña"
+          }
+          name="repassword"
+          style={
+            inputFullfilled && errors.repassword
+              ? styles.notfulfilled
+              : styles.input
+          }
+          onChangeText={(e) => handleChange("repassword", e)}
+          defaultValue={inputs.repassword}
           secureTextEntry={true}
         />
         <TouchableOpacity onPress={onPressBtn}>
