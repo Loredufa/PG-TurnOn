@@ -7,7 +7,7 @@ import {
   View,
   Image,
 } from "react-native";
-import HomeTab from "../Home/HomeTab";
+import Home from "../Home/HomeTab";
 import { useNavigation } from "@react-navigation/native";
 
 export default function Courts({ route }) {
@@ -15,7 +15,7 @@ export default function Courts({ route }) {
   return (
     <View>
       <Text>{route.params.name}</Text>
-      <TouchableOpacity onPress={() => navigation.navigate("HomeTab")}>
+      <TouchableOpacity onPress={() => navigation.navigate("Home")}>
         <Text style={styles.home}>Home</Text>
       </TouchableOpacity>
       {/* <HomeTab /> */}

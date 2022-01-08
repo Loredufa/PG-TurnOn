@@ -1,4 +1,4 @@
-import { ADD_USER, FIND_CREATED_USER, GET_COURT } from "../actions/index";
+import { ADD_USER, FIND_CREATED_USER, GET_COURT , CLOSE_SESSION , CHANGE_USER_INFO} from "../actions/index";
 import { findEmail, findCourtByName } from "./functionHelper";
 
 const courts = [
@@ -42,6 +42,16 @@ const reducer = (state = initialState, action) => {
         ...state,
         court: findCourtByName(courts, action.payload),
       };
+    case CLOSE_SESSION:
+      return {
+        ...state ,
+        boolean:false,
+      }
+    case CHANGE_USER_INFO: 
+      return {
+        ...state,
+        user: {user:action.payload}
+      }
 
     default:
       return state;

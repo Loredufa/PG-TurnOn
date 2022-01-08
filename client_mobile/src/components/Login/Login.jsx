@@ -10,8 +10,10 @@ import {
 import { useNavigation } from "@react-navigation/native";
 import { useSelector, useDispatch } from "react-redux";
 import { findCreatedUser } from "../../store/actions/index";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-export default function Login() {
+
+export default  function Login() {
   const navigation = useNavigation();
   const [clicked, setClicked] = useState(false);
   const [inputs, setInput] = useState({
@@ -25,8 +27,9 @@ export default function Login() {
     dispatch(findCreatedUser(inputs));
     setClicked(true);
   }
-
+  
   if (user.user) {
+    //await AsyncStorage.setItem('isLoggedIn' , '1');
     navigation.navigate("HomeTab");
   } else if (clicked && user.message) {
     alert("Usuario no valido");

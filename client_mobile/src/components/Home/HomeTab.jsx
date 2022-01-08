@@ -1,19 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import MaterialCommunityIcons from "react-native-vector-icons/Ionicons";
-import {
-  TouchableOpacity,
-  StyleSheet,
-  Text,
-  TextInput,
-  View,
-  Image,
-} from "react-native";
 import User from "../User/User";
 import FavoritesCourts from "../FavoritesCourts/FavoritesCourts";
 import Bookings from "../Bookings/Bookings";
 import Location from "../Location/Location";
-import Home from "./Home";
+import HomeStack from "../HomeStack/HomeStack";
 
 const Tab = createBottomTabNavigator();
 
@@ -21,9 +13,10 @@ export default function HomeTab() {
   return (
     <Tab.Navigator>
       <Tab.Screen
-        name="Home"
-        component={Home}
+        name="HomeStack"
+        component={HomeStack}
         options={{
+          headerShown: false,
           tabBarIcon: (
             { color, size } // color y size lo tomaria del tab navigator si lo configuro
           ) => <MaterialCommunityIcons name="home" color={color} size={size} />,
@@ -33,6 +26,7 @@ export default function HomeTab() {
         name="Bookings"
         component={Bookings}
         options={{
+          headerShown: false,
           tabBarIcon: (
             { color, size } // color y size lo tomaria del tab navigator si lo configuro
           ) => (
@@ -48,6 +42,7 @@ export default function HomeTab() {
         name="FavoritesCourts"
         component={FavoritesCourts}
         options={{
+          headerShown: false,
           tabBarIcon: (
             { color, size } // color y size lo tomaria del tab navigator si lo configuro
           ) => (
@@ -63,6 +58,7 @@ export default function HomeTab() {
         name="User"
         component={User}
         options={{
+          headerShown: false,
           tabBarIcon: (
             { color, size } // color y size lo tomaria del tab navigator si lo configuro
           ) => (
@@ -78,6 +74,7 @@ export default function HomeTab() {
         name="Location"
         component={Location}
         options={{
+          headerShown: false,
           tabBarIcon: (
             { color, size } // color y size lo tomaria del tab navigator si lo configuro
           ) => (
