@@ -3,7 +3,8 @@ import { REGISTER } from "../Actions/actions"
 
 
 const initialState = {
-  registry: [],
+  registry: {},
+  message:'',
   };
   
   function rootReducer (state = initialState, action){
@@ -11,7 +12,7 @@ const initialState = {
       case REGISTER:
         return {
           ...state,
-          registry: state.registry.concat(action.payload),
+          /* registry: state.registry.concat(action.payload), */
         };     
      
       default:

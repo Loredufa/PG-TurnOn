@@ -5,6 +5,7 @@ const register = async (req, res) => {
     
     const { name, lastname, mail, password, access, cuit, businessname } = req.body
     
+    
     const encryptedPassword = bcrypt.hashSync(password, 10)
 
     const alreadyExists = await Proveedor.findOne({ where: { mail: mail }}).catch(err => console.log(err))
