@@ -1,12 +1,13 @@
-const { Proveedor } = require("../../../db")
+const { Supplier } = require("../../../db")
 const jwt = require("jsonwebtoken")
 const bcrypt = require("bcrypt")
 
 const login = async (req, res) => {
     
     const { mail, password } = req.query
-    const supplier = await Proveedor.findOne({ where: { mail: mail } }).catch(err => console.log(err)) 
-   
+    console.log(req.query)
+    const supplier = await Supplier.findOne({ where: { mail: mail } }).catch(err => console.log(err)) 
+  
     if (!supplier) {
         return res.json({ message: "Datos incorrectos"})
     } else {

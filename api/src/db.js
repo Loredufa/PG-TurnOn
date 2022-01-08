@@ -38,32 +38,50 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
-const { User, Proveedor, Field, Available } = sequelize.models;
+const { User, Supplier, Field, Available, Bookings, Comments, Favorites, Payments, Statistics } = sequelize.models;
 
+// --------------------------- Relaciones ---------------------------------//
+
+// Supplier.hasMany(Field)
+// Field.belongsTo(Supplier)
+
+// Field.belongsToMany(User, {through: "Bookings"} )   
+// User.belongsToMany(Field, {through: "Bookings"})
+
+// User.hasMany(Favorites)
+// Favorites.belongsTo(User)
+
+// Field.belongsToMany(Available, {through:"Field-Available"})
+// Available.belongsToMany(Field, {through:"Field-Available"})
+
+// Bookings.hasOne(Payments)
+// Payments.belongsTo(Bookings) 
+
+// Bookings.hasOne(Available)
+// Available.belongsTo(Bookings) // Ver si es reciproco
+
+// Field.hasMany(Comments)
+// Comments.belongsTo(Field)
+
+//Ver las relaciones de estadísticas.
 /* const User = UserModel(sequelize);
 const Proveedor = ProveedorModel(sequelize);
 const Available = AvailableModel(sequelize);
 const Field = FieldModel(sequelize);
 console.log(UserModel) */
-// --------------------------- Relaciones ---------------------------------//
-// Recipe.belongsToMany(Diet, { through: "intermediateTable" }); // Relacion de muchos a muchos con la taabla intermedia "intermediateTable"
-// Diet.belongsToMany(Recipe, { through: "intermediateTable" }); // Relacion de muchos a muchos con la taabla intermedia "intermediateTable"
-
-Proveedor.hasMany(Field)
-Field.belongsTo(Proveedor)
-
-Field.belongsToMany(User, {through: "Booking"} )
-Booking.belongsToMany(User, {through: "Field"})
-
-
-
+ 
 
 
 
 module.exports = {
   conn: sequelize, // para importart la conexión { conn } = require('./db.js');
   User,
-  Proveedor,
+  Supplier,
   Available,
   Field,
+  Bookings, 
+  Comments, 
+  Favorites, 
+  Payments, 
+  Statistics
 };
