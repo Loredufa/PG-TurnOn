@@ -1,9 +1,12 @@
 
-import { REGISTER } from "../Actions/actions"
+import { REGISTER, SET_MESSAGE_REG } from "../Actions/actions"
 
 
 const initialState = {
-  registry: [],
+  success:false,
+  message_reg:'',
+
+
   };
   
   function rootReducer (state = initialState, action){
@@ -11,8 +14,15 @@ const initialState = {
       case REGISTER:
         return {
           ...state,
-          registry: state.registry.concat(action.payload),
-        };     
+          success: true
+        };
+
+      case SET_MESSAGE_REG:
+        return {
+          ...state,
+          message_reg: action.payload
+        }
+
      
       default:
         return state;

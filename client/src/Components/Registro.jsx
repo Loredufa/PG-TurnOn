@@ -1,17 +1,26 @@
 import React, { useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik"
 import "../Css/Registro.css"
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { Register } from "../Actions/actions";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 
 export default function Registro(){
 
 const [ FormularioEnvidado, cambiarFormularioEnvidado] = useState(false)
+const { message_reg, success } = useSelector(state =>state)
+const history = useHistory()
+
+if(success){
+    alert('Usuario Creado con Exito')
+    history.push('/login')
+}
+
+
 
 const dispatch = useDispatch()
-let datos =[]
+
 return (
 
     <div className="back-ground-register">
@@ -25,11 +34,13 @@ return (
             businessname: '',
             password: '',
             password2: '',
+            access: 'supplier'
 
 
         }}
         validate={(valores) => {
         let errores={}
+        dispatch({type:"SET_MESSAGE_REG", payload:''})
 
         if(!valores.name){
             errores.name = 'Por favor ingresa un nombre'
@@ -80,12 +91,11 @@ return (
 
 
         onSubmit={(valores, {resetForm})=>{
-            datos.push(valores)
+            
             dispatch(Register(valores))
-            console.log(datos)
-            resetForm()
+            /* resetForm() */
             cambiarFormularioEnvidado(true)
-            setTimeout(() => cambiarFormularioEnvidado(false), 3000 )
+            setTimeout(() => cambiarFormularioEnvidado(false), 5000 )
 
 
         }}
@@ -191,7 +201,7 @@ return (
         <div className="error-contraseña-2">{errors.password2}</div>}/>
 
         <button type="submit" className="buttonSubmitReg">Registrar</button>
-        {FormularioEnvidado && <p>Registro Cargado con éxito</p>}
+        {FormularioEnvidado && <p>{ message_reg }</p> }
 
 
     </Form>
