@@ -13,7 +13,7 @@ export default function HomeTab() {
   return (
     <Tab.Navigator>
       <Tab.Screen
-        name="HomeStack"
+        name="Inicio"
         component={HomeStack}
         options={{
           headerShown: false,
@@ -23,7 +23,7 @@ export default function HomeTab() {
         }}
       />
       <Tab.Screen
-        name="Bookings"
+        name="Reservas"
         component={Bookings}
         options={{
           headerShown: false,
@@ -39,7 +39,7 @@ export default function HomeTab() {
         }}
       />
       <Tab.Screen
-        name="FavoritesCourts"
+        name="Favoritos"
         component={FavoritesCourts}
         options={{
           headerShown: false,
@@ -55,7 +55,7 @@ export default function HomeTab() {
         }}
       />
       <Tab.Screen
-        name="User"
+        name="Usuario"
         component={User}
         options={{
           headerShown: false,
@@ -71,7 +71,7 @@ export default function HomeTab() {
         }}
       />
       <Tab.Screen
-        name="Location"
+        name="Ubicacion"
         component={Location}
         options={{
           headerShown: false,
