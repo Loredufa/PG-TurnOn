@@ -8,6 +8,8 @@ export function validationFunc(input) {
   if (input.password.length === 0) errors.password = "SE REQUIERE CONTRASEÑA!!";
   else if (!/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/.test(input.password))
     errors.password = "CONTRASEÑA INVALIDA!!";
+  if (input.password !== input.repassword)
+    errors.repassword = "LA CONTRASEÑA NO COINCIDE";
   return errors;
 }
 
