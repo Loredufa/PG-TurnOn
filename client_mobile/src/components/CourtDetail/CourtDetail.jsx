@@ -8,10 +8,16 @@ import {
   Image,
 } from "react-native";
 import MaterialCommunityIcons from "react-native-vector-icons/Ionicons";
-import { addToFavorite } from "../../store/actions/index";
+import { useDispatch } from "react-redux";
+import { addToFavorite, bookCourt } from "../../store/actions/index";
 
 export default function CourtDetail({ route }) {
-  function handleStartPress() {}
+  const dispatch = useDispatch();
+
+  function handlerBooking(court) {
+    dispatch(bookCourt(court));
+  }
+  
   return (
     <View style={styles.container}>
       <View style={styles.nameContainer}>
@@ -42,7 +48,7 @@ export default function CourtDetail({ route }) {
       </View>
       <Text style={{ flex: 1, borderWidth: 1 }}>Tamaño</Text>
       <Text style={{ flex: 1 }}>Precio: </Text>
-      <TouchableOpacity onPress={handleStartPress}>
+      <TouchableOpacity onPress={handlerBooking(route.params.court)}>
         <View style={styles.button}>
           <Text style={styles.buttonText}>Reservar</Text>
         </View>
