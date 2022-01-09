@@ -2,125 +2,82 @@ import "../Css/login.css";
 
 import { Link, useHistory } from "react-router-dom";
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-import { Formik } from "formik";
+import { loginUser } from "../Actions/actions";
 
-function Login2() {
-  let array = [
-    {
-      usuario: "asd@asd.com",
-      password: "niko123",
-    },
-    {
-      usuario: "assd@assd.com",
-      password: "niko123",
-    },
-  ];
+function Login() {
+  const dispatch = useDispatch();
+  const { user, message } = useSelector((state) => state);
   const history = useHistory();
-  const [formEnviado, setFormEnviado] = useState(false);
-  return (
-    <div className="divPrincipal">
-      <div className="subdivPrincipal">
-        <Formik
-          initialValues={{
-            usuario: "",
-            password: "",
-          }}
-          validate={(valores) => {
-            let errores = {};
-            if (!valores.usuario) {
-              errores.usuario = "Por favor ingresa un correo electronico";
-            } else if (
-              !/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(
-                valores.usuario
-              )
-            ) {
-              errores.usuario =
-                "El mail solo puedo contener letras, numeros, puntos, guiones, y guion bajo.";
-            }
-            if (!valores.password) {
-              errores.password = "Por favor ingrese el password";
-            }
+  const [input, setInput] = useState({
+    user: " ",
+    password: " ",
+  });
+  if (user) {
+    window.localStorage.setItem("loguodeusuario", JSON.stringify(user));
+    history.push("/");
+  }
 
-            return errores;
-          }}
-          onSubmit={(valores, { resetForm }) => {
-            resetForm();
-            array.unshift(valores);
-            console.log("formulario enviado");
-            console.log(array);
-            setFormEnviado(true);
-            // setTimeout(() => setFormEnviado(false), 5000);
-            setTimeout(() => history.push("/registro"), 500);
-          }}
-        >
-          {({
-            values,
-            errors,
-            touched,
-            handleSubmit,
-            handleChange,
-            handleBlur,
-          }) => (
-            <form onSubmit={handleSubmit}>
-              <div className="elementos">
-                <div className="ingresar">
-                  <h1>INGRESAR</h1>
+  const handleChange = (e) => {
+    setInput({
+      ...input,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(loginUser(input));
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <div className="divPrincipal">
+        <div className="subdivPrincipal">
+          <div className="elementos">
+            <div className="ingresar">
+              <h1>INGRESAR</h1>
+            </div>
+            <div className="divLabels">
+              <div className="divLabel1">
+                <input
+                  className="input"
+                  type="text"
+                  id="user"
+                  name="user"
+                  placeholder="username"
+                  values={input.user}
+                  onChange={handleChange}
+                />
+                {}
+                <div className="divLabel2">
+                  <input
+                    className="input2"
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="password"
+                    values={input.password}
+                    onChange={handleChange}
+                  />
                 </div>
-                <div className="divLabels">
-                  <div className="divLabel1">
-                    {/* <label className="label1" htmlFor="usuario">
-                    Email
-                  </label> */}
-                    <input
-                      className="input"
-                      type="text"
-                      id="usuario"
-                      name="usuario"
-                      placeholder="username"
-                      value={values.usuario}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                    />
-                    {touched.usuario && errors.usuario && (
-                      <div className="error1">{errors.usuario}</div>
-                    )}
-                  </div>
-                  <div className="divLabel2">
-                    {/* <label className="label2" htmlFor="password">
-                    Contraseña
-                  </label> */}
-                    <input
-                      className="input2"
-                      type="password"
-                      id="password"
-                      name="password"
-                      placeholder="password"
-                      value={values.password}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                    />
-                    {touched.password && errors.password && (
-                      <div className="error2">{errors.password}</div>
-                    )}
-                  </div>
-                </div>
-                <button className="boton" type="submit">
-                  Login
-                </button>
-                {/* {formEnviado && <p>Formulario enviado con exito!</p>} */}
               </div>
-              {console.log(array)}
-            </form>
-          )}
-        </Formik>
+              <button className="boton" type="submit">
+                Login
+              </button>
+              <p className="mensaje-error">{message}</p>
+              
+            </div>
+            <h4 className="no-estas-registrado">¿No estas Registrado?</h4>
+            <Link to="/registro">
+              <h4 className="registrate">Registrate</h4>
+            </Link>
+          </div>
+        </div>
       </div>
-      <h4 className="no-estas-registrado">¿No estas Registrado?</h4>
-      <Link to="/registro">
-        <h4 className="registrate">Registrate</h4>
-      </Link>
-    </div>
+    </form>
   );
 }
 
-export default Login2;
+export default Login;

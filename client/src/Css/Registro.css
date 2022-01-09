@@ -1,5 +1,5 @@
 .back-ground-register{
-    background-image: url('../Assets/Images/cancha-cesped.jpg');
+    background-image: url('../Assets/Images/cancha-cesped.jpeg');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -8,6 +8,7 @@
     background-attachment: fixed;
     padding-top: 50px;
 }
+
 .formulario-registro{
 background-color: #6bac48;
 width: 800px;
@@ -18,13 +19,12 @@ margin-top: 0px;
 margin-left: 50px;
 border-radius: 30px;
 
-
 }
 
 .titulo-registro{
 font-family:'Be Vietnam Pro', sans-serif;
 color:#ffffff;
-margin-left: -450px;
+margin-left: 85px;
 margin-bottom: 10px;
  
 }
@@ -41,48 +41,44 @@ margin-bottom: 20px;
 
 .labelnombre{
 margin-bottom: 15px;
-margin-left: -180px;
+margin-left: 85px;
 }
 
 .labelapellido{
 margin-bottom: 15px;
-margin-left: -180px;
+margin-left: 85px;
 }
 
 .labelcuit{
 margin-bottom: 15px;
-margin-left: -180px;
+margin-left: 85px;
 
 }
 
 .labelrazonsoc{
 margin-bottom: 15px;
-margin-left: -180px;
+margin-left: 85px;
 }
 
 .labelemail{
 margin-bottom: 15px;
-margin-left: -180px;
+margin-left: 85px;
 }
 
 .labelcontraseña{
 margin-bottom: 15px;
-margin-left: -180px;
+margin-left: 85px;
 
 }
 
 .labelcontraseña2{
 margin-bottom: 15px;
-margin-left: -180px;
+margin-left: 85px;
 }
 
 .innombre{
-
-/* position: absolute; */
 width: 450px;
 height: 41px;
-/* left: 18px;
-top: 187px; */
 padding-left: 20px;
 padding-right: 20px;
 background: #FFFFFF;
@@ -104,11 +100,8 @@ font-size: 18px;
 }
 
 .in-apellido{
-/* position: absolute; */
 width: 450px;
 height: 41px;
-/* left: 18px;
-top: 187px; */
 padding-left: 20px;
 padding-right: 20px;
 background: #FFFFFF;
@@ -131,11 +124,8 @@ font-size: 18px;
 }
 
 .in-cuit{
-/* position: absolute; */
 width: 450px;
 height: 41px;
-/* left: 18px;
-top: 187px; */
 padding-left: 20px;
 padding-right: 20px;
 background: #FFFFFF;
@@ -157,11 +147,8 @@ font-size: 18px;
 }
 
 .in-razon-social{
-/* position: absolute; */
 width: 450px;
 height: 41px;
-/* left: 18px;
-top: 187px; */
 padding-left: 20px;
 padding-right: 20px;
 background: #FFFFFF;
@@ -183,11 +170,8 @@ font-size: 18px;
 }
 
 .in-e-mail{
-/* position: absolute; */
 width: 450px;
 height: 41px;
-/* left: 18px;
-top: 187px; */
 padding-left: 20px;
 padding-right: 20px;
 background: #FFFFFF;
@@ -209,11 +193,8 @@ font-size: 18px;
 }
 
 .in-contraseña{
-/* position: absolute; */
 width: 450px;
 height: 41px;
-/* left: 18px;
-top: 187px; */
 padding-left: 20px;
 padding-right: 20px;
 background: #FFFFFF;
@@ -235,12 +216,8 @@ margin-left: 90px;
 }
 
 .in-contraseña-2{
-
-/* position: absolute; */
 width: 450px;
 height: 41px;
-/* left: 18px;
-top: 187px; */
 padding-left: 20px;
 padding-right: 20px;
 background: #FFFFFF;
@@ -264,11 +241,9 @@ font-size: 18px;
 
 
 .buttonSubmitReg{
-
-/* position: absolute; */
 width: 180px;
 height: 45px;
-margin-left: 500px;
+margin-left: 550px;
 margin-top: 20px;
 background: #FFFFFF;
 border: 1px solid #fdfcfc;
@@ -276,11 +251,13 @@ box-sizing: border-box;
 border-radius: 30px;
 font-family: 'Be Vietnam Pro', sans-serif;
 font-size: 18px;
+color: #6bac48;
 
 }
 
 .buttonSubmitReg:hover{
-background: #dedede;    
+background: #dedede;
+color: #f7faf5;    
 }
 
 .estas-registrado{
