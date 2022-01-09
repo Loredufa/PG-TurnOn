@@ -15,7 +15,11 @@ import {
 import { useNavigation } from "@react-navigation/native";
 import { useDispatch, useSelector } from "react-redux";
 import MaterialCommunityIcons from "react-native-vector-icons/Ionicons";
-import { getCourt, bestCourtsNearMe } from "../../store/actions/index";
+import {
+  getCourt,
+  bestCourtsNearMe,
+  getCourtType,
+} from "../../store/actions/index";
 
 const sports = [
   { key: "Futbol", img: require("../../../Images/Football.jpg") },
@@ -48,12 +52,17 @@ export default function Home() {
   });
 
   useEffect(() => {
-    alert("Permitir acceder a tu ubicacion");
+    //alert("Permitir acceder a tu ubicacion");
     dispatch(bestCourtsNearMe(5));
   }, []);
 
   const courts = useSelector((state) => state.bestCourts);
   //if (courts.length !== 0) setLoading(false);
+
+  function submit(type) {
+    dispatch(getCourtType(type));
+    navigation.navigate("Courts", { dimension: dimension });
+  }
 
   return (
     <SafeAreaView style={styles.container}>
@@ -70,7 +79,7 @@ export default function Home() {
           style={styles.button}
           onPress={() => dispatch(getCourt(input))}
         >
-          <MaterialCommunityIcons name="search" style={styles.icon} />
+          <MaterialCommunityIcons name="search" size={25} />
         </TouchableOpacity>
       </View>
       <View style={{ width: dimension.screenWidth, flex: 3 }}>
@@ -79,9 +88,12 @@ export default function Home() {
           renderItem={({ item }) => (
             <View style={styles.card}>
               <TouchableOpacity
+                onPress={() => submit(item.key)}
+                /*
                 onPress={() =>
                   navigation.navigate("Courts", { name: item.key })
                 }
+                */
               >
                 <Text>{item.key}</Text>
                 <Image
@@ -187,10 +199,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "flex-start",
     flexDirection: "row",
-    flex: 2,
+    flex: 1,
   },
   button: {},
-  icon: { fontSize: 15 },
+  //icon: { fontSize: 15 },
   review: {
     flex: 3,
   },
