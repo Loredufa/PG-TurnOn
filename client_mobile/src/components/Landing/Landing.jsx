@@ -15,7 +15,7 @@ export default function Landing() {
     const navigation = useNavigation();
   return (
     <View>
-      <Image style={styles.img} source={require("../Login/Login")} />
+      <Image style={styles.img} source={require("../Login/Logo.jpg")} />
       <View style={styles.container}>
         <Text>Bienvenido!</Text>
         <Text>¿Permitis acceder a tu ubicación?</Text>
