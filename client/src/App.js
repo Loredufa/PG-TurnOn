@@ -6,6 +6,8 @@ import Login from "./Components/Login";
 import React from "react";
 import Registro from "./Components/Registro";
 import Navbar from "./Components/Navbar"
+import Settings from "./Components/Settings"
+import History from "./Components/History";
 
 function App() {
   return (
@@ -15,7 +17,9 @@ function App() {
         <Switch>
           <Route exact path="/registro" component={Registro} />
           <Route exact path="/login" component={Login} />
-          <Route path="/" component={Home} />
+          <Route path="/profile/settings" component={Settings} />
+          <Route path="/profile/history" component={History} />
+          <Route exact path="/" component={Home} />
         </Switch>
       </div>
     </BrowserRouter>
