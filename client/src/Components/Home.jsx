@@ -14,13 +14,13 @@ return(
         </div>
         {/* Aca se termina el bloque */}
         
-        <div>
-        <Performance/>
+        <div id="performance">
+        <Performance />
         </div>
         {/* Aca se termina el bloque */}
  
-        <div>
-        <Features/>
+        <div id="features">
+        <Features />
         </div>     
     </div>
 )

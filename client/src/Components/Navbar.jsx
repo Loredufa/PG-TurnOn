@@ -38,12 +38,12 @@ export default function Navbar() {
                         <Link to="/">
                             Inicio
                         </Link>
-                        <Link to="/">
+                        <a href='#performance'>
                             Como funciona
-                        </Link>
-                        <Link to="/">
+                        </a>
+                        <a href="#features">
                             Características
-                        </Link>
+                        </a>
                         <Link to="/">
                             Contacto
                         </Link>
