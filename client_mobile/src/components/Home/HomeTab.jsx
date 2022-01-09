@@ -6,6 +6,9 @@ import FavoritesCourts from "../FavoritesCourts/FavoritesCourts";
 import Bookings from "../Bookings/Bookings";
 import Location from "../Location/Location";
 import HomeStack from "../HomeStack/HomeStack";
+import Home from "./Home";
+import Courts from "../Courts/Courts";
+import CourtDetail from "../CourtDetail/CourtDetail";
 
 const Tab = createBottomTabNavigator();
 

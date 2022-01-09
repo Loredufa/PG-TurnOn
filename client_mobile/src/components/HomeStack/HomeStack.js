@@ -11,8 +11,8 @@ export default function App() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="Home" component={Home} />
-      <Stack.Screen name="Courts" component={Courts} />
-      <Stack.Screen name="CourtDetail" component={CourtDetail} />
+      <Stack.Screen name="Courts" component={Courts} /> 
+      <Stack.Screen name="CourtDetail" component={CourtDetail} /> 
     </Stack.Navigator>
   );
 }
