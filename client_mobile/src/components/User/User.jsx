@@ -12,6 +12,7 @@ import {
 } from "react-native";
 
 export default function User() {
+  
   const navigation = useNavigation();
   const {user} = useSelector(state => state.user);
   const dispatch = useDispatch();
