@@ -25,3 +25,8 @@ export function bestCourts(arr, location) {
       parseInt(court.rating) >= 3.8
   );
 }
+
+export function getTypes(arr, type) {
+  console.log(arr?.filter((court) => court.type === type));
+  return arr?.filter((court) => court.type === type);
+}

@@ -5,6 +5,8 @@ export const GET_COURT = "GET_COURT";
 export const CLOSE_SESSION = "CLOSE_SESSION";
 export const CHANGE_USER_INFO = "CHANGE_USER_INFO";
 export const BEST_COURTS_NEAR_ME = "BEST_COURTS_NEAR_ME";
+export const GET_COURT_TYPE = "GET_COURT_TYPE";
+export const ADD_TO_FAVORITE = "ADD_TO_FAVORITE";
 
 /*
 export function addUser(data) {
@@ -86,5 +88,19 @@ export function bestCourtsNearMe(location) {
   return {
     type: BEST_COURTS_NEAR_ME,
     payload: location,
+  };
+}
+
+export function getCourtType(name) {
+  return {
+    type: GET_COURT_TYPE,
+    payload: name,
+  };
+}
+
+export function addToFavorite(data) {
+  return {
+    type: ADD_TO_FAVORITE,
+    payload: data,
   };
 }
