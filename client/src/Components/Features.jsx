@@ -28,6 +28,7 @@ function Features() {
       <p className="tex-freatures"> Fácil de usar, tus clientes tendrán la información de tu espacio deportivo y reservas al alcance de su mano.</p>
       </div>
       </div>
+      
     </div>
   );
 }

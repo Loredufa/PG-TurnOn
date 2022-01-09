@@ -13,6 +13,7 @@ return(
             
         </div>
         {/* Aca se termina el bloque */}
+        
         <div>
         <Performance/>
         </div>
