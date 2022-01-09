@@ -1,26 +1,21 @@
 /* import "./App.css"; */
-import { BrowserRouter, Route, Router, Switch } from 'react-router-dom'
-import Registro from "./Components/Registro";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+
+import Home from "./Components/Home";
 import Login from "./Components/Login";
 import React from "react";
-import Home from './Components/Home';
-
-
+import Registro from "./Components/Registro";
 
 function App() {
   return (
     <BrowserRouter>
-
-    <div className="App">
-    <Switch>
-    <Route path="/" component={Home}/>
-    <Route exact path='/registro' component={Registro}/>
-    <Route exact path="/login">
-            <Login />
-          </Route>
-
-    </Switch>
-    </div>
+      <div className="App">
+        <Switch>
+          <Route exact path="/registro" component={Registro} />
+          <Route exact path="/login" component={Login} />
+          <Route path="/" component={Home} />
+        </Switch>
+      </div>
     </BrowserRouter>
   );
 }
