@@ -82,9 +82,16 @@ export default function Home() {
           <MaterialCommunityIcons name="search" size={25} />
         </TouchableOpacity>
       </View>
-      <View style={{ width: dimension.screenWidth, flex: 3 }}>
+      <View
+        style={{
+          width: dimension.screenWidth,
+          flex: 3,
+          justifyContent: "center",
+        }}
+      >
         <FlatList
           data={sports}
+          style={{ marginTop: 10 }}
           renderItem={({ item }) => (
             <View style={styles.card}>
               <TouchableOpacity
@@ -99,7 +106,7 @@ export default function Home() {
                 <Image
                   source={item.img}
                   style={{
-                    height: dimension.titleSize,
+                    height: dimension.screenWidth / 4,
                     width: dimension.titleSize,
                     padding: 3,
                   }}
@@ -117,9 +124,17 @@ export default function Home() {
           <ActivityIndicator size="large" color="#00ff00" />
         ) : (
           <View style={{ flex: 1, alignItems: "center" }}>
-            <Text>Los mejores de tu zona</Text>
+            <Text style={{ flex: 0.5, height: dimension.screenWidth / 8 }}>
+              Los mejores de tu zona
+            </Text>
             <FlatList
               data={courts}
+              pagingEnabled={true}
+              style={{
+                flexGrow: 1.5,
+                width: dimension.screenWidth,
+                height: dimension.screenWidth / 4,
+              }}
               contentContainerStyle={{ alignItems: "center" }}
               horizontal
               renderItem={({ item }) => (
@@ -142,7 +157,7 @@ export default function Home() {
                   </View>
                 </TouchableOpacity>
               )}
-              ItemSeparatorComponent={() => <View style={{ height: 10 }} />}
+              //ItemSeparatorComponent={() => <View style={{ height: 10 }} />}
               //numColumns={3}
               keyExtractor={(item) => item.id}
             />
@@ -204,6 +219,7 @@ const styles = StyleSheet.create({
   button: {},
   //icon: { fontSize: 15 },
   review: {
-    flex: 3,
+    flex: 2,
+    justifyContent: "flex-start",
   },
 });
