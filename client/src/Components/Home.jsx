@@ -13,13 +13,15 @@ return(
             
         </div>
         {/* Aca se termina el bloque */}
+        
         <div>
         <Performance/>
         </div>
         {/* Aca se termina el bloque */}
+ 
         <div>
         <Features/>
-        </div>
+        </div>     
     </div>
 )
 }
