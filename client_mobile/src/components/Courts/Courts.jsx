@@ -73,7 +73,10 @@ export default function Courts({ route }) {
             renderItem={({ item }) => (
               <TouchableOpacity
                 onPress={() =>
-                  navigation.navigate("CourtDetail", { court: item })
+                  navigation.navigate("CourtDetail", {
+                    court: item,
+                    dimension: route.params.dimension.screenWidth,
+                  })
                 }
               >
                 <View

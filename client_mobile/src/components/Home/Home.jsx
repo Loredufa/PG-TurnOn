@@ -144,16 +144,31 @@ export default function Home() {
                   }
                 >
                   <View style={styles.card}>
-                    <Text>{item.name}</Text>
                     <Image
                       source={item.img}
                       style={{
                         height: dimension.screenWidth / 4,
                         width: dimension.screenWidth / 2,
                         padding: 3,
+                        borderTopLeftRadius: 10,
+                        borderTopRightRadius: 10,
                       }}
                     />
-                    <Text>{item.rating}</Text>
+                    <View
+                      style={{
+                        flexDirection: "row",
+                        alignItems: "flex-start",
+                        padding: 3,
+                      }}
+                    >
+                      <Text>{item.name}</Text>
+                      <MaterialCommunityIcons
+                        name="star"
+                        size={15}
+                        style={{ marginLeft: 5 }}
+                      />
+                      <Text>{item.rating}</Text>
+                    </View>
                   </View>
                 </TouchableOpacity>
               )}
