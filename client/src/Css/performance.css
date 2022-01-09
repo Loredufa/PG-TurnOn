@@ -8,21 +8,31 @@
 .h1como{
     padding-top: 30px;
     font-weight: bold;
-    text-align: center;
-    font-size: 3rem;
-    
-    
+    text-align:left;
+    font-size: 2.1rem;
+    margin-top: 0rem;
+    margin-left: 5.1rem;
+    color: #6bac48;
     }
     
 .h2como{
     padding-top: 40px;
-    padding-left: 110px;
-    width: 50vw;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin-left: 3.6rem;
+    width: 45vw;
     font-size: 20px;
+    text-align:left;
     }
     
 .imgcomo{
     height: 20vw;
-    margin-top: -360px;
-    margin-right: -980px;
+    margin-top: -500px;
+    padding-left: 50px;
+    padding-left: 50px;
+    margin-left: 1100px;
+  
+    
     }
