@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState , useEffect } from "react";
 import {
   TouchableOpacity,
   StyleSheet,
@@ -6,13 +6,48 @@ import {
   TextInput,
   View,
   Image,
+  ActivityIndicator 
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { useSelector, useDispatch } from "react-redux";
 import { findCreatedUser } from "../../store/actions/index";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-export default function Login() {
+
+
+export default  function Login() {
+
+  // SOMEWHERE INSIDE LOGIN.JS
+  const [loading , setLoading] = useState(false);
+const handleStartPress = () => {
+  // WE COULD DISPATCH FROM HERE
+  // HOWEVER, THAT WOULD NOT TRIGGER THE LOADING VIEW
+  setLoading(true);
+};
+
+useEffect(async () => {
+  let timer;
+  
+  if (loading) {
+    //setClicked(true);
+    dispatch(findCreatedUser(inputs));
+    
+    
+    timer = await setTimeout(() => {
+      //dispatch({ type: 'LOGIN', data: { email, password } });
+    setLoading(false);
+    }, 1000);
+
+  }
+
+  return () => clearTimeout(timer);
+
+  
+}, [loading]);
+
+
   const navigation = useNavigation();
+  //const [clicked, setClicked] = useState(false);
   const [inputs, setInput] = useState({
     user: "",
     password: "",
@@ -22,14 +57,21 @@ export default function Login() {
 
   function onPressBtn() {
     dispatch(findCreatedUser(inputs));
+    //setClicked(true);
   }
-
+  /*
   if (user.user) {
-    navigation.navigate("HomeTab");
-  } else if (user.message) {
+    //await AsyncStorage.setItem('isLoggedIn' , '1');
+    //navigation.navigate("HomeTab");
+  } else 
+  if (clicked && user.message) {
     alert("Usuario no valido");
-  }
+    setClicked(false);
+  }*/
   return (
+    loading? 
+    <ActivityIndicator size="large" color="#00ff00" /> 
+    :
     <View>
       <Image style={styles.img} source={require("./Logo.jpg")} />
       <View style={styles.inputContainers}>
@@ -46,7 +88,8 @@ export default function Login() {
           defaultValue={inputs.password}
           secureTextEntry={true}
         />
-        <TouchableOpacity onPress={onPressBtn}>
+        {user.message && <Text>Usuario o contraseña incorrectos</Text>}
+        <TouchableOpacity onPress={handleStartPress}>
           <View style={styles.button}>
             <Text style={styles.buttonText}>Iniciar sesión</Text>
           </View>

@@ -1,25 +1,31 @@
-import { ADD_USER, FIND_CREATED_USER, GET_COURT } from "../actions/index";
-import { findEmail, findCourtByName } from "./functionHelper";
-
-const courts = [
-  {
-    name: "los carpinchos",
-    price: "1500-2000",
-    timeTables: ["9 a 10", "10 a 11"],
-    img: require("../../../Images/FootballCourt.jpg"),
-  },
-  {
-    name: "la pelota siempre al 10",
-    price: "1500-2000",
-    timeTables: ["9 a 10", "10 a 11"],
-    img: require("../../../Images/FootballCourt.jpg"),
-  },
-];
+import {
+  ADD_USER,
+  FIND_CREATED_USER,
+  GET_COURT,
+  CLOSE_SESSION,
+  CHANGE_USER_INFO,
+  BEST_COURTS_NEAR_ME,
+  GET_COURT_TYPE,
+  ADD_TO_FAVORITE,
+  BOOK_COURT,
+} from "../actions/index";
+import {
+  findEmail,
+  findCourtByName,
+  bestCourts,
+  getTypes,
+} from "./functionHelper";
+import { courts } from "./hardcode";
 
 const initialState = {
   user: {},
   boolean: false,
   court: {},
+  bestCourts: [],
+  courtTypes: [],
+  favorites: [],
+  bookings: [],
+  authToken: null,
 };
 
 const reducer = (state = initialState, action) => {
@@ -36,13 +42,44 @@ const reducer = (state = initialState, action) => {
         ...state,
         boolean: action.payload.user ? true : false,
         user: action.payload,
+        authToken: action.payload.user ? "abc123" : null,
       };
     case GET_COURT:
       return {
         ...state,
         court: findCourtByName(courts, action.payload),
       };
-
+    case CLOSE_SESSION:
+      return {
+        ...state,
+        boolean: false,
+        authToken: null,
+      };
+    case CHANGE_USER_INFO:
+      return {
+        ...state,
+        user: { user: action.payload },
+      };
+    case BEST_COURTS_NEAR_ME:
+      return {
+        ...state,
+        bestCourts: bestCourts(courts, action.payload),
+      };
+    case GET_COURT_TYPE:
+      return {
+        ...state,
+        courtTypes: getTypes(courts, action.payload),
+      };
+    case ADD_TO_FAVORITE:
+      return {
+        ...state,
+        favorites: state.favorites.concat(action.payload),
+      };
+    case BOOK_COURT:
+      return {
+        ...state,
+        bookings: [...state.bookings, action.payload]
+      }
     default:
       return state;
   }

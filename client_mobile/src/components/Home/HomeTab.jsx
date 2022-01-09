@@ -1,19 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import MaterialCommunityIcons from "react-native-vector-icons/Ionicons";
-import {
-  TouchableOpacity,
-  StyleSheet,
-  Text,
-  TextInput,
-  View,
-  Image,
-} from "react-native";
 import User from "../User/User";
 import FavoritesCourts from "../FavoritesCourts/FavoritesCourts";
 import Bookings from "../Bookings/Bookings";
 import Location from "../Location/Location";
+import HomeStack from "../HomeStack/HomeStack";
 import Home from "./Home";
+import Courts from "../Courts/Courts";
+import CourtDetail from "../CourtDetail/CourtDetail";
 
 const Tab = createBottomTabNavigator();
 
@@ -21,18 +16,20 @@ export default function HomeTab() {
   return (
     <Tab.Navigator>
       <Tab.Screen
-        name="Home"
-        component={Home}
+        name="Inicio"
+        component={HomeStack}
         options={{
+          headerShown: false,
           tabBarIcon: (
             { color, size } // color y size lo tomaria del tab navigator si lo configuro
           ) => <MaterialCommunityIcons name="home" color={color} size={size} />,
         }}
       />
       <Tab.Screen
-        name="Bookings"
+        name="Reservas"
         component={Bookings}
         options={{
+          headerShown: false,
           tabBarIcon: (
             { color, size } // color y size lo tomaria del tab navigator si lo configuro
           ) => (
@@ -45,9 +42,10 @@ export default function HomeTab() {
         }}
       />
       <Tab.Screen
-        name="FavoritesCourts"
+        name="Favoritos"
         component={FavoritesCourts}
         options={{
+          headerShown: false,
           tabBarIcon: (
             { color, size } // color y size lo tomaria del tab navigator si lo configuro
           ) => (
@@ -60,9 +58,10 @@ export default function HomeTab() {
         }}
       />
       <Tab.Screen
-        name="User"
+        name="Usuario"
         component={User}
         options={{
+          headerShown: false,
           tabBarIcon: (
             { color, size } // color y size lo tomaria del tab navigator si lo configuro
           ) => (
@@ -75,9 +74,10 @@ export default function HomeTab() {
         }}
       />
       <Tab.Screen
-        name="Location"
+        name="Ubicacion"
         component={Location}
         options={{
+          headerShown: false,
           tabBarIcon: (
             { color, size } // color y size lo tomaria del tab navigator si lo configuro
           ) => (
