@@ -1,9 +1,13 @@
+const { builtinModules } = require("module")
+const {Field} = require("../../../db")
+
+
 const updateCourt = async (req, res) => {
     
     const { id } = req.params
     let newInfo = req.body
 
-    await Court.update(newInfo, {
+    await Field.update(newInfo, {
         where: {
             id
         }
@@ -16,3 +20,5 @@ const updateCourt = async (req, res) => {
         message: "La cancha ha sido actualizada con éxito" 
     })
 }
+
+module.exports = {updateCourt}

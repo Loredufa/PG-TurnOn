@@ -14,15 +14,15 @@ module.exports = (sequelize) => {
     },
     city: {
       type: DataTypes.STRING,
-      allowNull: false,
+      // allowNull: false,
     },
     state: {
       type: DataTypes.STRING,
-      allowNull: false,
+      // allowNull: false,
     },
     postcode: {
       type: DataTypes.STRING,
-      allowNull: false,
+      // allowNull: false,
     },
     phone: {
       type: DataTypes.STRING,
@@ -30,11 +30,11 @@ module.exports = (sequelize) => {
     },
     mail: {
       type: DataTypes.STRING,
-      allowNull: false,
+      // allowNull: false,
     },
     password: {
       type: DataTypes.STRING,
-      allowNull: false,
+      // allowNull: false,
     },
     sport: {
       type: DataTypes.STRING,
@@ -50,14 +50,18 @@ module.exports = (sequelize) => {
     },
     coordinates: {
       type: DataTypes.STRING,
-      allowNull: false,
+      // allowNull: false,
     },
     comments: {
       type: DataTypes.TEXT,
-      allowNull: false,
+      // allowNull: false,
     },
     reputation: {
       type: DataTypes.STRING,
+      // allowNull: false,
+    },
+    description: {
+      type: DataTypes.TEXT,
       allowNull: false,
     }
     })

@@ -1,12 +1,18 @@
+const {Field} = require("../../../db")
+
 const getCourts = async (req, res) => {
 
-    const { sport } = req.query
+    let { sport } = req.query 
+  
+    // falta traer las canchas por las coordenadas que vienen por body.
     let courts
     if (sport) {
-        courts = await Court.findAll({ where: { sport }})
+        courts = await Field.findAll({ where: { sport }}) 
     } 
     else {
-        courts = await Court.findAll({})
+        courts = await Field.findAll({})
     }
     res.json(courts)
 }
+
+module.exports = {getCourts}
