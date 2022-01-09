@@ -50,11 +50,26 @@ export default function Courts({ route }) {
       {courts.length === 0 ? (
         <ActivityIndicator size="large" color="#00ff00" />
       ) : (
-        <View style={{ flex: 7, alignItems: "center" }}>
-          <Text style={{ flex: 1 }}>{courts[0].type}</Text>
+        <View
+          style={{
+            flex: 6,
+            alignItems: "center",
+            justifyContent: "flex-start",
+          }}
+        >
+          <Text
+            style={{
+              flex: 0.5,
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            {courts[0].type}
+          </Text>
           <FlatList
             data={courts}
-            contentContainerStyle={{ alignItems: "center", flexGrow: 7 }}
+            style={{ flexGrow: 5.5 }}
+            contentContainerStyle={{ alignItems: "center" }}
             renderItem={({ item }) => (
               <TouchableOpacity
                 onPress={() =>
@@ -81,6 +96,8 @@ export default function Courts({ route }) {
                       height: route.params.dimension.screenWidth / 4,
                       width: route.params.dimension.screenWidth / 4,
                       padding: 3,
+                      borderBottomLeftRadius: 10,
+                      borderTopLeftRadius: 10,
                     }}
                   />
                   <View
@@ -97,7 +114,7 @@ export default function Courts({ route }) {
                       style={{
                         flexDirection: "row",
                         alignItems: "flex-start",
-                        margin: 10,
+                        padding: 3,
                       }}
                     >
                       <TouchableOpacity
@@ -107,10 +124,15 @@ export default function Courts({ route }) {
                           name="heart-outline"
                           size={25}
                           color={"black"}
+                          style={{ marginLeft: 10, marginRight: 20 }}
                         />
                       </TouchableOpacity>
-                      <MaterialCommunityIcons name="star" size={20} />
-                      <Text>{item.rating}</Text>
+                      <MaterialCommunityIcons
+                        name="star"
+                        size={20}
+                        style={{ marginLeft: 20 }}
+                      />
+                      <Text style={{ marginLeft: 5 }}>{item.rating}</Text>
                     </View>
                   </View>
                 </View>
@@ -128,6 +150,7 @@ export default function Courts({ route }) {
 
 const styles = StyleSheet.create({
   container: { flex: 1, alignItems: "center" },
+  /*
   home: {
     marginTop: 30,
 
@@ -138,11 +161,12 @@ const styles = StyleSheet.create({
     borderColor: "black",
     justifyContent: "center",
   },
+  */
   containerSearch: {
     alignItems: "center",
     justifyContent: "flex-start",
     flexDirection: "row",
-    flex: 2,
+    flex: 1,
   },
   input: {
     width: 280,
