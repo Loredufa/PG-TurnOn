@@ -7,6 +7,7 @@ export const CHANGE_USER_INFO = "CHANGE_USER_INFO";
 export const BEST_COURTS_NEAR_ME = "BEST_COURTS_NEAR_ME";
 export const GET_COURT_TYPE = "GET_COURT_TYPE";
 export const ADD_TO_FAVORITE = "ADD_TO_FAVORITE";
+export const BOOK_COURT = "BOOK_COURT";
 
 /*
 export function addUser(data) {
@@ -16,7 +17,14 @@ export function addUser(data) {
   };
 }
 */
-
+export function bookCourt (court) {
+  return function (dispatch) {
+    dispatch({
+      type: BOOK_COURT,
+      payload: court,
+    });
+  };
+}
 export function closeSession() {
   return function (dispatch) {
     dispatch({

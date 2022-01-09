@@ -17,6 +17,7 @@ import { addToFavorite, getCourt } from "../../store/actions/index";
 export default function Courts({ route }) {
   //const navigation = useNavigation();
   const courts = useSelector((state) => state.courtTypes);
+  const {favorites} = useSelector(state => state)
   const navigation = useNavigation();
   const dispatch = useDispatch();
   const [input, setInput] = useState("");
@@ -126,7 +127,7 @@ export default function Courts({ route }) {
                         <MaterialCommunityIcons
                           name="heart-outline"
                           size={25}
-                          color={"black"}
+                          color={favorites.find(element => element.name === item.name)?"red":"black"}
                           style={{ marginLeft: 10, marginRight: 20 }}
                         />
                       </TouchableOpacity>

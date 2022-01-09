@@ -7,6 +7,7 @@ import {
   BEST_COURTS_NEAR_ME,
   GET_COURT_TYPE,
   ADD_TO_FAVORITE,
+  BOOK_COURT,
 } from "../actions/index";
 import {
   findEmail,
@@ -23,6 +24,7 @@ const initialState = {
   bestCourts: [],
   courtTypes: [],
   favorites: [],
+  bookings: [],
   authToken: null,
 };
 
@@ -73,6 +75,11 @@ const reducer = (state = initialState, action) => {
         ...state,
         favorites: state.favorites.concat(action.payload),
       };
+    case BOOK_COURT:
+      return {
+        ...state,
+        bookings: [...state.bookings, action.payload]
+      }
     default:
       return state;
   }
