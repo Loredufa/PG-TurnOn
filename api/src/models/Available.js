@@ -5,16 +5,16 @@ module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define('available', {
     days: {
-      type: DataTypes.DATEONLY,
+      type: DataTypes.DATEONLY,  // año-mes-dia  ej 2022-01-20
       allowNull: false,
     },
     hours: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-    shifths: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-    }
+    status: {
+      type: DataTypes.STRING,
+      allowNull: false,
+     },
     })
   }
