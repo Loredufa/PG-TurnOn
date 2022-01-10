@@ -39,7 +39,7 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
-const { User, Comments, Statistics, Payments, Supplier, Field, Available, Favorites } = sequelize.models;
+const { User, Comments, Statistics, Payments, Supplier, Field, Available, Favorites, Bookings } = sequelize.models;
 
 /* const User = UserModel(sequelize);
 const Proveedor = ProveedorModel(sequelize);
@@ -62,8 +62,11 @@ Available.belongsToMany(Field, {through: "Available_Field"})
 Field.hasOne(Statistics)
 Statistics.belongsTo(Field) //statistics tendra una columna idField
 
-Available.hasOne(Payments)
-Payments.belongsTo(Available) // Payments tendra una columna idAvailable
+Available.hasOne(Bookings)
+Bookings.belongsTo(Available) // bookings tendra una columna idAvailable
+
+Bookings.hasOne(Payments)
+Payments.belongsTo(Available) // Payments tendra una columna idBooking
 
 //1 a N
 Supplier.hasMany(Field, {foreignKey: 'id'})
@@ -86,4 +89,5 @@ module.exports = {
   Payments,
   Field,
   Favorites,
+  Bookings,
 };
