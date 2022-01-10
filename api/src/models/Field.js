@@ -8,6 +8,12 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
+
+    court_name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+
     address: {
       type: DataTypes.STRING,
       allowNull: false,
