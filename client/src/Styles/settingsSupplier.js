@@ -21,7 +21,7 @@ export const EditButton = styled.button`
   position: absolute;
   font-family: "Be Vietnam Pro", sans-serif;
   font-size: 20px;
-  top: 140px;
+  top: 180px;
   left: 50px;
   width: 140px;
   height: 45px;

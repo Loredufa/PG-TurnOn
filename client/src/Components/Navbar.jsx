@@ -2,6 +2,7 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import { Link, useLocation } from 'react-router-dom'
 import { BiUserCircle } from 'react-icons/bi'
+import '../Css/navbar.css'
 
 export default function Navbar() {
 
@@ -9,63 +10,73 @@ export default function Navbar() {
     const location = useLocation()
 
     return (
-        <div style={{
+        <div clasName="navbar-contenedor" style={{
             display: "flex",
             flexDirection: "row",
-            justifyContent: "space-between"
+            justifyContent: "space-between",
+            marginRight:"40px",
+            alignItems: "center",
+            height: "80px",
+            /* position: "fixed", */
+            backgroundColor: "#ffffff",
+            
         }}> 
-            <Link to="/">
-                Logo
+            <Link clasName="navbar-logo" to="/">
+                <img style={{
+                  marginLeft:"40px"  
+                }} src={ require('../Assets/logo/LogoTurnON-77x52px.png')} alt='Logo'/>
             </Link>
             {
                 location.pathname.includes("/profile") ?
-                    <div>
-                        <Link to="/">
+                    <div className='navbar-supplier'>
+                        <Link className='navbar-home-turn' to="/">
                             Turnos
                         </Link>
-                        <Link to="/">
+                        <Link className='navbar-home-gest' to="/">
                             Gestionar Turnos
                         </Link>
-                        <Link to="/profile/history">
+                        <Link className='navbar-home-histo' to="/profile/history">
                             Historial
                         </Link>
-                        <Link to="/profile/settings">
+                        <Link className='navbar-home-perfil' to="/profile/settings">
                             Configuración/Perfil
                         </Link>
                     </div>
                     :
-                    <div>
-                        <Link to="/">
+                    <div className='navbar-home'>
+                        <Link className='navbar-home-inicio' to="/">
                             Inicio
-                        </Link>
-                        <a href='#performance'>
+                        </Link >
+                        <a className='navbar-home-func' href='#performance'>
                             Como funciona
                         </a>
-                        <a href="#features">
+                        <a className='navbar-home-caract' href="#features">
                             Características
                         </a>
-                        <Link to="/">
+                        <Link className='navbar-home-cont' to="/">
                             Contacto
                         </Link>
                         {
                             !user ?
                             <>
                                 <Link to="/login">
-                                    <button>
+                                    <button className='navbar-login'>
                                         Ingresar
                                     </button>
                                 </Link>
                                 <Link to="/registro">
-                                    <button>
+                                    <button className='navbar-register'>
                                         Registrate
                                     </button>
                                 </Link>
                             </>
                                 :
-                                <Link to="/profile">
-                                    <button>
-                                        <BiUserCircle />
-                                    </button>
+                                <Link className="navbar-profile" to="/profile">
+                                        
+                                        <BiUserCircle size='35' style={{
+                                            alineItem:"center"
+                                        }}/> 
+                                        
                                 </Link>
                         }
                     </div>
