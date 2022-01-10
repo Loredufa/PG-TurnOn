@@ -2,6 +2,7 @@ const {Router} = require ("express")
 const router = Router () 
 const { register } = require("./controllers/register")
 const { login } = require("./controllers/login")
+const { upDateSupplier } = require("./controllers/upDateSupplier")
 
 
 // router.get ("/supplier" , (req, res, next) => {
@@ -16,6 +17,7 @@ const { login } = require("./controllers/login")
 
 router.post("/supplier", register)
 router.get("/supplier", login)
+router.put("/supplier/:id", upDateSupplier)
 
 
 
