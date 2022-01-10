@@ -1,13 +1,11 @@
-const {Router} = require ("express")
-const router = Router () 
+const { Router } = require("express");
+const router = Router();
+const { createPayment } = require("./controllers/createPayment");
+const { updatePayment } = require("./controllers/updatePayment");
+const { getPayments } = require("./controllers/getPayment");
 
+router.post("/", createPayment);
+router.put("/:id", updatePayment);
+router.get("/", getPayments);
 
-// router.get ("/" , (req, res) => {
-//     res.send ("Soy la ruta peoveedor-pagos")
-// });
-
-
-
-
-
-module.exports = router
+module.exports = router;
