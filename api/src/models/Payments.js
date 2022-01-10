@@ -3,13 +3,13 @@ const { DataTypes } = require('sequelize');
 // Luego le injectamos la conexion a sequelize.
 module.exports = (sequelize) => {
   // defino el modelo
-  sequelize.define('user', {
+  sequelize.define('payments', {
     Date: {
       type: DataTypes.DATEONLY,
       allowNull: false,
     },
     amount: {
-      type: DataTypes.NUMBER,
+      type: DataTypes.INTEGER,  // reemplazo number por interger
       allowNull: false,
     },
     IdCort: {
