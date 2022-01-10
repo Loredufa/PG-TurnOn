@@ -9,12 +9,7 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
 
-    court_name: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-
-    address: {
+     address: {
       type: DataTypes.STRING,
       allowNull: false,
     },
