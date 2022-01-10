@@ -1,1 +1,171 @@
-/* armado diseño    */
+a:link, a:visited, a:active {
+    text-decoration:none;
+    
+}
+
+.navbar-contenedor{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    /* position: fixed; */
+}
+
+.navbar-logo{
+   
+
+}
+
+.navbar-supplier{
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 20px;
+
+}
+
+.navbar-supplier::hover{
+    color: #6bac48;
+
+}
+
+.navbar-home-turn{
+    padding-left: 18px;
+    color: #a0a1a0;
+}
+
+.navbar-home-turn:hover{
+    color: #6bac48;
+
+}
+
+.navbar-home-gest{
+    padding-left: 18px;
+    color: #a0a1a0;
+
+}
+
+.navbar-home-gest:hover{
+    color: #6bac48;
+
+}
+
+
+
+.navbar-home-histo{
+    padding-left: 18px;
+    color: #a0a1a0;
+
+}
+
+.navbar-home-histo:hover{
+    color: #6bac48;
+
+}
+
+.navbar-home-perfil{
+    padding-left: 18px;
+    color: #a0a1a0;
+
+}
+
+.navbar-home-perfil:hover{
+    color: #6bac48;
+
+}
+
+.navbar-home{
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 20px;
+
+}
+
+.navbar-home-inicio{
+    padding-left: 10px;
+    color: #a0a1a0;
+
+}
+
+.navbar-home-inicio:hover{
+    color: #6bac48;
+
+}
+
+.navbar-home-func{
+    padding-left: 10px;
+    color: #a0a1a0;
+
+}
+
+.navbar-home-func:hover{
+    color: #6bac48;
+
+}
+
+.navbar-home-caract{
+    padding-left: 10px;
+    color: #a0a1a0;
+
+}
+
+.navbar-home-caract:hover{
+    color: #6bac48;
+
+}
+
+.navbar-home-cont{
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-right: 15px;
+    color: #a0a1a0;
+    
+}
+
+.navbar-home-cont:hover{
+    color: #6bac48;
+
+}
+
+
+
+.navbar-login{
+    width: 130px;
+    height: 45px;
+    background: #6bac48;
+    border: 1px solid #fdfcfc;
+    box-sizing: border-box;
+    border-radius: 30px;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    color: white;
+    font-size: 15px;
+
+}
+
+.navbar-login:hover{
+    background: #c7c7c7;
+    color: #6bac48;
+
+}
+
+.navbar-register{
+    width: 130px;
+    height: 45px;
+    background: #6bac48;
+    border: 1px solid #fdfcfc;
+    box-sizing: border-box;
+    border-radius: 30px;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    color: white;
+    font-size: 15px;
+
+}
+
+.navbar-register:hover{
+    background: #c7c7c7;
+    color: #6bac48;
+
+}
+
+.navbar-profile{
+    align-items: center;
+    
+
+}
