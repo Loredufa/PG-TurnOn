@@ -18,7 +18,6 @@ app.use("/user", routes);
 
 app.use(errorHandler)
 
-
 const { conn } = require("./src/db");
 
 conn.sync({ force: false }).then(() => {

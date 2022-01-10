@@ -13,13 +13,13 @@ const supplier = require ("./supplier/supplier")
 
 
 router.use("/", userCourt ) 
-router.use("/booking", userBooking )
+router.use("/", userBooking )
 router.use ("/", user)
-router.use ("/favorites", userFavorites)
-router.use ("/availability", userAvailability)
-router.use ("/availability", supplierAvailability)
+router.use ("/", userFavorites)
+router.use ("/", userAvailability)
+router.use ("/", supplierAvailability)
 router.use ("/", supplierCourt)
-router.use ("/payments" , supplierPayments )
+router.use ("/" , supplierPayments )
 router.use ("/", supplier)
 
 
