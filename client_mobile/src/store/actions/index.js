@@ -22,10 +22,11 @@ export function addUser(data) {
 export function getCourtBySport (sport) {
   return async function (dispatch) {
     try {
-      const postUser = await axios.post("http://localhost:3001/user/court?sport="+sport);
+      const postUser = await axios.get("http://localhost:3001/user/court?sport="+sport); 
+      console.log(postUser.data);
       dispatch({
         type: GET_COURT_BY_SPORT,
-        payload: postUser,
+        payload: postUser.data,
       });
     } catch (error) {
       console.log(error);

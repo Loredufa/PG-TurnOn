@@ -62,8 +62,8 @@ export default function Home() {
   //if (courts.length !== 0) setLoading(false);
 
   function submit(type) {
-    dispatch(getCourtType(type));
-    navigation.navigate("Courts", { sport: type , dimension: dimension });
+    //dispatch(getCourtType(type));
+    navigation.navigate("Courts", { sport: type/*, dimension: dimension */});
   }
 
   return (

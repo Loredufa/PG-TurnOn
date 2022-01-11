@@ -42,7 +42,7 @@ export default function Court({item}) {
                   }}
                 >
                   <Image
-                    source={item.img}
+                    source={item.image}
                     style={{
                       height: screenWidth / 4,
                       width: screenWidth / 4,
@@ -60,7 +60,7 @@ export default function Court({item}) {
                   >
                     <Text>{item.name}</Text>
                     <Text>Precio: {item.price}</Text>
-                    <Text>Horario: {item.timeTables}</Text>
+                    <Text>Horario: {item.description}</Text>
                     <View
                       style={{
                         flexDirection: "row",
@@ -83,7 +83,7 @@ export default function Court({item}) {
                         size={20}
                         style={{ marginLeft: 20 }}
                       />
-                      <Text style={{ marginLeft: 5 }}>{item.rating}</Text>
+                      <Text style={{ marginLeft: 5 }}>{/*item.rating*/}5</Text>
                     </View>
                   </View>
                 </View>
