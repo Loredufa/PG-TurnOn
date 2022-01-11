@@ -29,7 +29,7 @@ export default function Courts({ route }) {
   
   useEffect(()=> {
     dispatch(getCourtBySport(route.params.sport));
-  },[courtsBySports])
+  },[])
 
 
   /*
@@ -44,13 +44,11 @@ export default function Courts({ route }) {
   */
   return (
     <View style={styles.container}>
-      <SearchBar/>
+      <View style={styles.searchBarPos}>
+        <SearchBar />
+      </View>
       <Text
-            style={{
-              flex: 0.5,
-              justifyContent: "center",
-              alignItems: "center",
-            }}
+            style={styles.title}
           >
             {route.params.sport}
           </Text>

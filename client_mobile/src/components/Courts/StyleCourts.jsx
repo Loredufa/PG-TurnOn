@@ -4,18 +4,18 @@ import {
   
 export const styles = StyleSheet.create({
   container: { flex: 1, alignItems: "center" },
-  /*
-  home: {
-    marginTop: 30,
-
-    alignItems: "center",
-    backgroundColor: "white",
-    borderRadius: 20,
-    borderWidth: 1,
-    borderColor: "black",
-    justifyContent: "center",
+  searchBarPos: {
+    justifyContent: "flex-start",
+    marginTop: 20,
   },
-  */
+  title: {
+    flex: 0.5,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 10,
+    fontSize: 20,
+    fontWeight: "bold",
+  },
   containerSearch: {
     alignItems: "center",
     justifyContent: "flex-start",

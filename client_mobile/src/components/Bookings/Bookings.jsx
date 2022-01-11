@@ -14,7 +14,12 @@ export default function Bookings({ route }) {
   
   return (
     <View style={styles.container}>
-      <SearchBar/>
+      <View style={styles.searchBarPos}>
+        <SearchBar />
+      </View>
+      <Text style={styles.title} >
+      Reservas
+      </Text>
       {bookings.length !== 0 ? (
         <View
         style={{
@@ -23,15 +28,6 @@ export default function Bookings({ route }) {
           justifyContent: "flex-start",
         }}
         >
-        <Text
-          style={{
-            flex: 0.5,
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          Reservas
-        </Text>
         <FlatList
           data={bookings}
           style={{ flexGrow: 5.5 }}

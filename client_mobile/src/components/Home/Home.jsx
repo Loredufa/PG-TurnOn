@@ -28,7 +28,7 @@ const sports = [
   { key: "Golf", img: require("../../../Images/Golf.jpg") },
   { key: "Hockey", img: require("../../../Images/Hockey.jpg") },
   { key: "Paddle", img: require("../../../Images/Paddle.jpg") },
-  { key: "Tennis", img: require("../../../Images/Tennis.jpg") },
+  { key: "Tenis", img: require("../../../Images/Tennis.jpg") },
   { key: "Otros", img: require("../../../Images/Otros.jpg") },
 ];
 
@@ -69,7 +69,9 @@ export default function Home() {
   return (
     <SafeAreaView style={styles.container}>
       {/* <View style={styles.globalContainer}> */}
-      <SearchBar/>
+      <View style={styles.searchBarPos}>
+        <SearchBar />
+      </View>
       <View
         style={{
           width: dimension.screenWidth,

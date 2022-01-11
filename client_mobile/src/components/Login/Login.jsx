@@ -99,7 +99,9 @@ useEffect(async () => {
   }*/
   return (
     loading? 
-    <ActivityIndicator size="large" color="#00ff00" /> 
+    <View style={{alignItems:'center'}}>
+      <ActivityIndicator size="large" color="#00ff00" /> 
+    </View>
     :
     <View>
       <Image style={styles.img} source={require("./Logo.jpg")} />

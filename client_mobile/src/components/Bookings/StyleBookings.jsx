@@ -23,4 +23,16 @@ import {
   
       paddingLeft: 10,
     },
+    searchBarPos: {
+      justifyContent: "flex-start",
+      marginTop: 20,
+    },
+    title: {
+      flex: 0.5,
+      justifyContent: "center",
+      alignItems: "center",
+      marginTop: 10,
+      fontSize: 20,
+      fontWeight: "bold",
+    },
   });

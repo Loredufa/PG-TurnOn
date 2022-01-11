@@ -77,12 +77,20 @@ export function addUser({ name, lastname, phone, email, password }) {
   };
 }
 
-export function changeUserInfo(newInfo) {
+export function changeUserInfo(id , userInfo) {
   return async function (dispatch) {
-    dispatch({
-      type: CHANGE_USER_INFO,
-      payload: newInfo,
-    });
+    try {
+      const newInfo = await axios.put("http://localhost:3001/user/user/"+id, 
+        userInfo
+      ); 
+      console.log("Informacion recibida" , newInfo.data);
+      dispatch({
+        type: CHANGE_USER_INFO,
+        payload: newInfo.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 }
 

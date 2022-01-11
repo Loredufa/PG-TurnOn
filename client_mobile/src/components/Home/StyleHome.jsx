@@ -11,12 +11,10 @@ const styles = StyleSheet.create({
     padding: 10,
     flexDirection: "column",
   },
-  /*
-  inputContainer: {
-    width: screenWidth,
-    flex: 2,
+  searchBarPos: {
+    justifyContent: "flex-start",
+    marginTop: 20,
   },
-  */
   globalContainer: {
     flexDirection: "column",
   },

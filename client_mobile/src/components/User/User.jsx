@@ -9,6 +9,7 @@ import {
   TextInput,
   View,
   Image,
+  ActivityIndicator,
 } from "react-native";
 import {styles} from './StylesUser';
 
@@ -24,8 +25,8 @@ export default function User() {
     lastname: user.lastname,
     phone: user.phone,
     mail: user.mail,
-    password: "*******",
-    secondPassword: "*******",
+    password:'',
+    secondPassword: '',
     errors: {
       name: '',
       lastname: '',
@@ -43,7 +44,15 @@ export default function User() {
   
   function handlerNewInfo () {
     changeEdit(!editState);
-    dispatch(changeUserInfo(infoEdit))
+    console.log("Informacion editada", infoEdit)
+    let infoToSend = {}
+    user.name !== infoEdit.name ? infoToSend={ ...infoToSend , name: infoEdit.name} :infoToSend={ ...infoToSend}
+    user.lastname !== infoEdit.lastname ? infoToSend={ ...infoToSend , lastname: infoEdit.lastname} :infoToSend={ ...infoToSend}
+    user.phone !== infoEdit.phone ? infoToSend={ ...infoToSend , phone: infoEdit.phone} :infoToSend={ ...infoToSend}
+    user.mail !== infoEdit.mail ? infoToSend={ ...infoToSend , mail: infoEdit.mail} :infoToSend={ ...infoToSend}
+    infoEdit.password !== '' ? infoToSend={ ...infoToSend , password: infoEdit.password} :infoToSend={ ...infoToSend}
+    console.log("Informacion a enviar" , infoToSend)
+    dispatch(changeUserInfo(user.id , infoToSend))
   }
 
   function handlerChangeInfo(name , defaultValue) {
@@ -134,14 +143,16 @@ export default function User() {
               <TextInput 
                 name = 'password'
                 style={styles.input}
-                placeholder={infoEdit.password}
+                placeholder= "*******"
+                defaultValue ={infoEdit.password}
                 secureTextEntry={true}
                 onChangeText={(e) => handlerChangeInfo("password", e)}
               /><Text>{infoEdit.errors.password}</Text>
               <TextInput 
                 name = 'secondPassword'
                 style={styles.input}
-                placeholder={infoEdit.secondPassword}
+                placeholder= "*******"
+                defaultValue= {infoEdit.password}
                 secureTextEntry={true}
                 onChangeText={(e) => handlerChangeInfo("secondPassword", e)}
               /><Text>{infoEdit.errors.secondPassword}</Text>
@@ -158,6 +169,9 @@ export default function User() {
                 </View>
               </View>
             </View>
+            :
+            user.name !== infoEdit.name || user.lastname !== infoEdit.lastname || user.phone !== infoEdit.phone || user.mail !== infoEdit.mail ?
+            <ActivityIndicator size="large" color="#00ff00" />
             :
             <View style={styles.inputContainers}>
               <View style={styles.input}><Text style={styles.info}>{user.name}</Text></View>

@@ -12,7 +12,12 @@ export default function FavoritesCourts({ route }) {
   const favorites = useSelector((state) => state.favorites);
   return (
     <View style={styles.container}>
-      <SearchBar/>
+      <View style={styles.searchBarPos}>
+        <SearchBar />
+      </View>
+      <Text style={styles.title} >
+          Favoritos
+        </Text>
       {favorites.length !== 0 ? (
         <View
         style={{
@@ -21,15 +26,6 @@ export default function FavoritesCourts({ route }) {
           justifyContent: "flex-start",
         }}
         >
-        <Text
-          style={{
-            flex: 0.5,
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          Favoritos
-        </Text>
         <FlatList
           data={favorites}
           style={{ flexGrow: 5.5 }}
