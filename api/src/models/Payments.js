@@ -6,7 +6,7 @@ module.exports = (sequelize) => {
 
   sequelize.define("payments", {
     amount: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     idCourt: {

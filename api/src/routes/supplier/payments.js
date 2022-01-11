@@ -5,9 +5,9 @@ const { updatePayment } = require("./controllers/updatePayment");
 const { getPayments } = require("./controllers/getPayment");
 const { deletePayments } = require("./controllers/deletePayment");
 
-router.post("/", createPayment);
-router.put("/:id", updatePayment);
-router.get("/", getPayments);
-router.delete("/:id", deletePayments);
+router.post("/payments", createPayment);
+router.put("/payments/:id", updatePayment);
+router.get("/payments", getPayments);
+router.delete("/payments/:id", deletePayments);
 
 module.exports = router;
