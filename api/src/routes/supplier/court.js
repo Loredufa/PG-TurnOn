@@ -14,8 +14,8 @@ const {updateCourt} = require("./controllers/updateCourt")
 //     }
 // });
 
-router.post("/court", createCourt)
-router.put("/court/:id", updateCourt)
+router.post("/court/:supplierId", createCourt)
+router.put("/court/:idCourt", updateCourt)
 
 
 module.exports = router
