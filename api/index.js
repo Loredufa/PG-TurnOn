@@ -16,9 +16,7 @@ app.use(setHeaders);
 app.use("/supplier", routes);
 app.use("/user", routes);
 
-
 app.use(errorHandler);
-
 
 const { conn } = require("./src/db");
 
