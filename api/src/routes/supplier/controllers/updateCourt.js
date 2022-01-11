@@ -4,14 +4,15 @@ const {Field} = require("../../../db")
 
 const updateCourt = async (req, res) => {
     
-    const { id } = req.params
+    const { idCourt } = req.params
     let newInfo = req.body
 
     await Field.update(newInfo, {
         where: {
-            id
+            id:idCourt
         }
-    }).catch(err => res.send({ 
+    }).catch(err =>        
+        res.send({ 
         success: false, 
         message: "Hubo un error al actualizar la cancha"
     }))

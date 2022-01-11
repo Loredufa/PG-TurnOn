@@ -69,11 +69,11 @@ Bookings.hasOne(Payments)
 Payments.belongsTo(Available) // Payments tendra una columna idBooking
 
 //1 a N
-Supplier.hasMany(Field, {foreignKey: 'id'})
+Supplier.hasMany(Field)
 Field.belongsTo(Supplier)  // coloca proveedorId en field
 
-User.hasMany(Favorites, {foreignKey: 'id'})
-Favorites.belongsTo(User) // coloca userId en favorites
+// User.hasMany(Favorites, {foreignKey: 'id'})   ver si Favorites es la tabla intermedia entre usuario y cancha
+// Favorites.belongsTo(User) // coloca userId en favorites
 
 Comments.belongsTo(Field) // coloca fieldId en comments
 
