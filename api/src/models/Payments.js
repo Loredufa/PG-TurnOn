@@ -9,7 +9,7 @@ module.exports = (sequelize) => {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    idCort: {
+    idCourt: {
       type: DataTypes.STRING,
       allowNull: false,
     },
