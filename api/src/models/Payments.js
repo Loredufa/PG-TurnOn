@@ -4,10 +4,6 @@ const { DataTypes } = require("sequelize");
 module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define("payments", {
-    date: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
     amount: {
       type: DataTypes.INTEGER,
       allowNull: false,
