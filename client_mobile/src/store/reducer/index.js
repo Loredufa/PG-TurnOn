@@ -8,6 +8,8 @@ import {
   GET_COURT_TYPE,
   ADD_TO_FAVORITE,
   BOOK_COURT,
+  SET_SCREEN_DIMENSIONS,
+  GET_COURT_BY_SPORT,
 } from "../actions/index";
 import {
   findEmail,
@@ -26,6 +28,10 @@ const initialState = {
   favorites: [],
   bookings: [],
   authToken: null,
+  screenWidth: 375, 
+  numColumns: 6, 
+  titleSize: 62,
+  courtsBySports: [],
 };
 
 const reducer = (state = initialState, action) => {
@@ -73,12 +79,26 @@ const reducer = (state = initialState, action) => {
     case ADD_TO_FAVORITE:
       return {
         ...state,
-        favorites: state.favorites.concat(action.payload),
+        favorites: state.favorites.includes(action.payload)? 
+        state.favorites.filter(element => element !== action.payload) 
+        : [...state.favorites , action.payload]
       };
     case BOOK_COURT:
       return {
         ...state,
-        bookings: [...state.bookings, action.payload]
+        bookings: state.bookings.includes(action.payload)? state.bookings : [...state.bookings, action.payload]
+      }
+    case SET_SCREEN_DIMENSIONS:
+      return {
+        ...state,
+        screenWidth: action.payload.screenWidth, 
+        numColumns: action.payload.numColumns, 
+        titleSize: action.payload.titleSize,
+      }
+    case GET_COURT_BY_SPORT:
+      return {
+        ...state,
+        courtsBySports: action.payload,
       }
     default:
       return state;

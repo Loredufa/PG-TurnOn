@@ -6,16 +6,46 @@ import {
   TextInput,
   View,
   Image,
-  ActivityIndicator 
+  ActivityIndicator,
+  Dimensions
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { useSelector, useDispatch } from "react-redux";
 import { findCreatedUser } from "../../store/actions/index";
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {setScreenDimensions} from '../../store/actions/index';
+import {styles} from './StylesLogin';
 
 
 
 export default  function Login() {
+
+  const dispatch = useDispatch();
+  const screenWidth = Dimensions.get("window").width;
+  const numColumns = 6;
+  const titleSize = screenWidth / numColumns;
+
+
+  const [dimension, setDimension] = useState({ screenWidth , titleSize });
+
+  useEffect(() => {
+    const subscription = Dimensions.addEventListener(
+      "change",
+      ({ screenWidth, titleSize }) => {
+        setDimension({ screenWidth, titleSize });
+      }
+    );
+    return () => subscription?.remove();
+  });
+
+
+  useEffect(()=>{
+    dispatch(setScreenDimensions(screenWidth, numColumns, titleSize));
+  },[screenWidth])
+
+
+
+
 
   // SOMEWHERE INSIDE LOGIN.JS
   const [loading , setLoading] = useState(false);
@@ -53,7 +83,6 @@ useEffect(async () => {
     password: "",
   });
   const user = useSelector((state) => state.user);
-  const dispatch = useDispatch();
 
   function onPressBtn() {
     dispatch(findCreatedUser(inputs));
@@ -105,56 +134,3 @@ useEffect(async () => {
   );
 }
 
-const styles = StyleSheet.create({
-  img: {
-    width: 150,
-    height: 100,
-    alignSelf: "center",
-    marginTop: 50,
-    marginBottom: 20,
-  },
-  input: {
-    width: 280,
-    height: 40,
-
-    marginTop: 15,
-
-    borderRadius: 20,
-    borderWidth: 1,
-
-    backgroundColor: "white",
-
-    paddingLeft: 10,
-  },
-  inputContainers: {
-    alignItems: "center",
-  },
-  button: {
-    marginTop: 30,
-    width: 130,
-    height: 35,
-    alignItems: "center",
-    backgroundColor: "white",
-    borderRadius: 20,
-    borderWidth: 1,
-    borderColor: "black",
-    justifyContent: "center",
-  },
-  buttonText: {
-    textAlign: "center",
-    padding: 20,
-    color: "black",
-  },
-  registerContainer: {
-    display: "flex",
-    flexDirection: "row",
-    alignSelf: "center",
-  },
-  register: {
-    marginLeft: 10,
-    color: "blue",
-  },
-  acount: {
-    marginRight: 10,
-  },
-});

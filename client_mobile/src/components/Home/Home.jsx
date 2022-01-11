@@ -20,6 +20,8 @@ import {
   bestCourtsNearMe,
   getCourtType,
 } from "../../store/actions/index";
+import SearchBar from "../SearchBar/SearchBar";
+import {styles} from './StyleHome';
 
 const sports = [
   { key: "Futbol", img: require("../../../Images/Football.jpg") },
@@ -61,27 +63,13 @@ export default function Home() {
 
   function submit(type) {
     dispatch(getCourtType(type));
-    navigation.navigate("Courts", { dimension: dimension });
+    navigation.navigate("Courts", { sport: type , dimension: dimension });
   }
 
   return (
     <SafeAreaView style={styles.container}>
       {/* <View style={styles.globalContainer}> */}
-      <View style={styles.containerSearch}>
-        <TextInput
-          placeholder="Nombre"
-          name="name"
-          style={styles.input}
-          onChangeText={(court) => setInput(court)}
-          defaultValue={input.name}
-        />
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => dispatch(getCourt(input))}
-        >
-          <MaterialCommunityIcons name="search" size={25} />
-        </TouchableOpacity>
-      </View>
+      <SearchBar/>
       <View
         style={{
           width: dimension.screenWidth,
@@ -183,58 +171,3 @@ export default function Home() {
     </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    padding: 10,
-    flexDirection: "column",
-  },
-  /*
-  inputContainer: {
-    width: screenWidth,
-    flex: 2,
-  },
-  */
-  globalContainer: {
-    flexDirection: "column",
-  },
-  card: {
-    flex: 1,
-    borderRadius: 10,
-    margin: 10,
-    borderWidth: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    padding: 2,
-
-    //borderColor: "black",
-  },
-  input: {
-    width: 280,
-    height: 40,
-
-    marginTop: 15,
-
-    borderRadius: 20,
-    borderWidth: 1,
-
-    backgroundColor: "white",
-
-    paddingLeft: 10,
-  },
-  containerSearch: {
-    alignItems: "center",
-    justifyContent: "flex-start",
-    flexDirection: "row",
-    flex: 1,
-  },
-  button: {},
-  //icon: { fontSize: 15 },
-  review: {
-    flex: 2,
-    justifyContent: "flex-start",
-  },
-});

@@ -8,6 +8,8 @@ export const BEST_COURTS_NEAR_ME = "BEST_COURTS_NEAR_ME";
 export const GET_COURT_TYPE = "GET_COURT_TYPE";
 export const ADD_TO_FAVORITE = "ADD_TO_FAVORITE";
 export const BOOK_COURT = "BOOK_COURT";
+export const SET_SCREEN_DIMENSIONS = "SET_SCREEN_DIMENSIONS";
+export const GET_COURT_BY_SPORT = "GET_COURT_BY_SPORT";
 
 /*
 export function addUser(data) {
@@ -17,6 +19,30 @@ export function addUser(data) {
   };
 }
 */
+export function getCourtBySport (sport) {
+  return async function (dispatch) {
+    try {
+      const postUser = await axios.post("http://localhost:3001/user/court?sport="+sport);
+      dispatch({
+        type: GET_COURT_BY_SPORT,
+        payload: postUser,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
+
+export function setScreenDimensions (screenWidth, numColumns, titleSize){
+  return function (dispatch) {
+    dispatch({
+      type: SET_SCREEN_DIMENSIONS,
+      payload: {screenWidth, numColumns, titleSize}
+    });
+  };  
+}
+
 export function bookCourt (court) {
   return function (dispatch) {
     dispatch({
