@@ -10,6 +10,7 @@ import {
   BOOK_COURT,
   SET_SCREEN_DIMENSIONS,
   GET_COURT_BY_SPORT,
+  CHANGE_USER_PASS
 } from "../actions/index";
 import {
   findEmail,
@@ -64,6 +65,12 @@ const reducer = (state = initialState, action) => {
     case CHANGE_USER_INFO:
       return {
         ...state,
+        user: { user: action.payload },
+      };
+    case CHANGE_USER_PASS:
+      return {
+        ...state,
+        //verificar aca cual es la respuesta para ver que hago en front
         user: { user: action.payload },
       };
     case BEST_COURTS_NEAR_ME:

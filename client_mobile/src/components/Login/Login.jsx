@@ -15,6 +15,7 @@ import { findCreatedUser } from "../../store/actions/index";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {setScreenDimensions} from '../../store/actions/index';
 import {styles} from './StylesLogin';
+import * as SecureStore from 'expo-secure-store';
 
 
 
@@ -42,9 +43,22 @@ export default  function Login() {
   useEffect(()=>{
     dispatch(setScreenDimensions(screenWidth, numColumns, titleSize));
   },[screenWidth])
+/*
 
+  async function getValueFor(key) {
+    let result = await SecureStore.getItemAsync(key);
+    if (result) {
+      console.log(result);
+    } else {
+      console.log('No values stored under that key.');
+    }
+  }
 
+  useEffect(()=> {
+    getValueFor('token');
+  },[])
 
+*/
 
 
   // SOMEWHERE INSIDE LOGIN.JS

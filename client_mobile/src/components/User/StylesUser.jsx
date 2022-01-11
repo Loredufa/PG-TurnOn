@@ -1,22 +1,30 @@
 import {
     StyleSheet,
   } from "react-native";
+import { color } from "react-native-reanimated";
   
 export 
 const styles = StyleSheet.create({
+  title: {
+    textAlign: 'center',
+    marginBottom: 30,
+    marginTop: 10,
+    fontSize:30,
+    fontStyle: 'bold',
+  },
   inputContainers: {
     alignItems: "center",
+    justifyContent:'center',
   },
   input: {
     width: 280,
     height: 40,
-
     marginTop: 15,
 
     borderRadius: 20,
     borderWidth: 1,
-
-    backgroundColor: "white",
+    /*color: 'white',
+    borderColor: 'transparent',*/
 
     paddingLeft: 10,
   
@@ -25,6 +33,7 @@ const styles = StyleSheet.create({
   },
   info: {
     textAlign: 'center',
+    //color: 'white',
   },
   btnUser: {
     marginTop: 40,
@@ -34,10 +43,12 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     borderRadius: 20,
     borderWidth: 1,
-    borderColor: "black",
+    borderColor: "transparent",
     justifyContent: "center",
     marginLeft: 15,
     marginRight: 15,
+    backgroundColor: '#179F34',
+    color: 'white'
   },
   cuenta: {
     display: "flex",
@@ -49,8 +60,7 @@ const styles = StyleSheet.create({
     padding: 20,
     color: "black",
   },
-  btnEdit: {
-    alignSelf: "center",
+  btnDelete: {
     marginTop: 40,
     width: 130,
     height: 35,
@@ -58,7 +68,10 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     borderRadius: 20,
     borderWidth: 1,
-    borderColor: "black",
+    borderColor: "transparent",
     justifyContent: "center",
+    marginLeft: 15,
+    marginRight: 15,
+    backgroundColor: '#FFC900',
   },
 });
