@@ -1,6 +1,7 @@
 import React from 'react';
 import Performance from './Performance';
 import Features from './Features';
+import Contact from './Contact';
 import '../Css/home.css'
 
 function Home(){
@@ -21,6 +22,10 @@ return(
  
         <div id="features">
         <Features />
+        </div>
+
+        <div>
+            <Contact/>   
         </div>     
     </div>
 )
