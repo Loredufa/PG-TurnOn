@@ -1,13 +1,7 @@
-const {Router} = require ("express")
-const router = Router () 
+const { Router } = require("express");
+const router = Router();
+const { postAvailability } = require("./controllers/postAvailability");
 
+router.post("/available", postAvailability);
 
-// router.get ("/" , (req, res) => {
-//     res.send ("Soy la ruta proveedor-disponibilidad")
-// });
-
-
-
-
-
-module.exports = router
+module.exports = router;
