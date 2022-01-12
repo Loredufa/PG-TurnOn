@@ -22,6 +22,6 @@ const { conn } = require("./src/db");
 
 conn.sync({ force: false }).then(() => {
   app.listen(PORT, () => {
-    console.log(`El servidor esta escuchando el puerto ${PORT}`);
+    console.log("%s listening at 3001");
   });
 });
