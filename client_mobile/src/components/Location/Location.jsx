@@ -7,6 +7,7 @@ import {
   View,
   Image,
 } from "react-native";
+import {styles} from './StylesLocation'
 
 export default function Location() {
   return (

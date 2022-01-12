@@ -8,6 +8,9 @@ export const BEST_COURTS_NEAR_ME = "BEST_COURTS_NEAR_ME";
 export const GET_COURT_TYPE = "GET_COURT_TYPE";
 export const ADD_TO_FAVORITE = "ADD_TO_FAVORITE";
 export const BOOK_COURT = "BOOK_COURT";
+export const SET_SCREEN_DIMENSIONS = "SET_SCREEN_DIMENSIONS";
+export const GET_COURT_BY_SPORT = "GET_COURT_BY_SPORT";
+export const CHANGE_USER_PASS = "CHANGE_USER_PASS"
 
 /*
 export function addUser(data) {
@@ -17,6 +20,31 @@ export function addUser(data) {
   };
 }
 */
+export function getCourtBySport (sport) {
+  return async function (dispatch) {
+    try {
+      const postUser = await axios.get("http://localhost:3001/user/court?sport="+sport); 
+      console.log(postUser.data);
+      dispatch({
+        type: GET_COURT_BY_SPORT,
+        payload: postUser.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
+
+export function setScreenDimensions (screenWidth, numColumns, titleSize){
+  return function (dispatch) {
+    dispatch({
+      type: SET_SCREEN_DIMENSIONS,
+      payload: {screenWidth, numColumns, titleSize}
+    });
+  };  
+}
+
 export function bookCourt (court) {
   return function (dispatch) {
     dispatch({
@@ -50,14 +78,44 @@ export function addUser({ name, lastname, phone, email, password }) {
   };
 }
 
-export function changeUserInfo(newInfo) {
+export function changeUserInfo(id , userInfo) {
   return async function (dispatch) {
-    dispatch({
-      type: CHANGE_USER_INFO,
-      payload: newInfo,
-    });
+    try {
+      const newInfo = await axios.put("http://localhost:3001/user/user/"+id, 
+        userInfo
+      ); 
+      console.log("Informacion recibida" , newInfo.data);
+      dispatch({
+        type: CHANGE_USER_INFO,
+        payload: newInfo.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 }
+
+export function changeUserPass(id , userInfo) {
+  return async function (dispatch) {
+    try {
+      const newInfo = await axios.put("http://localhost:3001/user/user/password/"+id,  {
+        oldpassword: userInfo.actualPass,
+        newpassword: userInfo.password
+      }
+      ); 
+      console.log("Informacion recibida" , newInfo.data);
+      dispatch({
+        type: CHANGE_USER_PASS,
+        payload: newInfo.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
+
+
 
 export function findCreatedUser({ user, password }) {
   return async function (dispatch) {
