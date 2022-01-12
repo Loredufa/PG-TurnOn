@@ -4,7 +4,7 @@ const {Field} = require("../../../db")
 const getCourts = async (req, res) => {
 
     let { supplierId } = req.params
-    
+        
     let courts
 
     try {
@@ -26,3 +26,9 @@ const getCourts = async (req, res) => {
 }
 
 module.exports = {getCourts}
+
+
+
+
+
+
