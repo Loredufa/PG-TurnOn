@@ -3,6 +3,7 @@ export const REGISTER = "REGISTRO";
 export const SET_MESSAGE_REG = "SET_MESSAGE_REG";
 export const SET_MESSAGE_USER = "SET_MESSAGE_USER";
 export const SET_USER = "SET_USER";
+export const CHANGE_SUPPLIER_PROFILE = "CHANGE_SUPPLIER_PROFILE"
 
 export function Register(payload) {
   return async function (dispatch) {
@@ -11,9 +12,7 @@ export function Register(payload) {
         `http://localhost:3001/supplier/supplier`,
         payload
       );
-      console.log("QUE MANDA EL FRONT AL BACK", info);
       if (info.data.message) {
-        console.log("VER SI SE MUESTRA MENSAJE", info.data.message);
         return dispatch({
           type: SET_MESSAGE_REG,
           payload: info.data.message,
@@ -46,6 +45,23 @@ export function loginUser({ user, password }) {
           payload: userinfo.data,
         });
       }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
+
+export function changeSupplierProfile ({id, info}) {
+  console.log("VER LO Q DA INFO:", info)
+  return async function (dispatch) {
+    try{
+      const updateinfo = await axios.put(`http://localhost:3001/supplier/supplier/${id}`, info)
+      console.log("QUE TRAE ID",updateinfo.data)
+      return dispatch({
+        type: SET_USER,
+        payload: updateinfo.data,
+      });
     } catch (error) {
       console.log(error);
     }

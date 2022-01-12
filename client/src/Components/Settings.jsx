@@ -7,7 +7,8 @@ import {
 } from "../Styles/settingsSupplier";
 import React, { useEffect, useState } from "react";
 
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { changeSupplierProfile } from "../Actions/actions"
 
 export default function Settings() {
   const { supplier } = useSelector((state) => state.user);
@@ -29,10 +30,17 @@ export default function Settings() {
     });
   };
 
+  const dispatch = useDispatch()
+  
+  const handleSubmit = (e) =>{
+    e.preventDefault()
+    dispatch(changeSupplierProfile({ id:supplier.id , info}))
+  }
+
   return (
     <DivGlobal>
       <H1name>Configuración/Perfil</H1name>
-      <EditButton>Editar</EditButton>
+      <EditButton onClick={handleSubmit}>Editar/Guardar</EditButton>
       <DivForm>
         <LabelSetting>
           Nombre
@@ -55,13 +63,14 @@ export default function Settings() {
           <input name="cuit" value={info.cuit} onChange={handleChange} />
         </LabelSetting>
         <LabelSetting>
-          Nombre / Empresa
+          Razón Social
           <input
             name="businessname"
             value={info.businessname}
             onChange={handleChange}
           />
         </LabelSetting>
+        
       </DivForm>
     </DivGlobal>
   );
