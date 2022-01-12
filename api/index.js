@@ -20,7 +20,7 @@ app.use(errorHandler);
 
 const { conn } = require("./src/db");
 
-conn.sync({ force: false }).then(() => {
+conn.sync({ force: true }).then(() => {
   app.listen(PORT, () => {
     console.log(`El servidor esta escuchando el puerto ${PORT}`);
   });

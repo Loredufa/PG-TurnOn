@@ -2,10 +2,6 @@ const { Router } = require("express");
 const router = Router();
 const { postBooking } = require("./controllers/postBooking");
 
-// router.get ("/" , (req, res) => {
-//     res.send ("Soy la ruta usuario/reservas")
-// });
-
-router.post("/bookings", postBooking);
+router.post("/booking", postBooking);
 
 module.exports = router;
