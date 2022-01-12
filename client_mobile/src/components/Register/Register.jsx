@@ -80,7 +80,7 @@ export default function Register() {
       <Image style={styles.img} source={require("./Logo.jpg")} />
       <View style={styles.inputContainers}>
         <TextInput
-          placeholder={inputFullfilled && errors.name ? errors.name : "Nombre"}
+          placeholder="Nombre"
           name="name"
           style={
             inputFullfilled && errors.name ? styles.notfulfilled : styles.input
@@ -88,10 +88,12 @@ export default function Register() {
           onChangeText={(e) => handleChange("name", e)}
           defaultValue={inputs.name}
         />
+        {inputFullfilled && errors.name && (
+          <Text style={styles.text}>{errors.name}</Text>
+        )}
+
         <TextInput
-          placeholder={
-            inputFullfilled && errors.lastname ? errors.lastname : "Apellido"
-          }
+          placeholder="Apellido"
           name="lastname"
           style={
             inputFullfilled && errors.lastname
@@ -101,10 +103,11 @@ export default function Register() {
           onChangeText={(e) => handleChange("lastname", e)}
           defaultValue={inputs.lastname}
         />
+        {inputFullfilled && errors.lastname && (
+          <Text style={styles.text}>{errors.lastname}</Text>
+        )}
         <TextInput
-          placeholder={
-            inputFullfilled && errors.phone ? errors.phone : "Telefono"
-          }
+          placeholder="Telefono"
           name="phone"
           style={
             inputFullfilled && errors.phone ? styles.notfulfilled : styles.input
@@ -113,8 +116,11 @@ export default function Register() {
           defaultValue={inputs.phone}
           keyboardType="phone-pad"
         />
+        {inputFullfilled && errors.phone && (
+          <Text style={styles.text}>{errors.phone}</Text>
+        )}
         <TextInput
-          placeholder={inputFullfilled && errors.email ? errors.email : "Email"}
+          placeholder="Email"
           name="email"
           style={
             inputFullfilled && errors.email ? styles.notfulfilled : styles.input
@@ -123,10 +129,11 @@ export default function Register() {
           defaultValue={inputs.email}
           keyboardType="email-address"
         />
+        {inputFullfilled && errors.email && (
+          <Text style={styles.text}>{errors.email}</Text>
+        )}
         <TextInput
-          placeholder={
-            inputFullfilled && errors.password ? errors.password : "Contraseña"
-          }
+          placeholder="Contraseña"
           name="password"
           style={
             inputFullfilled && errors.password
@@ -137,12 +144,11 @@ export default function Register() {
           defaultValue={inputs.password}
           secureTextEntry={true}
         />
+        {inputFullfilled && errors.password && (
+          <Text style={styles.text}>{errors.password}</Text>
+        )}
         <TextInput
-          placeholder={
-            inputFullfilled && errors.repassword
-              ? errors.repassword
-              : "Repita Contraseña"
-          }
+          placeholder="Repita Contraseña"
           name="repassword"
           style={
             inputFullfilled && errors.repassword
@@ -153,7 +159,22 @@ export default function Register() {
           defaultValue={inputs.repassword}
           secureTextEntry={true}
         />
-        <TouchableOpacity onPress={onPressBtn}>
+        {inputFullfilled && errors.repassword && (
+          <Text style={styles.text}>{errors.repassword}</Text>
+        )}
+        <TouchableOpacity
+          onPress={onPressBtn}
+          disabled={
+            !inputs.name ||
+            !inputs.lastname ||
+            !inputs.phone ||
+            !inputs.email ||
+            !inputs.password ||
+            !inputs.repassword
+              ? true
+              : false
+          }
+        >
           <View style={styles.button}>
             <Text style={styles.buttonText}>Registrar</Text>
           </View>
@@ -235,6 +256,11 @@ const styles = StyleSheet.create({
     color: "blue",
   },
   acount: {
+    marginRight: 10,
+  },
+  text: {
+    textAlign: "justify",
+    marginLeft: 10,
     marginRight: 10,
   },
 });
