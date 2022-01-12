@@ -9,7 +9,9 @@ import {
   TextInput,
   View,
   Image,
+  ActivityIndicator,
 } from "react-native";
+import {styles} from './StylesUser';
 
 export default function User() {
   
@@ -17,21 +19,89 @@ export default function User() {
   const {user} = useSelector(state => state.user);
   const dispatch = useDispatch();
 
+  
+  const [passState , changePassState] = useState(false);
+  const [passEdit , changePass] = useState({
+    actualPass: '',
+    password:'',
+    secondPassword: '',
+    errors: {
+      actualPass: '',
+      password: '',
+      secondPassword: '',
+  },
+  });
+  
+  
+  function handlerPass () {
+    changePassState(!passState);
+    console.log("Informacion editada", passEdit)
+    let infoToSend = {}
+    passEdit.actualPass !== '' ? infoToSend={ ...infoToSend , actualPass: passEdit.actualPass} :infoToSend={ ...infoToSend}
+    passEdit.password !== '' ? infoToSend={ ...infoToSend , password: passEdit.password} :infoToSend={ ...infoToSend}
+    console.log("Informacion a enviar" , infoToSend)
+    //dispatch(changeUserInfo(user.id , infoToSend))
+  }
+
+  function handlerChangePass(name , defaultValue) {
+    let {errors} = passEdit;
+  
+    changePass({
+            ...passEdit,
+            [name]: defaultValue,
+            errors
+        });
+    errors = controlErrorPass(errors , name , defaultValue);
+    console.log(errors , passEdit);
+    validatePass (passEdit.errors);
+}
+  
+
+  const [disabled , setDisabled] = useState(true);
+
+  function controlErrorPass (errors, name , value) {
+      switch (name) {
+          case "password": 
+          errors.password = value.length === 0 || !(!/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/.test(value))? '' : 
+          "La contraseña debe tener entre 8 y 16 caracteres, al menos un dígito, al menos una minúscula y al menos una mayúscula. Puede tener otros símbolos"
+            break;
+          case "secondPassword": 
+            errors.secondPassword = ( value.length === 0 || !(!/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/.test(value)) ) &&
+            passEdit.password === value? '' : 
+            "La contraseña debe tener entre 8 y 16 caracteres, al menos un dígito, al menos una minúscula y al menos una mayúscula. Puede tener otros símbolos"
+              break;
+          case "actualPass":
+            errors.actualPass = ( value.length === 0 || !(!/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/.test(value)) ) ? '' : 
+            "La contraseña debe tener entre 8 y 16 caracteres, al menos un dígito, al menos una minúscula y al menos una mayúscula. Puede tener otros símbolos"
+              break;
+          default:
+            break;
+        }
+        return errors;
+  }
+
+  
+  function validatePass (errors) {
+      let haveErrors = false;
+      for (let clave in errors) {
+          errors[clave].length > 0 && (haveErrors=true);
+      }
+      if (haveErrors) {setDisabled(true)}
+      else {(setDisabled(false))}
+  }
+
+
   const [editState , changeEdit] = useState(false);
   const [infoEdit , changeInfo] = useState({
     name: user.name,
     lastname: user.lastname,
     phone: user.phone,
     mail: user.mail,
-    password: "*******",
-    secondPassword: "*******",
     errors: {
       name: '',
       lastname: '',
       phone: '',
       mail: '' ,
-      password: '',
-      secondPassword: '',
   },
   });
   
@@ -42,7 +112,15 @@ export default function User() {
   
   function handlerNewInfo () {
     changeEdit(!editState);
-    dispatch(changeUserInfo(infoEdit))
+    console.log("Informacion editada", infoEdit)
+    let infoToSend = {}
+    user.name !== infoEdit.name ? infoToSend={ ...infoToSend , name: infoEdit.name} :infoToSend={ ...infoToSend}
+    user.lastname !== infoEdit.lastname ? infoToSend={ ...infoToSend , lastname: infoEdit.lastname} :infoToSend={ ...infoToSend}
+    user.phone !== infoEdit.phone ? infoToSend={ ...infoToSend , phone: infoEdit.phone} :infoToSend={ ...infoToSend}
+    user.mail !== infoEdit.mail ? infoToSend={ ...infoToSend , mail: infoEdit.mail} :infoToSend={ ...infoToSend}
+    //infoEdit.password !== '' ? infoToSend={ ...infoToSend , password: infoEdit.password} :infoToSend={ ...infoToSend}
+    console.log("Informacion a enviar" , infoToSend)
+    dispatch(changeUserInfo(user.id , infoToSend))
   }
 
   function handlerChangeInfo(name , defaultValue) {
@@ -59,7 +137,7 @@ export default function User() {
 }
   
 
-  const [disabled , setDisabled] = useState(true);
+ // const [disabled , setDisabled] = useState(true);
 
   function controlError (errors, name , value) {
       switch (name) {
@@ -75,7 +153,7 @@ export default function User() {
           case "mail": 
           errors.mail = !(!/\S+@\S+\.\S+/.test(value)) ? '' : 'Ingresar un mail valido'
             break;
-          case "password": 
+          /*case "password": 
           errors.password = value.length === 0 || !(!/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/.test(value))? '' : 
           "La contraseña debe tener entre 8 y 16 caracteres, al menos un dígito, al menos una minúscula y al menos una mayúscula. Puede tener otros símbolos"
             break;
@@ -83,7 +161,7 @@ export default function User() {
             errors.secondPassword = ( value.length === 0 || !(!/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/.test(value)) ) &&
             infoEdit.password === value? '' : 
             "La contraseña debe tener entre 8 y 16 caracteres, al menos un dígito, al menos una minúscula y al menos una mayúscula. Puede tener otros símbolos"
-              break;
+              break;*/
           default:
             break;
         }
@@ -102,6 +180,7 @@ export default function User() {
   
   return (
     <View>
+        <Text style={styles.title}>Mi perfil</Text>
         <View>
           {
             editState? 
@@ -130,27 +209,13 @@ export default function User() {
                 defaultValue={infoEdit.mail}
                 onChangeText={(e) => handlerChangeInfo("mail", e)}
               /><Text>{infoEdit.errors.mail}</Text>
-              <TextInput 
-                name = 'password'
-                style={styles.input}
-                placeholder={infoEdit.password}
-                secureTextEntry={true}
-                onChangeText={(e) => handlerChangeInfo("password", e)}
-              /><Text>{infoEdit.errors.password}</Text>
-              <TextInput 
-                name = 'secondPassword'
-                style={styles.input}
-                placeholder={infoEdit.secondPassword}
-                secureTextEntry={true}
-                onChangeText={(e) => handlerChangeInfo("secondPassword", e)}
-              /><Text>{infoEdit.errors.secondPassword}</Text>
               <View style={styles.cuenta}>
                 <TouchableOpacity onPress={handlerNewInfo}>
-                  <View style={styles.btnEdit}>
+                  <View style={styles.btnUser}>
                     <Text style={styles.text}>Guardar</Text>
                   </View>
                 </TouchableOpacity>
-                <View style={styles.btnUser}>
+                <View style={styles.btnDelete}>
                   <TouchableOpacity onPress={()=>changeEdit(!editState)}>
                     <Text style={styles.text}>Cancelar</Text>
                   </TouchableOpacity>
@@ -158,24 +223,78 @@ export default function User() {
               </View>
             </View>
             :
+            passState?
+            <View style={styles.inputContainers}>
+            <Text>Contraseña Actual:</Text>
+            <TextInput 
+            name = 'actualPass'
+            style={styles.input}
+            placeholder= "*******"
+            defaultValue ={passEdit.actualPass}
+            secureTextEntry={true}
+            onChangeText={(e) => handlerChangePass("actualPass", e)}
+            /><Text>{passEdit.errors.actualPass}</Text>
+            <Text>Contraseña nueva:</Text>
+            <TextInput 
+            name = 'password'
+            style={styles.input}
+            placeholder= "*******"
+            defaultValue ={passEdit.password}
+            secureTextEntry={true}
+            onChangeText={(e) => handlerChangePass("password", e)}
+            /><Text>{passEdit.errors.password}</Text>
+            <Text>Repetir contraseña nueva:</Text>
+          <TextInput 
+            name = 'secondPassword'
+            style={styles.input}
+            placeholder= "*******"
+            defaultValue= {passEdit.secondPassword}
+            secureTextEntry={true}
+            onChangeText={(e) => handlerChangePass("secondPassword", e)}
+          /><Text>{passEdit.errors.secondPassword}</Text>
+          <View style={styles.cuenta}>
+            <TouchableOpacity onPress={handlerPass}>
+              <View style={styles.btnUser}>
+                <Text style={styles.text}>Guardar</Text>
+              </View>
+            </TouchableOpacity>
+            <View style={styles.btnDelete}>
+              <TouchableOpacity onPress={()=>changePassState(!passState)}>
+                <Text style={styles.text}>Cancelar</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </View>
+            :
+            user.name !== infoEdit.name || user.lastname !== infoEdit.lastname || user.phone !== infoEdit.phone || user.mail !== infoEdit.mail ?
+            <ActivityIndicator size="large" color="#00ff00" />
+            :
             <View style={styles.inputContainers}>
               <View style={styles.input}><Text style={styles.info}>{user.name}</Text></View>
               <View style={styles.input}><Text style={styles.info}>{user.lastname}</Text></View>
               <View style={styles.input}><Text style={styles.info}>{user.phone}</Text></View>
               <View style={styles.input}><Text style={styles.info}>{user.mail}</Text></View>
               <View style={styles.input}><Text style={styles.info}>**********</Text></View> 
-              <TouchableOpacity onPress={()=>changeEdit(!editState)}>
-                <View style={styles.btnEdit}>
+              
+              <View style={styles.cuenta}>
+                <TouchableOpacity onPress={()=>changeEdit(!editState)}>
+                <View style={styles.btnUser}>
                   <Text style={styles.text}>Editar Informacion</Text>
                 </View>
-              </TouchableOpacity>
+                </TouchableOpacity>
+                <View style={styles.btnUser}>
+                  <TouchableOpacity onPress={() => changePassState(!passState)}>
+                    <Text style={styles.text}>Modificar contraseña</Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
               <View style={styles.cuenta}>
                 <View style={styles.btnUser}>
                   <TouchableOpacity onPress={handlerCloseSession}>
                     <Text style={styles.text}>Cerrar Sesion</Text>
                   </TouchableOpacity>
                 </View>
-                <View style={styles.btnUser}>
+                <View style={styles.btnDelete}>
                   <TouchableOpacity onPress={() => console.log("Eliminar cuenta")}>
                     <Text style={styles.text}>Eliminar cuenta</Text>
                   </TouchableOpacity>
@@ -188,62 +307,3 @@ export default function User() {
   );
 }
 
-const styles = StyleSheet.create({
-  inputContainers: {
-    alignItems: "center",
-  },
-  input: {
-    width: 280,
-    height: 40,
-
-    marginTop: 15,
-
-    borderRadius: 20,
-    borderWidth: 1,
-
-    backgroundColor: "white",
-
-    paddingLeft: 10,
-  
-    alignContent: 'center',
-    justifyContent: 'center',
-  },
-  info: {
-    textAlign: 'center',
-  },
-  btnUser: {
-    marginTop: 40,
-    width: 130,
-    height: 35,
-    alignItems: "center",
-    backgroundColor: "white",
-    borderRadius: 20,
-    borderWidth: 1,
-    borderColor: "black",
-    justifyContent: "center",
-    marginLeft: 15,
-    marginRight: 15,
-  },
-  cuenta: {
-    display: "flex",
-    flexDirection: "row",
-    alignSelf: 'center',
-  },
-  text: {
-    textAlign: "center",
-    padding: 20,
-    color: "black",
-  },
-  btnEdit: {
-    alignSelf: "center",
-    marginTop: 40,
-    width: 130,
-    height: 35,
-    alignItems: "center",
-    backgroundColor: "white",
-    borderRadius: 20,
-    borderWidth: 1,
-    borderColor: "black",
-    justifyContent: "center",
-  },
-});

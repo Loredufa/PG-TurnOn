@@ -8,12 +8,14 @@ import {
   Image,
 } from "react-native";
 import MaterialCommunityIcons from "react-native-vector-icons/Ionicons";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addToFavorite, bookCourt } from "../../store/actions/index";
+import {styles} from './StyleCourtDetail';
 
 export default function CourtDetail({ route }) {
   const dispatch = useDispatch();
-
+  const favorites = useSelector(state => state.favorites);
+  console.log (favorites);
   function handlerBooking(court) {
     dispatch(bookCourt(court));
   }
@@ -67,7 +69,7 @@ export default function CourtDetail({ route }) {
           <MaterialCommunityIcons
             name="heart-outline"
             size={25}
-            color={"black"}
+            color={favorites.find(element => element.name === route.params.court.name)?"red":"black"}
             style={{ marginLeft: 10, marginRight: 20 }}
           />
         </TouchableOpacity>
@@ -82,38 +84,3 @@ export default function CourtDetail({ route }) {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    borderRadius: 10,
-    margin: 10,
-    borderWidth: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    padding: 2,
-  },
-  nameContainer: {
-    flex: 1,
-    flexDirection: "row",
-  },
-  optionsContainer: {
-    flex: 1,
-  },
-  button: {
-    flex: 1,
-    marginTop: 30,
-    width: 130,
-    height: 35,
-    alignItems: "center",
-    backgroundColor: "white",
-    borderRadius: 20,
-    borderWidth: 1,
-    borderColor: "black",
-    justifyContent: "center",
-  },
-  buttonText: {
-    textAlign: "center",
-    padding: 20,
-    color: "black",
-  },
-});

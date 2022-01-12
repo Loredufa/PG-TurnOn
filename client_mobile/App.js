@@ -12,7 +12,9 @@ import HomeTab from "./src/components/Home/HomeTab";
 import User from "./src/components/User/User";
 import Home from "./src/components/Home/Home";
 import Landing from './src/components/Landing/Landing'
-
+import {
+  Dimensions,
+} from "react-native";
 
 
 // EACH TIME A NAVIGATION OCCURS A THE NEW SCREEN WILL BE PUSHED
@@ -58,6 +60,7 @@ const NavigationContainerStack = () => (
 
 
 export default function App() {
+
   return (
     <Provider store={store}>
       <NavigationContainerStack />
