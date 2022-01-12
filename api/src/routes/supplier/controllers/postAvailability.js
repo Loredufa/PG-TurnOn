@@ -1,7 +1,13 @@
-/* const { Available } = require("../../../db");
+const { Available } = require("../../../db");
 
 const postAvailability = async (req, res) => {
   const { date, initialTime, endingTime } = req.body; // MIGRAR A ARREGLO DE OBJETO
+
+  console.log("date:", date);
+  console.log("initialTime:", initialTime);
+  console.log("endingTime:", endingTime);
+  console.log("BODY:", req.body);
+
   let newAvailability = await Available.create({
     date,
     initialTime,
@@ -15,4 +21,3 @@ const postAvailability = async (req, res) => {
 };
 
 module.exports = { postAvailability };
- */
