@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import {useSelector , useDispatch} from 'react-redux';
 import { useNavigation } from "@react-navigation/native";
-import {closeSession , changeUserInfo} from '../../store/actions/index';
+import {closeSession , changeUserInfo , changeUserPass} from '../../store/actions/index';
 import {
   TouchableOpacity,
   StyleSheet,
@@ -40,7 +40,7 @@ export default function User() {
     passEdit.actualPass !== '' ? infoToSend={ ...infoToSend , actualPass: passEdit.actualPass} :infoToSend={ ...infoToSend}
     passEdit.password !== '' ? infoToSend={ ...infoToSend , password: passEdit.password} :infoToSend={ ...infoToSend}
     console.log("Informacion a enviar" , infoToSend)
-    //dispatch(changeUserInfo(user.id , infoToSend))
+    //dispatch(changeUserPass(user.id , infoToSend))
   }
 
   function handlerChangePass(name , defaultValue) {

@@ -98,8 +98,10 @@ export function changeUserInfo(id , userInfo) {
 export function changeUserPass(id , userInfo) {
   return async function (dispatch) {
     try {
-      const newInfo = await axios.put("http://localhost:3001/user/user/"+id, 
-        userInfo
+      const newInfo = await axios.put("http://localhost:3001/user/user/password/"+id,  {
+        oldpassword: userInfo.actualPass,
+        newpassword: userInfo.password
+      }
       ); 
       console.log("Informacion recibida" , newInfo.data);
       dispatch({
@@ -111,6 +113,9 @@ export function changeUserPass(id , userInfo) {
     }
   };
 }
+
+
+
 
 export function findCreatedUser({ user, password }) {
   return async function (dispatch) {
