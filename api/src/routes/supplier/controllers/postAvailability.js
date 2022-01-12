@@ -1,4 +1,4 @@
-const { Available } = require("../../../db");
+/* const { Available } = require("../../../db");
 
 const postAvailability = async (req, res) => {
   const { date, initialTime, endingTime } = req.body; // MIGRAR A ARREGLO DE OBJETO
@@ -15,3 +15,4 @@ const postAvailability = async (req, res) => {
 };
 
 module.exports = { postAvailability };
+ */
