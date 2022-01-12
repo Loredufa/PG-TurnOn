@@ -11,7 +11,7 @@ const upDateSupplier = async (req, res) => {
         }
     })
     let upDateSupplier = await Supplier.findByPk(id)
-    res.send(upDateSupplier)
+    res.send({supplier: upDateSupplier.dataValues})
 }
 
 module.exports = {
