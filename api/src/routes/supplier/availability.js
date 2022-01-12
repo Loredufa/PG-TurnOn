@@ -1,7 +1,25 @@
-/* const { Router } = require("express");
+const { Router } = require("express");
 const router = Router();
-const { postAvailability } = require("./controllers/postAvailability");
+const {
+  getAvailabilityCourt,
+} = require("./controllers/availability/getAvailabilityCourt.js");
+const {
+  putAvailability,
+} = require("./controllers/availability/putAvailability");
+const {
+  postAvailability,
+} = require("./controllers/availability/postAvailability");
+const {
+  deleteAvailability,
+} = require("./controllers/availability/deleteAvailability");
+const {
+  getAvailabilitySupplier,
+} = require("./controllers/availability/getAvailabilitySupplier");
 
-router.post("/available", postAvailability);
+router.post("/available/:idCourt", postAvailability);
+router.get("/available/court/:idCourt", getAvailabilityCourt);
+router.get("/available/supplier/:idSupplier", getAvailabilitySupplier);
+router.put("/available/:idCourt", putAvailability);
+router.delete("/available", deleteAvailability);
 
-module.exports = router; */
+module.exports = router;

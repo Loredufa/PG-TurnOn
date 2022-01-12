@@ -1,4 +1,4 @@
-/* const { Router } = require("express");
+const { Router } = require("express");
 const router = Router();
 const { postBooking } = require("../supplier/controllers/postBooking");
 
@@ -9,4 +9,3 @@ const { postBooking } = require("../supplier/controllers/postBooking");
 router.post("/bookings", postBooking);
 
 module.exports = router;
- */
