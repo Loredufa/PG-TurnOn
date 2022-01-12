@@ -1,4 +1,4 @@
-const { Available } = require("../../../db");
+const { Available } = require("../../../../db");
 
 const deleteAvailability = async (req, res) => {
   //   const { idCourt } = req.params;

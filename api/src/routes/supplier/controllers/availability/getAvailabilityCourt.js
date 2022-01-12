@@ -1,6 +1,6 @@
-const { Available } = require("../../../db");
+const { Available } = require("../../../../db");
 
-const getAvailability = async (req, res) => {
+const getAvailabilityCourt = async (req, res) => {
   const { idCourt } = req.params;
 
   const availability = await Available.findAll({
@@ -14,4 +14,4 @@ const getAvailability = async (req, res) => {
   }
 };
 
-module.exports = { getAvailability };
+module.exports = { getAvailabilityCourt };
