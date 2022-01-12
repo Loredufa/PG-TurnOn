@@ -3,8 +3,8 @@ const PORT = 3001;
 const morgan = require("morgan");
 const app = express();
 const routes = require("./src/routes/index");
-const errorHandler = require ("./src/utils/middlewares/errorHandler")
-const setHeaders = require ("./src/utils/middlewares/setHeaders")
+const errorHandler = require("./src/utils/middlewares/errorHandler");
+const setHeaders = require("./src/utils/middlewares/setHeaders");
 
 // aca vamos a setear los headers
 app.use(express.urlencoded({ extended: true, limit: "50mb" }));
@@ -16,11 +16,11 @@ app.use(setHeaders);
 app.use("/supplier", routes);
 app.use("/user", routes);
 
-app.use(errorHandler)
+app.use(errorHandler);
 
 const { conn } = require("./src/db");
 
-conn.sync({ force: false }).then(() => {
+conn.sync({ force: true }).then(() => {
   app.listen(PORT, () => {
     console.log(`El servidor esta escuchando el puerto ${PORT}`);
   });
