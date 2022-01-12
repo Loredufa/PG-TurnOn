@@ -12,11 +12,13 @@ import {
   ActivityIndicator,
 } from "react-native";
 import {styles} from './StylesUser';
+import Message from "../Message/Message";
 
 export default function User() {
   
   const navigation = useNavigation();
   const {user} = useSelector(state => state.user);
+  const { messageBack } = useSelector(state => state);
   const dispatch = useDispatch();
 
   
@@ -265,6 +267,9 @@ export default function User() {
             </View>
           </View>
         </View>
+            :
+            messageBack !== ''?
+            <Message />
             :
             user.name !== infoEdit.name || user.lastname !== infoEdit.lastname || user.phone !== infoEdit.phone || user.mail !== infoEdit.mail ?
             <ActivityIndicator size="large" color="#00ff00" />
