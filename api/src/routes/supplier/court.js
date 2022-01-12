@@ -3,6 +3,7 @@ const router = Router ()
 const {createCourt} = require("./controllers/createCourt")
 const {updateCourt} = require("./controllers/updateCourt")
 const {deleteCourt} = require("./controllers/deleteCourt")
+const {getCourts} = require("./controllers/getCourts") 
 
 
 // router.get ("/court" , (req, res, next) => {
@@ -18,5 +19,6 @@ const {deleteCourt} = require("./controllers/deleteCourt")
 router.post("/court/:supplierId", createCourt)
 router.put("/court/:idCourt", updateCourt)
 router.delete ("/court/:idCourt", deleteCourt)
+router.get ("/court/:supplierId", getCourts )
 
 module.exports = router
