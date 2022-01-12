@@ -1,7 +1,7 @@
 import {
   ADD_USER,
   FIND_CREATED_USER,
-  GET_COURT,
+  GET_SUPPLIERS_BY_NAME,
   CLOSE_SESSION,
   CHANGE_USER_INFO,
   BEST_COURTS_NEAR_ME,
@@ -10,7 +10,8 @@ import {
   BOOK_COURT,
   SET_SCREEN_DIMENSIONS,
   GET_COURT_BY_SPORT,
-  CHANGE_USER_PASS
+  CHANGE_USER_PASS,
+  CHANGE_MESSAGE
 } from "../actions/index";
 import {
   findEmail,
@@ -33,6 +34,8 @@ const initialState = {
   numColumns: 6, 
   titleSize: 62,
   courtsBySports: [],
+  messageBack: '',
+  suppliers: [],
 };
 
 const reducer = (state = initialState, action) => {
@@ -51,10 +54,10 @@ const reducer = (state = initialState, action) => {
         user: action.payload,
         authToken: action.payload.user ? "abc123" : null,
       };
-    case GET_COURT:
+    case GET_SUPPLIERS_BY_NAME:
       return {
         ...state,
-        court: findCourtByName(courts, action.payload),
+        suppliers: action.payload 
       };
     case CLOSE_SESSION:
       return {
@@ -71,7 +74,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         //verificar aca cual es la respuesta para ver que hago en front
-        user: { user: action.payload },
+        messageBack: action.payload,
       };
     case BEST_COURTS_NEAR_ME:
       return {
@@ -106,6 +109,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         courtsBySports: action.payload,
+      }
+    case CHANGE_MESSAGE:
+      return {
+        ...state, 
+        messageBack: '',
       }
     default:
       return state;
