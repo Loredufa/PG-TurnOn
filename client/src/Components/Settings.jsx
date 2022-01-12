@@ -69,8 +69,7 @@ export default function Settings() {
             value={info.businessname}
             onChange={handleChange}
           />
-        </LabelSetting>
-        
+        </LabelSetting>        
       </DivForm>
     </DivGlobal>
   );
