@@ -1,6 +1,6 @@
-const { Available } = require("../../../db");
+/* const { Available } = require("../../../db");
 
-const getBooking = async (req, res) => {
+const getBooking = async (req, res) => { */
   // const { mail, password } = req.query
   // console.log(req.query)
   // const supplier = await Supplier.findOne({ where: { mail: mail } }).catch(err => console.log(err))
@@ -17,6 +17,7 @@ const getBooking = async (req, res) => {
   //         res.json({ message: "Datos incorrectos"})
   //     }
   // }
-};
+/* }; */
 
-module.exports = { getBooking };
+/* module.exports = { getBooking };
+ */

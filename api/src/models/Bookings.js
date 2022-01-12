@@ -12,10 +12,10 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    availableId: {
+    /* availableId: {
       type: DataTypes.STRING,
       allowNull: false,
-    },
+    }, */
     bookingCode: {
       type: DataTypes.STRING,
       allowNull: false,

@@ -1,6 +1,6 @@
-const { Router } = require("express");
+/* const { Router } = require("express");
 const router = Router();
-const { postBooking } = require("./controllers/postBooking");
+const { postBooking } = require("../supplier/controllers/postBooking");
 
 // router.get ("/" , (req, res) => {
 //     res.send ("Soy la ruta usuario/reservas")
@@ -9,3 +9,4 @@ const { postBooking } = require("./controllers/postBooking");
 router.post("/bookings", postBooking);
 
 module.exports = router;
+ */
