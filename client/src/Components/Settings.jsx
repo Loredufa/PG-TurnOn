@@ -15,7 +15,7 @@ export default function Settings() {
 
   const [info, setInfo] = useState({
     name: supplier.name,
-    lastname: supplier.lastname,
+    /* lastname: supplier.lastname, */
     mail: supplier.mail,
     password: supplier.password,
     cuit: supplier.cuit,
@@ -46,14 +46,14 @@ export default function Settings() {
           Nombre
           <input name="name" value={info.name} onChange={handleChange} />
         </LabelSetting>
-        <LabelSetting>
+        {/* <LabelSetting>
           Apellido
           <input
             name="lastname"
             value={info.lastname}
             onChange={handleChange}
           />
-        </LabelSetting>
+        </LabelSetting> */}
         <LabelSetting>
           Email
           <input name="mail" value={info.mail} onChange={handleChange} />
