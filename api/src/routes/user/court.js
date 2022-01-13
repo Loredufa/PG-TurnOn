@@ -12,7 +12,7 @@ const {getCourts} = require("./controllers/getCourts")
 //     }
 // });
 
-router.get("/court", getCourts)
+// router.get("/court", getCourts)
 
 
 
