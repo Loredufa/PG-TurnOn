@@ -7,7 +7,7 @@ const userCourt = require("./user/court"); // trae las diferentes rutass al inde
 // const user = require("./user/user");
 // const userFavorites = require("./user/user-favorites");
 // const userAvailability = require("./user/availability");
-const userBooking = require("./supplier/booking");
+const userBooking = require("./user/booking");
 // =======
 // =======
 // >>>>>>> backEnd
