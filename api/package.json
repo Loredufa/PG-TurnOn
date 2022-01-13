@@ -4,9 +4,8 @@
   "description": "backend Proyecto final",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon index.js",
-    "start": "nodemon -L"
+    "start": "node ./index",
+    "test": "mocha -w ./tests/**/*.spec.js"
   },
   "author": "grupo04",
   "license": "ISC",
