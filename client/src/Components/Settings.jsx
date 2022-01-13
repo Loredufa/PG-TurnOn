@@ -95,9 +95,11 @@ export default function Settings() {
           label: "Si",
           onClick: () => {
             dispatch(deleteUser(info.id));
-            window.localStorage.removeItem("loguodeusuario");
-            history.push("/");
-            window.location.reload(false);
+            setTimeout(() => {
+              history.push("/");
+              window.localStorage.removeItem("loguodeusuario");
+              window.location.reload(false);
+            }, 500);
           },
         },
         {
