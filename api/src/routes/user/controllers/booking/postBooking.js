@@ -1,4 +1,4 @@
-const { Bookings } = require("../../../db");
+const { Bookings } = require("../../../../db");
 
 const postBooking = async (req, res) => {
   const { courtId, userId, availableId, bookingCode, status } = req.body;
