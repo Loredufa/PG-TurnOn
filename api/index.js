@@ -1,5 +1,5 @@
 const express = require("express");
-const PORT = 3001;
+const PORT = process.env.PORT || 3001 ;//variable de entorno de heroku
 const morgan = require("morgan");
 const app = express();
 const routes = require("./src/routes/index");
@@ -20,8 +20,9 @@ app.use(errorHandler);
 
 const { conn } = require("./src/db");
 
-conn.sync({ force: false }).then(() => {
+conn.sync({ force: true }).then(() => {
   app.listen(PORT, () => {
-    console.log("%s listening at 3001");
+    console.log("%s listening at ", PORT);
   });
 });
+
