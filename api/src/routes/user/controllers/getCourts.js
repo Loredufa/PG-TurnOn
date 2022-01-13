@@ -21,7 +21,7 @@ const getCourts = async (req, res) => {
         }
     })
 
-    courts= await courts.map((el) => el.dataValues).filter ((e) => e.supplier.name.toLowerCase().includes(name.toLowerCase()))
+    courts= courts.map((el) => el.dataValues).filter ((e) => e.supplier.name.toLowerCase().includes(name.toLowerCase()))
      
     // console.log ("courtsByName", courts)
        } 
