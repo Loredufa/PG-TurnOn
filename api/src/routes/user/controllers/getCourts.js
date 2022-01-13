@@ -1,64 +1,50 @@
 
-// const { Field } = require("../../../db");
-// const { Supplier } = require("../../../db");
+const { Field } = require("../../../db");
+const { Supplier } = require("../../../db");
 
-// const getCourts = async (req, res) => {
-//   let { name } = req.query;
-//   let courts;
+const getCourts = async (req, res) => {
+
+    let { name } = req.query;
+    let courts;
+    
+    try {
+      if (name) {
+        courts = await Field.findAll({
+          include: {
+            model: Supplier,
+            attributes: ["name"],
+          },
+        });
   
-//   try {
-//     if (name) {
-//       courts = await Field.findAll({
-//         include: {
-//           model: Supplier,
-//           attributes: ["name"],
-//         },
-//       });
+        courts = await courts
+          .map((el) => el.dataValues)
+          .filter((e) =>
+            e.supplier.name.toLowerCase()===name.toLowerCase())
+          ;
+  
+      } else {
+        courts = await Field.findAll({});
+      }
+    } catch (error) {
+      throw new Error("Error al encontrar a la cancha solicitada");
+    }
+    console.log("courtsByName", courts);
+  
+    res.send(courts);
+  };
 
-//       courts = await courts
-//         .map((el) => el.dataValues)
-//         .filter((e) =>
-//           e.supplier.name.toLowerCase().includes(name.toLowerCase())
-//         );
-
-//     } else {
-//       courts = await Field.findAll({});
-//     }
-//   } catch (error) {
-//     throw new Error("Error al encontrar a la cancha solicitada");
-//   }
-//   console.log("courtsByName", courts);
-
-//   res.send(courts);
-// };
 
 module.exports = { getCourts };
 
+// OPCION 2 --> POR PARAMS 
 
-// const { Field } = require("../../../db");
-// const { Supplier } = require("../../../db");
-
-// const getCourts = async (req, res) => {
-//   let { name } = req.query;
+//   let { supplierId } = req.params;
 //   let courts;
   
 //   try {
 //     if (supplierId) {
-//       courts = await Field.findAll({ where: { sport } });
-//     } else if (name) {
-//       courts = await Field.findAll({
-//         include: {
-//           model: Supplier,
-//           attributes: ["name"],
-//         },
-//       });
-
-//       courts = await courts
-//         .map((el) => el.dataValues)
-//         .filter((e) =>
-//           e.supplier.name.toLowerCase().includes(name.toLowerCase())
-//         );
-
+//       courts = await Field.findAll({supplierId
+//         });
 //     } else {
 //       courts = await Field.findAll({});
 //     }
@@ -69,5 +55,3 @@ module.exports = { getCourts };
 
 //   res.send(courts);
 // };
-
-// module.exports = { getCourts };
