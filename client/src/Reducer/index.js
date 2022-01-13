@@ -1,15 +1,17 @@
 import {
+  CHANGE_SUPPLIER_PROFILE,
+  DELETE_USER,
   REGISTER,
   SET_MESSAGE_REG,
   SET_MESSAGE_USER,
   SET_USER,
-  CHANGE_SUPPLIER_PROFILE,
 } from "../Actions/actions";
 
 const initialState = {
   success: false,
   message_reg: "",
   message_user: "",
+  message_delete: "",
   user: null,
 };
 
@@ -37,15 +39,20 @@ function rootReducer(state = initialState, action) {
         ...state,
         user: action.payload,
       };
-    
-      /* case CHANGE_SUPPLIER_PROFILE:
+    case DELETE_USER:
+      console.log("clg del reducer:", action.payload);
+      return {
+        ...state,
+        message_delete: action.payload,
+      };
+    /* case CHANGE_SUPPLIER_PROFILE:
         console.log(action.payload);
         return {
           ...state,
           user: action.payload,
         };
  */
-    
+
     default:
       return state;
   }
