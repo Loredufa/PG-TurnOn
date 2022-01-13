@@ -7,8 +7,7 @@ const createCourt = async (req, res) => {
 
     const { name,  address, phone, description, sport, price, image} = req.body
     const { supplierId } = req.params 
-    console.log(supplierId)
-    
+    try {
     let newCourt = await Field.create ({
         name,
         address,
@@ -18,11 +17,11 @@ const createCourt = async (req, res) => {
         price,
         image,
         supplierId,
-    })
+    })}
 
     // if (newCourt)
     // await newCourt.setSupplier(supplier_name)
-    
+    catch (error) {throw new Error (error)}
 
     newCourt = await newCourt.save().catch(err => {
         console.log(err)

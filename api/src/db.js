@@ -37,6 +37,20 @@ let sequelize =
     `postgres://${dbUser}:${dbPassword}@${dbHost}/${dbName}`,
     { logging: false, native: false}
   );
+/////
+  // const sequelize = new Sequelize(
+  //   `postgres://${dbUser}:${dbPassword}@${dbHost}/${dbName}`,
+  //   {
+  //     logging: false,
+  //     native: false,
+  //     dialectOptions: {
+  //       ssl: {
+  //         require: false,
+  //         rejectUnauthorized: false,
+  //       },
+  //     },
+  //   }
+  // );
 
 // const sequelize = new Sequelize(
 //   `postgres://${dbUser}:${dbPassword}@${dbHost}/${dbName}`,
