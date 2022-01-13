@@ -3,7 +3,7 @@ import {
   SET_MESSAGE_REG,
   SET_MESSAGE_USER,
   SET_USER,
-  CHANGE_SUPPLIER_PROFILE,
+  CREATE_COURT
 } from "../Actions/actions";
 
 const initialState = {
@@ -38,13 +38,8 @@ function rootReducer(state = initialState, action) {
         user: action.payload,
       };
     
-      /* case CHANGE_SUPPLIER_PROFILE:
-        console.log(action.payload);
-        return {
-          ...state,
-          user: action.payload,
-        };
- */
+    case CREATE_COURT:
+      return { ...state };
     
     default:
       return state;

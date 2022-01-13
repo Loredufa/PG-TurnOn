@@ -32,7 +32,7 @@ export default function Navbar() {
                         <Link className='navbar-home-turn' to="/">
                             Turnos
                         </Link>
-                        <Link className='navbar-home-gest' to="/">
+                        <Link className='navbar-home-gest' to="/profile/creacion-turno">
                             Gestionar Turnos
                         </Link>
                         <Link className='navbar-home-histo' to="/profile/history">

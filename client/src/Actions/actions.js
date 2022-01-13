@@ -3,7 +3,7 @@ export const REGISTER = "REGISTRO";
 export const SET_MESSAGE_REG = "SET_MESSAGE_REG";
 export const SET_MESSAGE_USER = "SET_MESSAGE_USER";
 export const SET_USER = "SET_USER";
-export const CHANGE_SUPPLIER_PROFILE = "CHANGE_SUPPLIER_PROFILE"
+export const CREATE_COURT = "CREATE_COURT";
 
 export function Register(payload) {
   return async function (dispatch) {
@@ -66,4 +66,23 @@ export function changeSupplierProfile ({id, info}) {
       console.log(error);
     }
   };
+}
+
+
+export function createTurnCourt (supplierId, infoCourt) {
+  return async function (dispatch) {
+    console.log("QUE ENVIA DESDE EL FRONT", supplierId)
+    console.log("QUE ENVIA DESDE EL FRONT", infoCourt)
+    try {
+      const infoCreateCourt = await axios.post(
+        `http://localhost:3001/supplier/court/${supplierId}`, infoCourt);
+        console.log("VER LO Q DA DATA:", infoCreateCourt)
+         return dispatch({
+          type: CREATE_COURT,
+          payload: infoCreateCourt.data,
+        });
+      } catch (error) {
+      console.log(error);
+    }
+  }
 }
