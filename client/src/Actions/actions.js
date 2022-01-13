@@ -3,7 +3,8 @@ export const REGISTER = "REGISTRO";
 export const SET_MESSAGE_REG = "SET_MESSAGE_REG";
 export const SET_MESSAGE_USER = "SET_MESSAGE_USER";
 export const SET_USER = "SET_USER";
-export const CHANGE_SUPPLIER_PROFILE = "CHANGE_SUPPLIER_PROFILE"
+export const CHANGE_SUPPLIER_PROFILE = "CHANGE_SUPPLIER_PROFILE";
+export const DELETE_USER = "DELETE_USER";
 
 export function Register(payload) {
   return async function (dispatch) {
@@ -36,12 +37,12 @@ export function loginUser({ user, password }) {
       );
       if (userinfo.data.message) {
         return dispatch({
-          type: "SET_MESSAGE_USER",
+          type: SET_MESSAGE_USER,
           payload: userinfo.data.message,
         });
       } else {
         return dispatch({
-          type: "SET_USER",
+          type: SET_USER,
           payload: userinfo.data,
         });
       }
@@ -51,16 +52,35 @@ export function loginUser({ user, password }) {
   };
 }
 
-
-export function changeSupplierProfile ({id, info}) {
-  console.log("VER LO Q DA INFO:", info)
+export function changeSupplierProfile({ id, info }) {
+  console.log("VER LO Q DA INFO:", info);
   return async function (dispatch) {
-    try{
-      const updateinfo = await axios.put(`http://localhost:3001/supplier/supplier/${id}`, info)
-      console.log("QUE TRAE ID",updateinfo.data)
+    try {
+      const updateinfo = await axios.put(
+        `http://localhost:3001/supplier/supplier/${id}`,
+        info
+      );
+      console.log("QUE TRAE ID", updateinfo.data);
       return dispatch({
         type: SET_USER,
         payload: updateinfo.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+export function deleteUser(id) {
+  console.log("INFO DE DELETE:", id);
+  return async function (dispatch) {
+    try {
+      const deleteUsario = await axios.delete(
+        `http://localhost:3001/supplier/supplier/${id}`
+      );
+      console.log("QUE TRAE ID", deleteUsario.data);
+      return dispatch({
+        type: DELETE_USER,
+        payload: deleteUsario.data,
       });
     } catch (error) {
       console.log(error);
