@@ -6,11 +6,11 @@ const getBooking = async (req, res) => {
   const booking = await Bookings.findAll({
     where: { userId: `${userId}` },
   }).catch((err) => console.log(err));
-  console.log("nooking: ", booking);
+  // console.log("nooking: ", booking);
   if (!booking.length) {
     return res.json({ message: "Datos incorrectos" });
   } else {
-    res.json({ message: "Datos incorrectos" });
+    res.json({ booking: booking });
   }
 };
 
