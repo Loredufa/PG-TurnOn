@@ -139,7 +139,7 @@ return (
                  type="text" 
                  id="cuit" 
                  name="cuit" 
-                 placeholder="CUIT"
+                 placeholder="CUIT: xx-xxxxxxxx-x"
                  className="in-cuit"
                  />
         </div>

@@ -5,6 +5,7 @@ import {
   SET_MESSAGE_REG,
   SET_MESSAGE_USER,
   SET_USER,
+  CREATE_COURT
 } from "../Actions/actions";
 
 const initialState = {
@@ -39,19 +40,16 @@ function rootReducer(state = initialState, action) {
         ...state,
         user: action.payload,
       };
+
+    case CREATE_COURT:
+      return { ...state };
+    
     case DELETE_USER:
       console.log("clg del reducer:", action.payload);
       return {
         ...state,
         message_delete: action.payload,
       };
-    /* case CHANGE_SUPPLIER_PROFILE:
-        console.log(action.payload);
-        return {
-          ...state,
-          user: action.payload,
-        };
- */
 
     default:
       return state;
