@@ -11,6 +11,7 @@ import MaterialCommunityIcons from "react-native-vector-icons/Ionicons";
 import { useDispatch, useSelector } from "react-redux";
 import { addToFavorite, bookCourt } from "../../store/actions/index";
 import { styles } from "./StyleCourtDetail";
+
 import Message from "../Message/Message";
 
 export default function CourtDetail({ route }) {
@@ -19,6 +20,7 @@ export default function CourtDetail({ route }) {
   console.log(favorites);
   function handlerBooking() {
     dispatch(bookCourt(route.params.court.id , user.user.id));
+
   }
   const screenWidth = useSelector((state) => state.screenWidth);
   const titleSize = useSelector((state) => state.titleSize);
@@ -59,7 +61,11 @@ export default function CourtDetail({ route }) {
       </View>
       <Text style={{ flex: 1, borderWidth: 1 }}>Tamaño</Text>
       <Text style={{ flex: 1 }}>Precio: </Text>
+
       <TouchableOpacity style={styles.button} onPress={handlerBooking}>
+
+      
+
         {/* <View style={styles.button}> */}
         <Text style={styles.buttonText}>Reservar</Text>
         {/* </View> */}

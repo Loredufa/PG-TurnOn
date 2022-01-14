@@ -19,7 +19,9 @@ import { setScreenDimensions } from "../../store/actions/index";
 
 export default function Landing() {
   const navigation = useNavigation();
+
    const {user} = useSelector(state => state);
+
   /*    
     const {user} = useSelector(state => state)
 
@@ -69,8 +71,10 @@ export default function Landing() {
       <View style={styles.container}>
         <Text style={styles.welcome}>Bienvenido!</Text>
         <Text style={styles.question}>¿Permitis acceder a tu ubicación?</Text>
+
          <TouchableOpacity onPress={() => user?.user.phone==='0000000000'? navigation.navigate("Phone") 
         : navigation.navigate("HomeTab")}>
+
           <View style={styles.button}>
             <Text style={styles.buttonText}>Aceptar</Text>
           </View>
