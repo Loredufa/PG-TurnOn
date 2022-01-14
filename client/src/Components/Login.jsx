@@ -16,11 +16,6 @@ function Login() {
   });
 
   if (user) {
-    window.localStorage.setItem(
-      "loguodeusuario",
-      JSON.stringify(user.supplier)
-    );
-    console.log("user: ", user);
     history.push("/");
   }
 
@@ -34,7 +29,6 @@ function Login() {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(loginUser(input));
-    console.log(input);
   };
 
   return (
