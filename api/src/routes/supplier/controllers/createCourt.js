@@ -1,5 +1,4 @@
 
-const { getEnabledCategories } = require("trace_events")
 const {Field} = require("../../../db")
 const {Supplier} = require("../../../db")
 
@@ -7,8 +6,7 @@ const createCourt = async (req, res) => {
 
     const { name,  address, phone, description, sport, price, image} = req.body
     const { supplierId } = req.params 
-    console.log(supplierId)
-    
+        
     let newCourt = await Field.create ({
         name,
         address,
@@ -20,9 +18,6 @@ const createCourt = async (req, res) => {
         supplierId,
     })
 
-    // if (newCourt)
-    // await newCourt.setSupplier(supplier_name)
-    
 
     newCourt = await newCourt.save().catch(err => {
         console.log(err)

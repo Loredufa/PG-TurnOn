@@ -13,7 +13,7 @@ const {getCourts} = require("./controllers/getCourts")
 // });
 
 router.get("/court", getCourts)
-
+// router.get("/court/supplierId", getCourts)
 
 
 module.exports = router

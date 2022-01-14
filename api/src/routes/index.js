@@ -13,8 +13,9 @@ const userBooking = require("./user/booking");
 // >>>>>>> backEnd
 /* const userBooking = require("./user/booking"); */
 const user = require("./user/user");
-const userFavorites = require("./user/user-favorites");
+const userFavorites = require("./user/favorites");
 const userAvailability = require("./user/availability");
+const userSupplier = require ("./user/supplier")
 // <<<<<<< ParcheMirror
 // >>>>>>> 76689875356be07b01271d4ca7f46f566f485c09
 // =======
@@ -29,6 +30,7 @@ router.use("/", userBooking);
 router.use("/", user);
 router.use("/", userFavorites);
 router.use("/", userAvailability);
+router.use("/", userSupplier);
 router.use("/", supplierAvailability);
 router.use("/", supplierCourt);
 router.use("/", supplierPayments);
