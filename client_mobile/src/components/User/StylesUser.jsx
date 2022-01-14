@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
     marginBottom: 30,
     marginTop: 10,
     fontSize:30,
-    fontStyle: 'bold',
+    fontWeight: 'bold',
   },
   inputContainers: {
     alignItems: "center",

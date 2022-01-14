@@ -11,7 +11,8 @@ import {
   SET_SCREEN_DIMENSIONS,
   GET_COURT_BY_SPORT,
   CHANGE_USER_PASS,
-  CHANGE_MESSAGE
+  CHANGE_MESSAGE,
+  GOOGLE_LOGIN,
 } from "../actions/index";
 import {
   findEmail,
@@ -36,6 +37,7 @@ const initialState = {
   courtsBySports: [],
   messageBack: '',
   suppliers: [],
+  googlesession: false,
 };
 
 const reducer = (state = initialState, action) => {
@@ -53,7 +55,15 @@ const reducer = (state = initialState, action) => {
         boolean: action.payload.user ? true : false,
         user: action.payload,
         authToken: action.payload.user ? "abc123" : null,
+        googlesession: false,
       };
+    case GOOGLE_LOGIN:
+      return {
+        ...state,
+        user: action.payload,
+        authToken: action.payload.user ? "abc123" : null,
+        googlesession: true,
+      }
     case GET_SUPPLIERS_BY_NAME:
       return {
         ...state,
@@ -64,6 +74,7 @@ const reducer = (state = initialState, action) => {
         ...state,
         boolean: false,
         authToken: null,
+        googlesession: false,
       };
     case CHANGE_USER_INFO:
       return {
