@@ -152,7 +152,7 @@ export default function User() {
             errors.lastname = value.length > 0 ? '': 'Apellido no puede estar vacio' ;
             break;
           case 'phone': 
-            errors.phone = value.length > 10 ? '': 'Teléfono no puede estar vacio' ;
+            errors.phone = value.length > 9 ? '': 'Teléfono no puede estar vacio' ;
             break;
           case "mail": 
           errors.mail = !(!/\S+@\S+\.\S+/.test(value)) ? '' : 'Ingresar un mail valido'

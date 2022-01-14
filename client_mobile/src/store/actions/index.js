@@ -13,7 +13,9 @@ export const GET_COURT_BY_SPORT = "GET_COURT_BY_SPORT";
 export const CHANGE_USER_PASS = "CHANGE_USER_PASS"
 export const CHANGE_MESSAGE = "CHANGE_MESSAGE";
 export const GOOGLE_LOGIN = "GOOGLE_LOGIN";
-
+export const GET_SUPPLIER_BY_SPORT = "GET_SUPPLIER_BY_SPORT";
+export const GET_COURTS_SUPPLIER_SPORT = "GET_COURTS_SUPPLIER_SPORT";
+export const GET_BOOKINGS = "GET_BOOKINGS";
 /*
 export function addUser(data) {
   return {
@@ -37,6 +39,36 @@ export function getCourtBySport (sport) {
   };
 }
 
+export function getCourtBySportSupplier (name , sport) {
+  return async function (dispatch) {
+    try {
+      const postUser = await axios.get("http://localhost:3001/user/court?name="+name); 
+      console.log("Cancha buscada en back",postUser.data);
+      dispatch({
+        type: GET_COURTS_SUPPLIER_SPORT,
+        payload: postUser.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
+export function getSupplierBySport (sport) {
+  return async function (dispatch) {
+    try {
+      const postUser = await axios.get("http://localhost:3001/user/supplier?sport="+sport); 
+      console.log(postUser.data);
+      dispatch({
+        type: GET_SUPPLIER_BY_SPORT,
+        payload: postUser.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
 
 export function setScreenDimensions (screenWidth, numColumns, titleSize){
   return function (dispatch) {
@@ -47,14 +79,41 @@ export function setScreenDimensions (screenWidth, numColumns, titleSize){
   };  
 }
 
-export function bookCourt (court) {
-  return function (dispatch) {
-    dispatch({
-      type: BOOK_COURT,
-      payload: court,
-    });
+
+export function bookCourt (courtId , userId) {
+  return async function (dispatch) {
+    try {
+      const postUser = await axios.post("http://localhost:3001/user/bookings", {
+        courtId,
+        userId,
+        bookingCode: 1231,
+        status: "Reservado"
+      });
+      console.log(postUser.data);
+      dispatch({
+        type: BOOK_COURT,
+        payload: postUser.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
-}
+};
+
+export function getBookings (userId) {
+  return async function (dispatch) {
+    try {
+      const postUser = await axios.get("http://localhost:3001/user/bookings/"+userId);
+      dispatch({
+        type: GET_BOOKINGS,
+        payload: postUser.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
 export function closeSession() {
   return function (dispatch) {
     dispatch({

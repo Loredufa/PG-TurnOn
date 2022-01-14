@@ -13,6 +13,9 @@ import {
   CHANGE_USER_PASS,
   CHANGE_MESSAGE,
   GOOGLE_LOGIN,
+  GET_SUPPLIER_BY_SPORT,
+  GET_COURTS_SUPPLIER_SPORT,
+  GET_BOOKINGS,
 } from "../actions/index";
 import {
   findEmail,
@@ -38,6 +41,7 @@ const initialState = {
   messageBack: "",
   suppliers: [],
   googlesession: false,
+  googleCreated: false,
 };
 
 const reducer = (state = initialState, action) => {
@@ -56,6 +60,7 @@ const reducer = (state = initialState, action) => {
         user: action.payload,
         authToken: action.payload.user ? "abc123" : null,
         googlesession: false,
+        googleCreated: false,
       };
     case GOOGLE_LOGIN:
       return {
@@ -63,7 +68,9 @@ const reducer = (state = initialState, action) => {
         user: action.payload,
         authToken: action.payload.user ? "abc123" : null,
         googlesession: true,
-      };
+        googleCreated: action.payload.created
+      }
+
     case GET_SUPPLIERS_BY_NAME:
       return {
         ...state,
@@ -107,10 +114,15 @@ const reducer = (state = initialState, action) => {
     case BOOK_COURT:
       return {
         ...state,
-        bookings: state.bookings.includes(action.payload)
-          ? state.bookings
-          : [...state.bookings, action.payload],
-      };
+
+        messageBack: action.payload,
+        //bookings: state.bookings.includes(action.payload)? state.bookings : [...state.bookings, action.payload]
+      }
+    case GET_BOOKINGS:
+      return {
+        ...state,
+        bookings: action.payload.booking,
+      }
     case SET_SCREEN_DIMENSIONS:
       return {
         ...state,
@@ -125,9 +137,21 @@ const reducer = (state = initialState, action) => {
       };
     case CHANGE_MESSAGE:
       return {
+
+        ...state, 
+        messageBack: '',
+      }
+    case GET_SUPPLIER_BY_SPORT:
+      return {
         ...state,
-        messageBack: "",
-      };
+        suppliers: action.payload,
+      }
+    case GET_COURTS_SUPPLIER_SPORT:
+      return {
+        ...state,
+        courtsBySports: action.payload
+      }
+
     default:
       return state;
   }

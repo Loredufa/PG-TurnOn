@@ -12,12 +12,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { addToFavorite, bookCourt } from "../../store/actions/index";
 import { styles } from "./StyleCourtDetail";
 
+import Message from "../Message/Message";
+
 export default function CourtDetail({ route }) {
   const dispatch = useDispatch();
-  const favorites = useSelector((state) => state.favorites);
+   const {user, favorites , messageBack} = useSelector(state => state)
   console.log(favorites);
-  function handlerBooking(court) {
-    dispatch(bookCourt(court));
+  function handlerBooking() {
+    dispatch(bookCourt(route.params.court.id , user.user.id));
+
   }
   const screenWidth = useSelector((state) => state.screenWidth);
   const titleSize = useSelector((state) => state.titleSize);
@@ -26,6 +29,9 @@ export default function CourtDetail({ route }) {
   //console.log(court);
 
   return (
+    messageBack !== ''?
+    <Message />
+    :
     <View style={styles.container}>
       <View style={styles.nameContainer}>
         <Text style={{ marginRight: 20 }}>{court.name}</Text>
@@ -55,7 +61,11 @@ export default function CourtDetail({ route }) {
       </View>
       <Text style={{ flex: 1, borderWidth: 1 }}>Tamaño</Text>
       <Text style={{ flex: 1 }}>Precio: </Text>
-      <TouchableOpacity style={styles.button} onPress={handlerBooking(court)}>
+
+      <TouchableOpacity style={styles.button} onPress={handlerBooking}>
+
+      
+
         {/* <View style={styles.button}> */}
         <Text style={styles.buttonText}>Reservar</Text>
         {/* </View> */}
