@@ -16,5 +16,9 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    idCourt: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
   });
 };

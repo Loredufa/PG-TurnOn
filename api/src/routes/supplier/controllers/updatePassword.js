@@ -1,4 +1,4 @@
-const { User } = require("../../../db")
+const { Supplier } = require("../../../db")
 const bcrypt = require("bcrypt")
 
 const updatePassword = async (req, res) => {
@@ -6,10 +6,10 @@ const updatePassword = async (req, res) => {
     const { oldPassword, newPassword } = req.body
     const { id } = req.params
 
-    const user = await User.findOne({ where: { id } })
-    if (bcrypt.compareSync(oldPassword, user.password)) {
+    const supplier = await Supplier.findOne({ where: { id } })
+    if (bcrypt.compareSync(oldPassword, supplier.password)) {
         let encryptedPassword = bcrypt.hashSync(newPassword, 10)
-        await User.update({ password: encryptedPassword }, {
+        await Supplier.update({ password: encryptedPassword }, {
             where: {
                 id
             }

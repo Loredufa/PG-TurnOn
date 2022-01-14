@@ -8,10 +8,10 @@ module.exports = (sequelize) => {
       // Este campo no se si va
       type: DataTypes.STRING,
     },
-    userId: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
+    // userId: {
+    //   type: DataTypes.INTEGER,
+    //   allowNull: false,
+    // },
     courtId: {
       type: DataTypes.INTEGER,
       allowNull: false,

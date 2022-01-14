@@ -15,7 +15,7 @@ const register = async (req, res) => {
     let newSupplier = new Supplier({ 
         mail, 
         password: encryptedPassword,
-        name,
+        name: name.toLowerCase(),
         lastname,
         access,
         cuit,
