@@ -2,7 +2,7 @@ const { Router } = require("express");
 const router = Router();
 
 const user = require("./user/user");
-const userCourt = require("./user/court"); // trae las diferentes rutass al index
+const userCourt = require("./user/court"); 
 const userBooking = require("./user/booking");
 const userFavorites = require("./user/favorites");
 const userAvailability = require("./user/availability");

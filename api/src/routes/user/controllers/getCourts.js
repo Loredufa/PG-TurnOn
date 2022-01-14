@@ -4,11 +4,17 @@ const { Supplier } = require("../../../db");
 
 const getCourts = async (req, res) => {
 
-    let { name } = req.query;
+    let { name, sport, supplierId } = req.query;
+    
     let courts;
     
     try {
-      if (name) {
+      if (sport) {
+        courts = await Field.findAll({ where: { sport, supplierId } });
+        
+      } 
+
+      else if (name) {
         courts = await Field.findAll({
           include: {
             model: Supplier,
@@ -22,10 +28,12 @@ const getCourts = async (req, res) => {
             e.supplier.name.toLowerCase()===name.toLowerCase())
           ;
   
-      } else {
-        courts = await Field.findAll({});
-      }
-    } catch (error) {
+       } 
+      else {
+        courts = await Field.findAll({}); }
+      
+    }
+     catch (error) {
       throw new Error("Error al encontrar a la cancha solicitada");
     }
     // console.log("courtsByName", courts);
