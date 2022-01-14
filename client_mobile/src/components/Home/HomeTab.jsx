@@ -14,7 +14,12 @@ const Tab = createBottomTabNavigator();
 
 export default function HomeTab() {
   return (
-    <Tab.Navigator>
+    <Tab.Navigator
+      initialRouteName="Inicio"
+      tabBarOptions={{
+        activeTintColor: '#179F34'
+      }}
+    >
       <Tab.Screen
         name="Inicio"
         component={HomeStack}
@@ -22,7 +27,7 @@ export default function HomeTab() {
           headerShown: false,
           tabBarIcon: (
             { color, size } // color y size lo tomaria del tab navigator si lo configuro
-          ) => <MaterialCommunityIcons name="home" color={color} size={size} />,
+          ) => <MaterialCommunityIcons name={color==='#179F34'?'home':"home-outline"} color={color} size={size} />,
         }}
       />
       <Tab.Screen
@@ -34,7 +39,7 @@ export default function HomeTab() {
             { color, size } // color y size lo tomaria del tab navigator si lo configuro
           ) => (
             <MaterialCommunityIcons
-              name="reader-outline"
+              name={color==='#179F34'?'reader':"reader-outline"}
               color={color}
               size={size}
             />
@@ -50,7 +55,7 @@ export default function HomeTab() {
             { color, size } // color y size lo tomaria del tab navigator si lo configuro
           ) => (
             <MaterialCommunityIcons
-              name="heart-outline"
+              name={color==='#179F34'?'heart':"heart-outline"}
               color={color}
               size={size}
             />
@@ -66,7 +71,7 @@ export default function HomeTab() {
             { color, size } // color y size lo tomaria del tab navigator si lo configuro
           ) => (
             <MaterialCommunityIcons
-              name="person-circle-outline"
+              name={color==='#179F34'?'person':"person-outline"}
               color={color}
               size={size}
             />
@@ -82,7 +87,7 @@ export default function HomeTab() {
             { color, size } // color y size lo tomaria del tab navigator si lo configuro
           ) => (
             <MaterialCommunityIcons
-              name="location-outline"
+              name={color==='#179F34'?'location':"location-outline"}
               color={color}
               size={size}
             />

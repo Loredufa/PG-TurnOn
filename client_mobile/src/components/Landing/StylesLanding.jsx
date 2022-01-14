@@ -11,8 +11,12 @@ const styles = StyleSheet.create({
     marginTop: 50,
     marginBottom: 20,
   },
+  imgContainer: {
+    flex: 1,
+  },
   container: {
       alignItems: "center",
+      flex:2,
   },
   button: {
       marginTop: 30,
@@ -30,4 +34,16 @@ const styles = StyleSheet.create({
       padding: 20,
       color: "black",
     },
+    question: {
+      fontWeight: 700,
+      fontSize: 15,
+      marginTop: 5,
+    },
+    welcome: {
+      fontWeight: 'bold',
+      fontSize: 18,
+    },
+    screen: {
+      flex:1,
+  },
 });

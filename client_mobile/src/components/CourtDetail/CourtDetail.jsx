@@ -66,12 +66,20 @@ export default function CourtDetail({ route }) {
         <TouchableOpacity
           onPress={() => dispatch(addToFavorite(route.params.court))}
         >
-          <MaterialCommunityIcons
-            name="heart-outline"
-            size={25}
-            color={favorites.find(element => element.name === route.params.court.name)?"red":"black"}
-            style={{ marginLeft: 10, marginRight: 20 }}
-          />
+          {favorites.find(element => element.name === route.params.court.name)?
+                        <MaterialCommunityIcons
+                        name="heart"
+                        size={25}
+                        color= 'red'
+                        style={{ marginLeft: 10, marginRight: 20 }}
+                        />:
+                        <MaterialCommunityIcons
+                        name="heart-outline"
+                        size={25}
+                        color= 'black'
+                        style={{ marginLeft: 10, marginRight: 20 }}
+                        />
+                      }
         </TouchableOpacity>
         <MaterialCommunityIcons
           name="star"

@@ -16,6 +16,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {setScreenDimensions} from '../../store/actions/index';
 import {styles} from './StylesLogin';
 import * as SecureStore from 'expo-secure-store';
+import GoogleLogin from '../GoogleLogin/GoogleLogin';
 
 
 
@@ -140,6 +141,7 @@ useEffect(async () => {
           </View>
         </TouchableOpacity>
       </View>
+      <GoogleLogin />
       <View style={styles.registerContainer}>
         <Text style={styles.acount}>¿No tienes una cuenta?</Text>
         <TouchableOpacity onPress={() => navigation.navigate("Register")}>

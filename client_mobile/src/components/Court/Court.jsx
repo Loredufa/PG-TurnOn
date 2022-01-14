@@ -71,12 +71,20 @@ export default function Court({item}) {
                       <TouchableOpacity
                         onPress={() => dispatch(addToFavorite(item))}
                       >
+                        {favorites?.find(element => element.name === item.name)?
                         <MaterialCommunityIcons
-                          name="heart-outline"
-                          size={25}
-                          color={favorites?.find(element => element.name === item.name)?"red":"black"}
-                          style={{ marginLeft: 10, marginRight: 20 }}
+                        name="heart"
+                        size={25}
+                        color= 'red'
+                        style={{ marginLeft: 10, marginRight: 20 }}
+                        />:
+                        <MaterialCommunityIcons
+                        name="heart-outline"
+                        size={25}
+                        color= 'black'
+                        style={{ marginLeft: 10, marginRight: 20 }}
                         />
+                      }
                       </TouchableOpacity>
                       <MaterialCommunityIcons
                         name="star"

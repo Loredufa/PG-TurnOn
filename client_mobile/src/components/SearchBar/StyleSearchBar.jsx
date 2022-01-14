@@ -22,5 +22,9 @@ export const styles = StyleSheet.create({
   
       paddingLeft: 10,
     },
+    button: {
+      height: 40,
+      width: 40,
+    },
   });
   
