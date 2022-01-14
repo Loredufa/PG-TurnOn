@@ -4,25 +4,25 @@ const {Field} = require("../../../db")
 
 const getFavCourts = async (req, res) => {
 
-    let { userId } = req.params
+    // let { userId } = req.params
            
-    let courtsfavs
+    // let courtsfavs
 
-    try {
+    // try {
 
-        if (userId) {
-            courtsfavs = await Favorites.findAll({ where: { userId } })
-        }
+    //     if (userId) {
+    //         courtsfavs = await Favorites.findAll({ where: { userId } })
+    //     }
 
-        else {
-            courtsfavs = await Field.findAll({})
-        }
-    }
-    catch (error) {
-        throw new Error("Error al encontrar a las canchas favoritas solicitada")
-    }
+    //     else {
+    //         courtsfavs = await Field.findAll({})
+    //     }
+    // }
+    // catch (error) {
+    //     throw new Error("Error al encontrar a las canchas favoritas solicitada")
+    // }
 
-    res.send(courtsfavs)
+    // res.send(courtsfavs)
 
 }
 

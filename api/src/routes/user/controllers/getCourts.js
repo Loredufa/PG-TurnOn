@@ -28,7 +28,7 @@ const getCourts = async (req, res) => {
     } catch (error) {
       throw new Error("Error al encontrar a la cancha solicitada");
     }
-    console.log("courtsByName", courts);
+    // console.log("courtsByName", courts);
   
     res.send(courts);
   };

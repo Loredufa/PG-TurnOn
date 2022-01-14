@@ -8,8 +8,8 @@ const {getFavCourts} = require ("./controllers/getFavoritesCourts")
 //     res.send ("Soy la ruta usuario/favorito")
 // });
 
-router.post ("/favorites", postFavoritesCourts)
-router.get ("/favorites/:userId", getFavCourts)
+// router.post ("/favorites", postFavoritesCourts)
+// router.get ("/favorites/:userId", getFavCourts)
 // router.delete ("/favorites/:userId", deleteFavCourts)
 
 module.exports = router
