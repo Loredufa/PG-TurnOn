@@ -30,6 +30,26 @@ export const EditButton = styled.button`
   border-style: none;
   color: white;
   padding: 10px;
+  &:disabled {
+    background-color: red;
+    color: white;
+  }
+`;
+export const DeleteButton = styled.button`
+  background-color: #6bac48;
+  position: absolute;
+  font-family: "Be Vietnam Pro", sans-serif;
+  font-size: 16px;
+  top: 180px;
+  left: 230px;
+  width: 140px;
+  height: 45px;
+  cursor: pointer;
+  border-radius: 30px;
+  border-style: none;
+  color: white;
+  text-align: center;
+  padding: 10px;
 `;
 
 export const LabelSetting = styled.label`
