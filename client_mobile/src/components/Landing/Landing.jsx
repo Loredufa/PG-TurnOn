@@ -6,17 +6,20 @@ import {
   TextInput,
   View,
   Image,
+  Dimensions,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import HomeTab from "../Home/HomeTab";
 import User from "../User/User";
-import { styles } from './StylesLanding'
-import * as SecureStore from 'expo-secure-store';
-import { useSelector } from "react-redux";
+import { styles } from "./StylesLanding";
+import * as SecureStore from "expo-secure-store";
+import { useSelector, useDispatch } from "react-redux";
+//COMO NO FUNCIONA EL BACK EN EXPO SE AGREGA ESTO
+import { setScreenDimensions } from "../../store/actions/index";
 
 export default function Landing() {
-    const navigation = useNavigation();
-/*    
+  const navigation = useNavigation();
+  /*    
     const {user} = useSelector(state => state)
 
     async function save(key, value) {
@@ -28,6 +31,35 @@ export default function Landing() {
     },[])
 */
 
+  // COMO NO FUNCIONA EL BACK EN EXPO AGREGO ESTAS LINEAS
+  /*
+  const dispatch = useDispatch();
+  const screenWidth = Dimensions.get("window").width;
+  const numColumns = 6;
+  const titleSize = screenWidth / numColumns;
+
+  const [dimension, setDimension] = useState({ screenWidth, titleSize });
+
+  useEffect(() => {
+    const subscription = Dimensions.addEventListener(
+      "change",
+      ({ screenWidth, titleSize }) => {
+        setDimension({ screenWidth, titleSize });
+      }
+    );
+    return () => subscription?.remove();
+  });
+
+  useEffect(() => {
+    dispatch(
+      setScreenDimensions(
+        dimension.screenWidth,
+        numColumns,
+        dimension.titleSize
+      )
+    );
+  }, [screenWidth]);
+*/
   return (
     <View style={styles.screen}>
       <View style={styles.imgContainer}>
@@ -37,12 +69,11 @@ export default function Landing() {
         <Text style={styles.welcome}>Bienvenido!</Text>
         <Text style={styles.question}>¿Permitis acceder a tu ubicación?</Text>
         <TouchableOpacity onPress={() => navigation.navigate("HomeTab")}>
-            <View style={styles.button}>
-                <Text style={styles.buttonText}>Aceptar</Text>
-            </View>
+          <View style={styles.button}>
+            <Text style={styles.buttonText}>Aceptar</Text>
+          </View>
         </TouchableOpacity>
       </View>
     </View>
   );
 }
-

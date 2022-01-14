@@ -1,9 +1,6 @@
-import {
-    StyleSheet,
-  } from "react-native";
-  
-export 
-const styles = StyleSheet.create({
+import { StyleSheet } from "react-native";
+
+export const styles = StyleSheet.create({
   img: {
     width: 150,
     height: 100,
@@ -15,35 +12,35 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   container: {
-      alignItems: "center",
-      flex:2,
+    alignItems: "center",
+    flex: 2,
   },
   button: {
-      marginTop: 30,
-      width: 130,
-      height: 35,
-      alignItems: "center",
-      backgroundColor: "white",
-      borderRadius: 20,
-      borderWidth: 1,
-      borderColor: "black",
-      justifyContent: "center",
-    },
-    buttonText: {
-      textAlign: "center",
-      padding: 20,
-      color: "black",
-    },
-    question: {
-      fontWeight: 700,
-      fontSize: 15,
-      marginTop: 5,
-    },
-    welcome: {
-      fontWeight: 'bold',
-      fontSize: 18,
-    },
-    screen: {
-      flex:1,
+    marginTop: 30,
+    width: 130,
+    height: 35,
+    alignItems: "center",
+    backgroundColor: "white",
+    borderRadius: 20,
+    borderWidth: 1,
+    borderColor: "black",
+    justifyContent: "center",
+  },
+  buttonText: {
+    textAlign: "center",
+    padding: 20,
+    color: "black",
+  },
+  question: {
+    fontWeight: "700",
+    fontSize: 15,
+    marginTop: 5,
+  },
+  welcome: {
+    fontWeight: "bold",
+    fontSize: 18,
+  },
+  screen: {
+    flex: 1,
   },
 });

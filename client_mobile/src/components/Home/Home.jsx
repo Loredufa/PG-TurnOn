@@ -21,7 +21,7 @@ import {
   getCourtType,
 } from "../../store/actions/index";
 import SearchBar from "../SearchBar/SearchBar";
-import {styles} from './StyleHome';
+import { styles } from "./StyleHome";
 
 const sports = [
   { key: "Futbol", img: require("../../../Images/Football.jpg") },
@@ -32,17 +32,20 @@ const sports = [
   { key: "Otros", img: require("../../../Images/Otros.jpg") },
 ];
 
+/*
 const screenWidth = Dimensions.get("window").width;
 const numColumns = 6;
 const titleSize = screenWidth / numColumns;
+*/
 
 export default function Home() {
   const navigation = useNavigation();
   const [input, setInput] = useState("");
-  const [dimension, setDimension] = useState({ screenWidth, titleSize });
+  //const [dimension, setDimension] = useState({ screenWidth, titleSize });
   const [isLoading, setLoading] = useState(true);
   const dispatch = useDispatch();
 
+  /*
   useEffect(() => {
     const subscription = Dimensions.addEventListener(
       "change",
@@ -52,18 +55,20 @@ export default function Home() {
     );
     return () => subscription?.remove();
   });
-
+*/
   useEffect(() => {
     //alert("Permitir acceder a tu ubicacion");
     dispatch(bestCourtsNearMe(5));
   }, []);
 
   const courts = useSelector((state) => state.bestCourts);
+  const screenWidth = useSelector((state) => state.screenWidth);
+  const titleSize = useSelector((state) => state.titleSize);
   //if (courts.length !== 0) setLoading(false);
 
   function submit(type) {
     //dispatch(getCourtType(type));
-    navigation.navigate("Courts", { sport: type/*, dimension: dimension */});
+    navigation.navigate("Courts", { sport: type /*, dimension: dimension */ });
   }
 
   return (
@@ -74,7 +79,7 @@ export default function Home() {
       </View>
       <View
         style={{
-          width: dimension.screenWidth,
+          width: screenWidth,
           flex: 3,
           justifyContent: "center",
         }}
@@ -96,8 +101,8 @@ export default function Home() {
                 <Image
                   source={item.img}
                   style={{
-                    height: dimension.screenWidth / 4,
-                    width: dimension.titleSize,
+                    height: screenWidth / 4,
+                    width: titleSize,
                     padding: 3,
                   }}
                 />
@@ -113,8 +118,8 @@ export default function Home() {
         {courts.length === 0 ? (
           <ActivityIndicator size="large" color="#00ff00" />
         ) : (
-          <View style={{ flex: 1, alignItems: "center" }}>
-            <Text style={{ flex: 0.5, height: dimension.screenWidth / 8 }}>
+          <View style={{ flex: 2, alignItems: "center" }}>
+            <Text style={{ flex: 0.5, height: screenWidth / 8 }}>
               Los mejores de tu zona
             </Text>
             <FlatList
@@ -122,8 +127,9 @@ export default function Home() {
               pagingEnabled={true}
               style={{
                 flexGrow: 1.5,
-                width: dimension.screenWidth,
-                height: dimension.screenWidth / 4,
+                width: screenWidth,
+                height: screenWidth / 4,
+                marginLeft: 20,
               }}
               contentContainerStyle={{ alignItems: "center" }}
               horizontal
@@ -133,12 +139,23 @@ export default function Home() {
                     navigation.navigate("CourtDetail", { court: item })
                   }
                 >
-                  <View style={styles.card}>
+                  <View
+                    style={
+                      (styles.card2,
+                      {
+                        height: screenWidth / 4,
+                        width: screenWidth / 2,
+                        borderWidth: 1,
+                        borderTopLeftRadius: 10,
+                        borderTopRightRadius: 10,
+                      })
+                    }
+                  >
                     <Image
                       source={item.img}
                       style={{
-                        height: dimension.screenWidth / 4,
-                        width: dimension.screenWidth / 2,
+                        height: screenWidth / 5,
+                        width: screenWidth / 2,
                         padding: 3,
                         borderTopLeftRadius: 10,
                         borderTopRightRadius: 10,
@@ -162,7 +179,7 @@ export default function Home() {
                   </View>
                 </TouchableOpacity>
               )}
-              //ItemSeparatorComponent={() => <View style={{ height: 10 }} />}
+              ItemSeparatorComponent={() => <View style={{ width: 20 }} />}
               //numColumns={3}
               keyExtractor={(item) => item.id}
             />

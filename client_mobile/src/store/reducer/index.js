@@ -30,12 +30,12 @@ const initialState = {
   courtTypes: [],
   favorites: [],
   bookings: [],
-  authToken: null,
-  screenWidth: 375, 
-  numColumns: 6, 
+  authToken: null, //"abc123",
+  screenWidth: 375,
+  numColumns: 6,
   titleSize: 62,
   courtsBySports: [],
-  messageBack: '',
+  messageBack: "",
   suppliers: [],
   googlesession: false,
 };
@@ -63,11 +63,11 @@ const reducer = (state = initialState, action) => {
         user: action.payload,
         authToken: action.payload.user ? "abc123" : null,
         googlesession: true,
-      }
+      };
     case GET_SUPPLIERS_BY_NAME:
       return {
         ...state,
-        suppliers: action.payload 
+        suppliers: action.payload,
       };
     case CLOSE_SESSION:
       return {
@@ -100,32 +100,34 @@ const reducer = (state = initialState, action) => {
     case ADD_TO_FAVORITE:
       return {
         ...state,
-        favorites: state.favorites.includes(action.payload)? 
-        state.favorites.filter(element => element !== action.payload) 
-        : [...state.favorites , action.payload]
+        favorites: state.favorites.includes(action.payload)
+          ? state.favorites.filter((element) => element !== action.payload)
+          : [...state.favorites, action.payload],
       };
     case BOOK_COURT:
       return {
         ...state,
-        bookings: state.bookings.includes(action.payload)? state.bookings : [...state.bookings, action.payload]
-      }
+        bookings: state.bookings.includes(action.payload)
+          ? state.bookings
+          : [...state.bookings, action.payload],
+      };
     case SET_SCREEN_DIMENSIONS:
       return {
         ...state,
-        screenWidth: action.payload.screenWidth, 
-        numColumns: action.payload.numColumns, 
+        screenWidth: action.payload.screenWidth,
+        numColumns: action.payload.numColumns,
         titleSize: action.payload.titleSize,
-      }
+      };
     case GET_COURT_BY_SPORT:
       return {
         ...state,
         courtsBySports: action.payload,
-      }
+      };
     case CHANGE_MESSAGE:
       return {
-        ...state, 
-        messageBack: '',
-      }
+        ...state,
+        messageBack: "",
+      };
     default:
       return state;
   }
