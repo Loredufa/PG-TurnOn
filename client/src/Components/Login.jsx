@@ -14,8 +14,13 @@ function Login() {
     user: " ",
     password: " ",
   });
+
   if (user) {
-    window.localStorage.setItem("loguodeusuario", JSON.stringify(user));
+    window.localStorage.setItem(
+      "loguodeusuario",
+      JSON.stringify(user.supplier)
+    );
+    console.log("user: ", user);
     history.push("/");
   }
 
@@ -29,6 +34,7 @@ function Login() {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(loginUser(input));
+    console.log(input);
   };
 
   return (
@@ -67,7 +73,6 @@ function Login() {
                 Login
               </button>
               <p className="mensaje-error">{message}</p>
-              
             </div>
             <h4 className="no-estas-registrado">¿No estas Registrado?</h4>
             <Link to="/registro">

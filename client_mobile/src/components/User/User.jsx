@@ -40,7 +40,7 @@ export default function User() {
     passEdit.actualPass !== '' ? infoToSend={ ...infoToSend , actualPass: passEdit.actualPass} :infoToSend={ ...infoToSend}
     passEdit.password !== '' ? infoToSend={ ...infoToSend , password: passEdit.password} :infoToSend={ ...infoToSend}
     console.log("Informacion a enviar" , infoToSend)
-    //dispatch(changeUserPass(user.id , infoToSend))
+    dispatch(changeUserPass(user.id , infoToSend))
   }
 
   function handlerChangePass(name , defaultValue) {
