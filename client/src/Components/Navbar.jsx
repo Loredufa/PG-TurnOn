@@ -37,8 +37,8 @@ export default function Navbar() {
           <Link className="navbar-home-turn" to="/">
             Turnos
           </Link>
-          <Link className="navbar-home-gest" to="/profile/creacion-turno">
-            Gestionar Turnos
+          <Link className="navbar-home-gest" to="/profile/courts">
+            Canchas
           </Link>
           <Link className="navbar-home-histo" to="/profile/history">
             Historial
