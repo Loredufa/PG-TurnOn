@@ -33,11 +33,13 @@ const getGoogle = async (req, res) => {
             )
             
             if (created) {
-                res.json({ user: user , token: jwtToken })
+                res.json({ user: user , token: jwtToken , created})
             }
             else {
-                const user = {mail , name, lastname, password, phone}
-                res.json({ user: user , token: jwtToken })
+                const user = await User.findOne({
+                    where: {mail: mail},
+                })
+                res.json({ user: user , token: jwtToken , created })
             }
         }
         catch (error) {
