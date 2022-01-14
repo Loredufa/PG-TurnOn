@@ -1,4 +1,4 @@
-import "react-confirm-alert/src/react-confirm-alert.css"; // Import css
+import "react-confirm-alert/src/react-confirm-alert.css";
 
 import {
   DeleteButton,
@@ -10,16 +10,15 @@ import {
 } from "../Styles/settingsSupplier";
 import React, { useState } from "react";
 import { changeSupplierProfile, deleteUser } from "../Actions/actions";
+import { useDispatch, useSelector } from "react-redux";
 
-import { confirmAlert } from "react-confirm-alert"; // Import
-import { useDispatch } from "react-redux";
+import { confirmAlert } from "react-confirm-alert";
 import { useHistory } from "react-router-dom";
 
 export default function Settings() {
+  const { supplier } = useSelector((state) => state.user);
   const history = useHistory();
   const dispatch = useDispatch();
-  const user = window.localStorage.getItem("loguodeusuario");
-  const supplier = JSON.parse(user);
   const [edit, setEdit] = useState(false);
   const [botonActivo, setBotonActivo] = useState(false);
   const [error, setError] = useState({});
@@ -83,7 +82,6 @@ export default function Settings() {
     e.preventDefault();
     dispatch(changeSupplierProfile({ id: supplier.id, info }));
     setEdit(false);
-    window.localStorage.setItem("loguodeusuario", JSON.stringify(info));
   };
 
   const handleClick = () => {
@@ -122,14 +120,6 @@ export default function Settings() {
               Nombre
               <input name="name" value={info.name} />
             </LabelSetting>
-            {/* <LabelSetting>
-          Apellido
-          <input
-            name="lastname"
-            value={info.lastname}
-            onChange={handleChange}
-          />
-        </LabelSetting> */}
             <LabelSetting>
               Email
               <input name="mail" value={info.mail} />
@@ -166,14 +156,6 @@ export default function Settings() {
               />
               {error.name && <p>{error.name}</p>}
             </LabelSetting>
-            {/* <LabelSetting>
-          Apellido
-          <input
-            name="lastname"
-            value={info.lastname}
-            onChange={handleChange}
-          />
-        </LabelSetting> */}
             <LabelSetting>
               Email
               <input
