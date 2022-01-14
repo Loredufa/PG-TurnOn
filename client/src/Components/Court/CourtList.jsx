@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import { CourtContext } from './Context/CourtContext'
 import styled from 'styled-components'
 import CourtCard from './CourtCard'
+import { Link } from 'react-router-dom'
 
 export default function CourtList() {
 
@@ -9,6 +10,9 @@ export default function CourtList() {
 
     return (
         <Wrapper>
+            <Link to="/profile/courts/create">
+                <button>CREAR CANCHA</button>   
+            </Link>
             {
                 supplierCourts && 
                 <>
