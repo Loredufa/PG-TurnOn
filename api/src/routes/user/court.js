@@ -1,6 +1,9 @@
-const {Router} = require ("express")
-const router = Router () 
-const {getCourts} = require("./controllers/getCourts")
+const { Router } = require("express");
+const router = Router();
+const { getCourts } = require("./controllers/getCourts");
+const {
+  getCourtsPriceSportZone,
+} = require("./controllers/getCourtsPriceSportZone");
 
 // router.get ("/court" , (req, res, next) => {
 //      res.send ("Soy la ruta de traerme todas las canchas por deporte")
@@ -12,8 +15,7 @@ const {getCourts} = require("./controllers/getCourts")
 //     }
 // });
 
-router.get("/court", getCourts)
-// router.get("/court/supplierId", getCourts)
+router.get("/court", getCourts);
+router.get("/court/price", getCourtsPriceSportZone);
 
-
-module.exports = router
+module.exports = router;
