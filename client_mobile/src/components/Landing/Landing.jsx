@@ -29,11 +29,13 @@ export default function Landing() {
 */
 
   return (
-    <View>
-      <Image style={styles.img} source={require("../Login/Logo.jpg")} />
+    <View style={styles.screen}>
+      <View style={styles.imgContainer}>
+        <Image style={styles.img} source={require("../Login/Logo.jpg")} />
+      </View>
       <View style={styles.container}>
-        <Text>Bienvenido!</Text>
-        <Text>¿Permitis acceder a tu ubicación?</Text>
+        <Text style={styles.welcome}>Bienvenido!</Text>
+        <Text style={styles.question}>¿Permitis acceder a tu ubicación?</Text>
         <TouchableOpacity onPress={() => navigation.navigate("HomeTab")}>
             <View style={styles.button}>
                 <Text style={styles.buttonText}>Aceptar</Text>

@@ -12,6 +12,7 @@ export const SET_SCREEN_DIMENSIONS = "SET_SCREEN_DIMENSIONS";
 export const GET_COURT_BY_SPORT = "GET_COURT_BY_SPORT";
 export const CHANGE_USER_PASS = "CHANGE_USER_PASS"
 export const CHANGE_MESSAGE = "CHANGE_MESSAGE";
+export const GOOGLE_LOGIN = "GOOGLE_LOGIN";
 
 /*
 export function addUser(data) {
@@ -137,6 +138,25 @@ export function findCreatedUser({ user, password }) {
   };
 }
 
+
+export function googleLogIn (token) {
+  return async function (dispatch){
+    try {
+      await axios
+        .get(
+          `http://localhost:3001/user/user/google?token=${token}`
+        )
+        .then((resolve) => {
+          dispatch({
+            type:  GOOGLE_LOGIN,
+            payload: resolve.data,
+          });
+        });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+}
 /*
 export const findCreatedUser = (email) => (dispatch) =>
   dispatch({
@@ -145,9 +165,11 @@ export const findCreatedUser = (email) => (dispatch) =>
   });
   */
 export function changeMessage() {
-  return {
+  return async function (dispatch) {
+    dispatch( {
     type: CHANGE_MESSAGE,
-  };
+  });
+}
 }
 
 
