@@ -1,9 +1,10 @@
-const {Favorites} = require("../../../db")
+const {User, Supplier, Favorites} = require("../../../db")
 
 
-const postFavoritesCourts = async (req, res) => {
 
-    // const { userId, courtId} = req.body
+const postFavSuppliers = async (req, res) => {
+
+    // const { userId, supplierId} = req.body
  
     // let newFavorite = await Favorites.create ({
     //    userId,
@@ -18,4 +19,4 @@ const postFavoritesCourts = async (req, res) => {
     // if (newFavorite) res.json({ message: "La cancha se ha agregado como favorita" })
 }
 
-module.exports= {postFavoritesCourts}
+module.exports= {postFavSuppliers}

@@ -4,14 +4,23 @@ const { Supplier } = require("../../../db");
 
 const getCourts = async (req, res) => {
 
-    let { name, sport, supplierId } = req.query;
+    let { name, sport } = req.query;
     
     let courts;
     
     try {
       if (sport) {
-        courts = await Field.findAll({ where: { sport, supplierId } });
-        
+        courts = await Field.findAll({ 
+          where: { sport },
+          include:{
+          model: Supplier,
+          attributes: ["name"],
+        },
+      });
+          //Opcion 2:
+          //    if (sport) {
+        // courts = await Field.findAll({ 
+        //   where: { sport } })
       } 
 
       else if (name) {
