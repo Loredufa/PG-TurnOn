@@ -24,12 +24,12 @@ import SearchBar from "../SearchBar/SearchBar";
 import { styles } from "./StyleHome";
 
 const sports = [
-  { key: "Futbol", img: require("../../../Images/Football.jpg") },
-  { key: "Golf", img: require("../../../Images/Golf.jpg") },
-  { key: "Hockey", img: require("../../../Images/Hockey.jpg") },
-  { key: "Paddle", img: require("../../../Images/Paddle.jpg") },
-  { key: "Tenis", img: require("../../../Images/Tennis.jpg") },
-  { key: "Otros", img: require("../../../Images/Otros.jpg") },
+  { key: "Futbol", img: require("../../../Images/Football.jpg") , url: "https://i.pinimg.com/originals/37/ee/9e/37ee9e13208a4b3a3cb3c49ae7d4338c.png" },
+  { key: "Golf", img: require("../../../Images/Golf.jpg") , url: "https://2.bp.blogspot.com/-ZIMcXanor7I/WZhBGNfOLAI/AAAAAAAHVTA/mEfwzM42yX4RwpS6CwumQ0ZhHsou1m9EwCLcBGAs/s1600/Golf-Ball-PNG-Clipart.png"},
+  { key: "Hockey", img: require("../../../Images/Hockey.jpg") , url: "https://images.vexels.com/media/users/3/227283/isolated/preview/90710bdb5ce01b6d75b9bc710c116f3c-palos-de-hockey-azul-y-verde-planos.png" },
+  { key: "Paddle", img: require("../../../Images/Paddle.jpg") , url: "https://cdn-icons-png.flaticon.com/512/434/434062.png" },
+  { key: "Tenis", img: require("../../../Images/Tennis.jpg") , url: "https://images.vexels.com/media/users/3/132448/isolated/preview/baf01fb517749ccf4e1215d7576fe262-pelota-de-tenis.png"},
+  { key: "Otros", img: require("../../../Images/Otros.jpg") , url: "https://images-na.ssl-images-amazon.com/images/I/61poZwdANWL.png"},
 ];
 
 /*
@@ -62,6 +62,7 @@ export default function Home() {
   }, []);
 
   const courts = useSelector((state) => state.bestCourts);
+  const {user} = useSelector((state) => state);
   const screenWidth = useSelector((state) => state.screenWidth);
   const titleSize = useSelector((state) => state.titleSize);
   //if (courts.length !== 0) setLoading(false);
@@ -74,21 +75,23 @@ export default function Home() {
   }
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       {/* <View style={styles.globalContainer}> */}
+      <Text style={styles.title}>Hola, {user.user.name} :)</Text>
       <View style={styles.searchBarPos}>
         <SearchBar />
       </View>
+      <View style={{flex: 5 , alignItems: 'center'}}>
       <View
         style={{
           width: screenWidth,
           flex: 3,
           justifyContent: "center",
         }}
-      >
+        >
         <FlatList
           data={sports}
-          style={{ marginTop: 10 }}
+          style={{  flex:2}}
           renderItem={({ item }) => (
             <View style={styles.card}>
               <TouchableOpacity
@@ -98,35 +101,37 @@ export default function Home() {
                   navigation.navigate("Courts", { name: item.key })
                 }
                 */
-              >
+               >
                 <Text style={styles.sport}>{item.key}</Text>
                 <Image
-                  source={item.img}
+                  source={{uri: item.url}}
                   style={{
                     height: screenWidth / 4,
-                    width: titleSize,
+                    width: titleSize+10,
                     padding: 3,
                   }}
-                />
+                  />
               </TouchableOpacity>
             </View>
           )}
           ItemSeparatorComponent={() => <View style={{ height: 10 }} />}
           numColumns={3}
           key={3}
-        />
+          />
       </View>
       <View style={styles.review}>
         {courts.length === 0 ? (
           <ActivityIndicator size="large" color="#00ff00" />
-        ) : (
-          <View style={{ flex: 2}}>
-            <Text style={{flex: 0.5, height: screenWidth / 8 ,
+          ) : (
+            <View style={{ flex: 2}}>
+            <Text style={{flex: 1, height: screenWidth / 8 ,
             textAlign:'left',
+            justifyContent: 'center',
             marginLeft:20,
             fontSize: 20,
             fontWeight: "bold",
-            }}>
+            marginTop: 5
+          }}>
               Los mejores de tu zona
             </Text>
             <FlatList
@@ -137,26 +142,27 @@ export default function Home() {
                 width: screenWidth,
                 height: screenWidth / 4,
                 marginLeft: 20,
+                marginBottom:10
               }}
               contentContainerStyle={{ alignItems: "center" }}
               horizontal
               renderItem={({ item }) => (
                 <TouchableOpacity
-                  onPress={() =>
-                    navigation.navigate("CourtDetail", { court: item })
+                onPress={() =>
+                  navigation.navigate("CourtDetail", { court: item })
                   }
                 >
                   <View
                     style={
                       (styles.card2,
-                      {
-                        height: 2*screenWidth / 6,
-                        width: 3*screenWidth / 4,
-                        borderWidth: 1,
-                        borderRadius: 25,
-                      })
-                    }
-                  >
+                        {
+                          height: 2*screenWidth / 6,
+                          width: 3*screenWidth / 4,
+                          borderWidth: 1,
+                          borderRadius: 25,
+                        })
+                      }
+                      >
                     <Image
                       source={item.img}
                       style={{
@@ -166,13 +172,13 @@ export default function Home() {
                         borderTopLeftRadius: 25,
                         borderTopRightRadius: 25,
                       }}
-                    />
+                      />
                     <View
                       style={{
                         flexDirection: "row",
                         width: 3*screenWidth / 4 - 2,
                       }}
-                    >
+                      >
 
                       <Text style={styles.supplier}>{item.name}</Text>
                       <View style= {styles.ratingContainer}>
@@ -190,11 +196,12 @@ export default function Home() {
               ItemSeparatorComponent={() => <View style={{ width: 20 }} />}
               //numColumns={3}
               keyExtractor={(item) => item.id}
-            />
+              />
           </View>
         )}
       </View>
       {/* </View> */}
-    </SafeAreaView>
+      </View>
+    </View>
   );
 }

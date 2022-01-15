@@ -44,20 +44,16 @@ export default function Courts({ route }) {
   */
   return (
     <View style={styles.container}>
+      <Text style={styles.title} > {route.params.name}</Text>
       <View style={styles.searchBarPos}>
         <SearchBar />
       </View>
-      <Text
-            style={styles.title}
-          >
-            {route.params.name}
-          </Text>
       {courtsBySports.length === 0 || courtsBySports[0].sport !== route.params.sport? (
-        <ActivityIndicator size="large" color="#00ff00" />
+        <ActivityIndicator size="large" color="#00ff00" style={{flex:5 , justifyContent: 'center'}}/>
       ) : (
         <View
           style={{
-            flex: 6,
+            flex: 5,
             alignItems: "center",
             justifyContent: "flex-start",
           }}

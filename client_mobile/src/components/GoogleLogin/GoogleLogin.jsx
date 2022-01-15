@@ -34,7 +34,7 @@ const authorizationEndpoint = "https://dev-jnteeh93.us.auth0.com/authorize";
 
 const useProxy = Platform.select({ web: false, default: true });
 const redirectUri = AuthSession.makeRedirectUri({ useProxy });
-console.log("Redirect uri" , redirectUri) //To see de redirectUri
+//console.log("Redirect uri" , redirectUri) //To see de redirectUri
 
 export default function GoogleLogin() {
   const navigation = useNavigation();
@@ -73,8 +73,8 @@ export default function GoogleLogin() {
         // Retrieve the JWT token and decode it
         const jwtToken = result.params.id_token;
         const decoded = jwtDecode(jwtToken);
-        console.log("El token: ",jwtToken);
-        console.log("Decoded: ", decoded);
+        //console.log("El token: ",jwtToken);
+        //console.log("Decoded: ", decoded);
         const { name , email} = decoded;
         console.log("Nombre: " , name , " Mail: " , email);
         //changeUserInfo({name: name , mail: email})
@@ -91,8 +91,8 @@ export default function GoogleLogin() {
     //navigation.navigate("Logout" , {name: userInfo.name , mail: "franco@mail"});
   }
 
-    console.log( "Request: " , request);
-    console.log("Result" , result);
+   // console.log( "Request: " , request);
+   // console.log("Result" , result);
   return (
      <TouchableOpacity onPress={handlerLogin}>
         <View style={styles.btn}>

@@ -141,7 +141,7 @@ const reducer = (state = initialState, action) => {
     case GET_SUPPLIER_BY_SPORT:
       return {
         ...state,
-        suppliers: action.payload,
+        suppliers: action.payload.message? [] : action.payload,
       }
     case GET_COURTS_SUPPLIER_SPORT:
       return {

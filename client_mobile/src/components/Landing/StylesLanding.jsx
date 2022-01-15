@@ -25,10 +25,10 @@ export const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "black",
     justifyContent: "center",
+    backgroundColor: "#179F34",
   },
   buttonText: {
-    textAlign: "center",
-    padding: 20,
+    fontSize: 15,
     color: "black",
   },
   question: {
