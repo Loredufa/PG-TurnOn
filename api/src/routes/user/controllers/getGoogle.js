@@ -30,6 +30,7 @@ const getGoogle = async (req, res) => {
         "secreto#$%123" /* <- esto puede ser cualquier cosa, pero idealmente tiene que estar guardado en el .env */
       );
 
+      // <<<<<<< HEAD
       if (created) {
         res.json({ user: user, token: jwtToken, created });
       } else {
@@ -39,6 +40,39 @@ const getGoogle = async (req, res) => {
       }
     } catch (error) {
       throw new Error(error);
+      // =======
+      //     if (mail) {
+      //         try {
+      //         const [user, created] = await User.findOrCreate({
+      //             where: { mail: mail },
+      //             defaults: {
+      //                 name,
+      //                 lastname,
+      //                 password,
+      //                 phone
+      //             }
+      //         });
+      //         const jwtToken = jwt.sign(
+      //             { id: user.id, email: user.mail, },
+      //             "secreto#$%123" /* <- esto puede ser cualquier cosa, pero idealmente tiene que estar guardado en el .env */
+      //             )
+
+      //             if (created) {
+      //                 res.json({ user: user , token: jwtToken , created})
+      //             }
+      //             else {
+      //                 const user = await User.findOne({
+      //                     where: {mail: mail},
+      //                 })
+      //                 res.json({ user: user , token: jwtToken , created })
+      //             }
+      //         }
+      //         catch (error) {
+      //         throw new Error(error);
+      //         }
+      //     } else {
+      //         return res.json({ message: "Datos incorrectos"})
+      // >>>>>>> frontMobile2
     }
   } else {
     return res.json({ message: "Datos incorrectos" });

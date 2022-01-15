@@ -17,7 +17,7 @@ export default function HomeTab() {
     <Tab.Navigator
       initialRouteName="Inicio"
       tabBarOptions={{
-        activeTintColor: '#179F34'
+        activeTintColor: "#179F34",
       }}
     >
       <Tab.Screen
@@ -27,7 +27,13 @@ export default function HomeTab() {
           headerShown: false,
           tabBarIcon: (
             { color, size } // color y size lo tomaria del tab navigator si lo configuro
-          ) => <MaterialCommunityIcons name={color==='#179F34'?'home':"home-outline"} color={color} size={size} />,
+          ) => (
+            <MaterialCommunityIcons
+              name={color === "#179F34" ? "home" : "home-outline"}
+              color={color}
+              size={size}
+            />
+          ),
         }}
       />
       <Tab.Screen
@@ -39,7 +45,7 @@ export default function HomeTab() {
             { color, size } // color y size lo tomaria del tab navigator si lo configuro
           ) => (
             <MaterialCommunityIcons
-              name={color==='#179F34'?'reader':"reader-outline"}
+              name={color === "#179F34" ? "reader" : "reader-outline"}
               color={color}
               size={size}
             />
@@ -55,7 +61,7 @@ export default function HomeTab() {
             { color, size } // color y size lo tomaria del tab navigator si lo configuro
           ) => (
             <MaterialCommunityIcons
-              name={color==='#179F34'?'heart':"heart-outline"}
+              name={color === "#179F34" ? "heart" : "heart-outline"}
               color={color}
               size={size}
             />
@@ -71,7 +77,7 @@ export default function HomeTab() {
             { color, size } // color y size lo tomaria del tab navigator si lo configuro
           ) => (
             <MaterialCommunityIcons
-              name={color==='#179F34'?'person':"person-outline"}
+              name={color === "#179F34" ? "person" : "person-outline"}
               color={color}
               size={size}
             />
@@ -87,7 +93,7 @@ export default function HomeTab() {
             { color, size } // color y size lo tomaria del tab navigator si lo configuro
           ) => (
             <MaterialCommunityIcons
-              name={color==='#179F34'?'location':"location-outline"}
+              name={color === "#179F34" ? "location" : "location-outline"}
               color={color}
               size={size}
             />

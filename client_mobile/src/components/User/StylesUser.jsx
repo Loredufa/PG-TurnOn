@@ -1,20 +1,17 @@
-import {
-    StyleSheet,
-  } from "react-native";
+import { StyleSheet } from "react-native";
 import { color } from "react-native-reanimated";
-  
-export 
-const styles = StyleSheet.create({
+
+export const styles = StyleSheet.create({
   title: {
-    textAlign: 'center',
+    textAlign: "center",
     marginBottom: 30,
     marginTop: 10,
-    fontSize:30,
-    fontWeight: 'bold',
+    fontSize: 30,
+    fontWeight: "bold",
   },
   inputContainers: {
     alignItems: "center",
-    justifyContent:'center',
+    justifyContent: "center",
   },
   input: {
     width: 280,
@@ -27,12 +24,12 @@ const styles = StyleSheet.create({
     borderColor: 'transparent',*/
 
     paddingLeft: 10,
-  
-    alignContent: 'center',
-    justifyContent: 'center',
+
+    alignContent: "center",
+    justifyContent: "center",
   },
   info: {
-    textAlign: 'center',
+    textAlign: "center",
     //color: 'white',
   },
   btnUser: {
@@ -47,13 +44,13 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     marginLeft: 15,
     marginRight: 15,
-    backgroundColor: '#179F34',
-    color: 'white'
+    backgroundColor: "#179F34",
+    color: "white",
   },
   cuenta: {
     display: "flex",
     flexDirection: "row",
-    alignSelf: 'center',
+    alignSelf: "center",
   },
   text: {
     textAlign: "center",
@@ -72,6 +69,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     marginLeft: 15,
     marginRight: 15,
-    backgroundColor: '#FFC900',
+    backgroundColor: "#FFC900",
   },
 });

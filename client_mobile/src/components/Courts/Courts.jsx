@@ -13,7 +13,7 @@ import Home from "../Home/HomeTab";
 import { useNavigation } from "@react-navigation/native";
 import { useSelector, useDispatch } from "react-redux";
 import MaterialCommunityIcons from "react-native-vector-icons/Ionicons";
-import { addToFavorite, getCourt , getCourtBySport} from "../../store/actions/index";
+import { addToFavorite, getCourt , getCourtBySportSupplier} from "../../store/actions/index";
 import SearchBar from "../SearchBar/SearchBar";
 import Court from "../Court/Court";
 import {styles} from './StyleCourts';
@@ -28,7 +28,7 @@ export default function Courts({ route }) {
   const dispatch = useDispatch();
   
   useEffect(()=> {
-    dispatch(getCourtBySport(route.params.sport));
+    dispatch(getCourtBySportSupplier(route.params.name , route.params.sport));
   },[])
 
 
@@ -50,7 +50,7 @@ export default function Courts({ route }) {
       <Text
             style={styles.title}
           >
-            {route.params.sport}
+            {route.params.name}
           </Text>
       {courtsBySports.length === 0 || courtsBySports[0].sport !== route.params.sport? (
         <ActivityIndicator size="large" color="#00ff00" />
@@ -67,7 +67,7 @@ export default function Courts({ route }) {
             style={{ flexGrow: 5.5 , width: screenWidth }}
             contentContainerStyle={{ alignItems: "center" }}
             renderItem={({ item }) => (
-              <Court item={item}/>
+              <Court item={item} supplierID={route.params.id}/>
             )}
             ItemSeparatorComponent={() => <View style={{ height: 10 }} />}
             //numColumns={3}

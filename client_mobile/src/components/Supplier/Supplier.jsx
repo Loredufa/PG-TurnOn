@@ -8,12 +8,12 @@ import {
 import { useNavigation } from "@react-navigation/native";
 import HomeTab from "../Home/HomeTab";
 import User from "../User/User";
-import {styles} from './StyleCourt';
+import {styles} from './StylesSupplier';
 import MaterialCommunityIcons from "react-native-vector-icons/Ionicons";
 import { addToFavorite } from "../../store/actions";
 import { useDispatch, useSelector } from "react-redux";
 
-export default function Court({item , supplierID}) {
+export default function Supplier({item , sport}) {
     const {screenWidth , favorites} = useSelector(state => state);
     console.log(favorites);
     const navigation = useNavigation();
@@ -21,10 +21,10 @@ export default function Court({item , supplierID}) {
   return (
     <TouchableOpacity
                 onPress={() =>
-                  navigation.navigate("CourtDetail", {
-                    court: item,
-                    dimension: screenWidth,
-                    supplierID: supplierID
+                  navigation.navigate("Courts", {
+                    name: item.name,
+                    sport: sport,
+                    id: item.id,
                   })
                 }
               >
@@ -60,8 +60,39 @@ export default function Court({item , supplierID}) {
                     }}
                   >
                     <Text>{item.name}</Text>
-                    <Text>Precio: {item.price}</Text>
-                    <Text>Horario: {item.description}</Text>
+                    <Text>Precio: {item.mail}</Text>
+                    <View
+                      style={{
+                        flexDirection: "row",
+                        alignItems: "flex-start",
+                        padding: 3,
+                      }}
+                    >
+                      <TouchableOpacity
+                        onPress={() => dispatch(addToFavorite(item))}
+                      >
+                        {favorites?.find(element => element.name === item.name)?
+                        <MaterialCommunityIcons
+                        name="heart"
+                        size={25}
+                        color= 'red'
+                        style={{ marginLeft: 10, marginRight: 20 }}
+                        />:
+                        <MaterialCommunityIcons
+                        name="heart-outline"
+                        size={25}
+                        color= 'black'
+                        style={{ marginLeft: 10, marginRight: 20 }}
+                        />
+                      }
+                      </TouchableOpacity>
+                      <MaterialCommunityIcons
+                        name="star"
+                        size={20}
+                        style={{ marginLeft: 20 }}
+                      />
+                      <Text style={{ marginLeft: 5 }}>{/*item.rating*/}5</Text>
+                    </View>
                   </View>
                 </View>
               </TouchableOpacity>
