@@ -55,4 +55,5 @@ const styles = StyleSheet.create({
   acount: {
     marginRight: 10,
   },
+  error: {color:'red', marginTop:5},
 });

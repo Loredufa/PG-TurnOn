@@ -6,15 +6,14 @@ export const styles = StyleSheet.create({
   container: { flex: 1, alignItems: "center" },
   searchBarPos: {
     justifyContent: "flex-start",
-    marginTop: 20,
-    flex: 1,
+    flex:0.7,
   },
   title: {
-    flex: 0.5,
-    justifyContent: "center",
-    alignItems: "center",
-    fontSize: 20,
+    textAlign: "center",
+    marginTop: 30,
+    fontSize: 24,
     fontWeight: "bold",
+    flex: 0.5,
   },
   containerSearch: {
     alignItems: "center",

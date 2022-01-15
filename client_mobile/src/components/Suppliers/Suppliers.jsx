@@ -29,17 +29,13 @@ export default function Suppliers({ route }) {
 
   return (
     <View style={styles.container}>
+      <Text style={styles.title}>{route.params.sport}</Text>
       <View style={styles.searchBarPos}>
         <SearchBar />
       </View>
-      <View style={{flex:4}}>
-      <Text
-            style={styles.title}
-          >
-            {route.params.sport}
-          </Text>
+      <View style={{flex:5}}>
       {suppliers.length === 0 ? (
-        <ActivityIndicator size="large" color="#00ff00" />
+        <ActivityIndicator size="large" color="#00ff00" style={{flex:1 ,justifyContent: 'center'}} />
         ) : (
           <View
           style={{

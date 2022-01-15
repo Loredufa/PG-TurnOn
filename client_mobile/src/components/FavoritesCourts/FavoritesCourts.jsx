@@ -1,4 +1,4 @@
-import { Text, View, FlatList } from "react-native";
+import { Text, View, FlatList ,ActivityIndicator } from "react-native";
 import { useSelector } from "react-redux";
 import SearchBar from "../SearchBar/SearchBar";
 import Court from "../Court/Court";
@@ -13,14 +13,14 @@ export default function FavoritesCourts() {
         <SearchBar />
       </View>
       <View style={{flex: 5}}>
-      {favorites.length !== 0 ? (
         <View
         style={{
-          flex: 6,
+          flex: 5,
           alignItems: "center",
           justifyContent: "flex-start",
         }}
         >
+        {favorites.length !== 0 ? (
           <FlatList
             data={favorites}
             style={{ flexGrow: 5.5 }}
@@ -30,10 +30,10 @@ export default function FavoritesCourts() {
             //numColumns={3}
             keyExtractor={(item) => item.id}
             />
-        </View>
       ) : (
-        <Text></Text>
+        <ActivityIndicator size="large" color="#00ff00" style={{flex:1 ,justifyContent: 'center'}} />
         )}
+        </View>
       </View>
     </View>
   );

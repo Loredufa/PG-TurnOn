@@ -134,7 +134,7 @@ useEffect(async () => {
           defaultValue={inputs.password}
           secureTextEntry={true}
         />
-        {user.message && <Text>Usuario o contraseña incorrectos</Text>}
+        {user.message && <Text style={styles.error}>Usuario o contraseña incorrectos</Text>}
         <TouchableOpacity onPress={handleStartPress}>
           <View style={styles.button}>
             <Text style={styles.buttonText}>Iniciar sesión</Text>
