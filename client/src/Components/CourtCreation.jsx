@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
+import Map from "./Court/CourtMap/Map"
 import { createTurnCourt } from "../Actions/actions";
 
 const validate = (infoCourt) => {
@@ -143,16 +143,11 @@ export default function CourtCreation() {
         </div>
         <div>
           <label htmlFor="address">Ubicación</label>
-          <input
-            type="text"
-            placeholder="Dirección"
-            name="address"
-            value={infoCourt.address}
-            onChange={infoChange}
-            onBlur={handleBlur}
-          />
+          <Map setInfoCourt={setInfoCourt} infoCourt={infoCourt}/>
+        
           {errors.address && <p>{errors.address}</p>}
         </div>
+        
         <div>
           <label htmlFor="phone">Teléfono</label>
           <input
