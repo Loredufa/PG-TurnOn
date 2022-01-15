@@ -19,8 +19,11 @@ const getSupplier = async (req, res) => {
           attributes: ["sport"],
         }})
         suppliers = suppliers.map((el) => el.dataValues)
-        .filter((e) => e.fields[0].sport===sport)
-      }
+        .filter((e)=> {
+          let deporte = e.fields.map((ele) => ele.sport)
+          return deporte.includes (sport)
+      })
+    }
       
     else if (name) {
       
