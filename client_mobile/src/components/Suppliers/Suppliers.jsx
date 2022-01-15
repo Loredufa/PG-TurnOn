@@ -32,6 +32,7 @@ export default function Suppliers({ route }) {
       <View style={styles.searchBarPos}>
         <SearchBar />
       </View>
+      <View style={{flex:4}}>
       <Text
             style={styles.title}
           >
@@ -39,27 +40,28 @@ export default function Suppliers({ route }) {
           </Text>
       {suppliers.length === 0 ? (
         <ActivityIndicator size="large" color="#00ff00" />
-      ) : (
-        <View
+        ) : (
+          <View
           style={{
             flex: 6,
             alignItems: "center",
             justifyContent: "flex-start",
           }}
-        >
+          >
           <FlatList
             data={suppliers}
             style={{ flexGrow: 5.5 , width: screenWidth }}
             contentContainerStyle={{ alignItems: "center" }}
             renderItem={({ item }) => (
               <Supplier item={item} sport={route.params.sport}/>
-            )}
-            ItemSeparatorComponent={() => <View style={{ height: 10 }} />}
-            //numColumns={3}
-            keyExtractor={(item) => item.id}
-          />
+              )}
+              ItemSeparatorComponent={() => <View style={{ height: 10 }} />}
+              //numColumns={3}
+              keyExtractor={(item) => item.id}
+              />
         </View>
       )}
+      </View>
     </View>
   );
 }

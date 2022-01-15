@@ -8,17 +8,18 @@ export default function FavoritesCourts() {
   const favorites = useSelector((state) => state.favorites);
   return (
     <View style={styles.container}>
+      <Text style={styles.title}>Favoritos</Text>
       <View style={styles.searchBarPos}>
         <SearchBar />
       </View>
-      <Text style={styles.title}>Favoritos</Text>
+      <View style={{flex: 5}}>
       {favorites.length !== 0 ? (
         <View
-          style={{
-            flex: 6,
-            alignItems: "center",
-            justifyContent: "flex-start",
-          }}
+        style={{
+          flex: 6,
+          alignItems: "center",
+          justifyContent: "flex-start",
+        }}
         >
           <FlatList
             data={favorites}
@@ -28,11 +29,12 @@ export default function FavoritesCourts() {
             ItemSeparatorComponent={() => <View style={{ height: 10 }} />}
             //numColumns={3}
             keyExtractor={(item) => item.id}
-          />
+            />
         </View>
       ) : (
         <Text></Text>
-      )}
+        )}
+      </View>
     </View>
   );
 }

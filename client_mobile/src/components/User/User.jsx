@@ -183,9 +183,9 @@ export default function User() {
   }
   
   return (
-    <View>
+    <View style={{flex:1 , alignItems: 'center'}}>
         <Text style={styles.title}>Mi perfil</Text>
-        <View>
+        <View style={{flex:3}}>
           {
             editState? 
             <View style={styles.inputContainers}>
@@ -221,7 +221,7 @@ export default function User() {
                 </TouchableOpacity>
                 <View style={styles.btnDelete}>
                   <TouchableOpacity onPress={()=>changeEdit(!editState)}>
-                    <Text style={styles.text}>Cancelar</Text>
+                    <Text style={styles.textDelete}>Cancelar</Text>
                   </TouchableOpacity>
                 </View>
               </View>
@@ -229,7 +229,7 @@ export default function User() {
             :
             passState?
             <View style={styles.inputContainers}>
-            <Text>Contraseña Actual:</Text>
+            <Text>Contraseña actual</Text>
             <TextInput 
             name = 'actualPass'
             style={styles.input}
@@ -238,7 +238,7 @@ export default function User() {
             secureTextEntry={true}
             onChangeText={(e) => handlerChangePass("actualPass", e)}
             /><Text>{passEdit.errors.actualPass}</Text>
-            <Text>Contraseña nueva:</Text>
+            <Text>Contraseña nueva</Text>
             <TextInput 
             name = 'password'
             style={styles.input}
@@ -247,7 +247,7 @@ export default function User() {
             secureTextEntry={true}
             onChangeText={(e) => handlerChangePass("password", e)}
             /><Text>{passEdit.errors.password}</Text>
-            <Text>Repetir contraseña nueva:</Text>
+            <Text>Repetir contraseña nueva</Text>
           <TextInput 
             name = 'secondPassword'
             style={styles.input}
@@ -264,7 +264,7 @@ export default function User() {
             </TouchableOpacity>
             <View style={styles.btnDelete}>
               <TouchableOpacity onPress={()=>changePassState(!passState)}>
-                <Text style={styles.text}>Cancelar</Text>
+                <Text style={styles.textDelete}>Cancelar</Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -289,9 +289,9 @@ export default function User() {
                   <Text style={styles.text}>Editar Informacion</Text>
                 </View>
                 </TouchableOpacity>
-                <View style={styles.btnUser}>
+                <View style={styles.btnPass}>
                   <TouchableOpacity onPress={() => changePassState(!passState)}>
-                    <Text style={styles.text}>Modificar contraseña</Text>
+                    <Text style={styles.text}>Cambiar contraseña</Text>
                   </TouchableOpacity>
                 </View>
               </View>
@@ -299,7 +299,7 @@ export default function User() {
                 <GoogleLogout />
                 <View style={styles.btnDelete}>
                   <TouchableOpacity onPress={() => console.log("Eliminar cuenta")}>
-                    <Text style={styles.text}>Eliminar cuenta</Text>
+                    <Text style={styles.textDelete}>Eliminar cuenta</Text>
                   </TouchableOpacity>
                 </View>
               </View>

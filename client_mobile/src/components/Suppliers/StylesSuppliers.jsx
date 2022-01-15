@@ -7,12 +7,12 @@ export const styles = StyleSheet.create({
   searchBarPos: {
     justifyContent: "flex-start",
     marginTop: 20,
+    flex: 1,
   },
   title: {
     flex: 0.5,
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 10,
     fontSize: 20,
     fontWeight: "bold",
   },

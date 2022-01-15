@@ -130,8 +130,8 @@ export function closeSession() {
 export function addUser({ name, lastname, phone, email, password }) {
   return async function (dispatch) {
     try {
-      const postUser = await axios.post("http://localhost:3001/user/user", {
-      //const postUser = await axios.post("https://turnon1.herokuapp.com/user/user", {
+      //const postUser = await axios.post("http://localhost:3001/user/user", {
+      const postUser = await axios.post("https://turnon1.herokuapp.com/user/user", {
         name,
         lastname,
         phone,
@@ -188,13 +188,15 @@ export function changeUserPass(id , userInfo) {
 
 export function findCreatedUser({ user, password }) {
   return async function (dispatch) {
+    console.log("voy a despachar" , user , password)
     try {
       await axios
         .get(
-          `http://localhost:3001/user/user?mail=${user}&password=${password}`
-          //`https://turnon1.herokuapp.com/user/user?mail=${user}&password=${password}`
+          //`http://localhost:3001/user/user?mail=${user}&password=${password}`
+          `https://turnon1.herokuapp.com/user/user?mail=${user}&password=${password}`
         )
         .then((resolve) => {
+          console.log(resolve.data);
           dispatch({
             type: FIND_CREATED_USER,
             payload: resolve.data,

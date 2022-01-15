@@ -4,7 +4,7 @@ export const styles = StyleSheet.create({
   container: { flex: 1, alignItems: "center" },
   searchBarPos: {
     justifyContent: "flex-start",
-    marginTop: 20,
+    flex:0.7,
   },
   globalContainer: {
     flexDirection: "column",
@@ -12,15 +12,16 @@ export const styles = StyleSheet.create({
   card: {
     flex: 1,
     borderRadius: 10,
+    borderWidth:1,
     margin: 10,
     
     alignItems: "center",
-    justifyContent: "center",
+    //justifyContent: "center",
     padding: 2,
 
     shadowColor: "#000",
     shadowOpacity: 0.30,
-    shadowRadius: 4.65,
+    shadowRadius: 5,
 
     elevation: 8,
     //borderColor: "black",
@@ -78,5 +79,12 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-end',
     alignItems: 'center'
-  }
+  },
+  title: {
+    textAlign: "center",
+    marginTop: 30,
+    fontSize: 24,
+    fontWeight: "bold",
+    flex: 0.5,
+  },
 });
