@@ -99,7 +99,7 @@ export default function Home() {
                 }
                 */
               >
-                <Text>{item.key}</Text>
+                <Text style={styles.sport}>{item.key}</Text>
                 <Image
                   source={item.img}
                   style={{
@@ -120,8 +120,13 @@ export default function Home() {
         {courts.length === 0 ? (
           <ActivityIndicator size="large" color="#00ff00" />
         ) : (
-          <View style={{ flex: 2, alignItems: "center" }}>
-            <Text style={{ flex: 0.5, height: screenWidth / 8 }}>
+          <View style={{ flex: 2}}>
+            <Text style={{flex: 0.5, height: screenWidth / 8 ,
+            textAlign:'left',
+            marginLeft:20,
+            fontSize: 20,
+            fontWeight: "bold",
+            }}>
               Los mejores de tu zona
             </Text>
             <FlatList
@@ -145,38 +150,39 @@ export default function Home() {
                     style={
                       (styles.card2,
                       {
-                        height: screenWidth / 4,
-                        width: screenWidth / 2,
+                        height: 2*screenWidth / 6,
+                        width: 3*screenWidth / 4,
                         borderWidth: 1,
-                        borderTopLeftRadius: 10,
-                        borderTopRightRadius: 10,
+                        borderRadius: 25,
                       })
                     }
                   >
                     <Image
                       source={item.img}
                       style={{
-                        height: screenWidth / 5,
-                        width: screenWidth / 2,
-                        padding: 3,
-                        borderTopLeftRadius: 10,
-                        borderTopRightRadius: 10,
+                        height: 1.5*screenWidth / 6,
+                        width: 3*screenWidth / 4 - 2,
+                        //padding: 3,
+                        borderTopLeftRadius: 25,
+                        borderTopRightRadius: 25,
                       }}
                     />
                     <View
                       style={{
                         flexDirection: "row",
-                        alignItems: "flex-start",
-                        padding: 3,
+                        width: 3*screenWidth / 4 - 2,
                       }}
                     >
-                      <Text>{item.name}</Text>
+
+                      <Text style={styles.supplier}>{item.name}</Text>
+                      <View style= {styles.ratingContainer}>
                       <MaterialCommunityIcons
                         name="star"
                         size={15}
-                        style={{ marginLeft: 5 }}
-                      />
+                        color = '#FFC900'
+                        />
                       <Text>{item.rating}</Text>
+                      </View>
                     </View>
                   </View>
                 </TouchableOpacity>
