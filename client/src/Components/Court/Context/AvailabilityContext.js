@@ -3,12 +3,13 @@ import CourtInfo from '../AvailabilityForm/CourtInfo'
 import Form from '../AvailabilityForm/Form'
 import styled from 'styled-components'
 import { CourtContext } from "../Context/CourtContext"
+import axios from 'axios'
 
 export const AvailabilityContext = createContext()
 
 export const AvailabilityProvider = () => {
 
-    const { setSection } = useContext(CourtContext)
+    const { setSection, currentCourt } = useContext(CourtContext)
 
     const [availability, setAvailability] = useState([])
 
@@ -25,30 +26,9 @@ export const AvailabilityProvider = () => {
     const [days, setDays] = useState([])
 
     useEffect(() => {
-        // axios.get(`http://localhost:3001/supplier/available/court/${idCourt}`
-        setAvailability([
-            {
-              day: "Lunes",
-              hours: [
-                "12:00 - 15:00",
-                "18:00 - 20:00"
-              ]
-            },
-            {
-              day: "Martes",
-              hours: [
-                "12:00 - 15:00",
-                "18:00 - 20:00"
-              ]
-            },
-            {
-              day: "Miércoles",
-              hours: [
-                "12:00 - 15:00",
-                "18:00 - 20:00"
-              ]
-            }
-          ])
+        axios.get(`http://localhost:3001/supplier/available/court/${currentCourt.id}`)
+          .then(res => setAvailability(res.data))
+          .catch(err => console.log(err))
     }, [])
 
     return (

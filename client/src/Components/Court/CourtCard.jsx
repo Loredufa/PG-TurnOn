@@ -15,6 +15,8 @@ export default function CourtCard({ courtInfo }) {
         setCurrentCourt(courtInfo)
         setSection(e.target.value)
     }
+
+    console.log(courtInfo)
     
     return (
         <Wrapper 
@@ -31,7 +33,7 @@ export default function CourtCard({ courtInfo }) {
                     <button>Eliminar</button>
                 </div>
                 <div>
-                    IMG
+                    <img src={courtInfo.image} alt={courtInfo.name} width="100px" />
                 </div>
             </div>
             <div>
