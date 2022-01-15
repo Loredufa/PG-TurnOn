@@ -12,11 +12,14 @@ import {
   ActivityIndicator,
 } from "react-native";
 import {styles} from './StylesUser';
+import Message from "../Message/Message";
+import GoogleLogout from "../GoogleLogout/GoogleLogout";
 
 export default function User() {
   
   const navigation = useNavigation();
   const {user} = useSelector(state => state.user);
+  const { messageBack } = useSelector(state => state);
   const dispatch = useDispatch();
 
   
@@ -40,7 +43,7 @@ export default function User() {
     passEdit.actualPass !== '' ? infoToSend={ ...infoToSend , actualPass: passEdit.actualPass} :infoToSend={ ...infoToSend}
     passEdit.password !== '' ? infoToSend={ ...infoToSend , password: passEdit.password} :infoToSend={ ...infoToSend}
     console.log("Informacion a enviar" , infoToSend)
-    dispatch(changeUserPass(user.id , infoToSend))
+    dispatch(changeUserPass(user?.id , infoToSend))
   }
 
   function handlerChangePass(name , defaultValue) {
@@ -93,10 +96,10 @@ export default function User() {
 
   const [editState , changeEdit] = useState(false);
   const [infoEdit , changeInfo] = useState({
-    name: user.name,
-    lastname: user.lastname,
-    phone: user.phone,
-    mail: user.mail,
+    name: user?.name,
+    lastname: user?.lastname,
+    phone: user?.phone,
+    mail: user?.mail,
     errors: {
       name: '',
       lastname: '',
@@ -104,23 +107,24 @@ export default function User() {
       mail: '' ,
   },
   });
-  
+  /* Lo pase al componente GoogleLogout
   function handlerCloseSession () {
     dispatch(closeSession());
     //navigation.navigate("Login");
   }
+  */
   
   function handlerNewInfo () {
     changeEdit(!editState);
     console.log("Informacion editada", infoEdit)
     let infoToSend = {}
-    user.name !== infoEdit.name ? infoToSend={ ...infoToSend , name: infoEdit.name} :infoToSend={ ...infoToSend}
-    user.lastname !== infoEdit.lastname ? infoToSend={ ...infoToSend , lastname: infoEdit.lastname} :infoToSend={ ...infoToSend}
-    user.phone !== infoEdit.phone ? infoToSend={ ...infoToSend , phone: infoEdit.phone} :infoToSend={ ...infoToSend}
-    user.mail !== infoEdit.mail ? infoToSend={ ...infoToSend , mail: infoEdit.mail} :infoToSend={ ...infoToSend}
+    user?.name !== infoEdit.name ? infoToSend={ ...infoToSend , name: infoEdit.name} :infoToSend={ ...infoToSend}
+    user?.lastname !== infoEdit.lastname ? infoToSend={ ...infoToSend , lastname: infoEdit.lastname} :infoToSend={ ...infoToSend}
+    user?.phone !== infoEdit.phone ? infoToSend={ ...infoToSend , phone: infoEdit.phone} :infoToSend={ ...infoToSend}
+    user?.mail !== infoEdit.mail ? infoToSend={ ...infoToSend , mail: infoEdit.mail} :infoToSend={ ...infoToSend}
     //infoEdit.password !== '' ? infoToSend={ ...infoToSend , password: infoEdit.password} :infoToSend={ ...infoToSend}
     console.log("Informacion a enviar" , infoToSend)
-    dispatch(changeUserInfo(user.id , infoToSend))
+    dispatch(changeUserInfo(user?.id , infoToSend))
   }
 
   function handlerChangeInfo(name , defaultValue) {
@@ -266,14 +270,17 @@ export default function User() {
           </View>
         </View>
             :
-            user.name !== infoEdit.name || user.lastname !== infoEdit.lastname || user.phone !== infoEdit.phone || user.mail !== infoEdit.mail ?
+            messageBack !== ''?
+            <Message />
+            :
+            user?.name !== infoEdit.name || user?.lastname !== infoEdit.lastname || user?.phone !== infoEdit.phone || user?.mail !== infoEdit.mail ?
             <ActivityIndicator size="large" color="#00ff00" />
             :
             <View style={styles.inputContainers}>
-              <View style={styles.input}><Text style={styles.info}>{user.name}</Text></View>
-              <View style={styles.input}><Text style={styles.info}>{user.lastname}</Text></View>
-              <View style={styles.input}><Text style={styles.info}>{user.phone}</Text></View>
-              <View style={styles.input}><Text style={styles.info}>{user.mail}</Text></View>
+              <View style={styles.input}><Text style={styles.info}>{user?.name}</Text></View>
+              <View style={styles.input}><Text style={styles.info}>{user?.lastname}</Text></View>
+              <View style={styles.input}><Text style={styles.info}>{user?.phone}</Text></View>
+              <View style={styles.input}><Text style={styles.info}>{user?.mail}</Text></View>
               <View style={styles.input}><Text style={styles.info}>**********</Text></View> 
               
               <View style={styles.cuenta}>
@@ -289,11 +296,7 @@ export default function User() {
                 </View>
               </View>
               <View style={styles.cuenta}>
-                <View style={styles.btnUser}>
-                  <TouchableOpacity onPress={handlerCloseSession}>
-                    <Text style={styles.text}>Cerrar Sesion</Text>
-                  </TouchableOpacity>
-                </View>
+                <GoogleLogout />
                 <View style={styles.btnDelete}>
                   <TouchableOpacity onPress={() => console.log("Eliminar cuenta")}>
                     <Text style={styles.text}>Eliminar cuenta</Text>

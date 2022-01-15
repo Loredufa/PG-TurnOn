@@ -1,7 +1,7 @@
 import axios from "axios";
 export const ADD_USER = "ADD_USER";
 export const FIND_CREATED_USER = "FIND_CREATED_USER";
-export const GET_COURT = "GET_COURT";
+export const GET_SUPPLIERS_BY_NAME = "GET_SUPPLIERS_BY_NAME";
 export const CLOSE_SESSION = "CLOSE_SESSION";
 export const CHANGE_USER_INFO = "CHANGE_USER_INFO";
 export const BEST_COURTS_NEAR_ME = "BEST_COURTS_NEAR_ME";
@@ -11,6 +11,8 @@ export const BOOK_COURT = "BOOK_COURT";
 export const SET_SCREEN_DIMENSIONS = "SET_SCREEN_DIMENSIONS";
 export const GET_COURT_BY_SPORT = "GET_COURT_BY_SPORT";
 export const CHANGE_USER_PASS = "CHANGE_USER_PASS"
+export const CHANGE_MESSAGE = "CHANGE_MESSAGE";
+export const GOOGLE_LOGIN = "GOOGLE_LOGIN";
 
 /*
 export function addUser(data) {
@@ -136,6 +138,25 @@ export function findCreatedUser({ user, password }) {
   };
 }
 
+
+export function googleLogIn (token) {
+  return async function (dispatch){
+    try {
+      await axios
+        .get(
+          `http://localhost:3001/user/user/google?token=${token}`
+        )
+        .then((resolve) => {
+          dispatch({
+            type:  GOOGLE_LOGIN,
+            payload: resolve.data,
+          });
+        });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+}
 /*
 export const findCreatedUser = (email) => (dispatch) =>
   dispatch({
@@ -143,10 +164,27 @@ export const findCreatedUser = (email) => (dispatch) =>
     payload: email,
   });
   */
-export function getCourt(name) {
-  return {
-    type: GET_COURT,
-    payload: name,
+export function changeMessage() {
+  return async function (dispatch) {
+    dispatch( {
+    type: CHANGE_MESSAGE,
+  });
+}
+}
+
+
+export function getSuppliersByName(name) {
+  return async function (dispatch) {
+    try {
+      const postUser = await axios.get("http://localhost:3001/user/court?name="+name); 
+      console.log("Cancha buscada en back",postUser.data);
+      dispatch({
+        type: GET_SUPPLIERS_BY_NAME,
+        payload: postUser.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 }
 

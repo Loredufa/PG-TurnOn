@@ -3,6 +3,7 @@ const { User } = require("../../../db")
 const deleteUser = async (req, res) => {
     
     const { id } = req.params;
+    
 try {
     const userdeleted = await User.destroy ({
         where: {

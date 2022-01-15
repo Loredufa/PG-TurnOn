@@ -1,16 +1,18 @@
 import {
+  CREATE_COURT,
+  DELETE_USER,
   REGISTER,
   SET_MESSAGE_REG,
   SET_MESSAGE_USER,
   SET_USER,
-  CHANGE_SUPPLIER_PROFILE,
 } from "../Actions/actions";
 
 const initialState = {
   success: false,
   message_reg: "",
   message_user: "",
-  user: null,
+  message_delete: "",
+  user: JSON.parse(window.localStorage.getItem("loguodeusuario")),
 };
 
 function rootReducer(state = initialState, action) {
@@ -33,19 +35,25 @@ function rootReducer(state = initialState, action) {
       };
     case SET_USER:
       console.log(action.payload);
+      window.localStorage.setItem(
+        "loguodeusuario",
+        JSON.stringify(action.payload)
+      );
       return {
         ...state,
         user: action.payload,
       };
-    
-      /* case CHANGE_SUPPLIER_PROFILE:
-        console.log(action.payload);
-        return {
-          ...state,
-          user: action.payload,
-        };
- */
-    
+
+    case CREATE_COURT:
+      return { ...state };
+
+    case DELETE_USER:
+      console.log("clg del reducer:", action.payload);
+      return {
+        ...state,
+        message_delete: action.payload,
+      };
+
     default:
       return state;
   }

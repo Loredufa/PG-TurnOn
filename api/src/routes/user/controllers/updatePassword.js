@@ -15,11 +15,14 @@ const updatePassword = async (req, res) => {
             }
         }).catch(err => res.send({
             message: "Hubo un error al actualizar la contraseña"
-        }))        
+        }))
+        res.send({
+            success: "La contraseña se ha actualizado con éxito"
+        })        
     }
-    res.send({
-        success: "La contraseña se ha actualizado con éxito"
-    })
+    else {
+        res.send({ error: "Contraseña incorrecta" })
+    }
 }
 
 module.exports = {
