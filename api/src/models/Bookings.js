@@ -16,6 +16,22 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
     }, */
+    date: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    day: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    initialTime: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    endingTime: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     bookingCode: {
       type: DataTypes.STRING,
       allowNull: false,

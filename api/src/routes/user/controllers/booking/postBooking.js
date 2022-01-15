@@ -1,7 +1,16 @@
 const { Bookings } = require("../../../../db");
 
 const postBooking = async (req, res) => {
-  const { courtId, userId, availableId, bookingCode, status } = req.body;
+  const {
+    courtId,
+    userId,
+    bookingCode,
+    status,
+    date,
+    day,
+    initialTime,
+    endingTime,
+  } = req.body;
 
   //   const alreadyExists = await Bookings.findOne({
   //     where: { bookingCode: bookingCode },
@@ -12,6 +21,10 @@ const postBooking = async (req, res) => {
     userId,
     bookingCode,
     status,
+    date,
+    day,
+    initialTime,
+    endingTime,
   });
   // console.log("NUEVA RESERVA: ", newBooking);
   newBooking = await newBooking.save().catch((err) => {
