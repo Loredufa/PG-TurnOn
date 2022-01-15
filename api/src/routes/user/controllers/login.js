@@ -6,7 +6,7 @@ const login = async (req, res) => {
     
     const { mail, password } = req.query
     const user = await User.findOne({ where: { mail: mail } }).catch(err => console.log(err)) 
-   
+    console.log("mail",mail)
     if (!user) {
         return res.json({ message: "Datos incorrectos"})
     } else {
@@ -16,9 +16,10 @@ const login = async (req, res) => {
                 "secreto#$%123" /* <- esto puede ser cualquier cosa, pero idealmente tiene que estar guardado en el .env */
             )
             res.json({ user: user.dataValues, token: jwtToken })
-        } else {
-            res.json({ message: "Datos incorrectos"})
         }
+        //  else {
+        //     res.json({ message: "Datos incorrectos"})
+        // }
     }
 }
 

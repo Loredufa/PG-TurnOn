@@ -70,6 +70,19 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
+// <<<<<<< HEAD
+// const {
+//   User,
+//   Comments,
+//   Statistics,
+//   Payments,
+//   Supplier,
+//   Field,
+//   Available,
+//   Favorites,
+//   Bookings,
+// } = sequelize.models;
+// =======
 const {
   User,
   Comments,
@@ -78,9 +91,9 @@ const {
   Supplier,
   Field,
   Available,
-  Favorites,
   Bookings,
 } = sequelize.models;
+// >>>>>>> mirror
 
 /* const User = UserModel(sequelize);
 const Proveedor = ProveedorModel(sequelize);
@@ -98,6 +111,9 @@ User.belongsToMany(Field, { through: "Booking_Field" }); // se genera tabla inte
 Field.belongsToMany(Available, { through: "Available_Field" }); // se genera tabla intermedia
 Available.belongsToMany(Field, { through: "Available_Field" });
 
+User.belongsToMany(Supplier, { through: "Favorites" });
+Supplier.belongsToMany(User, { through: "Favorites" });
+
 // 1 a 1
 
 Field.hasOne(Statistics);
@@ -110,11 +126,16 @@ Bookings.hasOne(Payments);
 Payments.belongsTo(Available); // Payments tendra una columna idBooking
 
 //1 a N
-Supplier.hasMany(Field);
-Field.belongsTo(Supplier); // coloca proveedorId en field
+// <<<<<<< HEAD
+// Supplier.hasMany(Field);
+// Field.belongsTo(Supplier); // coloca proveedorId en field
 
-// User.hasMany(Favorites, {foreignKey: 'id'})   ver si Favorites es la tabla intermedia entre usuario y cancha
-// Favorites.belongsTo(User) // coloca userId en favorites
+// // User.hasMany(Favorites, {foreignKey: 'id'})   ver si Favorites es la tabla intermedia entre usuario y cancha
+// // Favorites.belongsTo(User) // coloca userId en favorites
+// =======
+Supplier.hasMany(Field);
+Field.belongsTo(Supplier); // coloca supplierId en field
+// >>>>>>> mirror
 
 Comments.belongsTo(Field); // coloca fieldId en comments
 
@@ -129,6 +150,5 @@ module.exports = {
   Statistics,
   Payments,
   Field,
-  Favorites,
   Bookings,
 };

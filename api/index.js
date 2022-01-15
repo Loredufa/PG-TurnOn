@@ -2,7 +2,8 @@ const express = require("express");
 const PORT = process.env.PORT || 3001; //variable de entorno de heroku
 const morgan = require("morgan");
 const app = express();
-const routes = require("./src/routes/index");
+const routes = require("./src/routes/user_index");
+const routes1 = require("./src/routes/supplier_index");
 const errorHandler = require("./src/utils/middlewares/errorHandler");
 const setHeaders = require("./src/utils/middlewares/setHeaders");
 
@@ -13,7 +14,7 @@ app.use(morgan("dev"));
 app.use(setHeaders);
 
 // aca vamos a setear el listen
-app.use("/supplier", routes);
+app.use("/supplier", routes1);
 app.use("/user", routes);
 
 app.use(errorHandler);
