@@ -2,10 +2,16 @@ const { Bookings, Field } = require("../../../../db");
 
 const getBooking = async (req, res) => {
   const { userId } = req.params;
-
-  const booking = await Bookings.findAll({
-    where: { userId: `${userId}`, status: "active" },
-  }).catch((err) => console.log(err));
+  const { active } = req.query;
+  if (active) {
+    const booking = await Bookings.findAll({
+      where: { userId: `${userId}`, status: "active" },
+    }).catch((err) => console.log(err));
+  } else {
+    const booking = await Bookings.findAll({
+      where: { userId: `${userId}` },
+    }).catch((err) => console.log(err));
+  }
   if (!booking.length) {
     return res.json({ message: "Datos incorrectos" });
   } else {
