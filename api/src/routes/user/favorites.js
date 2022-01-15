@@ -1,6 +1,6 @@
 const {Router} = require ("express")
 const router = Router () 
-const {postFavoritesCourts} = require ("./controllers/postFavoritesCourts")
+const {postFavSupplier} = require ("./controllers/postFavSupplier")
 const {getFavCourts} = require ("./controllers/getFavoritesCourts") 
 
 
@@ -8,7 +8,7 @@ const {getFavCourts} = require ("./controllers/getFavoritesCourts")
 //     res.send ("Soy la ruta usuario/favorito")
 // });
 
-// router.post ("/favorites", postFavoritesCourts)
+// router.post ("/favorites", postFavSupplier)
 // router.get ("/favorites/:userId", getFavCourts)
 // router.delete ("/favorites/:userId", deleteFavCourts)
 
