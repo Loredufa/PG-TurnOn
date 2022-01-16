@@ -19,6 +19,7 @@ const styles = StyleSheet.create({
       flex:2,
   },
   button: {
+      backgroundColor: "#179F34",
       marginTop: 30,
       width: 130,
       height: 35,
@@ -30,8 +31,7 @@ const styles = StyleSheet.create({
       justifyContent: "center",
     },
     buttonText: {
-      textAlign: "center",
-      padding: 20,
+      fontSize: 15,
       color: "black",
     },
     input: {
@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
       paddingLeft: 10,
     },
     question: {
-      fontWeight: 700,
+      fontWeight: "700",
       fontSize: 15,
       marginTop: 5,
     },

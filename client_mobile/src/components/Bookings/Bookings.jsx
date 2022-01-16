@@ -3,6 +3,7 @@ import {
   Text,
   View,
   FlatList,
+  ActivityIndicator,
 } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import SearchBar from "../SearchBar/SearchBar";
@@ -22,14 +23,14 @@ export default function Bookings({ route }) {
       <Text style={styles.title} >
       Reservas
       </Text>
-      {bookings.length !== 0 ? (
         <View
         style={{
-          flex: 6,
+          flex: 5,
           alignItems: "center",
           justifyContent: "flex-start",
         }}
         >
+        {bookings.length !== 0 ? (
         <FlatList
           data={bookings}
           style={{ flexGrow: 5.5 }}
@@ -42,10 +43,10 @@ export default function Bookings({ route }) {
             //numColumns={3}
             keyExtractor={(item) => item.id}
         />
-        </View>
-      ) : (
-        <Text></Text>
-      )}
+        ) : (
+          <ActivityIndicator size="large" color="#00ff00" style={{flex:1 ,justifyContent: 'center'}} />
+          )}
+          </View>
     </View>
   );
 }

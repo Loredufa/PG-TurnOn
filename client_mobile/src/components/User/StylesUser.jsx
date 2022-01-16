@@ -4,10 +4,10 @@ import { color } from "react-native-reanimated";
 export const styles = StyleSheet.create({
   title: {
     textAlign: "center",
-    marginBottom: 30,
-    marginTop: 10,
-    fontSize: 30,
+    marginTop: 30,
+    fontSize: 24,
     fontWeight: "bold",
+    flex: 0.5,
   },
   inputContainers: {
     alignItems: "center",
@@ -47,15 +47,33 @@ export const styles = StyleSheet.create({
     backgroundColor: "#179F34",
     color: "white",
   },
+  btnPass: {
+    marginTop: 40,
+    width: 130,
+    height: 35,
+    alignItems: "center",
+    backgroundColor: "white",
+    borderRadius: 20,
+    borderWidth: 1,
+    borderColor: "transparent",
+    justifyContent: "center",
+    marginLeft: 15,
+    marginRight: 15,
+    backgroundColor: "#0B4619",
+    color: "white",
+  },
   cuenta: {
     display: "flex",
     flexDirection: "row",
     alignSelf: "center",
   },
   text: {
-    textAlign: "center",
-    padding: 20,
-    color: "black",
+    fontSize: 13,
+    color: "white",
+  },
+  textDelete: {
+    fontSize: 13,
+    color: 'black'
   },
   btnDelete: {
     marginTop: 40,
@@ -69,6 +87,6 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
     marginLeft: 15,
     marginRight: 15,
-    backgroundColor: "#FFC900",
+    backgroundColor: "#E9EBED",
   },
 });

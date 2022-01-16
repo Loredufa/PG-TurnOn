@@ -10,7 +10,7 @@ export const styles = StyleSheet.create({
       flex: 1,
     },
     posInput: {
-      justifyContent: 'center',
+      //justifyContent: 'center',
       height: 55,
     },
     input: {
@@ -27,7 +27,7 @@ export const styles = StyleSheet.create({
     button: {
       height: 40,
       width: 40,
-      justifyContent: 'center',
+      //justifyContent: 'center',
       marginLeft: 5,
     },
   });

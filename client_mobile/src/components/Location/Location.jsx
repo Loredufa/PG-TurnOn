@@ -54,15 +54,8 @@ export default function Location() {
   }
   return (
     <View style={styles.container}>
-      <Text
-        style={{
-          flex: 1,
-          alignItems: "center",
-          justifyContent: "center",
-          marginTop: 20,
-        }}
-      >
-        Cerca Tuyo
+      <Text style={styles.title}>
+        Cerca de ti
       </Text>
       <View style={styles.PickerContainer}>
         <Picker
