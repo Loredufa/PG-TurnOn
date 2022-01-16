@@ -43,13 +43,22 @@ export const AvailabilityProvider = () => {
                 setDays
             }}
         >   
-            <Form />
-            <CourtInfo />
+            <Container>
+                <Form />
+                <CourtInfo />
+            </Container>
         </AvailabilityContext.Provider>
       </Wrapper>
     )
 }
 
 const Wrapper = styled.div`
+  height: 88.5vh;
   
+
+`
+
+const Container = styled.div`
+    display: flex;
+    flex-direction: row;
 `

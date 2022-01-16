@@ -22,11 +22,13 @@ export const CourtProvider = () => {
     return (
         <CourtContext.Provider 
             value={{
+                setSupplierCourts,
                 supplierCourts,
                 currentCourt,
                 setCurrentCourt,
                 section, 
-                setSection
+                setSection,
+                supplier
             }}
         >   
             <Courts />
