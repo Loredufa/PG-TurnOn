@@ -11,7 +11,7 @@ export default function Navbar() {
 
   return (
     <div
-      clasName="navbar-contenedor"
+      className="navbar-contenedor"
       style={{
         display: "flex",
         flexDirection: "row",
@@ -23,7 +23,7 @@ export default function Navbar() {
         backgroundColor: "#ffffff",
       }}
     >
-      <Link clasName="navbar-logo" to="/">
+      <Link className="navbar-logo" to="/">
         <img
           style={{
             marginLeft: "40px",

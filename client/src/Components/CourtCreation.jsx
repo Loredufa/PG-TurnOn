@@ -1,46 +1,19 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Map from "./Court/CourtMap/Map"
+import Map from "./Court/CourtMap/Map";
 import { createTurnCourt } from "../Actions/actions";
-import "../Css/Supplier Panel/courtcreation.css"
+import "../Css/Supplier Panel/courtcreation.css";
+import {useHistory } from 'react-router-dom';
+import Swal from "sweetalert2";
 
-const validate = (infoCourt) => {
-  let errors = {};
-  let regexName = /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/;
-  let regexPhone = /^([0-9])*$/;
-  let regexComments = /^.{1,100}$/;
-  let regexPrice = /^[0-9,$]*$/;
 
-  if (!infoCourt.name.trim()) {
-    errors.name = "El campo nombre es requerido";
-  } else if (!regexName.test(infoCourt.name.trim())) {
-    errors.name = "El nombre debe tener solo letras y espacios";
-  } else if (!infoCourt.sport) {
-    errors.name = "Debes seleccionar una opción";
-  } else if (!infoCourt.address.trim()) {
-    errors.address = "El campo dirección es requerido";
-  } else if (!infoCourt.phone.trim()) {
-    errors.phone = "El campo teléfono es requerido (ej: 3515425864)";
-  } else if (!regexPhone.test(infoCourt.phone.trim())) {
-    errors.phone = "Debe ser un numero de teléfono";
-  } else if (!infoCourt.price.trim()) {
-    errors.price = "El campo precio es requerido";
-  } else if (regexPrice.test(infoCourt.price.trim())) {
-    errors.price =
-      "El precio debe llevar enteros o decimales: ej $100 o $150.50";
-  } else if (!infoCourt.description.trim()) {
-    errors.description = "El campo características es requerido";
-  } else if (!regexComments.test(infoCourt.description.trim())) {
-    errors.description = "Debe tener un máximo de 100 carácteres";
-  }
-
-  return errors;
-};
 
 export default function CourtCreation() {
   const dispatch = useDispatch();
   const supplierId = useSelector((e) => e.user.supplier.id);
   const [enviado, setEnviado] = useState(false);
+  const [ disabled, setDisabled] = useState(false)
+  const history = useHistory()
   const [infoCourt, setInfoCourt] = useState({
     name: "",
     address: "",
@@ -52,6 +25,7 @@ export default function CourtCreation() {
   });
 
   const [errors, setErrors] = useState({});
+
   const infoChange = (e) => {
     const { name, value } = e.target;
     setInfoCourt({
@@ -90,6 +64,15 @@ export default function CourtCreation() {
     setTimeout(() => setEnviado(false), 1000);
   };
 
+  if(enviado === true){
+    Swal.fire({
+      title:'Cancha Creada con exito',
+      icon: 'success',
+      button: 'Aceptar',
+      })
+    history.push('/profile/courts')
+}
+
   const uploadImage = async (e) => {
     const files = e.target.files;
     const data = new FormData();
@@ -110,6 +93,51 @@ export default function CourtCreation() {
       ...infoCourt,
       image: file.secure_url,
     });
+  };
+
+  const validate = (infoCourt) => {
+    let errors = {};
+    let regexName = /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/;
+    let regexPhone = /^([0-9])*$/;
+    let regexComments = /^.{1,100}$/;
+    let regexPrice = /^[0-9,$]*$/;
+  
+    if (!infoCourt.name.trim()) {
+      errors.name = "El campo nombre es requerido";
+      setDisabled(true);
+    } else if (!regexName.test(infoCourt.name.trim())) {
+      errors.name = "El nombre debe tener solo letras y espacios";
+      setDisabled(true);
+    } else if (!infoCourt.sport) {
+      errors.name = "Debes seleccionar una opción";
+      setDisabled(true);
+    } else if (!infoCourt.address.trim()) {
+      errors.address = "El campo dirección es requerido";
+      setDisabled(true);
+    } else if (!infoCourt.phone.trim()) {
+      errors.phone = "El campo teléfono es requerido (ej: 3515425864)";
+      setDisabled(true);
+    } else if (!regexPhone.test(infoCourt.phone.trim())) {
+      errors.phone = "Debe ser un numero de teléfono";
+      setDisabled(true);
+    } else if (!infoCourt.price.trim()) {
+      errors.price = "El campo precio es requerido";
+      setDisabled(true);
+    } else if (regexPrice.test(infoCourt.price.trim())) {
+      errors.price =
+        "El precio debe llevar enteros o decimales: ej $100 o $150.50";
+        setDisabled(true);
+    } else if (!infoCourt.description.trim()) {
+      errors.description = "El campo características es requerido";
+      setDisabled(true);
+    } else if (!regexComments.test(infoCourt.description.trim())) {
+      errors.description = "Debe tener un máximo de 100 carácteres";
+      setDisabled(true);
+    } else{
+      setDisabled(false)
+    }
+  
+    return errors;
   };
 
   return (
@@ -157,11 +185,11 @@ export default function CourtCreation() {
         </div>
 
         <div className="cont-all-cc cont-in-price-cc">
-          <label className="label-all-cc label-price-cc" htmlFor="price">Precio</label>
+          <label className="label-all-cc label-price-cc" htmlFor="price">Precio por hora</label>
           <input
             className="input-all-cc input-price-cc"
             type="text"
-            placeholder="Monto por hora"
+            placeholder="Ej: $200"
             name="price"
             value={infoCourt.price}
             onChange={infoChange}
@@ -175,7 +203,7 @@ export default function CourtCreation() {
           <input
             className="input-all-cc input-phone-cc"
             type="text"
-            placeholder="Numero de Contacto"
+            placeholder="Numero de Contacto (0351155485654)"
             name="phone"
             value={infoCourt.phone}
             onChange={infoChange}
@@ -205,7 +233,7 @@ export default function CourtCreation() {
           {errors.description && <p className="error-all-cc">{errors.description}</p>}
         </div>
         <div>
-          <button className="button-save-cc" type="submit">Guardar</button>
+          <button disabled={disabled} className="button-save-cc" type="submit">Guardar</button>
           {enviado && <p className="menssage-cc">Datos guardados con exito</p>}
         </div>
       </form>

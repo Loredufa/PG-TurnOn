@@ -3,7 +3,7 @@
 .div-father-features{
     background-image: url('../Assets/Images/Apple\ green-wave.svg');
     width: 100vw;
-    height: 60vh;
+    height: 50vh;
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -11,13 +11,13 @@
 }
 
 .h1-features{
-    padding-top: 30px;
+    padding-top: 20px;
     font-weight: bold;
     text-align:left;
     font-size: 2.1rem;
-    margin-top: 6rem;
+    margin-top: 4rem;
     margin-left: 5.1rem;
-    color: var(--colorMikatoYellow);
+    color: rgb(177, 177, 177);
 
 }
 
