@@ -141,7 +141,14 @@ useEffect(async () => {
           </View>
         </TouchableOpacity>
       </View>
+
+      <View style={{alignItems:'center'}}><View style={{width:280 , alignItems: 'center' , flexDirection: 'row',marginTop:30, marginBottom: 10}}>
+        <View style={{borderBottomWidth: 1 , width:130 }}></View>
+        <Text style={{marginRight: 5 , marginLeft:5}}>O</Text>
+        <View style={{borderBottomWidth: 1 , width:130 }}></View>
+      </View></View>
       <GoogleLogin />
+      <View style={{borderBottomWidth: 1 , width:280 , alignSelf: 'center' , marginTop: 10 , marginBottom:10}}></View>
       <View style={styles.registerContainer}>
         <Text style={styles.acount}>¿No tienes una cuenta?</Text>
         <TouchableOpacity onPress={() => navigation.navigate("Register")}>

@@ -22,9 +22,9 @@ export default function Supplier({item , sport}) {
     <TouchableOpacity
                 onPress={() =>
                   navigation.navigate("Courts", {
-                    name: item.name,
+                    name: item.name, //No se si son necesarios
                     sport: sport,
-                    id: item.id,
+                    id: item.id,    //No se si son necesarios
                   })
                 }
               >

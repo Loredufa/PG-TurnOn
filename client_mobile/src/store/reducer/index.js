@@ -119,7 +119,7 @@ const reducer = (state = initialState, action) => {
     case GET_BOOKINGS:
       return {
         ...state,
-        bookings: action.payload.booking,
+        bookings: action.payload,
       }
     case SET_SCREEN_DIMENSIONS:
       return {

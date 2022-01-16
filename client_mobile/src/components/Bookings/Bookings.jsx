@@ -10,6 +10,7 @@ import SearchBar from "../SearchBar/SearchBar";
 import Court from "../Court/Court";
 import {styles} from './StyleBookings';
 import {getBookings} from '../../store/actions/index';
+import CardBooking from "../CardBooking/CardBooking";
 
 export default function Bookings({ route }) {
   const {bookings , user} = useSelector((state) => state);
@@ -37,7 +38,7 @@ export default function Bookings({ route }) {
           contentContainerStyle={{ alignItems: "center" }}
           renderItem={({ item }) => (
             //<Court item={item} />
-            <Text>{item.courtId}</Text>
+            <CardBooking item = {item} />
             )}
             ItemSeparatorComponent={() => <View style={{ height: 10 }} />}
             //numColumns={3}
