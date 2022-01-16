@@ -1,3 +1,5 @@
+@import "./Variables/var.css";
+
 .divPrincipalF{
     margin-top: -22px;
     background-color: rgb(255, 255, 255);
@@ -12,7 +14,7 @@
     font-size: 2.1rem;
     margin-top: 0rem;
     margin-left: 5.1rem;
-    color: #6bac48;
+    color: var(--colorAppleGreen);
     }
     
 .h2como{

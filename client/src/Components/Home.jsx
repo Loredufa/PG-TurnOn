@@ -24,7 +24,7 @@ return(
         <Features />
         </div>
 
-        <div>
+        <div id="contact">
             <Contact/>   
         </div>     
     </div>
