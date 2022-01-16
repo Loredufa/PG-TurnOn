@@ -9,9 +9,10 @@ try {
         where: {
             id
         },
-        include:{
-            model: Field,
-    }});
+    //     include:{
+    //         model: Field,
+    // }
+});
 
     if (supplierDeleted) {
     res.json ({
