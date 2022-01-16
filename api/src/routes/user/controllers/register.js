@@ -19,7 +19,7 @@ const register = async (req, res) => {
         lastname,
         phone
     })
-    await newUser.setSuppliers(1)
+  
 
     newUser = await newUser.save().catch(err => {
         console.log(err)
