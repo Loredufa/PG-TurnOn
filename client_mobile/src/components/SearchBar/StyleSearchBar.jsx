@@ -9,11 +9,13 @@ export const styles = StyleSheet.create({
       flexDirection: "row",
       flex: 1,
     },
+    posInput: {
+      //justifyContent: 'center',
+      height: 55,
+    },
     input: {
       width: 280,
       height: 40,
-  
-      marginTop: 15,
   
       borderRadius: 20,
       borderWidth: 1,
@@ -25,6 +27,8 @@ export const styles = StyleSheet.create({
     button: {
       height: 40,
       width: 40,
+      //justifyContent: 'center',
+      marginLeft: 5,
     },
   });
   

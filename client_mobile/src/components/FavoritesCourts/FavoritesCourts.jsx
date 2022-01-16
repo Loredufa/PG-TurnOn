@@ -1,48 +1,40 @@
-import {
-  Text,
-  View,
-  FlatList,
-} from "react-native";
+import { Text, View, FlatList ,ActivityIndicator } from "react-native";
 import { useSelector } from "react-redux";
 import SearchBar from "../SearchBar/SearchBar";
 import Court from "../Court/Court";
-import {styles} from './StyleFavoritesCourts';
+import { styles } from "./StyleFavoritesCourts";
 
-export default function FavoritesCourts({ route }) {
+export default function FavoritesCourts() {
   const favorites = useSelector((state) => state.favorites);
   return (
     <View style={styles.container}>
+      <Text style={styles.title}>Favoritos</Text>
       <View style={styles.searchBarPos}>
         <SearchBar />
       </View>
-      <Text style={styles.title} >
-          Favoritos
-        </Text>
-      {favorites.length !== 0 ? (
+      <View style={{flex: 5}}>
         <View
         style={{
-          flex: 6,
+          flex: 5,
           alignItems: "center",
           justifyContent: "flex-start",
         }}
         >
-        <FlatList
-          data={favorites}
-          style={{ flexGrow: 5.5 }}
-          contentContainerStyle={{ alignItems: "center" }}
-          renderItem={({ item }) => (
-            <Court item={item}/>
-            )}
+        {favorites.length !== 0 ? (
+          <FlatList
+            data={favorites}
+            style={{ flexGrow: 5.5 }}
+            contentContainerStyle={{ alignItems: "center" }}
+            renderItem={({ item }) => <Court item={item} />}
             ItemSeparatorComponent={() => <View style={{ height: 10 }} />}
             //numColumns={3}
             keyExtractor={(item) => item.id}
-        />
-        </View>
+            />
       ) : (
-        <Text></Text>
-      )}
+        <ActivityIndicator size="large" color="#00ff00" style={{flex:1 ,justifyContent: 'center'}} />
+        )}
+        </View>
+      </View>
     </View>
   );
 }
-
-
