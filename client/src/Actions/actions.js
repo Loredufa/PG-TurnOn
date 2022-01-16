@@ -5,6 +5,7 @@ export const SET_MESSAGE_USER = "SET_MESSAGE_USER";
 export const SET_USER = "SET_USER";
 export const CREATE_COURT = "CREATE_COURT";
 export const DELETE_USER = "DELETE_USER";
+export const UPDATE_PASSWORD = "UPDATE_PASSWORD";
 
 export function Register(payload) {
   return async function (dispatch) {
@@ -103,6 +104,21 @@ export function deleteUser(id) {
         type: DELETE_USER,
         payload: deleteUsario.data,
       });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
+export function updatePassword(id, oldPassword, newPassword) {
+  return async function (dispatch) {
+    try {
+      const pwdupdate = await axios.put(
+        `http://localhost:3001/supplier/supplier/password/${id}`,
+        { oldPassword, newPassword }
+      );
+      console.log("VER LO Q DA PWDUPDATE:", pwdupdate);
+      return pwdupdate.data;
     } catch (error) {
       console.log(error);
     }
