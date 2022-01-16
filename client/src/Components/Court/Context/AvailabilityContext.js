@@ -59,6 +59,7 @@ const Wrapper = styled.div`
 `
 
 const Container = styled.div`
+    height: 100%;
     display: flex;
     flex-direction: row;
 `
