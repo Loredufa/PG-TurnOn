@@ -11,7 +11,7 @@ export default function Navbar() {
 
   return (
     <div
-      clasName="navbar-contenedor"
+      className="navbar-contenedor"
       style={{
         display: "flex",
         flexDirection: "row",
@@ -19,11 +19,11 @@ export default function Navbar() {
         marginRight: "40px",
         alignItems: "center",
         height: "80px",
-        /* position: "fixed", */
+        position: "static",
         backgroundColor: "#ffffff",
       }}
     >
-      <Link clasName="navbar-logo" to="/">
+      <Link className="navbar-logo" to="/">
         <img
           style={{
             marginLeft: "40px",
@@ -58,7 +58,7 @@ export default function Navbar() {
           <a className="navbar-home-caract" href="#features">
             Características
           </a>
-          <Link className="navbar-home-cont" to="/">
+          <Link className="navbar-home-cont" href="#contact">
             Contacto
           </Link>
           {!user ? (
@@ -74,19 +74,22 @@ export default function Navbar() {
             <>
               <Link className="navbar-profile" to="/profile">
                 <BiUserCircle
-                  size="35"
+                  size="40"
                   style={{
-                    alineItem: "center",
+                    color: "#81b214",
+                    marginTop:"0px",
+                    marginRight:"20px",
                   }}
                 />
               </Link>
               <button
+                className="button-logout"
                 onClick={() => {
                   window.localStorage.removeItem("loguodeusuario");
                   window.location.reload(false);
                 }}
               >
-                logout
+                Logout
               </button>
             </>
           )}

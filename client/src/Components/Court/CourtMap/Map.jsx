@@ -4,6 +4,7 @@ import {
   geocodeByAddress,
   getLatLng,
 } from 'react-places-autocomplete';
+import "../../../Css/Supplier Panel/courtcreation.css"
 
 function Map({infoCourt, setInfoCourt}) {
  
@@ -27,6 +28,7 @@ const handlerSelect = async value =>{
     <div className='Map'>
       
        <PlacesAutocomplete
+       className="input-map-cc"
         value={address}
         onChange={setAddress}
         onSelect={handlerSelect}
@@ -50,13 +52,13 @@ const handlerSelect = async value =>{
                   ? { backgroundColor: '#fafafa', cursor: 'pointer' }
                   : { backgroundColor: '#ffffff', cursor: 'pointer' };
                 return (
-                  <div
+                  <div className="get-suggestion"
                     {...getSuggestionItemProps(suggestion, {
                       className,
                       style,
                     })}
                   >
-                    <span>{suggestion.description}</span>
+                    <span className="get-suggestion-descrip">{suggestion.description}</span>
                   </div>
                 );
               })}
