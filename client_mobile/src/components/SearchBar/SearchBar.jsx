@@ -32,6 +32,7 @@ export default function SearchBar() {
   
     return (
       <View style={styles.containerSearch}>
+        <View style={styles.posInput}>
         <TextInput
           placeholder="Nombre"
           name="name"
@@ -39,11 +40,12 @@ export default function SearchBar() {
           onChangeText={(court) => setInput(court)}
           defaultValue={input.name}
         />
+        </View>
         <TouchableOpacity
           style={styles.button}
           onPress={handlerFindCourt}
         >
-          <MaterialCommunityIcons name="search" size={25} />
+          <MaterialCommunityIcons name="search" size={30} color="#179F34" />
         </TouchableOpacity>
       </View>
   );

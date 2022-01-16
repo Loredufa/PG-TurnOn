@@ -15,6 +15,7 @@ import Landing from './src/components/Landing/Landing'
 import {
   Dimensions,
 } from "react-native";
+import Phone from "./src/components/Phone/Phone";
 
 
 // EACH TIME A NAVIGATION OCCURS A THE NEW SCREEN WILL BE PUSHED
@@ -41,6 +42,7 @@ const RootStackScreen = () => {
       ) : (
         <>
           <RootNavigationStack.Screen name="Landing" component={Landing} />
+          <RootNavigationStack.Screen name="Phone" component={Phone} />
           <RootNavigationStack.Screen name="HomeTab" component={HomeTab} />
         </>
     )}
