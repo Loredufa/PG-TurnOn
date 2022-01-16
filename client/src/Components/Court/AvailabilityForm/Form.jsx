@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import TimeField from 'react-simple-timefield'
 import HoursList from './HoursList'
 import DaysList from './DaysList'
+import styled from 'styled-components'
 
 export default function Form() {
     
@@ -25,9 +26,9 @@ export default function Form() {
     }
 
     return (
-        <div>
+        <Wrapper>
             <DaysList />
-            <div>
+            <TimeContainer>
                 <p>Franja horaria:</p>
                 <TimeField 
                         value={time.start} 
@@ -38,8 +39,16 @@ export default function Form() {
                     onChange={(e) => setTime({ ...time, end: e.target.value })}
                 />
                 <button onClick={handleAddTime}>Añadir</button>
-            </div> 
+            </TimeContainer> 
             { hours.length ? <HoursList hours={hours} setHours={setHours} /> : null }
-        </div>
+        </Wrapper>
     )
 }
+
+const Wrapper = styled.div`
+    
+`
+
+const TimeContainer = styled.div`
+    
+`
