@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontSize: 15,
-    color: "black",
+    color: "white",
   },
   registerContainer: {
     display: "flex",

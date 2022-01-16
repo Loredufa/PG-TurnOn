@@ -13,6 +13,7 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
+  error: {width: 280, color:'red', marginTop:5, textAlign: 'center' , marginBottom:10},
   input: {
     width: 280,
     height: 40,

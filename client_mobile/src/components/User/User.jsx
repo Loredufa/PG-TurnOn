@@ -66,16 +66,16 @@ export default function User() {
       switch (name) {
           case "password": 
           errors.password = value.length === 0 || !(!/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/.test(value))? '' : 
-          "La contraseña debe tener entre 8 y 16 caracteres, al menos un dígito, al menos una minúscula y al menos una mayúscula. Puede tener otros símbolos"
-            break;
+          "Entre 8 y 16 caracteres, debe incluir(Mayusculas, Minusculas, Números)"
+          break;
           case "secondPassword": 
             errors.secondPassword = ( value.length === 0 || !(!/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/.test(value)) ) &&
             passEdit.password === value? '' : 
-            "La contraseña debe tener entre 8 y 16 caracteres, al menos un dígito, al menos una minúscula y al menos una mayúscula. Puede tener otros símbolos"
-              break;
+            "Entre 8 y 16 caracteres, debe incluir(Mayusculas, Minusculas, Números)"
+             break;
           case "actualPass":
             errors.actualPass = ( value.length === 0 || !(!/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/.test(value)) ) ? '' : 
-            "La contraseña debe tener entre 8 y 16 caracteres, al menos un dígito, al menos una minúscula y al menos una mayúscula. Puede tener otros símbolos"
+            "Entre 8 y 16 caracteres, debe incluir(Mayusculas, Minusculas, Números)"
               break;
           default:
             break;
@@ -113,6 +113,22 @@ export default function User() {
     //navigation.navigate("Login");
   }
   */
+
+  function handlerCancel () {
+    changeEdit(!editState),
+    changeInfo({
+      name: user?.name,
+      lastname: user?.lastname,
+      phone: user?.phone,
+      mail: user?.mail,
+      errors: {
+        name: '',
+        lastname: '',
+        phone: '',
+        mail: '' ,
+    },
+    })
+  }
   
   function handlerNewInfo () {
     changeEdit(!editState);
@@ -194,33 +210,33 @@ export default function User() {
                 style={styles.input}
                 defaultValue={infoEdit.name}
                 onChangeText={(e) => handlerChangeInfo("name", e)}
-              /><Text>{infoEdit.errors.name}</Text>
+              /><Text style={styles.error}>{infoEdit.errors.name}</Text>
               <TextInput 
                 name= 'lastname'
                 style={styles.input}
                 defaultValue={infoEdit.lastname}
                 onChangeText={(e) => handlerChangeInfo("lastname", e)}
-              /><Text>{infoEdit.errors.lastname}</Text>
+              /><Text style={styles.error}>{infoEdit.errors.lastname}</Text>
               <TextInput 
                 name= 'phone'
                 style={styles.input}
                 defaultValue={infoEdit.phone}
                 onChangeText={(e) => handlerChangeInfo("phone", e)}
-              /><Text>{infoEdit.errors.phone}</Text>
+              /><Text style={styles.error}>{infoEdit.errors.phone}</Text>
               <TextInput 
                 name = 'mail'
                 style={styles.input}
                 defaultValue={infoEdit.mail}
                 onChangeText={(e) => handlerChangeInfo("mail", e)}
-              /><Text>{infoEdit.errors.mail}</Text>
+              /><Text style={styles.error}>{infoEdit.errors.mail}</Text>
               <View style={styles.cuenta}>
-                <TouchableOpacity onPress={handlerNewInfo}>
+                <TouchableOpacity onPress={handlerNewInfo} disabled={disabled}>
                   <View style={styles.btnUser}>
                     <Text style={styles.text}>Guardar</Text>
                   </View>
                 </TouchableOpacity>
                 <View style={styles.btnDelete}>
-                  <TouchableOpacity onPress={()=>changeEdit(!editState)}>
+                  <TouchableOpacity onPress={handlerCancel}>
                     <Text style={styles.textDelete}>Cancelar</Text>
                   </TouchableOpacity>
                 </View>
@@ -237,7 +253,7 @@ export default function User() {
             defaultValue ={passEdit.actualPass}
             secureTextEntry={true}
             onChangeText={(e) => handlerChangePass("actualPass", e)}
-            /><Text>{passEdit.errors.actualPass}</Text>
+            /><Text style={styles.error}>{passEdit.errors.actualPass}</Text>
             <Text>Contraseña nueva</Text>
             <TextInput 
             name = 'password'
@@ -246,7 +262,7 @@ export default function User() {
             defaultValue ={passEdit.password}
             secureTextEntry={true}
             onChangeText={(e) => handlerChangePass("password", e)}
-            /><Text>{passEdit.errors.password}</Text>
+            /><Text style={styles.error}>{passEdit.errors.password}</Text>
             <Text>Repetir contraseña nueva</Text>
           <TextInput 
             name = 'secondPassword'
@@ -255,9 +271,9 @@ export default function User() {
             defaultValue= {passEdit.secondPassword}
             secureTextEntry={true}
             onChangeText={(e) => handlerChangePass("secondPassword", e)}
-          /><Text>{passEdit.errors.secondPassword}</Text>
+          /><Text style={styles.error}>{passEdit.errors.secondPassword}</Text>
           <View style={styles.cuenta}>
-            <TouchableOpacity onPress={handlerPass}>
+            <TouchableOpacity onPress={handlerPass} disabled={disabled}>
               <View style={styles.btnUser}>
                 <Text style={styles.text}>Guardar</Text>
               </View>
@@ -274,7 +290,9 @@ export default function User() {
             <Message />
             :
             user?.name !== infoEdit.name || user?.lastname !== infoEdit.lastname || user?.phone !== infoEdit.phone || user?.mail !== infoEdit.mail ?
-            <ActivityIndicator size="large" color="#00ff00" />
+            <View style={{flex:5 , justifyContent: 'center'}}>
+              <ActivityIndicator size="large" color="#00ff00" />
+            </View>
             :
             <View style={styles.inputContainers}>
               <View style={styles.input}><Text style={styles.info}>{user?.name}</Text></View>

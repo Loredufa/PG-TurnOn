@@ -92,6 +92,7 @@ export default function Home() {
         <FlatList
           data={sports}
           style={{  flex:2}}
+          scrollEnabled={false}
           renderItem={({ item }) => (
             <View style={styles.card}>
               <TouchableOpacity

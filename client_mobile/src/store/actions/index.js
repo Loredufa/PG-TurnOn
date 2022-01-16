@@ -43,8 +43,8 @@ export function getCourtBySport (sport) {
 export function getCourtBySportSupplier (name , sport) {
   return async function (dispatch) {
     try {
-      //const postUser = await axios.get("http://localhost:3001/user/court?name="+name); 
-      const postUser = await axios.get("https://turnon1.herokuapp.com/user/court?name="+name); 
+      //const postUser = await axios.get("http://localhost:3001/user/court?sport="+sport+ "&name=" + name); 
+      const postUser = await axios.get("https://turnon1.herokuapp.com/user/court?sport="+sport+ "&name=" + name); 
       console.log("Cancha buscada en back",postUser.data);
       dispatch({
         type: GET_COURTS_SUPPLIER_SPORT,
@@ -59,7 +59,7 @@ export function getCourtBySportSupplier (name , sport) {
 export function getSupplierBySport (sport) {
   return async function (dispatch) {
     try {
-      //const postUser = await axios.get("http://localhost:3001/user/supplier?sport="+sport); 
+      //const postUser = await axios.get("http://localhost:3001/user/supplier?sport="+sport ); 
       const postUser = await axios.get("https://turnon1.herokuapp.com/user/supplier?sport=" + sport); 
       console.log(postUser.data);
       dispatch({
@@ -91,7 +91,11 @@ export function bookCourt (courtId , userId) {
         courtId,
         userId,
         bookingCode: 1231,
-        status: "Reservado"
+        status: "active",
+        date: "01/02/2022",
+        day: 'Lunes',
+        initialTime: '13:00',
+        endingTime : '14:00'
       });
       console.log(postUser.data);
       dispatch({
@@ -109,9 +113,10 @@ export function getBookings (userId) {
     try {
       //const postUser = await axios.get("http://localhost:3001/user/bookings/"+userId);
       const postUser = await axios.get("https://turnon1.herokuapp.com/user/bookings/"+userId)
+      console.log(postUser.data.result);
       dispatch({
         type: GET_BOOKINGS,
-        payload: postUser.data,
+        payload: postUser.data.result,
       });
     } catch (error) {
       console.log(error);
