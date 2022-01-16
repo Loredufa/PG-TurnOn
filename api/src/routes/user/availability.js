@@ -1,7 +1,9 @@
-const {Router} = require ("express")
-const router = Router () 
+const { Router } = require("express");
+const router = Router();
 
-const { getAvailability } = require("./availability/getAvailability");
+const {
+  getAvailability,
+} = require("./controllers/availability/getAvailability");
 
 router.get("/available/:idCourt", getAvailability);
 
@@ -9,8 +11,4 @@ router.get("/available/:idCourt", getAvailability);
 //     res.send ("Soy la ruta usuario/disponibilidad")
 // });
 
-
-
-
-
-module.exports = router
+module.exports = router;

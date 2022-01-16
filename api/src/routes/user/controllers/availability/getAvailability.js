@@ -1,4 +1,4 @@
-const { Available, Bookings } = require("../../../db");
+const { Available, Bookings } = require("../../../../db");
 //const noRepeatedDays = require("./helpers/noRepeatedDays")
 
 const getAvailability = async (req, res) => {
@@ -6,22 +6,21 @@ const getAvailability = async (req, res) => {
 
   let availability = await Available.findAll({
     where: { idCourt: idCourt },
-  
   }).catch((err) => console.log(err));
-  console.log(availability)
+  console.log(availability);
   let booking = await Bookings.findAll({
-    where: { courtId: idCourt }
+    where: { courtId: idCourt },
   }).catch((err) => console.log(err));
   console.log(booking);
   if (booking.length) {
-    const option = []
+    const option = [];
     availability.filter((a) => {
-        booking.filter((b) => {
-            if (a.date !== b.day && a.initialTime !== b.initialTime) {
-                option.push(a)
-            }
-        })
-    })
+      booking.filter((b) => {
+        if (a.date !== b.day && a.initialTime !== b.initialTime) {
+          option.push(a);
+        }
+      });
+    });
     console.log(option);
   }
   // El findAll() retorna un array vacío si no encuentra nada.
@@ -36,7 +35,7 @@ const getAvailability = async (req, res) => {
     return res.json({ message: "No hay disponibilidad" });
   } else {
     res.json({ option });
-  } 
+  }
 };
 
 module.exports = { getAvailability };
