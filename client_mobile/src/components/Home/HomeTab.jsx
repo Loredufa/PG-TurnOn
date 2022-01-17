@@ -9,6 +9,7 @@ import HomeStack from "../HomeStack/HomeStack";
 import Home from "./Home";
 import Courts from "../Courts/Courts";
 import CourtDetail from "../CourtDetail/CourtDetail";
+import StackBooking from "../StackBooking/StackBooking";
 
 const Tab = createBottomTabNavigator();
 
@@ -38,7 +39,7 @@ export default function HomeTab() {
       />
       <Tab.Screen
         name="Reservas"
-        component={Bookings}
+        component={StackBooking}
         options={{
           headerShown: false,
           tabBarIcon: (

@@ -22,7 +22,6 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "white",
     borderRadius: 20,
-    borderWidth: 1,
     borderColor: "black",
     justifyContent: "center",
     backgroundColor: "#179F34",
@@ -34,11 +33,17 @@ export const styles = StyleSheet.create({
   question: {
     fontWeight: "700",
     fontSize: 15,
+    marginTop: 15
+  },
+  slogan: {
+    fontSize: 15,
     marginTop: 5,
+    fontStyle: 'italic'
   },
   welcome: {
     fontWeight: "bold",
     fontSize: 18,
+    marginBottom: 10
   },
   screen: {
     flex: 1,

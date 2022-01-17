@@ -23,13 +23,13 @@ export default function Suppliers({ route }) {
   const {screenWidth , suppliers} = useSelector ((state) => state)
   const dispatch = useDispatch();
   useEffect(()=> {
-    dispatch(getSupplierBySport(route.params.sport));
+    route.params.sport && dispatch(getSupplierBySport(route.params.sport));
   },[])
 
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>{route.params.sport}</Text>
+      <Text style={styles.title}>{route.params.sport && route.params.sport}{route.params.type && route.params.type}</Text>
       <View style={styles.searchBarPos}>
         <SearchBar />
       </View>
@@ -41,7 +41,6 @@ export default function Suppliers({ route }) {
           style={{
             flex: 6,
             alignItems: "center",
-            justifyContent: "flex-start",
           }}
           >
           <FlatList
@@ -49,7 +48,9 @@ export default function Suppliers({ route }) {
             style={{ flexGrow: 5.5 , width: screenWidth }}
             contentContainerStyle={{ alignItems: "center" }}
             renderItem={({ item }) => (
-              <Supplier item={item} sport={route.params.sport}/>
+              <View>
+                <Supplier item={item} sport={route.params.sport}/>
+              </View>
               )}
               ItemSeparatorComponent={() => <View style={{ height: 10 }} />}
               //numColumns={3}

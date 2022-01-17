@@ -22,6 +22,7 @@ export default function SearchBar() {
 
     function handlerFindCourt () {
       dispatch(getSuppliersByName(input))
+      setInput("");
       //if (court === input) {
         navigation.navigate ('Suppliers' , {type: "Tu busqueda"})
       /*}
@@ -38,7 +39,7 @@ export default function SearchBar() {
           name="name"
           style={styles.input}
           onChangeText={(court) => setInput(court)}
-          defaultValue={input.name}
+          defaultValue={input}
         />
         </View>
         <TouchableOpacity

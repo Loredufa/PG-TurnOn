@@ -90,14 +90,14 @@ export function bookCourt (courtId , userId) {
         const postUser = await axios.post("https://turnon1.herokuapp.com/user/bookings", {
         courtId,
         userId,
-        bookingCode: 1231,
+        bookingCode: '1231',
         status: "active",
         date: "01/02/2022",
         day: 'Lunes',
         initialTime: '13:00',
         endingTime : '14:00'
       });
-      console.log(postUser.data);
+      console.log("La respuesta del post" , postUser.data);
       dispatch({
         type: BOOK_COURT,
         payload: postUser.data,
@@ -253,8 +253,8 @@ export function getSuppliersByName(name) {
   return async function (dispatch) {
     try {
       //const postUser = await axios.get("http://localhost:3001/user/court?name="+name); 
-      const postUser = await axios.get("https://turnon1.herokuapp.com/user/court?name="+name); 
-      console.log("Cancha buscada en back",postUser.data);
+      const postUser = await axios.get("https://turnon1.herokuapp.com/user/supplier?name="+name); 
+      console.log("Supplier",postUser.data);
       dispatch({
         type: GET_SUPPLIERS_BY_NAME,
         payload: postUser.data,

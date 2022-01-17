@@ -10,19 +10,23 @@ export const styles = StyleSheet.create({
         //alignItems: "flex-start",
     },
     name: {
+        flex:1,
         alignSelf: 'center',
-        fontSize:15,
+        marginTop:5,
+        fontSize:18,
         fontWeight: "bold",
-        marginBottom:10,
+        
     },
     date: {
+        flex:1,
         flexDirection: 'row',
         justifyContent: 'space-between',
         marginLeft: 5,
         marginRight: 5,
-        marginBottom: 5,
+       
     },
     ref: {
+        flex:1,
         flexDirection: 'row', 
         justifyContent: 'space-between',
         marginLeft: 5,
