@@ -14,10 +14,10 @@ export const CourtProvider = () => {
     const { supplier } = useSelector(state => state.user)
 
     useEffect(() => {
-        axios.get(`http://localhost:3001/supplier/court/${supplier.id}`)
+        axios.get(`/supplier/court/${supplier.id}`)
             .then(res => setSupplierCourts(res.data))
             .catch(err => console.log(err))
-    }, [])
+    }, [supplier.id])
 
     return (
         <CourtContext.Provider 

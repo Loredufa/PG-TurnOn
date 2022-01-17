@@ -1,5 +1,4 @@
 import "./index.css";
-
 import App from "./App";
 import { Provider } from "react-redux";
 import React from "react";
@@ -7,7 +6,10 @@ import ReactDOM from "react-dom";
 import { BrowserRouter as Router } from "react-router-dom";
 import reportWebVitals from "./reportWebVitals";
 import store from "./Store/index";
+import axios from 'axios'
 
+axios.defaults.baseURL = process.env.REACT_APP_API || 'http://localhost:3001'
+console.log(axios.defaults.baseURL)
 ReactDOM.render(
   <Provider store={store}>
     <Router>

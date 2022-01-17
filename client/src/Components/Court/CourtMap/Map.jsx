@@ -10,7 +10,7 @@ function Map({infoCourt, setInfoCourt}) {
  
 
 const [address, setAddress] = useState("")
-const [ coordinate, setCoordinate] = useState({
+const [, setCoordinate] = useState({
   lat:null,
   lng:null
 })

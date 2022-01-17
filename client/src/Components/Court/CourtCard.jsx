@@ -2,8 +2,8 @@ import React, { useContext } from 'react'
 import styled from 'styled-components'
 import { CourtContext } from './Context/CourtContext'
 import axios from 'axios'
-import { BiCalendar, BiTimeFive } from 'react-icons/bi'
-
+/* import { BiCalendar, BiTimeFive } from 'react-icons/bi'
+ */
 export default function CourtCard({ courtInfo }) {
 
     const { 
@@ -20,9 +20,9 @@ export default function CourtCard({ courtInfo }) {
     }
     
     const handleDelete = () => {
-        axios.delete(`http://localhost:3001/supplier/court/${courtInfo.id}`)
+        axios.delete(`/supplier/court/${courtInfo.id}`)
             .then(() => {
-                axios.get(`http://localhost:3001/supplier/court/${supplier.id}`)
+                axios.get(`/supplier/court/${supplier.id}`)
                     .then(res => setSupplierCourts(res.data))
                     .catch(err => console.log(err))
             })
@@ -92,7 +92,7 @@ const ButtonRed = styled.button`
     }
 `
 
-const ButtonIcon = styled.button`
+/* const ButtonIcon = styled.button`
     background: #e9ebed;
     color: black;
     border-radius: 30px;
@@ -106,7 +106,7 @@ const ButtonIcon = styled.button`
         color: white;
     }
 `
-
+ */
 const Img = styled.img`
     width: 200px;
 `
