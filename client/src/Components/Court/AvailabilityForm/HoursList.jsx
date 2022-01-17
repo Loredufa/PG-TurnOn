@@ -11,9 +11,9 @@ export default function HoursList({ hours, setHours }) {
     const { currentCourt } = useContext(CourtContext)
 
     const handleClick = () => {
-        axios.post(`http://localhost:3001/supplier/available/${currentCourt.id}`, { days, hours })
+        axios.post(`/supplier/available/${currentCourt.id}`, { days, hours })
             .then(res => {
-                axios.get(`http://localhost:3001/supplier/available/court/${currentCourt.id}`)
+                axios.get(`/supplier/available/court/${currentCourt.id}`)
                 .then(res => setAvailability(res.data))
                 .catch(err => console.log(err))
             })

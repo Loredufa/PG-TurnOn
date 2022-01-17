@@ -58,9 +58,9 @@ export default function Navbar() {
           <a className="navbar-home-caract" href="#features">
             Características
           </a>
-          <Link className="navbar-home-cont" href="#contact">
+          <a className="navbar-home-cont" href="#contact">
             Contacto
-          </Link>
+          </a>
           {!user ? (
             <>
               <Link to="/login">

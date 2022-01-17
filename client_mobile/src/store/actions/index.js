@@ -13,7 +13,9 @@ export const GET_COURT_BY_SPORT = "GET_COURT_BY_SPORT";
 export const CHANGE_USER_PASS = "CHANGE_USER_PASS"
 export const CHANGE_MESSAGE = "CHANGE_MESSAGE";
 export const GOOGLE_LOGIN = "GOOGLE_LOGIN";
-
+export const GET_SUPPLIER_BY_SPORT = "GET_SUPPLIER_BY_SPORT";
+export const GET_COURTS_SUPPLIER_SPORT = "GET_COURTS_SUPPLIER_SPORT";
+export const GET_BOOKINGS = "GET_BOOKINGS";
 /*
 export function addUser(data) {
   return {
@@ -25,10 +27,43 @@ export function addUser(data) {
 export function getCourtBySport (sport) {
   return async function (dispatch) {
     try {
-      const postUser = await axios.get("http://localhost:3001/user/court?sport="+sport); 
+      //const postUser = await axios.get("http://localhost:3001/user/court?sport="+sport);
+      const postUser = await axios.get("https://turnon1.herokuapp.com/user/court?sport="+sport); 
       console.log(postUser.data);
       dispatch({
         type: GET_COURT_BY_SPORT,
+        payload: postUser.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
+export function getCourtBySportSupplier (name , sport) {
+  return async function (dispatch) {
+    try {
+      //const postUser = await axios.get("http://localhost:3001/user/court?name="+name); 
+      const postUser = await axios.get("https://turnon1.herokuapp.com/user/court?name="+name); 
+      console.log("Cancha buscada en back",postUser.data);
+      dispatch({
+        type: GET_COURTS_SUPPLIER_SPORT,
+        payload: postUser.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
+export function getSupplierBySport (sport) {
+  return async function (dispatch) {
+    try {
+      //const postUser = await axios.get("http://localhost:3001/user/supplier?sport="+sport); 
+      const postUser = await axios.get("https://turnon1.herokuapp.com/user/supplier?sport=" + sport); 
+      console.log(postUser.data);
+      dispatch({
+        type: GET_SUPPLIER_BY_SPORT,
         payload: postUser.data,
       });
     } catch (error) {
@@ -47,14 +82,43 @@ export function setScreenDimensions (screenWidth, numColumns, titleSize){
   };  
 }
 
-export function bookCourt (court) {
-  return function (dispatch) {
-    dispatch({
-      type: BOOK_COURT,
-      payload: court,
-    });
+
+export function bookCourt (courtId , userId) {
+  return async function (dispatch) {
+    try {
+      //const postUser = await axios.post("http://localhost:3001/user/bookings", {
+        const postUser = await axios.post("https://turnon1.herokuapp.com/user/bookings", {
+        courtId,
+        userId,
+        bookingCode: 1231,
+        status: "Reservado"
+      });
+      console.log(postUser.data);
+      dispatch({
+        type: BOOK_COURT,
+        payload: postUser.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
-}
+};
+
+export function getBookings (userId) {
+  return async function (dispatch) {
+    try {
+      //const postUser = await axios.get("http://localhost:3001/user/bookings/"+userId);
+      const postUser = await axios.get("https://turnon1.herokuapp.com/user/bookings/"+userId)
+      dispatch({
+        type: GET_BOOKINGS,
+        payload: postUser.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
 export function closeSession() {
   return function (dispatch) {
     dispatch({
@@ -66,7 +130,8 @@ export function closeSession() {
 export function addUser({ name, lastname, phone, email, password }) {
   return async function (dispatch) {
     try {
-      const postUser = await axios.post("http://localhost:3001/user/user", {
+      //const postUser = await axios.post("http://localhost:3001/user/user", {
+      const postUser = await axios.post("https://turnon1.herokuapp.com/user/user", {
         name,
         lastname,
         phone,
@@ -83,7 +148,8 @@ export function addUser({ name, lastname, phone, email, password }) {
 export function changeUserInfo(id , userInfo) {
   return async function (dispatch) {
     try {
-      const newInfo = await axios.put("http://localhost:3001/user/user/"+id, 
+      //const newInfo = await axios.put("http://localhost:3001/user/user/"+id, 
+      const newInfo = await axios.put("https://turnon1.herokuapp.com/user/user/"+id, 
         userInfo
       ); 
       console.log("Informacion recibida" , newInfo.data);
@@ -100,7 +166,8 @@ export function changeUserInfo(id , userInfo) {
 export function changeUserPass(id , userInfo) {
   return async function (dispatch) {
     try {
-      const newInfo = await axios.put("http://localhost:3001/user/user/password/"+id,  {
+      //const newInfo = await axios.put("http://localhost:3001/user/user/password/"+id,  {
+      const newInfo = await axios.put("https://turnon1.herokuapp.com/user/user/password/"+id,  {
         oldPassword: userInfo.actualPass,
         newPassword: userInfo.password
       }
@@ -121,12 +188,15 @@ export function changeUserPass(id , userInfo) {
 
 export function findCreatedUser({ user, password }) {
   return async function (dispatch) {
+    console.log("voy a despachar" , user , password)
     try {
       await axios
         .get(
-          `http://localhost:3001/user/user?mail=${user}&password=${password}`
+          //`http://localhost:3001/user/user?mail=${user}&password=${password}`
+          `https://turnon1.herokuapp.com/user/user?mail=${user}&password=${password}`
         )
         .then((resolve) => {
+          console.log(resolve.data);
           dispatch({
             type: FIND_CREATED_USER,
             payload: resolve.data,
@@ -144,7 +214,8 @@ export function googleLogIn (token) {
     try {
       await axios
         .get(
-          `http://localhost:3001/user/user/google?token=${token}`
+          //`http://localhost:3001/user/user/google?token=${token}`
+          `https://turnon1.herokuapp.com/user/user/google?token=${token}`
         )
         .then((resolve) => {
           dispatch({
@@ -176,7 +247,8 @@ export function changeMessage() {
 export function getSuppliersByName(name) {
   return async function (dispatch) {
     try {
-      const postUser = await axios.get("http://localhost:3001/user/court?name="+name); 
+      //const postUser = await axios.get("http://localhost:3001/user/court?name="+name); 
+      const postUser = await axios.get("https://turnon1.herokuapp.com/user/court?name="+name); 
       console.log("Cancha buscada en back",postUser.data);
       dispatch({
         type: GET_SUPPLIERS_BY_NAME,

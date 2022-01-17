@@ -1,19 +1,10 @@
-import {
-    StyleSheet,
-  } from "react-native";
-  
-export 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    padding: 10,
-    flexDirection: "column",
-  },
+import { StyleSheet } from "react-native";
+
+export const styles = StyleSheet.create({
+  container: { flex: 1, alignItems: "center" },
   searchBarPos: {
     justifyContent: "flex-start",
-    marginTop: 20,
+    flex:0.7,
   },
   globalContainer: {
     flexDirection: "column",
@@ -21,12 +12,18 @@ const styles = StyleSheet.create({
   card: {
     flex: 1,
     borderRadius: 10,
+    borderWidth:1,
     margin: 10,
-    borderWidth: 1,
+    
     alignItems: "center",
-    justifyContent: "center",
+    //justifyContent: "center",
     padding: 2,
 
+    shadowColor: "#000",
+    shadowOpacity: 0.30,
+    shadowRadius: 5,
+
+    elevation: 8,
     //borderColor: "black",
   },
   input: {
@@ -53,5 +50,41 @@ const styles = StyleSheet.create({
   review: {
     flex: 2,
     justifyContent: "flex-start",
+  },
+  card2: {
+    flex: 1,
+    borderRadius: 10,
+    margin: 10,
+    borderWidth: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    padding: 2,
+    flexDirection: "column",
+
+    //borderColor: "black",
+  },
+  sport: {
+      textAlign: "center",
+      fontSize: 15,
+      fontWeight: "bold",
+  },
+  supplier: {
+    textAlign: "left",
+    marginLeft: 10,
+    fontSize: 15,
+    fontWeight: "bold",
+  },
+  ratingContainer: {
+    marginLeft: 100,
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    alignItems: 'center'
+  },
+  title: {
+    textAlign: "center",
+    marginTop: 30,
+    fontSize: 24,
+    fontWeight: "bold",
+    flex: 0.5,
   },
 });
