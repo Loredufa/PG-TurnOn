@@ -17,7 +17,8 @@ import {
   GET_COURTS_SUPPLIER_SPORT,
   GET_BOOKINGS,
   DELETE_BOOKING,
-  DELETE_USER
+  DELETE_USER,
+  GET_COURTS_SUPPLIER
 } from "../actions/index";
 import {
   findEmail,
@@ -163,6 +164,11 @@ const reducer = (state = initialState, action) => {
         ...state,
         courtsBySports: action.payload
       }
+    case GET_COURTS_SUPPLIER:
+      return {
+        ...state,
+        courtsBySports: action.payload
+      } 
     default:
       return state;
   }

@@ -18,6 +18,7 @@ export const GET_COURTS_SUPPLIER_SPORT = "GET_COURTS_SUPPLIER_SPORT";
 export const GET_BOOKINGS = "GET_BOOKINGS";
 export const DELETE_BOOKING = "DELETE_BOOKING";
 export const DELETE_USER = "DELETE_USER";
+export const GET_COURTS_SUPPLIER = "GET_COURTS_SUPPLIER";
 /*
 export function addUser(data) {
   return {
@@ -26,6 +27,9 @@ export function addUser(data) {
   };
 }
 */
+
+
+
 export function getCourtBySport (sport) {
   return async function (dispatch) {
     try {
@@ -50,6 +54,21 @@ export function getCourtBySportSupplier (name , sport) {
       console.log("Cancha buscada en back",postUser.data);
       dispatch({
         type: GET_COURTS_SUPPLIER_SPORT,
+        payload: postUser.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+export function getCourtsBySupplier (name) {
+  return async function (dispatch) {
+    try {
+      //const postUser = await axios.get("http://localhost:3001/user/court?sport="+sport+ "&name=" + name); 
+      const postUser = await axios.get("https://turnon1.herokuapp.com/user/court?name=" + name); 
+      console.log("Cancha buscada en back",postUser.data);
+      dispatch({
+        type: GET_COURTS_SUPPLIER,
         payload: postUser.data,
       });
     } catch (error) {
@@ -313,7 +332,7 @@ export function getCourtType(name) {
   };
 }
 
-export function addToFavorite( supplierId, userId) {
+export function addToFavorite(data /*supplierId, userId*/) {
   return {
     type: ADD_TO_FAVORITE,
     payload: data,
