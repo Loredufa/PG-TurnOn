@@ -5,6 +5,7 @@ import {
   H1name,
   LabelSetting,
   VolverButton,
+  ResponseContr,
 } from "../Styles/updatePassword";
 import React, { useState } from "react";
 
@@ -142,7 +143,7 @@ function UpdatePassword() {
           {error.repeatPassword && <p>{error.repeatPassword}</p>}
         </LabelSetting>
       </DivForm>
-      {responseput?.error && <p>{responseput.error}</p>}
+      {responseput?.error && <ResponseContr>{responseput.error}</ResponseContr>}
     </DivGlobal>
   );
 }
