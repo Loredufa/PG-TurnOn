@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   TouchableOpacity,
   StyleSheet,
@@ -20,7 +20,7 @@ const LONGITUDE = -68.05909815431862;
 const LATITUDE_DELTA = 0.0922;
 const LONGITUD_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 
-export default function Location() {
+export default function Location(props) {
   let sportTypes = ["futbol", "tenis", "golf", "paddle", "hockey"];
 
   const [region, setRegion] = useState({
@@ -29,9 +29,18 @@ export default function Location() {
     latitudeDelta: LATITUDE_DELTA,
     longitudeDelta: LONGITUD_DELTA,
   });
+  //if(route.params) const {courtLocation} = route.params
+  //if(route.params?.courtLocation) const {courtLocation} = route.params
 
   const [section, setSection] = useState("Deporte");
   const [courts, setCourts] = useState(locales);
+
+  useEffect(() => {
+    props.route.params?.courtLocation
+      ? setCourts(props.route.params?.courtLocation)
+      : setCourts(locales);
+    //console.log("effect", courtLocation);
+  }, [props.route.params?.courtLocation]);
 
   function onChange(itemValue) {
     setSection(() => {
@@ -54,9 +63,7 @@ export default function Location() {
   }
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>
-        Cerca de ti
-      </Text>
+      <Text style={styles.title}>Cerca de ti</Text>
       <View style={styles.PickerContainer}>
         <Picker
           style={{ flex: 1 }}
@@ -99,17 +106,30 @@ export default function Location() {
         //toolbarEnabled={true}
         zoomControlEnabled={true}
       >
-        {courts.map((element) => (
-          <MapView.Marker
-            key={element.id}
-            coordinate={{
-              latitude: element.latitude,
-              longitude: element.longitude,
-            }}
-            title={element.title}
-            description={element.description}
-          />
-        ))}
+        {
+          // props.route.params?.courtLocation ? (
+          //   <MapView.Marker
+          //     coordinate={{
+          //       latitude: props.route.params.courtLocation.latitude,
+          //       longitude: props.route.params.courtLocation.longitude,
+          //     }}
+          //     title={props.route.params.courtLocation.title}
+          //     description={props.route.params.courtLocation.description}
+          //   />
+          // ) : (
+          courts.map((element) => (
+            <MapView.Marker
+              key={element.id}
+              coordinate={{
+                latitude: element.latitude,
+                longitude: element.longitude,
+              }}
+              title={element.title}
+              description={element.description}
+            />
+          ))
+          // )
+        }
       </MapView>
     </View>
   );
