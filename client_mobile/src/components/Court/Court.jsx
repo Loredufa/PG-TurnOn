@@ -34,7 +34,7 @@ export default function Court({ item, supplierID }) {
           alignItems: "center",
           justifyContent: "center",
           padding: 2,
-          // height: screenWidth / 3,
+          height: screenWidth / 3,
           width: screenWidth / 1.1,
           backgroundColor: "white",
           shadowOpacity: 0.5,

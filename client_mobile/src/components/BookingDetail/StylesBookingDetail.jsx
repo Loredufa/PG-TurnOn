@@ -112,7 +112,7 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold'
   },
   buttons: {
-      flex: 1,
+      //flex: 1,
       flexDirection: 'row',
       alignSelf: 'center'
   },

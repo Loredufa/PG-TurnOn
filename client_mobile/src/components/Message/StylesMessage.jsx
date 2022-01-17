@@ -18,7 +18,9 @@ const styles = StyleSheet.create({
     marginLeft: 15,
     marginRight: 15,
     backgroundColor: '#179F34',
-    color: 'white'
+  },
+  text: {
+    color: 'white',
   },
   question: {
     fontWeight: "700",

@@ -18,7 +18,7 @@ import GoogleLogout from "../GoogleLogout/GoogleLogout";
 export default function User() {
   
   const navigation = useNavigation();
-  const {user} = useSelector(state => state.user);
+  const {user , googlesession} = useSelector(state => state.user);
   const { messageBack } = useSelector(state => state);
   const dispatch = useDispatch();
 
@@ -329,7 +329,7 @@ export default function User() {
                   <Text style={styles.text}>Editar Informacion</Text>
                 </View>
                 </TouchableOpacity>
-                <View style={styles.btnPass}>
+                {/*googlesession && */}<View style={styles.btnPass}>
                   <TouchableOpacity onPress={() => changePassState(!passState)}>
                     <Text style={styles.text}>Cambiar contraseña</Text>
                   </TouchableOpacity>
