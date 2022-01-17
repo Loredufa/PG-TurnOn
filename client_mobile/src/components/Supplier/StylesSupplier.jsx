@@ -25,15 +25,17 @@ export const styles = StyleSheet.create({
     },
     mail:{
         flex:1,
-        alignSelf: 'flex-start',
+        alignSelf: 'center',
         marginLeft: 10,
     },
     containerRating: {
         flexDirection: 'row',
-        alignItems: 'center'
+        alignItems: 'flex-start'
     },
     rating: {
       marginLeft: 5,
+      paddingTop: 3,
+      fontSize: 15,
       fontWeight: '500',
     }
   });

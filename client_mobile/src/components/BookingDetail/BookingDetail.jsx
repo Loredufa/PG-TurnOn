@@ -30,7 +30,7 @@ export default function BookingDetail({route}) {
     <Message />
     :
     eliminar? 
-    <View style={{ justifyContent: "center", flex: 1 }}>
+    <View style={{ flex: 1, alignItems: "center" , justifyContent: 'center' }}>
       <Text style={styles.question}>¿Esta seguro que quiere cancelar la reserva?</Text>
       <View style={styles.buttons}>
         <TouchableOpacity style={styles.btnEdit} onPress={()=>setEliminar(false)}>

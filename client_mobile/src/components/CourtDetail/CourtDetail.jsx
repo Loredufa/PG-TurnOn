@@ -61,7 +61,7 @@ export default function CourtDetail({ route }) {
     //var today = now.getFullYear() + "-" + (month) + "-" + (day);
 
     setDate(today);
-  });
+  } ,[]);
   //console.log(court);
 
   return messageBack !== "" ? (
@@ -89,7 +89,7 @@ export default function CourtDetail({ route }) {
           }}
         />
         <View style={styles.descriptionContainer}>
-          <Text style={styles.description}>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa{court.description}</Text>
+          <Text style={styles.description}>{court.description}</Text>
         </View>
         <View style={styles.optionsContainer}>
           {/* <Text style={{ marginRight: 20, borderWidth: 1 }}>Horario</Text> */}

@@ -40,8 +40,8 @@ export default function Suppliers({ route }) {
           <View style={{  justifyContent: 'space-evenly'}}>
           <FlatList
             data={suppliers}
-            style={{ flexGrow: 5.5 , width: screenWidth }}
-            contentContainerStyle={{ alignItems: "center" }}
+            style={{ flexGrow: 5.5  }}
+            //contentContainerStyle={{ alignItems: "center" }}
             renderItem={({ item }) => (
               <View>
                 <Supplier item={item} sport={route.params.sport}/>

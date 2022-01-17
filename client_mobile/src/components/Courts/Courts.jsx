@@ -63,8 +63,8 @@ export default function Courts({ route }) {
         >
           <FlatList
             data={courtsBySports}
-            style={{ flexGrow: 5.5 , width: screenWidth }}
-            contentContainerStyle={{ alignItems: "center" }}
+            style={{ flexGrow: 5.5  }}
+            //contentContainerStyle={{ alignItems: "center" }}
             renderItem={({ item }) => (
               <Court item={item} supplierID={route.params.id}/>
             )}

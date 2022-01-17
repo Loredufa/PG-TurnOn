@@ -74,7 +74,7 @@ export default function Bookings({ route }) {
         <FlatList
           data={bookings}
           style={{ flexGrow: 5.5 }}
-          contentContainerStyle={{ alignItems: "center" }}
+          //contentContainerStyle={{ alignItems: "center" }}
           renderItem={({ item }) => (
             //<Court item={item} />
             <CardBooking item = {item} />

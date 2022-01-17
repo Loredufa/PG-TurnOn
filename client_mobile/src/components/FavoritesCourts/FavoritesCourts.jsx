@@ -17,8 +17,8 @@ export default function FavoritesCourts() {
         {favorites.length !== 0 ? (
           <FlatList
             data={favorites}
-            style={{ flexGrow: 5.5 , width: screenWidth }}
-            contentContainerStyle={{ alignItems: "center" }}
+            style={{ flexGrow: 5.5 }}
+            //contentContainerStyle={{ alignItems: "center" }}
             renderItem={({ item }) => (
             <View>
               <Supplier item={item} />
