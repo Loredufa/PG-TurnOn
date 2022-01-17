@@ -22,7 +22,7 @@ export const styles = StyleSheet.create({
 */
 backgroundColor: 'white',
 shadowOpacity: 0.50,
-shadowRadius: 10,
+shadowRadius: 5,
 shadowColor: "#000",
 elevation: 20,
     //borderColor: "black",
@@ -76,7 +76,7 @@ elevation: 20,
     fontWeight: "bold",
   },
   ratingContainer: {
-    marginLeft: 100,
+    marginRight:10,
     flexDirection: 'row',
     justifyContent: 'flex-end',
     alignItems: 'center'

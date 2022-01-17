@@ -43,7 +43,7 @@ export default function Court({item , supplierID}) {
                   }}
                 >
                   <Image
-                    source={item.image}
+                    source={{uri: "https://images.vexels.com/media/users/3/132448/isolated/preview/baf01fb517749ccf4e1215d7576fe262-pelota-de-tenis.png"}}
                     style={{
                       height: screenWidth / 4,
                       width: screenWidth / 4,

@@ -13,7 +13,46 @@ import {getBookings} from '../../store/actions/index';
 import CardBooking from "../CardBooking/CardBooking";
 
 export default function Bookings({ route }) {
-  const {bookings , user} = useSelector((state) => state);
+  let {bookings , user} = useSelector((state) => state);
+  bookings =  [
+        {
+            "booking": {
+                "id": 2,
+                "courtId": "2",
+                "userId": "1",
+                "date": "01/02/03",
+                "day": "Lunes",
+                "initialTime": "13:00",
+                "endingTime": "14:00",
+                "bookingCode": "1231",
+                "status": "active",
+                "createdAt": "2022-01-15T22:26:07.715Z",
+                "updatedAt": "2022-01-15T22:26:07.715Z",
+                "availableId": null
+            },
+            "court": {
+                "id": 2,
+                "name": "Los metecos",
+                "address": "asdasdds",
+                "city": null,
+                "state": null,
+                "postcode": null,
+                "phone": "166546466",
+                "mail": null,
+                "password": null,
+                "sport": "asdasd",
+                "price": "3213",
+                "image": "asdasd",
+                "coordinates": null,
+                "comments": null,
+                "reputation": null,
+                "description": "asdasdsa",
+                "createdAt": "2022-01-15T22:24:19.266Z",
+                "updatedAt": "2022-01-15T22:24:19.266Z",
+                "supplierId": 1
+            }
+        }
+    ]
   const dispatch = useDispatch();
   useEffect(()=>{
     dispatch(getBookings(user.user.id));

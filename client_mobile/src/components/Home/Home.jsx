@@ -178,6 +178,7 @@ export default function Home() {
                       style={{
                         flexDirection: "row",
                         width: 3*screenWidth / 4 - 2,
+                        justifyContent: 'space-between',
                       }}
                       >
 

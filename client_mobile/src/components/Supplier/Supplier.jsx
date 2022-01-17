@@ -35,36 +35,36 @@ export default function Supplier({item , sport}) {
                     borderRadius: 10,
                     margin: 10,
                     borderWidth: 1,
+                    borderColor: '#3FC959',
+                    //backgroundColor: '#F8F1D9'
                     alignItems: "center",
                     justifyContent: "center",
                     padding: 2,
-                    height: screenWidth / 2,
+                    height: screenWidth / 3,
                     width: screenWidth / 1.1,
+
+                    backgroundColor: 'white',
+                    shadowOpacity: 0.50,
+                    shadowRadius: 5,
+                    shadowColor: "#000",
+                    elevation: 20,
                   }}
                 >
                   <Image
-                    source={item.image}
-                    style={{
-                      height: screenWidth / 4,
-                      width: screenWidth / 4,
-                      padding: 3,
-                      borderBottomLeftRadius: 10,
-                      borderTopLeftRadius: 10,
-                    }}
+                    source={{uri: "https://images.vexels.com/media/users/3/132448/isolated/preview/baf01fb517749ccf4e1215d7576fe262-pelota-de-tenis.png"}}
+                    style={styles.img}
                   />
                   <View
-                    style={{
-                      flex: 1,
-                      flexDirection: "column",
-                      alignItems: "center",
-                    }}
+                    style={styles.info}
                   >
-                    <Text>{item.name}</Text>
-                    <Text>Precio: {item.mail}</Text>
+                    <Text style={styles.name}>{item.name}</Text>
+                    <Text style={styles.mail}>{item.mail}</Text>
                     <View
                       style={{
+                        flex:1,
                         flexDirection: "row",
-                        alignItems: "flex-start",
+                        alignItems: 'stretch',
+                        justifyContent: 'space-evenly',
                         padding: 3,
                       }}
                     >
@@ -76,22 +76,22 @@ export default function Supplier({item , sport}) {
                         name="heart"
                         size={25}
                         color= 'red'
-                        style={{ marginLeft: 10, marginRight: 20 }}
                         />:
                         <MaterialCommunityIcons
                         name="heart-outline"
                         size={25}
                         color= 'black'
-                        style={{ marginLeft: 10, marginRight: 20 }}
                         />
                       }
                       </TouchableOpacity>
+                      <View style={styles.containerRating}>
                       <MaterialCommunityIcons
                         name="star"
                         size={20}
-                        style={{ marginLeft: 20 }}
-                      />
-                      <Text style={{ marginLeft: 5 }}>{/*item.rating*/}5</Text>
+                        color = '#FFC900'
+                        />
+                      <Text style={styles.rating}>{/*item.rating*/}5</Text>
+                      </View>
                     </View>
                   </View>
                 </View>

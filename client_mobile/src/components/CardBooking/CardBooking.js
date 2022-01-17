@@ -15,10 +15,8 @@ export default function CardBooking({item}) {
   return (
     <TouchableOpacity
                 onPress={() =>
-                  navigation.navigate("CourtDetail", {
-                    court: item,
-                    dimension: screenWidth,
-                    supplierID: supplierID
+                  navigation.navigate("BookingDetail", {
+                    booking: item,
                   })
                 }
               >
@@ -34,12 +32,12 @@ export default function CardBooking({item}) {
                     alignItems: "center",
                     justifyContent: "center",
                     padding: 2,
-                    //height: screenWidth / 2,
+                    height: screenWidth / 3,
                     width: screenWidth / 1.1,
 
                     backgroundColor: 'white',
                     shadowOpacity: 0.50,
-                    shadowRadius: 10,
+                    shadowRadius: 5,
                     shadowColor: "#000",
                     elevation: 20,
                   }}
