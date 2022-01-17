@@ -31,7 +31,8 @@ export default function Form() {
         fontSize: "14px",
         borderRadius: "20px",
         borderStyle: "none",
-        textAlign: "center"
+        textAlign: "center",
+        marginRight:"10px"
     }
 
     return (
@@ -65,7 +66,7 @@ export default function Form() {
 const Wrapper = styled.div`
     display: flex;
     flex-direction: row;
-    background: grey;
+    background: #e9ebed;
     height: 100%;
 `
 
@@ -74,30 +75,48 @@ const TimeContainer = styled.div`
     flex-direction: column;
     width: 35vw;
     align-items: center;
-    background: blue;
+    background: #e9ebed;
 `
 
 const Button = styled.button`
-    height: 30px;
-    width: 50px;
+    height: 41px;
+    width:100px;
     border-radius: 20px;
     border-style: none;
     margin-bottom: 8px;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 16px;
+    background: #81b214;
+    color: white;
+    margin-top:10px;
+    &:hover{
+        background-color:white;
+        color:#81b214;}
 `
 
 const TimeAndHours = styled.div`
     text-align: center;
     display: flex;
     flex-direction: column;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 16px;
+
 `
 const HoursContainer = styled.div`
-    margin-top: 5vh;
+    margin-top: 4vh;
+    
 `
 
 const Title = styled.p`
-    font-size: 20px;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 25px;
+    font-weight: bold;
+    color: #81b214;
 `
 
 const Fields = styled.div`
     margin-bottom: 8px;
+    display:flex;
+    flex-direction: row;
+    
 `

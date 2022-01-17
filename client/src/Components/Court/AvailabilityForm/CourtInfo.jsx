@@ -45,6 +45,7 @@ const Wrapper = styled.div`
     align-items: center;
     align-content: center;
     width: 100%;
+    
 `
 const DayContainer = styled.div`
     display: flex;
@@ -53,6 +54,8 @@ const DayContainer = styled.div`
     /* width: 40vw; */
     margin-left: 3px;
     margin-right: 3px;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    color:white;
 `
 const HoursContainer = styled.div`
     
@@ -64,9 +67,14 @@ const Hour = styled.div`
 const MapContainer = styled.div`
     display: flex;
     flex-direction: row;
-    background: grey;
+    background: #81b214;
+    border-radius: 12px;
+    padding: 15px;
 `
 
 const Title = styled.p`
+    font-family: 'Be Vietnam Pro', sans-serif;
     font-size: 25px;
+    font-weight: bold;
+    color: #81b214;
 `

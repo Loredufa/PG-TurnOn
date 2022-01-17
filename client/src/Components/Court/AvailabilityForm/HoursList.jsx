@@ -41,7 +41,8 @@ export default function HoursList({ hours, setHours }) {
 }
 
 const Wrapper = styled.div`
-    background: grey;
+    background: #e9ebed;
+    
 `
 const DaysList = styled.div`
     display: flex;
@@ -49,10 +50,20 @@ const DaysList = styled.div`
     justify-content: center;
 `
 const Day = styled.p`
-    margin: 3px;
+    margin: 7px;
 `
 const Button = styled.button`
     border-radius: 20px;
-    height: 30px;
+    height: 41px;
+    width:140px;
     border-style: none;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 16px;
+    background: #81b214;
+    color: white;
+    margin-top:10px;
+    &:hover{
+        background-color:white;
+        color:#81b214;}
+    
 `
