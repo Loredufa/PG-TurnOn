@@ -22,19 +22,37 @@ export default function DayItem({ day }) {
     }
 
     return (
-        <button 
+        <Button
             style={
                 days.includes(day) ? 
-                { background: "black", color: "white" } : {}
+                { background: "#3fc959", color: "white" } : {}
             }
             value={day} 
             onClick={handleClick}
         >
             {day}   
-        </button>
+        </Button>
     )
 }
 
-const DayButton = styled.div`
+/* :root {
+    --colorGrey: #e9ebed;
+    --colorBlack: #2a2d34;
+    --colorAppleGreen: #81b214;
+    --colorPastelGreen: #3fc959;
+    --colorSlimeGreen: #179f34;
+    --colorPakistanGreen: #116913;
+    --colorForestGreen: #0b4619;
+    --colorMikatoYellow: #ffc900;
+    --colorCornSlik: #f8f1d9;
+} */
 
+const Button = styled.button`
+    height: 45px;
+    width: 100px;
+    border-radius: 30px;
+    border-style: none;
+    background: #2a2d34;
+    color: white;
+    font-size: 14px;
 `

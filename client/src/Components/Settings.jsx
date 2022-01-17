@@ -7,6 +7,8 @@ import {
   EditButton,
   H1name,
   LabelSetting,
+  LabelSetting2,
+  UpdateButton,
 } from "../Styles/settingsSupplier";
 import React, { useState } from "react";
 import { changeSupplierProfile, deleteUser } from "../Actions/actions";
@@ -84,6 +86,9 @@ export default function Settings() {
     setEdit(false);
   };
 
+  const editPwdClick = () => {
+    history.push("/profile/password");
+  };
   const handleClick = () => {
     confirmAlert({
       title: "Borrar Usuario",
@@ -114,24 +119,23 @@ export default function Settings() {
         <DivGlobal>
           <H1name>Configuración/Perfil</H1name>
           <EditButton onClick={() => setEdit(true)}>Editar</EditButton>
-          <DeleteButton onClick={handleClick}>Borrar Usuario</DeleteButton>
           <DivForm>
-            <LabelSetting>
-              Nombre
-              <input name="name" value={info.name} />
-            </LabelSetting>
-            <LabelSetting>
-              Email
-              <input name="mail" value={info.mail} />
-            </LabelSetting>
-            <LabelSetting>
-              Cuit
-              <input name="cuit" value={info.cuit} />
-            </LabelSetting>
-            <LabelSetting>
-              Razón Social
-              <input name="businessname" value={info.businessname} />
-            </LabelSetting>
+            <LabelSetting2>
+              Nombre:
+              <label>{info.name}</label>
+            </LabelSetting2>
+            <LabelSetting2>
+              Email:
+              <label>{info.mail}</label>
+            </LabelSetting2>
+            <LabelSetting2>
+              Cuit:
+              <label>{info.cuit}</label>
+            </LabelSetting2>
+            <LabelSetting2>
+              Razón Social:
+              <label>{info.businessname}</label>
+            </LabelSetting2>
           </DivForm>
         </DivGlobal>
       ) : (
@@ -144,6 +148,7 @@ export default function Settings() {
           >
             Guardar
           </EditButton>
+          <UpdateButton onClick={editPwdClick}>Editar Contraseña</UpdateButton>
           <DeleteButton onClick={handleClick}>Borrar Usuario</DeleteButton>
           <DivForm>
             <LabelSetting>

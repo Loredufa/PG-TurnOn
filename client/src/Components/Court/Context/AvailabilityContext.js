@@ -26,10 +26,10 @@ export const AvailabilityProvider = () => {
     const [days, setDays] = useState([])
 
     useEffect(() => {
-        axios.get(`http://localhost:3001/supplier/available/court/${currentCourt.id}`)
+        axios.get(`/supplier/available/court/${currentCourt.id}`)
           .then(res => setAvailability(res.data))
           .catch(err => console.log(err))
-    }, [])
+    }, [currentCourt.id])
 
     return (
       <Wrapper>
@@ -43,13 +43,23 @@ export const AvailabilityProvider = () => {
                 setDays
             }}
         >   
-            <Form />
-            <CourtInfo />
+            <Container>
+                <Form />
+                <CourtInfo />
+            </Container>
         </AvailabilityContext.Provider>
       </Wrapper>
     )
 }
 
 const Wrapper = styled.div`
+  height: 88.5vh;
   
+
+`
+
+const Container = styled.div`
+    height: 100%;
+    display: flex;
+    flex-direction: row;
 `
