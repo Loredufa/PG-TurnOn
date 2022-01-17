@@ -55,4 +55,5 @@ const Button = styled.button`
     background: #2a2d34;
     color: white;
     font-size: 14px;
+    margin: 5px;
 `

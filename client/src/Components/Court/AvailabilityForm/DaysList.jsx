@@ -1,18 +1,25 @@
 import React, { useContext } from 'react'
 import { AvailabilityContext } from '../Context/AvailabilityContext'
 import DayItem from './DayItem'
+import styled from 'styled-components'
 
 export default function DaysList() {
 
     const { week } = useContext(AvailabilityContext)
 
     return (
-        <div>
+        <DaysContainer>
             {
                 week.map((day, i) => (
                     <DayItem key={i} day={day} />
                 ))
             }
-        </div>
+        </DaysContainer>
     )
 }
+
+const DaysContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    background: red;
+`
