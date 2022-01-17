@@ -63,7 +63,8 @@ const Container = styled.div`
     flex-direction: row;
     justify-content: space-between;
     height: 78.5vh;
-    background: yellow;
+    background: white;
+    border-radius: 30px;
 `
 
 const ButtonContainer = styled.div`
@@ -71,14 +72,17 @@ const ButtonContainer = styled.div`
     flex-direction: column;
     justify-content: center;
     height: 10vh;
+    
 `
 
 const Button = styled.button`
-    width: 200px;
-    margin-left: 10px;
-    background: #2a2d34;
+    width: 230px;
+    margin-left: 28px;
+    background: #81b214;
     color: white;
     border-style: none;
     border-radius: 20px;
-    height: 30px;
+    height: 41px;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 15px;
 `
