@@ -12,7 +12,7 @@ const createCourt = async (req, res) => {
     // =======
 
     // >>>>>>> mirror
-    let newCourt = await Field.create({
+    var newCourt = await Field.create({
       name,
       address,
       phone,
