@@ -10,6 +10,7 @@ import Home from "./Home";
 import Courts from "../Courts/Courts";
 import CourtDetail from "../CourtDetail/CourtDetail";
 import StackBooking from "../StackBooking/StackBooking";
+import StackFavorites from "../StackFavorites/StackFavorites";
 
 const Tab = createBottomTabNavigator();
 
@@ -55,7 +56,7 @@ export default function HomeTab() {
       />
       <Tab.Screen
         name="Favoritos"
-        component={FavoritesCourts}
+        component={StackFavorites}
         options={{
           headerShown: false,
           tabBarIcon: (
