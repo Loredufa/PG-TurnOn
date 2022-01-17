@@ -35,19 +35,24 @@ export default function HoursList({ hours, setHours }) {
                 <HourItem key={i} start={h.start} end={h.end} />
             ))
         }
-        <button onClick={handleClick}>GUARDAR</button>
+        <Button onClick={handleClick}>GUARDAR</Button>
         </Wrapper>
     )
 }
 
 const Wrapper = styled.div`
-    
+    background: grey;
 `
-
 const DaysList = styled.div`
     display: flex;
     flex-direction: row;
+    justify-content: center;
 `
 const Day = styled.p`
     margin: 3px;
+`
+const Button = styled.button`
+    border-radius: 20px;
+    height: 30px;
+    border-style: none;
 `
