@@ -7,14 +7,41 @@ import {
 } from "react-native";
 import MaterialCommunityIcons from "react-native-vector-icons/Ionicons";
 import { useNavigation } from "@react-navigation/native";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {styles} from './StylesBookingDetail'
+import {deleteBooking} from '../../store/actions/index';
+import Message from '../Message/Message';
 
 export default function BookingDetail({route}) {
-    const {screenWidth} = useSelector(state => state);
+    const {screenWidth , messageBack} = useSelector(state => state);
     const navigation = useNavigation();
     const {booking} = route.params;
+    const dispatch = useDispatch();
+    let [coordinates , setCoordinates] = useState(["-38.9770815277723" , "-68.05826232925203"])
+    let [eliminar , setEliminar] = useState(false)
+    
+    function handlerDelete() {
+      dispatch(deleteBooking(booking.booking.id));
+      setEliminar(false)
+    }
+
   return (
+    messageBack?
+    <Message />
+    :
+    eliminar? 
+    <View style={{ justifyContent: "center", flex: 1 }}>
+      <Text style={styles.question}>¿Esta seguro que quiere cancelar la reserva?</Text>
+      <View style={styles.buttons}>
+        <TouchableOpacity style={styles.btnEdit} onPress={()=>setEliminar(false)}>
+            <Text style={styles.buttonText}>No eliminar</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.btnCancel} onPress={handlerDelete}>
+            <Text style={styles.textCancel}>Eliminar</Text>
+        </TouchableOpacity>
+      </View>
+    </View>
+    :
     <View style={{ justifyContent: "center", flex: 1 }}> 
     <View style={styles.container}>
       <View style={styles.nameContainer}>
@@ -53,8 +80,8 @@ export default function BookingDetail({route}) {
                             {
                               latitude: parseFloat(coordinates[0]),
                               longitude: parseFloat(coordinates[1]),
-                              title: court.name,
-                              description: court.description,
+                              title: booking.court.name,
+                              description: booking.court.description,
                               id: 1,
                             },
                           ],
@@ -77,8 +104,8 @@ export default function BookingDetail({route}) {
                       <TouchableOpacity style={styles.btnEdit}>
                         <Text style={styles.buttonText}>Editar</Text>
                       </TouchableOpacity>
-                      <TouchableOpacity style={styles.btnCancel}>
-                        <Text style={styles.textCancel}>Cancelar</Text>
+                      <TouchableOpacity style={styles.btnCancel} onPress={() => setEliminar(true)}>
+                        <Text style={styles.textCancel}>Eliminar</Text>
                       </TouchableOpacity>
                     </View>
                 </View>

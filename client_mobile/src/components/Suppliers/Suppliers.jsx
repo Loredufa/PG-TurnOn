@@ -37,12 +37,7 @@ export default function Suppliers({ route }) {
       {suppliers.length === 0 ? (
         <ActivityIndicator size="large" color="#00ff00" style={{flex:1 ,justifyContent: 'center'}} />
         ) : (
-          <View
-          style={{
-            flex: 6,
-            alignItems: "center",
-          }}
-          >
+          <View style={{  justifyContent: 'space-evenly'}}>
           <FlatList
             data={suppliers}
             style={{ flexGrow: 5.5 , width: screenWidth }}
@@ -56,7 +51,7 @@ export default function Suppliers({ route }) {
               //numColumns={3}
               keyExtractor={(item) => item.id}
               />
-        </View>
+              </View>
       )}
       </View>
     </View>

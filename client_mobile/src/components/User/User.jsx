@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import {useSelector , useDispatch} from 'react-redux';
 import { useNavigation } from "@react-navigation/native";
-import {closeSession , changeUserInfo , changeUserPass} from '../../store/actions/index';
+import {closeSession , changeUserInfo , changeUserPass , deleteUser} from '../../store/actions/index';
 import {
   TouchableOpacity,
   StyleSheet,
@@ -21,6 +21,13 @@ export default function User() {
   const {user} = useSelector(state => state.user);
   const { messageBack } = useSelector(state => state);
   const dispatch = useDispatch();
+
+  let [eliminar , setEliminar] = useState(false);
+  function handlerDelete() {
+    dispatch(deleteUser(user.id));
+    dispatch(closeSession);
+    setEliminar(false)
+  }
 
   
   const [passState , changePassState] = useState(false);
@@ -199,6 +206,21 @@ export default function User() {
   }
   
   return (
+    eliminar? 
+    <View style={{flex:1 , justifyContent: 'center'}}> 
+    <View style={{ alignItems: "center", flex: 1 }}>
+      <Text style={styles.question}>¿Esta seguro que quiere eliminar el usuario?</Text>
+      <View style={styles.buttons}>
+        <TouchableOpacity style={styles.btnEdit} onPress={()=>setEliminar(false)}>
+            <Text style={styles.buttonText}>No eliminar</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.btnCancel} onPress={handlerDelete}>
+            <Text style={styles.textCancel}>Eliminar</Text>
+        </TouchableOpacity>
+      </View>
+    </View>
+    </View>
+    :
     <View style={{flex:1 , alignItems: 'center'}}>
         <Text style={styles.title}>Mi perfil</Text>
         <View style={{flex:3}}>
@@ -316,7 +338,7 @@ export default function User() {
               <View style={styles.cuenta}>
                 <GoogleLogout />
                 <View style={styles.btnDelete}>
-                  <TouchableOpacity onPress={() => console.log("Eliminar cuenta")}>
+                  <TouchableOpacity onPress={() => setEliminar(true)}>
                     <Text style={styles.textDelete}>Eliminar cuenta</Text>
                   </TouchableOpacity>
                 </View>

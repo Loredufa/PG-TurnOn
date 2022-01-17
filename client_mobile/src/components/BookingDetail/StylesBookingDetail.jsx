@@ -146,4 +146,10 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
     backgroundColor: "#E9EBED",
   },
+  question: {
+    fontWeight: "700",
+    fontSize: 18,
+    margin: 10,
+    textAlign: 'center'
+  },
 });

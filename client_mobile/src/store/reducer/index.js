@@ -16,6 +16,8 @@ import {
   GET_SUPPLIER_BY_SPORT,
   GET_COURTS_SUPPLIER_SPORT,
   GET_BOOKINGS,
+  DELETE_BOOKING,
+  DELETE_USER
 } from "../actions/index";
 import {
   findEmail,
@@ -42,6 +44,7 @@ const initialState = {
   suppliers: [],
   googlesession: false,
   googleCreated: false,
+  flagBooking: true,
 };
 
 const reducer = (state = initialState, action) => {
@@ -53,6 +56,11 @@ const reducer = (state = initialState, action) => {
         users: state.users.concat(action.payload),
       };
       */
+    case DELETE_USER: 
+      return {
+        ...state,
+        messageBack: action.payload,
+      }
     case FIND_CREATED_USER:
       return {
         ...state,
@@ -114,12 +122,19 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         messageBack: action.payload,
+        flagBooking: !state.flagBooking,
         //bookings: state.bookings.includes(action.payload)? state.bookings : [...state.bookings, action.payload]
       }
     case GET_BOOKINGS:
       return {
         ...state,
         bookings: action.payload,
+      }
+    case DELETE_BOOKING: 
+      return {
+        ...state,
+        messageBack: action.payload,
+        flagBooking: !state.flagBooking,
       }
     case SET_SCREEN_DIMENSIONS:
       return {

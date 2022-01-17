@@ -29,9 +29,9 @@ export const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   optionsContainer: {
-    flex: 4,
+    flex: 3,
     flexDirection: "row",
-    margin: 20,
+    //margin: 20,
     //justifyContent: "space-between",
   },
   button: {
@@ -62,8 +62,8 @@ export const styles = StyleSheet.create({
     flex: 1,
     marginLeft: 10,
     marginRight: 20,
-    justifyContent: "flex-start",
-    paddingTop: 20,
+    justifyContent: "center",
+    //paddingTop: 20,
     // borderWidth: 1,
   },
   description: {
@@ -71,7 +71,7 @@ export const styles = StyleSheet.create({
     fontSize: 18,
   },
   descriptionContainer: {
-    flex: 3,
+    flex: 2,
     justifyContent: "flex-start",
     marginTop: 20,
     paddingLeft: 20,
@@ -80,20 +80,19 @@ export const styles = StyleSheet.create({
   priceAndLocationContainer: {
     flex: 1,
     flexDirection: "row",
-    margin: 20,
+    //margin: 20,
   },
   priceContainer: {
     justifyContent: "flex-start",
     flex: 1,
     alignItems: "center",
-    marginTop: 5,
+    //marginTop: 5,
   },
   locationContainer: {
     flex: 1,
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "flex-start",
-    marginTop: 5,
   },
   textPrice: {
     fontSize: 18,

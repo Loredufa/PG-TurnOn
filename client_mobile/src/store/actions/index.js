@@ -16,6 +16,8 @@ export const GOOGLE_LOGIN = "GOOGLE_LOGIN";
 export const GET_SUPPLIER_BY_SPORT = "GET_SUPPLIER_BY_SPORT";
 export const GET_COURTS_SUPPLIER_SPORT = "GET_COURTS_SUPPLIER_SPORT";
 export const GET_BOOKINGS = "GET_BOOKINGS";
+export const DELETE_BOOKING = "DELETE_BOOKING";
+export const DELETE_USER = "DELETE_USER";
 /*
 export function addUser(data) {
   return {
@@ -113,7 +115,7 @@ export function getBookings (userId) {
     try {
       //const postUser = await axios.get("http://localhost:3001/user/bookings/"+userId);
       const postUser = await axios.get("https://turnon1.herokuapp.com/user/bookings/"+userId)
-      console.log(postUser.data.result);
+      console.log("La respuesta del GET BOOKINGS es " ,postUser.data.result);
       dispatch({
         type: GET_BOOKINGS,
         payload: postUser.data.result,
@@ -124,11 +126,43 @@ export function getBookings (userId) {
   };
 };
 
+export function deleteBooking (bookingId) {
+  return async function (dispatch) {
+    try {
+      //const postUser = await axios.get("http://localhost:3001/user/bookings/"+userId);
+      const postUser = await axios.delete("https://turnon1.herokuapp.com/user/bookings/"+bookingId)
+      console.log("La data que esta devolviendo es" , postUser.data);
+      dispatch({
+        type: DELETE_BOOKING,
+        payload: postUser.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+
 export function closeSession() {
   return function (dispatch) {
     dispatch({
       type: CLOSE_SESSION,
     });
+  };
+}
+export function deleteUser (userId) {
+  return async function (dispatch) {
+    try {
+      //const postUser = await axios.post("http://localhost:3001/user/user", {
+      const message = await axios.delete("https://turnon1.herokuapp.com/user/user/" + userId);
+      console.log("El mensaje al eliminar" , message.data)
+      dispatch({
+        type: DELETE_USER,
+        payload: message.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 }
 
@@ -279,9 +313,26 @@ export function getCourtType(name) {
   };
 }
 
-export function addToFavorite(data) {
+export function addToFavorite( supplierId, userId) {
   return {
     type: ADD_TO_FAVORITE,
     payload: data,
-  };
+  }; 
+  /*
+  return async function (dispatch) {
+    try {
+      //const postUser = await axios.get("http://localhost:3001/user/court?name="+name); 
+      const favs = await axios.put("https://turnon1.herokuapp.com/user/favorites" , {
+        supplierId,
+        userId
+      }); 
+      console.log("Supplier",favs.data);
+      dispatch({
+        type: GET_SUPPLIERS_BY_NAME,
+        payload: favs.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };*/
 }
