@@ -14,7 +14,7 @@ import { addToFavorite } from "../../store/actions";
 import { useDispatch, useSelector } from "react-redux";
 
 export default function Supplier({item , sport}) {
-    const {screenWidth , favorites} = useSelector(state => state);
+    const {screenWidth , favorites , user} = useSelector(state => state);
     console.log(favorites);
     const navigation = useNavigation();
     const dispatch = useDispatch();
@@ -69,7 +69,7 @@ export default function Supplier({item , sport}) {
                       }}
                     >
                       <TouchableOpacity
-                        onPress={() => dispatch(addToFavorite(item))}
+                        onPress={() => dispatch(addToFavorite(item/*item.id , user.user.id*/))}
                       >
                         {favorites?.find(element => element.name === item.name)?
                         <MaterialCommunityIcons

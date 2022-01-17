@@ -28,7 +28,8 @@ export default function CourtDetail({ route }) {
   const screenWidth = useSelector((state) => state.screenWidth);
   const titleSize = useSelector((state) => state.titleSize);
   let { court } = route.params;
-  court = {
+  console.log("soy la cancha" , court)
+  /*court = {
     name: "Futbol 5 Orsai",
     id: 1,
     description:
@@ -39,11 +40,13 @@ export default function CourtDetail({ route }) {
     rating: "4.8",
     coordinates: "-38.9770815277723 -68.05826232925203",
     sport: "futbol",
-  };
+  };*/
 
   const [timeSelected, setTimeSelected] = useState("Horario");
   const [date, setDate] = useState("");
-  let coordinates = court.coordinates.split(" ");
+
+  let [coordinates , setCoordinates] = useState(["-38.9770815277723" , "-68.05826232925203"])
+  //let coordinates = court.coordinates.split(" ");
   function onChange(itemValue) {
     setTimeSelected(() => {
       const newInput = itemValue;
@@ -78,15 +81,15 @@ export default function CourtDetail({ route }) {
         <Image
           source={court.img}
           style={{
-            flex: 4,
+            flex: 3,
             //height: screenWidth / 3,
-            width: screenWidth / 1.2,
+            width: screenWidth / 1.6,
             padding: 3,
             borderRadius: 10,
           }}
         />
         <View style={styles.descriptionContainer}>
-          <Text style={styles.description}>{court.description}</Text>
+          <Text style={styles.description}>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa{court.description}</Text>
         </View>
         <View style={styles.optionsContainer}>
           {/* <Text style={{ marginRight: 20, borderWidth: 1 }}>Horario</Text> */}
@@ -130,8 +133,8 @@ export default function CourtDetail({ route }) {
           <Picker
             style={{
               //width: screenWidth / 3,
-              justifyContent: "flex-end",
-              marginTop: 20,
+              justifyContent: "center",
+              //marginTop: 20,
               flex: 1,
             }}
             selectedValue={timeSelected}

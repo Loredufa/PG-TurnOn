@@ -20,15 +20,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#179F34',
     color: 'white'
   },
-  title: {
-    flex: 0.5,
-    width: 200,
-    textAlign: 'center',
-    justifyContent: "center",
-    alignItems: "center",
-    marginTop: 10,
-    fontSize: 20,
-    fontWeight: "bold",
+  question: {
+    fontWeight: "700",
+    fontSize: 18,
+    margin: 10,
+    textAlign: 'center'
   },
-  container: { flex: 1, alignItems: "center" },
+  container: { flex: 1, alignItems: "center" , justifyContent: 'center' },
 });

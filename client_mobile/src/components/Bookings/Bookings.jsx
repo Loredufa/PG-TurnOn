@@ -13,8 +13,8 @@ import {getBookings} from '../../store/actions/index';
 import CardBooking from "../CardBooking/CardBooking";
 
 export default function Bookings({ route }) {
-  let {bookings , user} = useSelector((state) => state);
-  bookings =  [
+  let {bookings , user , flagBooking} = useSelector((state) => state);
+  /*bookings =  [
         {
             "booking": {
                 "id": 2,
@@ -52,12 +52,12 @@ export default function Bookings({ route }) {
                 "supplierId": 1
             }
         }
-    ]
+    ]*/
   const dispatch = useDispatch();
   useEffect(()=>{
     dispatch(getBookings(user.user.id));
-  },[])
-
+  },[flagBooking])
+  console.log(flagBooking)
   return (
     <View style={styles.container}>
       <Text style={styles.title} >
@@ -70,7 +70,7 @@ export default function Bookings({ route }) {
           justifyContent: "flex-start",
         }}
         >
-        {bookings.length !== 0 ? (
+        {bookings?.length !== 0 ? (
         <FlatList
           data={bookings}
           style={{ flexGrow: 5.5 }}
