@@ -13,7 +13,7 @@ import Home from "../Home/HomeTab";
 import { useNavigation } from "@react-navigation/native";
 import { useSelector, useDispatch } from "react-redux";
 import MaterialCommunityIcons from "react-native-vector-icons/Ionicons";
-import { addToFavorite, getCourt , getCourtBySport} from "../../store/actions/index";
+import { addToFavorite, getCourt , getCourtBySportSupplier , getCourtsBySupplier} from "../../store/actions/index";
 import SearchBar from "../SearchBar/SearchBar";
 import Court from "../Court/Court";
 import {styles} from './StyleCourts';
@@ -28,10 +28,13 @@ export default function Courts({ route }) {
   const dispatch = useDispatch();
   
   useEffect(()=> {
-    dispatch(getCourtBySport(route.params.sport));
+    if(route.params.sport)
+    dispatch(getCourtBySportSupplier(route.params.name , route.params.sport));
+    else
+    dispatch (getCourtsBySupplier(route.params.name))
   },[])
 
-
+  console.log("Soy las canchitas que tnego que renderizar: ", courtsBySports)
   /*
   const [btnPress, setBtnPress] = useState({ press: false, color: "black" });
 
@@ -44,30 +47,26 @@ export default function Courts({ route }) {
   */
   return (
     <View style={styles.container}>
+      <Text style={styles.title} > {route.params.name}</Text>
       <View style={styles.searchBarPos}>
         <SearchBar />
       </View>
-      <Text
-            style={styles.title}
-          >
-            {route.params.sport}
-          </Text>
-      {courtsBySports.length === 0 || courtsBySports[0].sport !== route.params.sport? (
-        <ActivityIndicator size="large" color="#00ff00" />
+      {courtsBySports.length === 0 || route.params.sport && courtsBySports[0].sport !== route.params.sport? (
+        <ActivityIndicator size="large" color="#00ff00" style={{flex:5 , justifyContent: 'center'}}/>
       ) : (
         <View
           style={{
-            flex: 6,
+            flex: 5,
             alignItems: "center",
             justifyContent: "flex-start",
           }}
         >
           <FlatList
             data={courtsBySports}
-            style={{ flexGrow: 5.5 , width: screenWidth }}
-            contentContainerStyle={{ alignItems: "center" }}
+            style={{ flexGrow: 5.5  }}
+            //contentContainerStyle={{ alignItems: "center" }}
             renderItem={({ item }) => (
-              <Court item={item}/>
+              <Court item={item} supplierID={route.params.id}/>
             )}
             ItemSeparatorComponent={() => <View style={{ height: 10 }} />}
             //numColumns={3}

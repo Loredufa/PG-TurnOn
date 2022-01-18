@@ -1,7 +1,9 @@
+@import "./Variables/var.css";
+
 .divPrincipalF{
     margin-top: -22px;
     background-color: rgb(255, 255, 255);
-    height: 22vw;
+    height: 25vw;
     font-family: 'Be Vietnam Pro', sans-serif;
     }
     
@@ -10,9 +12,9 @@
     font-weight: bold;
     text-align:left;
     font-size: 2.1rem;
-    margin-top: 0rem;
+    margin-top: 2rem;
     margin-left: 5.1rem;
-    color: #6bac48;
+    color:rgb(177, 177, 177);
     }
     
 .h2como{

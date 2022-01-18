@@ -9,15 +9,20 @@
     "axios": "^0.24.0",
     "formik": "^2.2.9",
     "react": "^17.0.2",
+    "react-calendar": "^3.5.0",
+    "react-confirm-alert": "^2.7.0",
     "react-dom": "^17.0.2",
     "react-icons": "^4.3.1",
+    "react-places-autocomplete": "^7.3.0",
     "react-redux": "^7.2.6",
     "react-router-dom": "^5.2.0",
     "react-scripts": "5.0.0",
+    "react-simple-timefield": "^3.2.5",
     "redux": "^4.1.2",
     "redux-devtools-extension": "^2.13.9",
     "redux-thunk": "^2.4.1",
     "styled-components": "^5.3.3",
+    "sweetalert2": "^11.3.5",
     "web-vitals": "^2.1.2"
   },
   "scripts": {
@@ -25,6 +30,11 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
+  },
+  "browser": {
+    "fs": false,
+    "path": false,
+    "os": false
   },
   "eslintConfig": {
     "extends": [
@@ -43,5 +53,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "mini-css-extract-plugin": "2.4.5"
   }
 }

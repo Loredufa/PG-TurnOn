@@ -16,6 +16,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {setScreenDimensions} from '../../store/actions/index';
 import {styles} from './StylesLogin';
 import * as SecureStore from 'expo-secure-store';
+import GoogleLogin from '../GoogleLogin/GoogleLogin';
 
 
 
@@ -113,7 +114,7 @@ useEffect(async () => {
   }*/
   return (
     loading? 
-    <View style={{alignItems:'center'}}>
+    <View style={{alignItems:'center' , justifyContent: 'center' , flex:1}}>
       <ActivityIndicator size="large" color="#00ff00" /> 
     </View>
     :
@@ -133,13 +134,21 @@ useEffect(async () => {
           defaultValue={inputs.password}
           secureTextEntry={true}
         />
-        {user.message && <Text>Usuario o contraseña incorrectos</Text>}
+        {user.message && <Text style={styles.error}>Usuario o contraseña incorrectos</Text>}
         <TouchableOpacity onPress={handleStartPress}>
           <View style={styles.button}>
             <Text style={styles.buttonText}>Iniciar sesión</Text>
           </View>
         </TouchableOpacity>
       </View>
+
+      <View style={{alignItems:'center'}}><View style={{width:280 , alignItems: 'center' , flexDirection: 'row',marginTop:30, marginBottom: 10}}>
+        <View style={{borderBottomWidth: 1 , width:130 }}></View>
+        <Text style={{marginRight: 5 , marginLeft:5}}>O</Text>
+        <View style={{borderBottomWidth: 1 , width:130 }}></View>
+      </View></View>
+      <GoogleLogin />
+      <View style={{borderBottomWidth: 1 , width:280 , alignSelf: 'center' , marginTop: 10 , marginBottom:10}}></View>
       <View style={styles.registerContainer}>
         <Text style={styles.acount}>¿No tienes una cuenta?</Text>
         <TouchableOpacity onPress={() => navigation.navigate("Register")}>

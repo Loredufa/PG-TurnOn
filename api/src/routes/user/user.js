@@ -5,6 +5,7 @@ const { login } = require("./controllers/login")
 const { updateUser } = require("./controllers/updateUser")
 const {deleteUser} = require("./controllers/deleteUser")
 const { updatePassword } = require("./controllers/updatePassword")
+const { getGoogle } = require("./controllers/getGoogle")
  
 
 // router.get ("/" , (req, res, next) => {
@@ -22,6 +23,7 @@ router.get("/user", login)
 router.put("/user/password/:id", updatePassword)
 router.put("/user/:id", updateUser)
 router.delete("/user/:id", deleteUser)
+router.get("/user/google" , getGoogle)
 
 
 

@@ -18,8 +18,7 @@ const putFavSupplier = async (req, res) => {
 
 module.exports= {putFavSupplier}
 
-   
-
+     
 
 
     // const user = await User.findAll ({

@@ -34,14 +34,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "white",
     borderRadius: 20,
-    borderWidth: 1,
     borderColor: "black",
     justifyContent: "center",
+    backgroundColor: "#179F34",
   },
   buttonText: {
-    textAlign: "center",
-    padding: 20,
-    color: "black",
+    fontSize: 15,
+    color: "white",
   },
   registerContainer: {
     display: "flex",
@@ -55,4 +54,5 @@ const styles = StyleSheet.create({
   acount: {
     marginRight: 10,
   },
+  error: {color:'red', marginTop:5},
 });

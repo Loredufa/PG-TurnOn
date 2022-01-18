@@ -9,10 +9,10 @@ import {
 } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import {styles} from './StyleSearchBar';
-import { getCourt } from "../../store/actions/index";
+import { getSuppliersByName } from "../../store/actions/index";
 import MaterialCommunityIcons from "react-native-vector-icons/Ionicons";
 import { useNavigation } from "@react-navigation/native";
-
+import Suppliers from "../Suppliers/Suppliers";
 
 export default function SearchBar() {
     const [input, setInput] = useState("");
@@ -21,9 +21,10 @@ export default function SearchBar() {
     const navigation = useNavigation();
 
     function handlerFindCourt () {
-      dispatch(getCourt(input))
+      dispatch(getSuppliersByName(input))
+      setInput("");
       //if (court === input) {
-        //navigation.navigate ('CourtDetail' , {court})
+        navigation.navigate ('Suppliers' , {type: "Tu busqueda"})
       /*}
       else {
         alert("Cancha no encontrada")
@@ -32,18 +33,20 @@ export default function SearchBar() {
   
     return (
       <View style={styles.containerSearch}>
+        <View style={styles.posInput}>
         <TextInput
           placeholder="Nombre"
           name="name"
           style={styles.input}
           onChangeText={(court) => setInput(court)}
-          defaultValue={input.name}
+          defaultValue={input}
         />
+        </View>
         <TouchableOpacity
           style={styles.button}
           onPress={handlerFindCourt}
         >
-          <MaterialCommunityIcons name="search" size={25} />
+          <MaterialCommunityIcons name="search" size={30} color="#179F34" />
         </TouchableOpacity>
       </View>
   );
