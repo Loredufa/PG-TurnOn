@@ -26,14 +26,16 @@ export const AvailabilityProvider = () => {
     const [days, setDays] = useState([])
 
     useEffect(() => {
-        axios.get(`http://localhost:3001/supplier/available/court/${currentCourt.id}`)
+        axios.get(`/supplier/available/court/${currentCourt.id}`)
           .then(res => setAvailability(res.data))
           .catch(err => console.log(err))
-    }, [])
+    }, [currentCourt.id])
 
     return (
       <Wrapper>
-        <button onClick={() => setSection("")}>Volver al listado</button>
+        <ButtonContainer>
+            <Button onClick={() => setSection("")}>Volver a la lista de canchas</Button>
+        </ButtonContainer>
         <AvailabilityContext.Provider 
             value={{
                 availability,
@@ -43,13 +45,44 @@ export const AvailabilityProvider = () => {
                 setDays
             }}
         >   
-            <Form />
-            <CourtInfo />
+            <Container>
+                <Form />
+                <CourtInfo currentCourt={currentCourt}/>
+            </Container>
         </AvailabilityContext.Provider>
       </Wrapper>
     )
 }
 
 const Wrapper = styled.div`
-  
+  height: 88.5vh;
+`
+
+const Container = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 78.5vh;
+    background: white;
+    border-radius: 30px;
+`
+
+const ButtonContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 10vh;
+    
+`
+
+const Button = styled.button`
+    width: 230px;
+    margin-left: 28px;
+    background: #81b214;
+    color: white;
+    border-style: none;
+    border-radius: 20px;
+    height: 41px;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 15px;
 `

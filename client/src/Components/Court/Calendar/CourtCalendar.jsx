@@ -3,27 +3,25 @@ import Calendar from 'react-calendar'
 import 'react-calendar/dist/Calendar.css';
 import { CourtContext } from '../Context/CourtContext';
 
-export default function CourtCalendar() {
+export default function CourtCalendar({ setBookings }) {
 
     const [date, setDate] = useState(new Date())
 
     const { currentCourt } = useContext(CourtContext)
 
     useEffect(() => {
-        // axios
         console.log("ID/Date: ", currentCourt.id, date.toLocaleDateString())
+        // axios.get(".../booking") me trae las reservas de un día determinado
+        //      .then(res => setBookings(res.data))
+        //      .catch(err => console.log(err))
     }, [currentCourt, date])
 
     const handleChange = (date) => setDate(date)
 
     return (
-        <div>
-            <Calendar
-                onChange={handleChange}
-                value={date}
-            />
-            <p>Fecha: {date.toLocaleDateString()}</p>
-            <p>ID de cancha: {currentCourt.id}</p>
-        </div>
+        <Calendar
+            onChange={handleChange}
+            value={date}
+        />
     )
 }
