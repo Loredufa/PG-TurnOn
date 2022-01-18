@@ -1,4 +1,5 @@
 const { Supplier } = require("../../../db")
+const {Field} = require ("../../../db")
 
 const deleteSupplier = async (req, res) => {
     
@@ -7,8 +8,11 @@ try {
     const supplierDeleted = await Supplier.destroy ({
         where: {
             id
-        }
-    });
+        },
+    //     include:{
+    //         model: Field,
+    // }
+});
 
     if (supplierDeleted) {
     res.json ({

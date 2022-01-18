@@ -16,6 +16,9 @@ export const GOOGLE_LOGIN = "GOOGLE_LOGIN";
 export const GET_SUPPLIER_BY_SPORT = "GET_SUPPLIER_BY_SPORT";
 export const GET_COURTS_SUPPLIER_SPORT = "GET_COURTS_SUPPLIER_SPORT";
 export const GET_BOOKINGS = "GET_BOOKINGS";
+export const DELETE_BOOKING = "DELETE_BOOKING";
+export const DELETE_USER = "DELETE_USER";
+export const GET_COURTS_SUPPLIER = "GET_COURTS_SUPPLIER";
 /*
 export function addUser(data) {
   return {
@@ -24,6 +27,9 @@ export function addUser(data) {
   };
 }
 */
+
+
+
 export function getCourtBySport (sport) {
   return async function (dispatch) {
     try {
@@ -43,11 +49,26 @@ export function getCourtBySport (sport) {
 export function getCourtBySportSupplier (name , sport) {
   return async function (dispatch) {
     try {
-      //const postUser = await axios.get("http://localhost:3001/user/court?name="+name); 
-      const postUser = await axios.get("https://turnon1.herokuapp.com/user/court?name="+name); 
+      //const postUser = await axios.get("http://localhost:3001/user/court?sport="+sport+ "&name=" + name); 
+      const postUser = await axios.get("https://turnon1.herokuapp.com/user/court?sport="+sport+ "&name=" + name); 
       console.log("Cancha buscada en back",postUser.data);
       dispatch({
         type: GET_COURTS_SUPPLIER_SPORT,
+        payload: postUser.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+export function getCourtsBySupplier (name) {
+  return async function (dispatch) {
+    try {
+      //const postUser = await axios.get("http://localhost:3001/user/court?sport="+sport+ "&name=" + name); 
+      const postUser = await axios.get("https://turnon1.herokuapp.com/user/court?name=" + name); 
+      console.log("Cancha buscada en back",postUser.data);
+      dispatch({
+        type: GET_COURTS_SUPPLIER,
         payload: postUser.data,
       });
     } catch (error) {
@@ -59,7 +80,7 @@ export function getCourtBySportSupplier (name , sport) {
 export function getSupplierBySport (sport) {
   return async function (dispatch) {
     try {
-      //const postUser = await axios.get("http://localhost:3001/user/supplier?sport="+sport); 
+      //const postUser = await axios.get("http://localhost:3001/user/supplier?sport="+sport ); 
       const postUser = await axios.get("https://turnon1.herokuapp.com/user/supplier?sport=" + sport); 
       console.log(postUser.data);
       dispatch({
@@ -90,10 +111,14 @@ export function bookCourt (courtId , userId) {
         const postUser = await axios.post("https://turnon1.herokuapp.com/user/bookings", {
         courtId,
         userId,
-        bookingCode: 1231,
-        status: "Reservado"
+        bookingCode: '1231',
+        status: "active",
+        date: "01/02/2022",
+        day: 'Lunes',
+        initialTime: '13:00',
+        endingTime : '14:00'
       });
-      console.log(postUser.data);
+      console.log("La respuesta del post" , postUser.data);
       dispatch({
         type: BOOK_COURT,
         payload: postUser.data,
@@ -109,8 +134,25 @@ export function getBookings (userId) {
     try {
       //const postUser = await axios.get("http://localhost:3001/user/bookings/"+userId);
       const postUser = await axios.get("https://turnon1.herokuapp.com/user/bookings/"+userId)
+      console.log("La respuesta del GET BOOKINGS es " ,postUser.data.result);
       dispatch({
         type: GET_BOOKINGS,
+        payload: postUser.data.result,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export function deleteBooking (bookingId) {
+  return async function (dispatch) {
+    try {
+      //const postUser = await axios.get("http://localhost:3001/user/bookings/"+userId);
+      const postUser = await axios.delete("https://turnon1.herokuapp.com/user/bookings/"+bookingId)
+      console.log("La data que esta devolviendo es" , postUser.data);
+      dispatch({
+        type: DELETE_BOOKING,
         payload: postUser.data,
       });
     } catch (error) {
@@ -119,11 +161,27 @@ export function getBookings (userId) {
   };
 };
 
+
 export function closeSession() {
   return function (dispatch) {
     dispatch({
       type: CLOSE_SESSION,
     });
+  };
+}
+export function deleteUser (userId) {
+  return async function (dispatch) {
+    try {
+      //const postUser = await axios.post("http://localhost:3001/user/user", {
+      const message = await axios.delete("https://turnon1.herokuapp.com/user/user/" + userId);
+      console.log("El mensaje al eliminar" , message.data)
+      dispatch({
+        type: DELETE_USER,
+        payload: message.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 }
 
@@ -248,8 +306,8 @@ export function getSuppliersByName(name) {
   return async function (dispatch) {
     try {
       //const postUser = await axios.get("http://localhost:3001/user/court?name="+name); 
-      const postUser = await axios.get("https://turnon1.herokuapp.com/user/court?name="+name); 
-      console.log("Cancha buscada en back",postUser.data);
+      const postUser = await axios.get("https://turnon1.herokuapp.com/user/supplier?name="+name); 
+      console.log("Supplier",postUser.data);
       dispatch({
         type: GET_SUPPLIERS_BY_NAME,
         payload: postUser.data,
@@ -274,9 +332,26 @@ export function getCourtType(name) {
   };
 }
 
-export function addToFavorite(data) {
+export function addToFavorite(data /*supplierId, userId*/) {
   return {
     type: ADD_TO_FAVORITE,
     payload: data,
-  };
+  }; 
+  /*
+  return async function (dispatch) {
+    try {
+      //const postUser = await axios.get("http://localhost:3001/user/court?name="+name); 
+      const favs = await axios.put("https://turnon1.herokuapp.com/user/favorites" , {
+        supplierId,
+        userId
+      }); 
+      console.log("Supplier",favs.data);
+      dispatch({
+        type: GET_SUPPLIERS_BY_NAME,
+        payload: favs.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };*/
 }

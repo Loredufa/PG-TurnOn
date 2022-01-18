@@ -1,3 +1,4 @@
+import { useNavigation } from "@react-navigation/native";
 import React, { useState } from "react";
 import {
   TouchableOpacity,
@@ -8,14 +9,21 @@ import {
   Image,
 } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-import { changeMessage } from "../../store/actions";
+import { changeMessage, closeSession } from "../../store/actions";
 import {styles} from './StylesMessage'
 
 export default function Message() {
     const {messageBack} = useSelector(state => state);
     const dispatch = useDispatch();
-    
+    const navigation = useNavigation();
     function handlerMessage () {
+        if (messageBack.message === "El usuario ha sido borrado correctamente") {
+          console.log("ENTRE A ESTE IF")
+          dispatch(closeSession());
+        }
+        else if (messageBack.message === 'La reserva ha sido borrado correctamente') {
+          navigation.navigate("Bookings");
+        }
         dispatch (changeMessage());
     }
 
@@ -24,9 +32,9 @@ export default function Message() {
     <View style={styles.container}>
         {
             messageBack.success?
-            <Text style={styles.title}>{messageBack.success}</Text>
+            <Text style={styles.question}>{messageBack.success}</Text>
             :
-            <Text>{messageBack.message}</Text>
+            <Text style ={styles.question}>{messageBack.message}</Text>
         }
       <View style={styles.btnUser}>
               <TouchableOpacity onPress={handlerMessage}>

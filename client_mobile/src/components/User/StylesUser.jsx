@@ -13,6 +13,7 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
+  error: {width: 280, color:'red', marginTop:5, textAlign: 'center' , marginBottom:10},
   input: {
     width: 280,
     height: 40,
@@ -89,4 +90,45 @@ export const styles = StyleSheet.create({
     marginRight: 15,
     backgroundColor: "#E9EBED",
   },
+  buttons: {
+    flex: 1,
+    flexDirection: 'row',
+    alignSelf: 'center'
+},
+btnEdit: {
+  width: 130,
+  height: 35,
+  alignItems: "center",
+  backgroundColor: "white",
+  borderRadius: 20,
+  borderColor: "black",
+  justifyContent: "center",
+  marginRight:5,
+  backgroundColor: "#179F34",
+},
+buttonText: {
+  fontSize: 15,
+  color: "white",
+},
+textCancel: {
+  fontSize: 15,
+  color: "black",
+},
+btnCancel: {
+  width: 130,
+  height: 35,
+  alignItems: "center",
+  backgroundColor: "white",
+  borderRadius: 20,
+  marginLeft:5,
+  borderColor: "black",
+  justifyContent: "center",
+  backgroundColor: "#E9EBED",
+},
+question: {
+  fontWeight: "700",
+  fontSize: 18,
+  margin: 10,
+  textAlign: 'center'
+},
 });
