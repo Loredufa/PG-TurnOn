@@ -7,6 +7,8 @@ import {
   BEST_COURTS_NEAR_ME,
   GET_COURT_TYPE,
   ADD_TO_FAVORITE,
+  GET_FAVORITES,
+  DELETE_FROM_FAVORITE,
   BOOK_COURT,
   SET_SCREEN_DIMENSIONS,
   GET_COURT_BY_SPORT,
@@ -46,6 +48,7 @@ const initialState = {
   googlesession: false,
   googleCreated: false,
   flagBooking: true,
+  supplierAddFav: 0,
 };
 
 const reducer = (state = initialState, action) => {
@@ -115,10 +118,22 @@ const reducer = (state = initialState, action) => {
     case ADD_TO_FAVORITE:
       return {
         ...state,
-        favorites: state.favorites.includes(action.payload)? 
+        /*favorites: state.favorites.includes(action.payload)? 
         state.favorites.filter(element => element !== action.payload) 
-        : [...state.favorites , action.payload]
+        : [...state.favorites , action.payload]*/
+        supplierAddFav: action.payload[0].supplierId
       };
+    case GET_FAVORITES:
+      return {
+        ...state,
+        favorites: action.payload
+      };
+    case DELETE_FROM_FAVORITE: 
+      return {
+        ...state,
+        messageBack: action.payload,
+        supplierAddFav: 0,
+      }
     case BOOK_COURT:
       return {
         ...state,

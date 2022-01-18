@@ -19,6 +19,7 @@ import {
   getCourt,
   bestCourtsNearMe,
   getCourtType,
+  getFavorites,
 } from "../../store/actions/index";
 import SearchBar from "../SearchBar/SearchBar";
 import { styles } from "./StyleHome";
@@ -59,6 +60,7 @@ export default function Home() {
   useEffect(() => {
     //alert("Permitir acceder a tu ubicacion");
     dispatch(bestCourtsNearMe(5));
+    dispatch (getFavorites(user.user.id));
   }, []);
 
   const courts = useSelector((state) => state.bestCourts);

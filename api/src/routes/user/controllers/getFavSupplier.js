@@ -5,10 +5,9 @@ const {User} = require("../../../db")
 const getFavSupplier = async (req, res) => {
 
     const {userId} = req.query
+
     const {name} = req.query
     
-    
-
     try {
       
          const user = await User.findByPk(userId)
