@@ -13,7 +13,7 @@ import Home from "../Home/HomeTab";
 import { useNavigation } from "@react-navigation/native";
 import { useSelector, useDispatch } from "react-redux";
 import MaterialCommunityIcons from "react-native-vector-icons/Ionicons";
-import { addToFavorite, getCourt , getCourtBySportSupplier} from "../../store/actions/index";
+import { addToFavorite, getCourt , getCourtBySportSupplier , getCourtsBySupplier} from "../../store/actions/index";
 import SearchBar from "../SearchBar/SearchBar";
 import Court from "../Court/Court";
 import {styles} from './StyleCourts';
@@ -28,10 +28,13 @@ export default function Courts({ route }) {
   const dispatch = useDispatch();
   
   useEffect(()=> {
+    if(route.params.sport)
     dispatch(getCourtBySportSupplier(route.params.name , route.params.sport));
+    else
+    dispatch (getCourtsBySupplier(route.params.name))
   },[])
 
-
+  console.log("Soy las canchitas que tnego que renderizar: ", courtsBySports)
   /*
   const [btnPress, setBtnPress] = useState({ press: false, color: "black" });
 
@@ -48,7 +51,7 @@ export default function Courts({ route }) {
       <View style={styles.searchBarPos}>
         <SearchBar />
       </View>
-      {courtsBySports.length === 0 || courtsBySports[0].sport !== route.params.sport? (
+      {courtsBySports.length === 0 || route.params.sport && courtsBySports[0].sport !== route.params.sport? (
         <ActivityIndicator size="large" color="#00ff00" style={{flex:5 , justifyContent: 'center'}}/>
       ) : (
         <View
@@ -60,8 +63,8 @@ export default function Courts({ route }) {
         >
           <FlatList
             data={courtsBySports}
-            style={{ flexGrow: 5.5 , width: screenWidth }}
-            contentContainerStyle={{ alignItems: "center" }}
+            style={{ flexGrow: 5.5  }}
+            //contentContainerStyle={{ alignItems: "center" }}
             renderItem={({ item }) => (
               <Court item={item} supplierID={route.params.id}/>
             )}

@@ -24,15 +24,13 @@ const styles = StyleSheet.create({
       width: 130,
       height: 35,
       alignItems: "center",
-      backgroundColor: "white",
       borderRadius: 20,
-      borderWidth: 1,
       borderColor: "black",
       justifyContent: "center",
     },
     buttonText: {
       fontSize: 15,
-      color: "black",
+      color: "white",
     },
     input: {
       width: 280,
@@ -47,6 +45,7 @@ const styles = StyleSheet.create({
   
       paddingLeft: 10,
     },
+    error: {color:'red', marginTop:5},
     question: {
       fontWeight: "700",
       fontSize: 15,

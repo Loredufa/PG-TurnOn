@@ -56,15 +56,17 @@ const CreateLink = styled(Link)`
 `
 
 const Button = styled.button`
-    background: #179f34;
+    background: #81b214;
     color: white;
     border-radius: 30px;
     border-style: none;
     height: 45px;
     width: 180px;
-    font-size: 14px;
+    font-size: 16px;
+    font-family:'Be Vietnam Pro', sans-serif;
     &:hover {
-        background: #3fc959;
+        background: white;
+        color:#81b214;
     }
 `
 
