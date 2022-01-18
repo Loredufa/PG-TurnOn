@@ -5,12 +5,13 @@ export const SET_MESSAGE_USER = "SET_MESSAGE_USER";
 export const SET_USER = "SET_USER";
 export const CREATE_COURT = "CREATE_COURT";
 export const DELETE_USER = "DELETE_USER";
+export const UPDATE_PASSWORD = "UPDATE_PASSWORD";
 
 export function Register(payload) {
   return async function (dispatch) {
     try {
       const info = await axios.post(
-        `http://localhost:3001/supplier/supplier`,
+        `/supplier/supplier`,
         payload
       );
       if (info.data.message) {
@@ -33,7 +34,7 @@ export function loginUser({ user, password }) {
   return async function (dispatch) {
     try {
       const userinfo = await axios.get(
-        `http://localhost:3001/supplier/supplier?mail=${user}&password=${password}`
+        `/supplier/supplier?mail=${user}&password=${password}`
       );
       if (userinfo.data.message) {
         return dispatch({
@@ -57,7 +58,7 @@ export function changeSupplierProfile({ id, info }) {
   return async function (dispatch) {
     try {
       const updateinfo = await axios.put(
-        `http://localhost:3001/supplier/supplier/${id}`,
+        `/supplier/supplier/${id}`,
         info
       );
       console.log("QUE TRAE ID", updateinfo.data);
@@ -77,7 +78,7 @@ export function createTurnCourt(supplierId, infoCourt) {
     console.log("QUE ENVIA DESDE EL FRONT", infoCourt);
     try {
       const infoCreateCourt = await axios.post(
-        `http://localhost:3001/supplier/court/${supplierId}`,
+        `/supplier/court/${supplierId}`,
         infoCourt
       );
       console.log("VER LO Q DA DATA:", infoCreateCourt);
@@ -96,13 +97,28 @@ export function deleteUser(id) {
   return async function (dispatch) {
     try {
       const deleteUsario = await axios.delete(
-        `http://localhost:3001/supplier/supplier/${id}`
+        `/supplier/supplier/${id}`
       );
       console.log("QUE TRAE ID", deleteUsario.data);
       return dispatch({
         type: DELETE_USER,
         payload: deleteUsario.data,
       });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
+export function updatePassword(id, oldPassword, newPassword) {
+  return async function (dispatch) {
+    try {
+      const pwdupdate = await axios.put(
+        `/supplier/supplier/password/${id}`,
+        { oldPassword, newPassword }
+      );
+      console.log("VER LO Q DA PWDUPDATE:", pwdupdate);
+      return pwdupdate.data;
     } catch (error) {
       console.log(error);
     }

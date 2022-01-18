@@ -6,30 +6,32 @@ export const DivGlobal = styled.div`
   height: 94vh;
 `;
 export const DivForm = styled.div`
+  width: 700px;
+  height: auto; 
   display: flex;
   margin-left: 50px;
   margin-top: 60px;
   flex-direction: column;
-  padding: 25px;
-  padding-top: 20px;
-  width: 720px;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  justify-content:space-between;
+  flex-grow: 0;
+  padding: 10px;
+  padding-bottom: 30px;
+  padding-top: 30px;
   background-color: #81b214;
   border-radius: 20px;
 `;
 
-export const ContenedorForm = styled.div`
-  display: flex;
-  flex-direction: row;
-`;
-export const EditButton = styled.button`
+export const GuardarButton = styled.button`
   background-color: #81b214;
   position: absolute;
   font-family: "Be Vietnam Pro", sans-serif;
   font-size: 20px;
   top: 200px;
-  left: 50px;
+  left: 230px;
   width: 140px;
-  height: 54px;
+  height: 45px;
   cursor: pointer;
   border-radius: 30px;
   border-style: none;
@@ -40,57 +42,28 @@ export const EditButton = styled.button`
     color: white;
   }
   &:hover{
-    background-color:white;
-    color:#81b214;
+    background-color: #179f34;
+    color:white;
 
   }
 `;
-export const UpdateButton = styled.button`
+export const VolverButton = styled.button`
   background-color: #81b214;
   position: absolute;
   font-family: "Be Vietnam Pro", sans-serif;
-  font-size: 17px;
+  font-size: 20px;
   top: 200px;
-  left: 230px;
-  width: 170px;
-  height: 54px;
-  cursor: pointer;
-  border-radius: 30px;
-  border-style: none;
-  color: white;
-  text-align: center;
-  padding: 10px;
-  line-height: 18px;
-  &:hover{
-    background-color:white;
-    color:#81b214;
-
-  }
-`;
-
-export const DeleteButton = styled.button`
-  background-color: #81b214;
-  position: absolute;
-  font-family: "Be Vietnam Pro", sans-serif;
-  font-size: 17px;
-  top: 200px;
-  left: 438px;
+  left: 50px;
   width: 140px;
-  height: 54px;
+  height: 45px;
   cursor: pointer;
   border-radius: 30px;
   border-style: none;
   color: white;
-  text-align: center;
-  line-height: 18px;
   padding: 10px;
-  .link {
-    outline: none;
-    color: white;
-  }
   &:hover{
-    background-color: #d62c1c;
-    color: white;
+    background-color:white;
+    color:#81b214;
 
   }
 `;
@@ -119,32 +92,13 @@ export const LabelSetting = styled.label`
     background-color: white;
     border-radius: 30px;
   }
-`;
-
-export const LabelSetting2 = styled.div`
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-gap: 20px;
-  font-family: "Be Vietnam Pro", sans-serif;
-  font-size: 20px;
-  ${"" /* text-align: center; */}
-  justify-content: space-between;
-  padding: 13px;
-  padding-left: 20px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  margin-left: 10px;
-  margin-right: 10px;
-  border-radius: 30px;
-  color: rgb(255, 255, 255);
-  background: rgba(25, 123, 0, 0.2);
-  label {
-    padding: 0px;
-    color: white;
-    margin-left: 10px;
-    text-align: center;
+  p{
+    font-family: "Be Vietnam Pro", sans-serif;
+    font-size: 15px;
+    margin-left: 0px;
   }
 `;
+
 export const H1name = styled.h1`
   font-family: "Be Vietnam Pro", sans-serif;
   margin-left: 50px;
@@ -152,3 +106,9 @@ export const H1name = styled.h1`
   color:#81b214;
   font-size: 45px
 `;
+
+export const ResponseContr= styled.p`
+font-family: "Be Vietnam Pro", sans-serif;
+font-size: 20px;
+margin-left: 55px;
+`

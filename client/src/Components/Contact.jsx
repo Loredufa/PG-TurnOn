@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik"
-/* import { Link, useHistory } from 'react-router-dom'; */
 import { useDispatch } from "react-redux";
+import "../Css/contact.css"
 
 
 export default function Contact(){
@@ -68,61 +68,63 @@ return (
          <h1 className="titulo-contacto">CONTACTO</h1>
          <p className="parrafo-info">Si necesitas más información o posees alguna consulta, dejanos un mensaje.
          </p>
-        <div className="label-nombre">
+        <div className="label-input">
             <label htmlFor="name"></label>
             <Field 
                  type="text" 
                  id="name" 
                  name="name" 
                  placeholder="Nombre y Apellido"
-                 className="in-nombre"
+                 className="in-put"
                  />
         </div>
         <ErrorMessage name="name" component={()=> 
-        <div className="error-nombre">{errors.name}</div>}/>
+        <div className="error-contact">{errors.name}</div>}/>
 
-        <div className="label-phone">
+        <div className="label-input">
             <label htmlFor="phone"></label>
             <Field 
                  type="text" 
                  id="phone" 
                  name="phone" 
                  placeholder="Número de Teléfono"
-                 className="in-phone"
+                 className="in-put"
                  />
         </div>
         <ErrorMessage name="phone" component={()=> 
-        <div className="error-phone">{errors.phone}</div>}/>
+        <div className="error-contact">{errors.phone}</div>}/>
 
-        <div className="label-email">
+        <div className="label-input">
             <label htmlFor="mail"></label>
             <Field 
                  type="email" 
                  id="mail" 
                  name="mail" 
                  placeholder="E-mail"
-                 className="in-email"
+                 className="in-put"
                  />
         </div>
 
         <ErrorMessage name="mail" component={()=> 
-        <div className="error-email">{errors.mail}</div>}/>
+        <div className="error-contact">{errors.mail}</div>}/>
 
-        <div className="label-message">
+        <div className="label-input label-message">
             <label htmlFor="message"></label>
             <Field
-                 type="textarea" 
+                 as="textarea" 
                  id="message" 
                  name="message" 
                  placeholder="Mensaje"
-                 className="in-message"
+                 className="in-put in-message"
+                 col="50"
+                 row="6"
                  />
         </div>
         <ErrorMessage name="message" component={()=> 
-        <div className="error-message">{errors.message}</div>}/>
+        <div className="error-contact">{errors.message}</div>}/>
 
-        <button type="submit" className="buttonSubmitReg">Enviar</button>
-        {FormularioEnvidado && <p>Mensaje enviado con exito</p> }
+        <button type="submit" className="buttonSubmit-Cont">Enviar</button>
+        {FormularioEnvidado && <p className="mess-contact">Mensaje enviado con exito</p> }
 
 
     </Form>
