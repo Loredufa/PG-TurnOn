@@ -8,7 +8,7 @@ import Suppliers from "../Suppliers/Suppliers";
 
 const Stack = createStackNavigator();
 
-export default function App() {
+export default function HomeStack() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="Home" component={Home} />

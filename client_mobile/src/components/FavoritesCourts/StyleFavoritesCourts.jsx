@@ -13,37 +13,4 @@ export const styles = StyleSheet.create({
     fontWeight: "bold",
     flex: 0.5,
   },
-  containerSearch: {
-    alignItems: "center",
-    justifyContent: "flex-start",
-    flexDirection: "row",
-    flex: 1,
-  },
-  input: {
-    width: 280,
-    height: 40,
-
-    marginTop: 15,
-
-    borderRadius: 20,
-    borderWidth: 1,
-
-    backgroundColor: "white",
-
-    paddingLeft: 10,
-  },
-  /*
-  card: {
-    flex: 1,
-    flexDirection: "column",
-    borderRadius: 10,
-    margin: 10,
-    borderWidth: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    padding: 2,
-
-    //borderColor: "black",
-  },
-  */
 });

@@ -76,8 +76,9 @@ export default function Phone() {
                 name= 'phone'
                 style={styles.input}
                 defaultValue={infoEdit.phone}
+                keyboardType="phone-pad"
                 onChangeText={(e) => handlerChangeInfo("phone", e)}
-              /><Text>{infoEdit.errors.phone}</Text>
+              /><Text style={styles.error}>{infoEdit.errors.phone}</Text>
         <TouchableOpacity disabled={disabled} onPress={handlerNewPhone} >
             <View style={styles.button}>
                 <Text style={styles.buttonText}>Aceptar</Text>

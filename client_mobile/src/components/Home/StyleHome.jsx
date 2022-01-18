@@ -18,12 +18,13 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     //justifyContent: "center",
     padding: 2,
-
-    shadowColor: "#000",
-    shadowOpacity: 0.30,
-    shadowRadius: 5,
-
-    elevation: 8,
+/*
+*/
+backgroundColor: 'white',
+shadowOpacity: 0.50,
+shadowRadius: 5,
+shadowColor: "#000",
+elevation: 20,
     //borderColor: "black",
   },
   input: {
@@ -75,7 +76,7 @@ export const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   ratingContainer: {
-    marginLeft: 100,
+    marginRight:10,
     flexDirection: 'row',
     justifyContent: 'flex-end',
     alignItems: 'center'

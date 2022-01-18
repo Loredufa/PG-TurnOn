@@ -70,6 +70,8 @@ export default function Landing() {
       </View>
       <View style={styles.container}>
         <Text style={styles.welcome}>Bienvenido!</Text>
+        <Text style={styles.slogan}>Revoluciona tus reservas</Text>
+        <Text style={styles.slogan}>No mas filas. No mas llamadas. No mas espera.</Text>
         <Text style={styles.question}>¿Permitis acceder a tu ubicación?</Text>
 
          <TouchableOpacity onPress={() => user?.user.phone==='0000000000'? navigation.navigate("Phone") 
