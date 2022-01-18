@@ -1,22 +1,23 @@
+@import "./Variables/var.css";
+
 .div-father-features{
-    background-image: url('../Assets/Images/green-wave-down.svg');
+    background-image: url('../Assets/Images/Apple\ green-wave.svg');
     width: 100vw;
-    height: 60vh;
+    height: 50vh;
     background-repeat: no-repeat;
-    /* background-attachment: fixed; */
     background-position: center;
     background-size: cover;
 
 }
 
 .h1-features{
-    padding-top: 30px;
+    padding-top: 20px;
     font-weight: bold;
     text-align:left;
     font-size: 2.1rem;
-    margin-top: 0rem;
+    margin-top: 4rem;
     margin-left: 5.1rem;
-    color: #6bac48;
+    color: rgb(177, 177, 177);
 
 }
 
@@ -33,7 +34,7 @@
 }
 
 .div-features-1{
-    background-color: rgb(243, 163, 35);
+    background-color: var(--colorMikatoYellow);
     border-radius: 10px;
     width: 300px;
     text-align: center;
@@ -41,12 +42,12 @@
     padding-left: 5px;
     padding-bottom: 5px;
     padding-top: 5px;
-    box-shadow: 7px 5px 7px hsla(110, 95%, 17%, 0.438);
+    box-shadow: 7px 5px 7px hsla(0, 0%, 51%, 0.438);
 
 }
 
 .div-features-2{
-    background-color: rgb(243, 163, 35);
+    background-color: var(--colorMikatoYellow);
     border-radius: 10px;
     width: 300px;
     text-align: center;
@@ -54,12 +55,12 @@
     padding-left: 5px;
     padding-bottom: 5px;
     padding-top: 5px;
-    box-shadow: 7px 5px 7px hsla(110, 95%, 17%, 0.438);
+    box-shadow: 7px 5px 7px hsla(0, 0%, 51%, 0.438);
 
 }
 
 .div-features-3{
-    background-color: rgb(243, 163, 35);
+    background-color: var(--colorMikatoYellow);
     border-radius: 10px;
     width: 300px;
     text-align: center;
@@ -67,12 +68,12 @@
     padding-left: 10px;
     padding-bottom: 5px;
     padding-top: 5px;
-    box-shadow: 7px 5px 7px hsla(110, 95%, 17%, 0.438);;
+    box-shadow: 7px 5px 7px hsla(0, 0%, 51%, 0.438);
 
 }
 
 .div-features-4{
-    background-color: rgb(243, 163, 35);
+    background-color: var(--colorMikatoYellow);
     border-radius: 10px;
     width: 300px;
     text-align: center;
@@ -80,12 +81,12 @@
     padding-left: 5px;
     padding-bottom: 5px;
     padding-top: 5px;
-    box-shadow: 7px 5px 7px hsla(110, 95%, 17%, 0.438);
+    box-shadow: 7px 5px 7px hsla(113, 10%, 35%, 0.438);
 
 }
 
 .div-features-5{
-    background-color: rgb(243, 163, 35);
+    background-color: var(--colorMikatoYellow);
     border-radius: 10px;
     width: 300px;
     text-align: center;

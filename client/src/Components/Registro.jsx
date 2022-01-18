@@ -4,7 +4,7 @@ import "../Css/Registro.css"
 import { Link, useHistory } from 'react-router-dom';
 import { Register } from "../Actions/actions";
 import { useDispatch, useSelector } from "react-redux";
-
+import Swal from "sweetalert2";
 
 export default function Registro(){
 
@@ -13,7 +13,11 @@ const { message_reg, success } = useSelector(state =>state)
 const history = useHistory()
 
 if(success){
-    alert('Usuario Creado con Exito')
+    Swal.fire({
+        title:'Usuario Creado con Exito',
+        icon: 'success',
+        button: 'Aceptar',
+        })
     history.push('/login')
 }
 
@@ -139,7 +143,7 @@ return (
                  type="text" 
                  id="cuit" 
                  name="cuit" 
-                 placeholder="CUIT"
+                 placeholder="CUIT: xx-xxxxxxxx-x"
                  className="in-cuit"
                  />
         </div>

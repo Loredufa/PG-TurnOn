@@ -23,6 +23,7 @@
     "express": "^4.17.2",
     "morgan": "^1.10.0",
     "pg": "^8.7.1",
+    "react-confirm-alert": "^2.7.0",
     "sequelize": "^6.12.5"
   }
 }

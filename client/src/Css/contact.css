@@ -1,0 +1,101 @@
+@import "./Variables/var.css";
+
+.back-ground-contact{
+    margin-top: -22px;
+    background-color: var(--colorAppleGreen);
+    height: 32vw;
+    font-family: 'Be Vietnam Pro', sans-serif;
+
+}
+
+
+.formulario-contacto{
+    padding-top: 40px;
+    margin-top: 0px;
+    margin-left: 5px;
+    border-radius: 30px;    
+}
+
+.titulo-contacto{
+    font-family:'Be Vietnam Pro', sans-serif;
+    color:#ffffff;
+    margin-left: 85px;
+    margin-bottom: 45px;
+    font-size: 2.1rem;;
+}
+
+.parrafo-info{
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 20px;  
+    color:#dedede;
+    text-align: left;
+    margin-left: 90px;
+    margin-bottom: 25px;
+}
+
+.label-input{
+    margin-bottom: 15px;
+    margin-left: 85px;
+}
+
+.in-put{
+    width: 450px;
+    height: 41px;
+    padding-left: 20px;
+    padding-right: 20px;
+    background: #FFFFFF;
+    border: 1px solid #b1afaf;
+    box-sizing: border-box;
+    border-radius: 30px;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 18px;    
+}
+
+.label-message{
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 12px;  
+    color:#ffffff;
+    margin-bottom: 10px;
+    text-align: left;
+    margin-left: 90px;
+}
+
+.in-message{
+    width: 450px;
+    height: 150px;
+    border-radius: 15px;
+    padding-top: 10px;
+
+}
+
+.buttonSubmit-Cont{
+    width: 180px;
+    height: 45px;
+    margin-left: 550px;
+    margin-top: 1px;
+    background: #FFFFFF;
+    border: 1px solid #fdfcfc;
+    box-sizing: border-box;
+    border-radius: 30px;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 18px;
+    color: #6bac48;
+
+}
+
+.buttonSubmit-Cont:hover{
+    background: #dedede;
+    color: #f7faf5;    
+}   
+
+
+.error-contact{
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 12px;  
+    color:#ffffff;
+    margin-bottom: 10px;
+    text-align: left;
+    margin-left: 90px;
+}
+
+.mess-contact{}
