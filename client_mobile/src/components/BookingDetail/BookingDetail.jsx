@@ -17,9 +17,8 @@ export default function BookingDetail({route}) {
     const navigation = useNavigation();
     const {booking} = route.params;
     const dispatch = useDispatch();
-    let [coordinates , setCoordinates] = useState(["-38.9770815277723" , "-68.05826232925203"])
+    let [coordinates , setCoordinates] = useState(booking.court.address.split(" "))
     let [eliminar , setEliminar] = useState(false)
-    
     function handlerDelete() {
       dispatch(deleteBooking(booking.booking.id));
       setEliminar(false)

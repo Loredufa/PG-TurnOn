@@ -29,7 +29,8 @@ export function addUser(data) {
   };
 }
 */
-const URL =  "http://localhost:3001/" //"https://turnon1.herokuapp.com/"
+const URL = "http://localhost:3001/" 
+//const URL = "https://turnon1.herokuapp.com/"
 
 
 export function getCourtBySport (sport) {
@@ -110,17 +111,18 @@ export function setScreenDimensions (screenWidth, numColumns, titleSize){
 }
 
 
-export function bookCourt (courtId , userId) {
+export function bookCourt (courtId , userId , date) {
   return async function (dispatch) {
     try {
+      console.log( "La fecha seleccionada es: " , date);
       //const postUser = await axios.post("http://localhost:3001/user/bookings", {
         //const postUser = await axios.post("https://turnon1.herokuapp.com/user/bookings", {
           const postUser = await axios.post(URL + "user/bookings", {
         courtId,
         userId,
-        bookingCode: '1231',
+        bookingCode: Math.round(Math.random() * (9999 - 1000) + 1000),
         status: "active",
-        date: "01/02/2022",
+        date: date,
         day: 'Lunes',
         initialTime: '13:00',
         endingTime : '14:00'

@@ -23,7 +23,9 @@ export default function CourtDetail({ route }) {
   const { user, favorites, messageBack } = useSelector((state) => state);
   console.log(favorites);
   function handlerBooking() {
-    dispatch(bookCourt(route.params.court.id, user.user.id));
+    let day = date.split("-").join("/");
+    console.log(typeof(day))
+    dispatch(bookCourt(route.params.court.id, user.user.id , day , timeSelected));
   }
   const screenWidth = useSelector((state) => state.screenWidth);
   const titleSize = useSelector((state) => state.titleSize);
@@ -45,7 +47,7 @@ export default function CourtDetail({ route }) {
   const [timeSelected, setTimeSelected] = useState("Horario");
   const [date, setDate] = useState("");
 
-  let [coordinates , setCoordinates] = useState(["-38.9770815277723" , "-68.05826232925203"])
+  let [coordinates , setCoordinates] = useState(court.address.split(" "))
   //let coordinates = court.coordinates.split(" ");
   function onChange(itemValue) {
     setTimeSelected(() => {
