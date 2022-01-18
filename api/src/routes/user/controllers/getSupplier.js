@@ -31,7 +31,12 @@ const getSupplier = async (req, res) => {
         suppliers = suppliers.map((el) => el.dataValues)
         .filter((e) => e.name.toLowerCase().includes(name.toLowerCase()))
     }
+   else {
+     
+        suppliers = await Supplier.findAll({})
   }
+}
+    
     catch (error) {
     throw new Error("Error al encontrar el proveedor solicitado");
   }
