@@ -1,4 +1,5 @@
 const { Supplier } = require("../../../db")
+const {User} = require("../../../db")
 const bcrypt = require("bcrypt")
 
 const register = async (req, res) => {
@@ -21,6 +22,9 @@ const register = async (req, res) => {
         cuit,
         businessname
     })
+
+    // await newSupplier.setUsers(User.id)
+
     newSupplier = await newSupplier.save().catch(err => {
         console.log(err)
         res.json({ error: "No se puede registrar al usuario en este momento" })

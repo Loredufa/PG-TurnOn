@@ -3,7 +3,7 @@ import React from 'react'
 export default function CourtAvailability() {
     return (
         <div>
-            Court Availability
+            No hay turnos para el día seleccionado...
         </div>
     )
 }

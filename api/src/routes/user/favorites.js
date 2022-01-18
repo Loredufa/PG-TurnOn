@@ -1,15 +1,16 @@
 const {Router} = require ("express")
 const router = Router () 
-const {postFavSupplier} = require ("./controllers/postFavSupplier")
-const {getFavCourts} = require ("./controllers/getFavoritesCourts") 
+const {putFavSupplier} = require ("./controllers/putFavSupplier")
+const {getFavSupplier} = require ("./controllers/getFavSupplier") 
+const {deleteFavSupplier} = require ("./controllers/deleteFavSupplier") 
 
 
 // router.get ("/" , (req, res) => {
 //     res.send ("Soy la ruta usuario/favorito")
 // });
 
-// router.post ("/favorites", postFavSupplier)
-// router.get ("/favorites/:userId", getFavCourts)
-// router.delete ("/favorites/:userId", deleteFavCourts)
+router.put ("/favorites", putFavSupplier)
+router.get ("/favorites", getFavSupplier)
+router.delete ("/favorites", deleteFavSupplier)
 
 module.exports = router
