@@ -6,7 +6,7 @@ const getFavSupplier = async (req, res) => {
 
     const {userId} = req.query
     const {name} = req.query
-    let status = false
+    
     
 
     try {
@@ -22,13 +22,10 @@ const getFavSupplier = async (req, res) => {
                     
         }
         
-        res.send ({ 
-            status : true,
-            supplier_fav 
-        })
+        res.json (supplier_fav) 
+        }
          
-
-     } catch (error) {
+      catch (error) {
 
          console.log(error)
         //  throw new Error("Error al encontrar los favoritos");
