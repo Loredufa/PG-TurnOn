@@ -3,6 +3,7 @@ import TimeField from 'react-simple-timefield'
 import HoursList from './HoursList'
 import DaysList from './DaysList'
 import styled from 'styled-components'
+import { orderHours } from './helpers/functions'
 
 export default function Form() {
     
@@ -15,14 +16,17 @@ export default function Form() {
 
     const handleAddTime = (e) => {
         e.preventDefault()
-        setHours([
-            ...hours,
-            time
-        ])
-        setTime({
-            start: "",
-            end: ""
-        })
+        if(time.start && time.end) {
+            let array = orderHours([...hours, time])
+            setHours(array)
+            setTime({
+                start: "",
+                end: ""
+            })
+        }
+        else {
+            alert("Datos incompletos")
+        }
     }
 
     const tfObject = {

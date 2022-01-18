@@ -11,16 +11,23 @@ export default function HoursList({ hours, setHours }) {
     const { currentCourt } = useContext(CourtContext)
 
     const handleClick = () => {
-        axios.post(`/supplier/available/${currentCourt.id}`, { days, hours })
-            .then(res => {
-                axios.get(`/supplier/available/court/${currentCourt.id}`)
-                .then(res => setAvailability(res.data))
+        if (!days.length) {
+            alert("Debes seleccionar al menos un día de la semana")
+        }
+        else if (!hours.length) {
+            alert("Debes configurar una franja horaria")
+        } else {
+            axios.post(`/supplier/available/${currentCourt.id}`, { days, hours })
+                .then(res => {
+                    axios.get(`/supplier/available/court/${currentCourt.id}`)
+                    .then(res => setAvailability(res.data))
+                    .catch(err => console.log(err))
+                })
                 .catch(err => console.log(err))
-            })
-            .catch(err => console.log(err))
-        console.log({ days, hours })
-        setDays([])
-        setHours([])
+            console.log({ days, hours })
+            setDays([])
+            setHours([])
+        }
     }
 
     return (
@@ -32,7 +39,13 @@ export default function HoursList({ hours, setHours }) {
             </DaysList>
         {
             hours.map((h, i) => (
-                <HourItem key={i} start={h.start} end={h.end} />
+                <HourItem 
+                    key={i} 
+                    hours={hours}
+                    setHours={setHours}
+                    start={h.start} 
+                    end={h.end}
+                />
             ))
         }
         <Button onClick={handleClick}>GUARDAR</Button>
