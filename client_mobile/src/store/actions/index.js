@@ -7,6 +7,8 @@ export const CHANGE_USER_INFO = "CHANGE_USER_INFO";
 export const BEST_COURTS_NEAR_ME = "BEST_COURTS_NEAR_ME";
 export const GET_COURT_TYPE = "GET_COURT_TYPE";
 export const ADD_TO_FAVORITE = "ADD_TO_FAVORITE";
+export const GET_FAVORITES = "GET_FAVORITES";
+export const DELETE_FROM_FAVORITE = "DELETE_FROM_FAVORITE";
 export const BOOK_COURT = "BOOK_COURT";
 export const SET_SCREEN_DIMENSIONS = "SET_SCREEN_DIMENSIONS";
 export const GET_COURT_BY_SPORT = "GET_COURT_BY_SPORT";
@@ -27,7 +29,7 @@ export function addUser(data) {
   };
 }
 */
-const URL = "https://turnon1.herokuapp.com/" //http://localhost:3001/
+const URL =  "http://localhost:3001/" //"https://turnon1.herokuapp.com/"
 
 
 export function getCourtBySport (sport) {
@@ -346,26 +348,59 @@ export function getCourtType(name) {
   };
 }
 
-export function addToFavorite(data /*supplierId, userId*/) {
-  return {
+export function addToFavorite(/*data*/ supplierId, userId) {
+  /*return {
     type: ADD_TO_FAVORITE,
     payload: data,
-  }; 
-  /*
+  }; */
+  
   return async function (dispatch) {
     try {
       //const postUser = await axios.get("http://localhost:3001/user/court?name="+name); 
-      const favs = await axios.put("https://turnon1.herokuapp.com/user/favorites" , {
+      //const favs = await axios.put("https://turnon1.herokuapp.com/user/favorites" , {
+        const favs = await axios.put( URL + "user/favorites" , {
         supplierId,
         userId
       }); 
-      console.log("Supplier",favs.data);
       dispatch({
-        type: GET_SUPPLIERS_BY_NAME,
+        type: ADD_TO_FAVORITE,
         payload: favs.data,
       });
     } catch (error) {
       console.log(error);
     }
-  };*/
+  };
+}
+
+
+export function deleteFromFavorite(supplierId, userId) {
+  return async function (dispatch) {
+    try {
+        const favs = await axios.delete( URL + "user/favorites" , {data: {
+        supplierId,
+        userId
+      }}); 
+      dispatch({
+        type: DELETE_FROM_FAVORITE,
+        payload: favs.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
+
+export function getFavorites( userId ) { 
+  return async function (dispatch) {
+    try {
+        const favs = await axios.get( URL + "user/favorites?userId="+userId);  
+      dispatch({
+        type: GET_FAVORITES,
+        payload: favs.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 }

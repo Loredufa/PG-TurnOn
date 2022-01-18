@@ -1,12 +1,16 @@
 import { Text, View, FlatList ,ActivityIndicator } from "react-native";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import SearchBar from "../SearchBar/SearchBar";
 import Court from "../Court/Court";
 import { styles } from "./StyleFavoritesCourts";
 import Supplier from "../Supplier/Supplier";
+import { useEffect } from "react";
+import {getFavorites} from '../../store/actions/index';
 
 export default function FavoritesCourts() {
-  const {favorites , screenWidth} = useSelector((state) => state);
+  const {favorites , screenWidth , user} = useSelector((state) => state);
+  const dispatch = useDispatch();
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Favoritos</Text>
