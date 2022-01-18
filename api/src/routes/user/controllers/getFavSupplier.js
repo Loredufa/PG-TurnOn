@@ -4,7 +4,7 @@ const {User} = require("../../../db")
 
 const getFavSupplier = async (req, res) => {
 
-    const {userId} = req.body
+    const {userId} = req.query
    // const {name} = req.query
       
     try {

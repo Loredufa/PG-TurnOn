@@ -23,6 +23,13 @@ export const styles = StyleSheet.create({
         fontSize:18,
         fontWeight: "bold",
     },
+    sports: {
+      flex: 1,
+      flexDirection: 'row',
+    },
+    sportText: {
+      marginLeft: 3,
+    },
     mail:{
         flex:1,
         alignSelf: 'center',

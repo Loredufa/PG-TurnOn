@@ -14,13 +14,13 @@ import SearchBar from "../SearchBar/SearchBar";
 import {styles} from './StylesSuppliers';
 import Court from '../Court/Court'
 import {useDispatch, useSelector} from 'react-redux'
-import { getSupplierBySport } from "../../store/actions";
+import { getFavorites, getSupplierBySport } from "../../store/actions";
 import Supplier from "../Supplier/Supplier";
 
 export default function Suppliers({ route }) {
   //const navigation = useNavigation();
   //const courts = useSelector((state) => state.courtTypes);
-  const {screenWidth , suppliers} = useSelector ((state) => state)
+  const {screenWidth , suppliers , user} = useSelector ((state) => state)
   const dispatch = useDispatch();
   useEffect(()=> {
     route.params.sport && dispatch(getSupplierBySport(route.params.sport));
