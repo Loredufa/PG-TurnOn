@@ -20,5 +20,12 @@ export default function Courts() {
 
 const SectionContainer = styled.div`
     background: #e9ebed;
-    height: 88.5vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100vw;
+    height: 100vh;
+    background-attachment: fixed;
+    overflow: visible;
+    overflow-x: hidden;
 `

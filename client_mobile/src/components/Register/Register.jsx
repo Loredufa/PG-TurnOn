@@ -11,6 +11,7 @@ import { useNavigation } from "@react-navigation/native";
 import { useDispatch, useSelector } from "react-redux";
 import { validationFunc } from "./validationFunc";
 import { addUser, findCreatedUser } from "../../store/actions/index";
+import { styles } from './StylesRegister';
 
 export default function Register() {
   const navigation = useNavigation();
@@ -180,6 +181,7 @@ export default function Register() {
           </View>
         </TouchableOpacity>
       </View>
+      <View style={{borderBottomWidth: 1 , width:280 , alignSelf: 'center' , marginTop: 20 , marginBottom:10}}></View>
       <View style={styles.loginContainer}>
         <Text style={styles.acount}>¿Ya estás registrado?</Text>
         <TouchableOpacity onPress={() => navigation.navigate("Login")}>
@@ -190,77 +192,3 @@ export default function Register() {
   );
 }
 
-const styles = StyleSheet.create({
-  input: {
-    width: 280,
-    height: 40,
-
-    marginTop: 15,
-
-    borderRadius: 20,
-    borderWidth: 1,
-
-    backgroundColor: "white",
-
-    paddingLeft: 10,
-  },
-  img: {
-    width: 150,
-    height: 100,
-    alignSelf: "center",
-    marginTop: 50,
-    marginBottom: 20,
-  },
-  inputContainers: {
-    alignItems: "center",
-  },
-  notfulfilled: {
-    width: 280,
-    height: 40,
-
-    marginTop: 15,
-
-    borderRadius: 20,
-    borderWidth: 1,
-
-    backgroundColor: "white",
-
-    borderColor: "red",
-    color: "red",
-
-    paddingLeft: 10,
-  },
-  button: {
-    marginTop: 30,
-    width: 130,
-    height: 35,
-    alignItems: "center",
-    backgroundColor: "white",
-    borderRadius: 20,
-    borderWidth: 1,
-    borderColor: "black",
-    justifyContent: "center",
-  },
-  buttonText: {
-    textAlign: "center",
-    padding: 20,
-    color: "black",
-  },
-  loginContainer: {
-    display: "flex",
-    flexDirection: "row",
-    alignSelf: "center",
-  },
-  login: {
-    marginLeft: 10,
-    color: "blue",
-  },
-  acount: {
-    marginRight: 10,
-  },
-  text: {
-    textAlign: "justify",
-    marginLeft: 10,
-    marginRight: 10,
-  },
-});

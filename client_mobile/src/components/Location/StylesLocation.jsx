@@ -10,7 +10,7 @@ export const styles = StyleSheet.create({
     flex: 0.5,
   },
   maps: {
-    flex: 13,
+    flex: 9,
     width: "90%",
     borderWidth: 1,
     borderRadius: 10,

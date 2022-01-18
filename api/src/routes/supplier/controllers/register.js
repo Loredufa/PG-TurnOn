@@ -23,7 +23,7 @@ const register = async (req, res) => {
         businessname
     })
 
-    // await newSupplier.setUsers(User.id)
+
 
     newSupplier = await newSupplier.save().catch(err => {
         console.log(err)

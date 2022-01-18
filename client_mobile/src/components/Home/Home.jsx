@@ -19,6 +19,7 @@ import {
   getCourt,
   bestCourtsNearMe,
   getCourtType,
+  getFavorites,
 } from "../../store/actions/index";
 import SearchBar from "../SearchBar/SearchBar";
 import { styles } from "./StyleHome";
@@ -59,6 +60,7 @@ export default function Home() {
   useEffect(() => {
     //alert("Permitir acceder a tu ubicacion");
     dispatch(bestCourtsNearMe(5));
+    dispatch (getFavorites(user.user.id));
   }, []);
 
   const courts = useSelector((state) => state.bestCourts);
@@ -92,6 +94,7 @@ export default function Home() {
         <FlatList
           data={sports}
           style={{  flex:2}}
+          scrollEnabled={false}
           renderItem={({ item }) => (
             <View style={styles.card}>
               <TouchableOpacity
@@ -177,6 +180,7 @@ export default function Home() {
                       style={{
                         flexDirection: "row",
                         width: 3*screenWidth / 4 - 2,
+                        justifyContent: 'space-between',
                       }}
                       >
 

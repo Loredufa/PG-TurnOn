@@ -25,7 +25,7 @@ export default function DayItem({ day }) {
         <Button
             style={
                 days.includes(day) ? 
-                { background: "#3fc959", color: "white" } : {}
+                { background: "#81b214", color: "white" } : {}
             }
             value={day} 
             onClick={handleClick}
@@ -52,7 +52,9 @@ const Button = styled.button`
     width: 100px;
     border-radius: 30px;
     border-style: none;
-    background: #2a2d34;
-    color: white;
+    background: #e9ebed;
+    color: #81b214;
+    font-family: 'Be Vietnam Pro', sans-serif;
     font-size: 14px;
+    margin: 5px;
 `
