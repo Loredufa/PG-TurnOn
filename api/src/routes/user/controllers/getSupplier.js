@@ -17,12 +17,25 @@ const getSupplier = async (req, res) => {
           attributes: ["sport"],
         },
       });
-      suppliers = suppliers
+      if (sport === "others") {
+        suppliers = suppliers
         .map((el) => el.dataValues)
         .filter((e) => {
           let deporte = e.fields.map((ele) => ele.sport);
+          deporte = deporte.filter(el => el !== "Futbol"  && el !=="Golf" && el !=="Tenis" && el !=="Paddle" && el !=="Hockey")
+          console.log(deporte);
+          return deporte.length>0;
+        });
+      }
+      else {  
+        suppliers = suppliers
+        .map((el) => el.dataValues)
+        .filter((e) => {
+          let deporte = e.fields.map((ele) => ele.sport);
+          //console.log(deporte);
           return deporte.includes(sport);
         });
+      }
     } else if (name) {
       suppliers = await Supplier.findAll({
         include: {

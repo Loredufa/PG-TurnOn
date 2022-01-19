@@ -23,7 +23,11 @@ export default function Suppliers({ route }) {
   const {screenWidth , suppliers , user} = useSelector ((state) => state)
   const dispatch = useDispatch();
   useEffect(()=> {
-    route.params.sport && dispatch(getSupplierBySport(route.params.sport));
+    if (route.params.sport === "Otros")
+    dispatch(getSupplierBySport("others"))
+    else {
+      route.params.sport && dispatch(getSupplierBySport(route.params.sport));
+    }
   },[])
 
 
