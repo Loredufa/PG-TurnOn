@@ -22,12 +22,14 @@ import {
   DELETE_USER,
   GET_COURTS_SUPPLIER,
   GET_ALL_SUPPLIERS,
+  GET_SUPPLIER_LOCATION,
 } from "../actions/index";
 import {
   findEmail,
   findCourtByName,
   bestCourts,
   getTypes,
+  rutas,
 } from "./functionHelper";
 import { courts } from "./hardcode";
 
@@ -51,6 +53,7 @@ const initialState = {
   flagBooking: true,
   supplierAddFav: 0,
   allSuppliers: [],
+  suppliersLocation: [],
 };
 
 const reducer = (state = initialState, action) => {
@@ -190,6 +193,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         courtsBySports: action.payload,
+      };
+    case GET_SUPPLIER_LOCATION:
+      return {
+        ...state,
+        suppliersLocation: rutas(state.allSuppliers),
       };
     default:
       return state;

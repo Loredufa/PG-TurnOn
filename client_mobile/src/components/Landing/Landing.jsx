@@ -15,14 +15,20 @@ import { styles } from "./StylesLanding";
 import * as SecureStore from "expo-secure-store";
 import { useSelector, useDispatch } from "react-redux";
 //COMO NO FUNCIONA EL BACK EN EXPO SE AGREGA ESTO
-import { setScreenDimensions } from "../../store/actions/index";
+import {
+  setScreenDimensions,
+  getAllSuppliers,
+} from "../../store/actions/index";
 
 export default function Landing() {
   const navigation = useNavigation();
-
+  const dispatch = useDispatch();
   const { user } = useSelector((state) => state);
   const screenWidth = useSelector((state) => state.screenWidth);
 
+  useEffect(() => {
+    dispatch(getAllSuppliers());
+  }, []);
   /*    
     const {user} = useSelector(state => state)
 

@@ -22,6 +22,7 @@ export const DELETE_BOOKING = "DELETE_BOOKING";
 export const DELETE_USER = "DELETE_USER";
 export const GET_COURTS_SUPPLIER = "GET_COURTS_SUPPLIER";
 export const GET_ALL_SUPPLIERS = "GET_ALL_SUPPLIERS";
+export const GET_SUPPLIER_LOCATION = "GET_SUPPLIER_LOCATION";
 /*
 export function addUser(data) {
   return {
@@ -31,9 +32,8 @@ export function addUser(data) {
 }
 */
 
-const URL = "http://localhost:3001/";
-//const URL = "https://turnon1.herokuapp.com/";
-
+//const URL = "http://localhost:3001/";
+const URL = "https://turnon1.herokuapp.com/";
 
 export function getAllSuppliers() {
   return async function (dispatch) {
@@ -43,7 +43,7 @@ export function getAllSuppliers() {
       const getSuppliers = await axios.get(URL + "user/supplier");
       console.log("SUPPLIERS", getSuppliers.data);
       dispatch({
-        type: GET_COURT_BY_SPORT,
+        type: GET_ALL_SUPPLIERS,
         payload: getSuppliers.data,
       });
     } catch (error) {
@@ -415,5 +415,11 @@ export function getFavorites(userId) {
     } catch (error) {
       console.log(error);
     }
+  };
+}
+
+export function getSupplierLocation() {
+  return {
+    type: GET_SUPPLIER_LOCATION,
   };
 }
