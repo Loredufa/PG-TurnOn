@@ -8,6 +8,7 @@ import {
 import { useNavigation } from "@react-navigation/native";
 import { useSelector } from "react-redux";
 import {styles} from './StylesCardBooking';
+import { images } from '../Supplier/Supplier'
 
 export default function CardBooking({item}) {
     const {screenWidth} = useSelector(state => state);
@@ -43,7 +44,9 @@ export default function CardBooking({item}) {
                   }}
                 >
                   <Image
-                    source={{uri: "https://images.vexels.com/media/users/3/132448/isolated/preview/baf01fb517749ccf4e1215d7576fe262-pelota-de-tenis.png"}}
+                    source={{
+                      uri: item.court.image? item.court.image : images[item.court.sport]
+                    }}
                     style={{
                       height: '90%',
                       width: '40%',

@@ -24,7 +24,7 @@ export default function SearchBar() {
       dispatch(getSuppliersByName(input))
       setInput("");
       //if (court === input) {
-        navigation.navigate ('Suppliers' , {type: "Tu busqueda"})
+        navigation.navigate ('Suppliers' , {type: "Busqueda"})
       /*}
       else {
         alert("Cancha no encontrada")

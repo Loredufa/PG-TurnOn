@@ -14,6 +14,7 @@ import { styles } from "./StyleCourtDetail";
 import { Picker } from "@react-native-picker/picker";
 import DatePicker from "react-native-datepicker";
 import { useNavigation } from "@react-navigation/native";
+import { images } from '../Supplier/Supplier'
 
 import Message from "../Message/Message";
 
@@ -81,7 +82,9 @@ export default function CourtDetail({ route }) {
         /> */}
         </View>
         <Image
-          source={court.img}
+          source={{
+            uri: court.image? court.image : images[court.sport]
+          }}
           style={{
             flex: 3,
             //height: screenWidth / 3,
@@ -150,7 +153,7 @@ export default function CourtDetail({ route }) {
         </View>
         <View style={styles.priceAndLocationContainer}>
           <View style={styles.priceContainer}>
-            <Text style={styles.textPrice}>Precio: {court.price}$</Text>
+            <Text style={styles.textPrice}>Precio: ${court.price}</Text>
           </View>
           <TouchableOpacity
             style={styles.locationContainer}

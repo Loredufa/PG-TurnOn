@@ -245,12 +245,13 @@ export default function User() {
                 defaultValue={infoEdit.phone}
                 onChangeText={(e) => handlerChangeInfo("phone", e)}
               /><Text style={styles.error}>{infoEdit.errors.phone}</Text>
-              <TextInput 
+              {googlesession &&
+              <View><TextInput 
                 name = 'mail'
                 style={styles.input}
                 defaultValue={infoEdit.mail}
                 onChangeText={(e) => handlerChangeInfo("mail", e)}
-              /><Text style={styles.error}>{infoEdit.errors.mail}</Text>
+              /><Text style={styles.error}>{infoEdit.errors.mail}</Text> </View>}
               <View style={styles.cuenta}>
                 <TouchableOpacity onPress={handlerNewInfo} disabled={disabled}>
                   <View style={styles.btnUser}>
@@ -321,7 +322,7 @@ export default function User() {
               <View style={styles.input}><Text style={styles.info}>{user?.lastname}</Text></View>
               <View style={styles.input}><Text style={styles.info}>{user?.phone}</Text></View>
               <View style={styles.input}><Text style={styles.info}>{user?.mail}</Text></View>
-              <View style={styles.input}><Text style={styles.info}>**********</Text></View> 
+              {googlesession &&<View style={styles.input}><Text style={styles.info}>**********</Text></View> }
               
               <View style={styles.cuenta}>
                 <TouchableOpacity onPress={()=>changeEdit(!editState)}>
@@ -329,11 +330,11 @@ export default function User() {
                   <Text style={styles.text}>Editar Informacion</Text>
                 </View>
                 </TouchableOpacity>
-                {/*googlesession && */}<View style={styles.btnPass}>
+                {googlesession && <View style={styles.btnPass}>
                   <TouchableOpacity onPress={() => changePassState(!passState)}>
                     <Text style={styles.text}>Cambiar contraseña</Text>
                   </TouchableOpacity>
-                </View>
+                </View>}
               </View>
               <View style={styles.cuenta}>
                 <GoogleLogout />
