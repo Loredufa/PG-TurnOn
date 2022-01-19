@@ -4,15 +4,15 @@ const { DataTypes } = require("sequelize");
 module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define("comments", {
-    extra1: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
+    // courtId: {
+    //   type: DataTypes.INTEGER,
+    //   allowNull: false,
+    // },
     userId: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    supplierId: {
+    providerId: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
