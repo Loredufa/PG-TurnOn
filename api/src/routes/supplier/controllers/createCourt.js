@@ -24,19 +24,20 @@ const createCourt = async (req, res) => {
       supplierId,
     });
   } catch (error) {
-    // <<<<<<< HEAD
-    // if (newCourt)
-    // await newCourt.setSupplier(supplier_name)
-    throw new Error(error);
+       throw new Error(error);
   }
-  // =======
-  // >>>>>>> mirror
+  
 
   newCourt = await newCourt.save().catch((err) => {
     console.log(err);
-    res.json({ error: "No se puede agregar la cancha correctamente" });
+    res.json({ 
+      error: "No se puede agregar la cancha correctamente",
+      
+    });
   });
-  if (newCourt) res.json({ message: "La cancha se ha agregado correctamente" });
+  if (newCourt) res.json({
+     message: "La cancha se ha agregado correctamente",
+     data: newCourt });
 };
 
 module.exports = { createCourt };

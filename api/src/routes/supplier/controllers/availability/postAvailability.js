@@ -28,7 +28,9 @@ const postAvailability = async (req, res) => {
     res.json({ error: "No se puede agregar disponibilidad correctamente" });
   });
   if (newAvailability)
-    res.json({ message: "La disponibilidad se ha agregado correctamente" });
+    res.json({ message: "La disponibilidad se ha agregado correctamente",
+    data : newAvailability
+    });
 };
 
 module.exports = { postAvailability };
