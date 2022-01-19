@@ -404,10 +404,14 @@ export function deleteFromFavorite(supplierId, userId) {
   };
 }
 
-export function getFavorites(userId) {
+export function getFavorites(userId , name) {
   return async function (dispatch) {
     try {
-      const favs = await axios.get(URL + "user/favorites?userId=" + userId);
+      let favs = ''
+      if (name)  
+         favs = await axios.get(URL + "user/favorites?userId=" + userId + '&name=' + name);
+      else   
+         favs = await axios.get(URL + "user/favorites?userId=" + userId);
       dispatch({
         type: GET_FAVORITES,
         payload: favs.data,

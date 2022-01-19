@@ -23,7 +23,6 @@ const getSupplier = async (req, res) => {
         .filter((e) => {
           let deporte = e.fields.map((ele) => ele.sport);
           deporte = deporte.filter(el => el !== "Futbol"  && el !=="Golf" && el !=="Tenis" && el !=="Paddle" && el !=="Hockey")
-          console.log(deporte);
           return deporte.length>0;
         });
       }
@@ -36,6 +35,13 @@ const getSupplier = async (req, res) => {
           return deporte.includes(sport);
         });
       }
+      if (name) {
+        suppliers = suppliers
+        //.map((el) => el.dataValues)
+        .filter((e) => e.name.toLowerCase().includes(name.toLowerCase()));
+      }
+
+
     } else if (name) {
       suppliers = await Supplier.findAll({
         include: {
