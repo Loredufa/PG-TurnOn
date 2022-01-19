@@ -127,22 +127,19 @@ Payments.belongsTo(Available); // Payments tendra una columna idBooking
 
 //1 a N
 
-Supplier.hasMany(Field, 
- { onDelete: 'CASCADE',
-   hooks: true,
-   foreignKey: 'supplierId'});
+Supplier.hasMany(Field, {
+  onDelete: "CASCADE",
+  hooks: true,
+  foreignKey: "supplierId",
+});
 
 Field.belongsTo(Supplier); // coloca supplierId en field
 
-
-User.hasMany(Bookings)
-Bookings.belongsTo(User) // Deberia colocar el userId en Bookings
-
-
+User.hasMany(Bookings);
+Bookings.belongsTo(User); // Deberia colocar el userId en Bookings
 
 Comments.belongsTo(Field); // coloca fieldId en comments
-
-//Field.hasMany(Comments, {foreignKey})
+Field.hasMany(Comments);
 
 module.exports = {
   conn: sequelize, // para importart la conexión { conn } = require('./db.js');

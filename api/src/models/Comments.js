@@ -4,7 +4,7 @@ const { DataTypes } = require("sequelize");
 module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define("comments", {
-    courtId: {
+    extra1: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
@@ -12,7 +12,7 @@ module.exports = (sequelize) => {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    providerId: {
+    supplierId: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
@@ -21,7 +21,11 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    stats: {
+    comments: {
+      type: DataTypes.TEXT,
+      // allowNull: false,
+    },
+    reputation: {
       type: DataTypes.FLOAT,
     },
   });
