@@ -20,7 +20,8 @@ import {
   GET_BOOKINGS,
   DELETE_BOOKING,
   DELETE_USER,
-  GET_COURTS_SUPPLIER
+  GET_COURTS_SUPPLIER,
+  GET_ALL_SUPPLIERS,
 } from "../actions/index";
 import {
   findEmail,
@@ -39,16 +40,17 @@ const initialState = {
   favorites: [],
   bookings: [],
   authToken: null, //"abc123",
-  screenWidth: 375, 
-  numColumns: 6, 
+  screenWidth: 375,
+  numColumns: 6,
   titleSize: 62,
   courtsBySports: [],
-  messageBack: '',
+  messageBack: "",
   suppliers: [],
   googlesession: false,
   googleCreated: false,
   flagBooking: true,
   supplierAddFav: 0,
+  allSuppliers: [],
 };
 
 const reducer = (state = initialState, action) => {
@@ -60,11 +62,11 @@ const reducer = (state = initialState, action) => {
         users: state.users.concat(action.payload),
       };
       */
-    case DELETE_USER: 
+    case DELETE_USER:
       return {
         ...state,
         messageBack: action.payload,
-      }
+      };
     case FIND_CREATED_USER:
       return {
         ...state,
@@ -80,12 +82,17 @@ const reducer = (state = initialState, action) => {
         user: action.payload,
         authToken: action.payload.user ? "abc123" : null,
         googlesession: true,
-        googleCreated: action.payload.created
-      }
+        googleCreated: action.payload.created,
+      };
     case GET_SUPPLIERS_BY_NAME:
       return {
         ...state,
-        suppliers: action.payload 
+        suppliers: action.payload,
+      };
+    case GET_ALL_SUPPLIERS:
+      return {
+        ...state,
+        allSuppliers: action.payload,
       };
     case CLOSE_SESSION:
       return {
@@ -121,69 +128,69 @@ const reducer = (state = initialState, action) => {
         /*favorites: state.favorites.includes(action.payload)? 
         state.favorites.filter(element => element !== action.payload) 
         : [...state.favorites , action.payload]*/
-        supplierAddFav: action.payload[0].supplierId
+        supplierAddFav: action.payload[0].supplierId,
       };
     case GET_FAVORITES:
       return {
         ...state,
-        favorites: action.payload
+        favorites: action.payload,
       };
-    case DELETE_FROM_FAVORITE: 
+    case DELETE_FROM_FAVORITE:
       return {
         ...state,
         messageBack: action.payload,
         supplierAddFav: 0,
-      }
+      };
     case BOOK_COURT:
       return {
         ...state,
         messageBack: action.payload,
         flagBooking: !state.flagBooking,
         //bookings: state.bookings.includes(action.payload)? state.bookings : [...state.bookings, action.payload]
-      }
+      };
     case GET_BOOKINGS:
       return {
         ...state,
         bookings: action.payload,
-      }
-    case DELETE_BOOKING: 
+      };
+    case DELETE_BOOKING:
       return {
         ...state,
         messageBack: action.payload,
         flagBooking: !state.flagBooking,
-      }
+      };
     case SET_SCREEN_DIMENSIONS:
       return {
         ...state,
-        screenWidth: action.payload.screenWidth, 
-        numColumns: action.payload.numColumns, 
+        screenWidth: action.payload.screenWidth,
+        numColumns: action.payload.numColumns,
         titleSize: action.payload.titleSize,
-      }
+      };
     case GET_COURT_BY_SPORT:
       return {
         ...state,
         courtsBySports: action.payload,
-      }
+      };
     case CHANGE_MESSAGE:
       return {
-        ...state, 
-        messageBack: '',
-      }
+        ...state,
+        messageBack: "",
+      };
     case GET_SUPPLIER_BY_SPORT:
       return {
         ...state,
-        suppliers: action.payload.message? [] : action.payload,
-      }
+        suppliers: action.payload.message ? [] : action.payload,
+      };
     case GET_COURTS_SUPPLIER_SPORT:
       return {
         ...state,
-        courtsBySports: action.payload
-      }
+        courtsBySports: action.payload,
+      };
     case GET_COURTS_SUPPLIER:
       return {
         ...state,
-        courtsBySports: action.payload
-      } 
+        courtsBySports: action.payload,
+      };
     default:
       return state;
   }

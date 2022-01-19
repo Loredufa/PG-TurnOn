@@ -8,10 +8,12 @@ import {
   Image,
   Dimensions,
 } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
 import MapView from "react-native-maps";
 import { locales } from "./rutas";
 import { styles } from "./StylesLocation";
 import { Picker } from "@react-native-picker/picker";
+import { getAllSuppliers } from "../../store/actions/index";
 
 const { width, height } = Dimensions.get("window");
 const ASPECT_RATIO = width / height;
@@ -21,6 +23,7 @@ const LATITUDE_DELTA = 0.0922;
 const LONGITUD_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 
 export default function Location(props) {
+  const dispatch = useDispatch();
   let sportTypes = ["futbol", "tenis", "golf", "paddle", "hockey"];
 
   const [region, setRegion] = useState({
@@ -34,6 +37,10 @@ export default function Location(props) {
 
   const [section, setSection] = useState("Deporte");
   const [courts, setCourts] = useState(locales);
+
+  useEffect(() => {
+    dispatch(getAllSuppliers());
+  }, []);
 
   useEffect(() => {
     props.route.params?.courtLocation

@@ -20,7 +20,8 @@ import { setScreenDimensions } from "../../store/actions/index";
 export default function Landing() {
   const navigation = useNavigation();
 
-   const {user} = useSelector(state => state);
+  const { user } = useSelector((state) => state);
+  const screenWidth = useSelector((state) => state.screenWidth);
 
   /*    
     const {user} = useSelector(state => state)
@@ -63,21 +64,39 @@ export default function Landing() {
     );
   }, [screenWidth]);
 */
+
   return (
     <View style={styles.screen}>
       <View style={styles.imgContainer}>
-        <Image style={styles.img} source={require("../Login/Logo.jpg")} />
+        <Image
+          style={[
+            styles.img,
+            { width: screenWidth / 2.75, height: screenWidth / 4.1 },
+          ]}
+          source={require("../Login/Logo.jpg")}
+        />
       </View>
       <View style={styles.container}>
         <Text style={styles.welcome}>Bienvenido!</Text>
         <Text style={styles.slogan}>Revoluciona tus reservas</Text>
-        <Text style={styles.slogan}>No mas filas. No mas llamadas. No mas espera.</Text>
+        <Text style={styles.slogan}>
+          No mas filas. No mas llamadas. No mas espera.
+        </Text>
         <Text style={styles.question}>¿Permitis acceder a tu ubicación?</Text>
 
-         <TouchableOpacity onPress={() => user?.user.phone==='0000000000'? navigation.navigate("Phone") 
-        : navigation.navigate("HomeTab")}>
-
-          <View style={styles.button}>
+        <TouchableOpacity
+          onPress={() =>
+            user?.user.phone === "0000000000"
+              ? navigation.navigate("Phone")
+              : navigation.navigate("HomeTab")
+          }
+        >
+          <View
+            style={[
+              styles.button,
+              { width: screenWidth / 3.2, height: screenWidth / 11.5 },
+            ]}
+          >
             <Text style={styles.buttonText}>Aceptar</Text>
           </View>
         </TouchableOpacity>

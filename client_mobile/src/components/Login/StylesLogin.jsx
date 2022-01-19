@@ -1,19 +1,16 @@
-import {
-    StyleSheet,
-  } from "react-native";
-  
-export 
-const styles = StyleSheet.create({
+import { StyleSheet } from "react-native";
+
+export const styles = StyleSheet.create({
   img: {
-    width: 150,
-    height: 100,
+    //width: 150,
+    //height: 100,
     alignSelf: "center",
     marginTop: 50,
     marginBottom: 20,
   },
   input: {
-    width: 280,
-    height: 40,
+    //width: 280,
+    //height: 40,
 
     marginTop: 15,
 
@@ -29,8 +26,8 @@ const styles = StyleSheet.create({
   },
   button: {
     marginTop: 30,
-    width: 130,
-    height: 35,
+    //width: 130,
+    //height: 35,
     alignItems: "center",
     backgroundColor: "white",
     borderRadius: 20,
@@ -54,5 +51,5 @@ const styles = StyleSheet.create({
   acount: {
     marginRight: 10,
   },
-  error: {color:'red', marginTop:5},
+  error: { color: "red", marginTop: 5 },
 });
