@@ -134,6 +134,12 @@ Supplier.hasMany(Field,
 
 Field.belongsTo(Supplier); // coloca supplierId en field
 
+
+User.hasMany(Bookings)
+Bookings.belongsTo(User) // Deberia colocar el userId en Bookings
+
+
+
 Comments.belongsTo(Field); // coloca fieldId en comments
 
 //Field.hasMany(Comments, {foreignKey})
