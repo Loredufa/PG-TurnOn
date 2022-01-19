@@ -44,7 +44,7 @@ export default function Suppliers({ route }) {
             //contentContainerStyle={{ alignItems: "center" }}
             renderItem={({ item }) => (
               <View>
-                <Supplier item={item} sport={route.params.sport}/>
+                <Supplier item={item} sport={route.params.sport ? route.params.sport :  route.params.type}/>
               </View>
               )}
               ItemSeparatorComponent={() => <View style={{ height: 10 }} />}

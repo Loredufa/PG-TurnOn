@@ -7,6 +7,7 @@ import { styles } from "./StyleCourt";
 import MaterialCommunityIcons from "react-native-vector-icons/Ionicons";
 import { addToFavorite } from "../../store/actions";
 import { useDispatch, useSelector } from "react-redux";
+import { images } from '../Supplier/Supplier'
 
 export default function Court({ item, supplierID }) {
   const { screenWidth, favorites } = useSelector((state) => state);
@@ -45,7 +46,7 @@ export default function Court({ item, supplierID }) {
       >
         <Image
           source={{
-            uri: item.image,
+            uri: item.image? item.image : images[item.sport]
           }}
           style={{
             // height: screenWidth / 4,

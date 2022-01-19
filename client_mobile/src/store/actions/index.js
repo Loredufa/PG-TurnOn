@@ -29,8 +29,8 @@ export function addUser(data) {
   };
 }
 */
-const URL = "http://localhost:3001/" 
-//const URL = "https://turnon1.herokuapp.com/"
+//const URL = "http://localhost:3001/" 
+const URL = "https://turnon1.herokuapp.com/"
 
 
 export function getCourtBySport (sport) {

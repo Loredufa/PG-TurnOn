@@ -8,13 +8,15 @@ import MaterialCommunityIcons from "react-native-vector-icons/Ionicons";
 import { addToFavorite , changeMessage, deleteFromFavorite, getFavorites } from "../../store/actions";
 import { useDispatch, useSelector } from "react-redux";
 
-const images = {
+export const images = {
    Futbol: "https://i.pinimg.com/originals/37/ee/9e/37ee9e13208a4b3a3cb3c49ae7d4338c.png" ,
    Golf: "https://2.bp.blogspot.com/-ZIMcXanor7I/WZhBGNfOLAI/AAAAAAAHVTA/mEfwzM42yX4RwpS6CwumQ0ZhHsou1m9EwCLcBGAs/s1600/Golf-Ball-PNG-Clipart.png",
    Hockey: "https://images.vexels.com/media/users/3/227283/isolated/preview/90710bdb5ce01b6d75b9bc710c116f3c-palos-de-hockey-azul-y-verde-planos.png" ,
    Paddle: "https://cdn-icons-png.flaticon.com/512/434/434062.png" ,
    Tenis: "https://images.vexels.com/media/users/3/132448/isolated/preview/baf01fb517749ccf4e1215d7576fe262-pelota-de-tenis.png",
-   Otros: "https://images-na.ssl-images-amazon.com/images/I/61poZwdANWL.png"
+   Otros: "https://images-na.ssl-images-amazon.com/images/I/61poZwdANWL.png",
+   Favoritos:"https://cdn5.dibujos.net/dibujos/pintar/corazon_2.png",
+   Busqueda: "https://play-lh.googleusercontent.com/WL9oSrJxfO6XDrSnuERVcjFXN--XztDibPGtAxIJsJBfm2ZAv4WvkR5yFuOcFKKR0_A"
 };
 
 
