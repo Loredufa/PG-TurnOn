@@ -29,7 +29,10 @@ const register = async (req, res) => {
         console.log(err)
         res.json({ error: "No se puede registrar al usuario en este momento" })
     })
-    if (newSupplier) res.json({ success: "El usuario se ha registrado correctamente" })
+    if (newSupplier) res.json({ 
+        success: "El usuario se ha registrado correctamente",
+        data : newSupplier
+    })
 }
 
 module.exports = {

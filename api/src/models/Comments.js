@@ -4,10 +4,10 @@ const { DataTypes } = require("sequelize");
 module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define("comments", {
-    courtId: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
+    // courtId: {
+    //   type: DataTypes.INTEGER,
+    //   allowNull: false,
+    // },
     userId: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -21,7 +21,11 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    stats: {
+    comments: {
+      type: DataTypes.TEXT,
+      // allowNull: false,
+    },
+    reputation: {
       type: DataTypes.FLOAT,
     },
   });
