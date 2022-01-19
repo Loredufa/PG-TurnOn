@@ -3,6 +3,7 @@ const { Sequelize } = require("sequelize");
 const fs = require("fs");
 const path = require("path");
 const { DB_NAME, DB_HOST, DB_USER, DB_PASSWORD } = process.env;
+// console.log("Credenciales:", DB_NAME, DB_HOST, DB_USER, DB_PASSWORD);
 
 let sequelize =
   process.env.NODE_ENV === "production"
@@ -106,7 +107,7 @@ User.hasMany(Bookings);
 Bookings.belongsTo(User); // Deberia colocar el userId en Bookings
 
 Comments.belongsTo(Field); // coloca fieldId en comments
-Field.hasMany(Comments);
+// Field.hasMany(Comments);
 
 module.exports = {
   conn: sequelize, // para importart la conexión { conn } = require('./db.js');
