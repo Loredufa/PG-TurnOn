@@ -11,7 +11,7 @@ import { useNavigation } from "@react-navigation/native";
 import { useDispatch, useSelector } from "react-redux";
 import { validationFunc } from "./validationFunc";
 import { addUser, findCreatedUser } from "../../store/actions/index";
-import { styles } from './StylesRegister';
+import { styles } from "./StylesRegister";
 
 export default function Register() {
   const navigation = useNavigation();
@@ -26,6 +26,7 @@ export default function Register() {
 
   const dispatch = useDispatch();
   const allReadyCreated = useSelector((state) => state.boolean);
+  const screenWidth = useSelector((state) => state.screenWidth);
 
   const [inputFullfilled, setInputFullfilled] = useState(false);
   const [readyToDispatch, setReadyToDispatch] = useState(false);
@@ -64,7 +65,7 @@ export default function Register() {
             ...input,
             email: "",
           };
-          console.log(newInput);
+          //console.log(newInput);
           return newInput;
         });
         alert("Email no valido");
@@ -76,15 +77,30 @@ export default function Register() {
       alert("Todos los casilleros son obligatorios");
     }
   }
+
   return (
     <View>
-      <Image style={styles.img} source={require("./Logo.jpg")} />
+      <Image
+        style={[
+          styles.img,
+          { width: screenWidth / 2.8, height: screenWidth / 4 },
+        ]}
+        source={require("./Logo.jpg")}
+      />
       <View style={styles.inputContainers}>
         <TextInput
           placeholder="Nombre"
           name="name"
           style={
-            inputFullfilled && errors.name ? styles.notfulfilled : styles.input
+            inputFullfilled && errors.name
+              ? [
+                  styles.notfulfilled,
+                  { width: screenWidth / 1.5, height: screenWidth / 10 },
+                ]
+              : [
+                  styles.input,
+                  { width: screenWidth / 1.5, height: screenWidth / 10 },
+                ]
           }
           onChangeText={(e) => handleChange("name", e)}
           defaultValue={inputs.name}
@@ -98,8 +114,14 @@ export default function Register() {
           name="lastname"
           style={
             inputFullfilled && errors.lastname
-              ? styles.notfulfilled
-              : styles.input
+              ? [
+                  styles.notfulfilled,
+                  { width: screenWidth / 1.5, height: screenWidth / 10 },
+                ]
+              : [
+                  styles.input,
+                  { width: screenWidth / 1.5, height: screenWidth / 10 },
+                ]
           }
           onChangeText={(e) => handleChange("lastname", e)}
           defaultValue={inputs.lastname}
@@ -111,7 +133,15 @@ export default function Register() {
           placeholder="Telefono"
           name="phone"
           style={
-            inputFullfilled && errors.phone ? styles.notfulfilled : styles.input
+            inputFullfilled && errors.phone
+              ? [
+                  styles.notfulfilled,
+                  { width: screenWidth / 1.5, height: screenWidth / 10 },
+                ]
+              : [
+                  styles.input,
+                  { width: screenWidth / 1.5, height: screenWidth / 10 },
+                ]
           }
           onChangeText={(e) => handleChange("phone", e)}
           defaultValue={inputs.phone}
@@ -124,7 +154,15 @@ export default function Register() {
           placeholder="Email"
           name="email"
           style={
-            inputFullfilled && errors.email ? styles.notfulfilled : styles.input
+            inputFullfilled && errors.email
+              ? [
+                  styles.notfulfilled,
+                  { width: screenWidth / 1.5, height: screenWidth / 10 },
+                ]
+              : [
+                  styles.input,
+                  { width: screenWidth / 1.5, height: screenWidth / 10 },
+                ]
           }
           onChangeText={(e) => handleChange("email", e)}
           defaultValue={inputs.email}
@@ -138,8 +176,14 @@ export default function Register() {
           name="password"
           style={
             inputFullfilled && errors.password
-              ? styles.notfulfilled
-              : styles.input
+              ? [
+                  styles.notfulfilled,
+                  { width: screenWidth / 1.5, height: screenWidth / 10 },
+                ]
+              : [
+                  styles.input,
+                  { width: screenWidth / 1.5, height: screenWidth / 10 },
+                ]
           }
           onChangeText={(e) => handleChange("password", e)}
           defaultValue={inputs.password}
@@ -153,8 +197,14 @@ export default function Register() {
           name="repassword"
           style={
             inputFullfilled && errors.repassword
-              ? styles.notfulfilled
-              : styles.input
+              ? [
+                  styles.notfulfilled,
+                  { width: screenWidth / 1.5, height: screenWidth / 10 },
+                ]
+              : [
+                  styles.input,
+                  { width: screenWidth / 1.5, height: screenWidth / 10 },
+                ]
           }
           onChangeText={(e) => handleChange("repassword", e)}
           defaultValue={inputs.repassword}
@@ -176,12 +226,25 @@ export default function Register() {
               : false
           }
         >
-          <View style={styles.button}>
+          <View
+            style={[
+              styles.button,
+              { width: screenWidth / 3.2, height: screenWidth / 11.5 },
+            ]}
+          >
             <Text style={styles.buttonText}>Registrar</Text>
           </View>
         </TouchableOpacity>
       </View>
-      <View style={{borderBottomWidth: 1 , width:280 , alignSelf: 'center' , marginTop: 20 , marginBottom:10}}></View>
+      <View
+        style={{
+          borderBottomWidth: 1,
+          width: 280,
+          alignSelf: "center",
+          marginTop: 20,
+          marginBottom: 10,
+        }}
+      ></View>
       <View style={styles.loginContainer}>
         <Text style={styles.acount}>¿Ya estás registrado?</Text>
         <TouchableOpacity onPress={() => navigation.navigate("Login")}>
@@ -191,4 +254,3 @@ export default function Register() {
     </View>
   );
 }
-

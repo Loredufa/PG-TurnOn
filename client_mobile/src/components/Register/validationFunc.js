@@ -8,7 +8,7 @@ export function validationFunc(input) {
   if (input.password.length === 0) errors.password = "Se requiere Contraseña";
   else if (!/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/.test(input.password))
     errors.password =
-      "La contraseña debe tener entre 8 y 16 caracteres, al menos un dígito, al menos una minúscula y al menos una mayúscula. Puede tener otros símbolos";
+      "Entre 8 y 16 caracteres, debe incluir(Mayusculas, Minusculas, Números)";
   if (input.password !== input.repassword)
     errors.repassword = "La contraseña no coincide";
   else if (

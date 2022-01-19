@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {styles} from './StylesBookingDetail'
 import {deleteBooking} from '../../store/actions/index';
 import Message from '../Message/Message';
+import { images } from '../Supplier/Supplier'
 
 export default function BookingDetail({route}) {
     const {screenWidth , messageBack} = useSelector(state => state);
@@ -53,7 +54,9 @@ export default function BookingDetail({route}) {
         />*/}
       </View>
                   <Image
-                    source={{uri: "https://images.vexels.com/media/users/3/132448/isolated/preview/baf01fb517749ccf4e1215d7576fe262-pelota-de-tenis.png"}}
+                    source={{
+                      uri: booking.court.image? booking.court.image : images[booking.court.sport]
+                    }}
                     style={{
                       flex: 3,
                       //height: screenWidth / 3,
