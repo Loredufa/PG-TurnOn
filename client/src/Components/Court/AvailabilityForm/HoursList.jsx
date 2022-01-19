@@ -4,19 +4,25 @@ import { AvailabilityContext } from '../Context/AvailabilityContext'
 import { CourtContext } from '../Context/CourtContext'
 import HourItem from './HourItem'
 import axios from 'axios'
+import { verifyHours } from './helpers/functions'
 
 export default function HoursList({ hours, setHours }) {
 
-    const { days, setDays, setAvailability } = useContext(AvailabilityContext)
+    const { days, setDays, setAvailability, availability } = useContext(AvailabilityContext)
     const { currentCourt } = useContext(CourtContext)
 
     const handleClick = () => {
+        let verify = verifyHours(availability, days, hours)
         if (!days.length) {
             alert("Debes seleccionar al menos un día de la semana")
         }
         else if (!hours.length) {
             alert("Debes configurar una franja horaria")
-        } else {
+        }
+        else if (verify.isIncorrect) {
+            alert(verify.message)
+        }
+        else {
             axios.post(`/supplier/available/${currentCourt.id}`, { days, hours })
                 .then(res => {
                     axios.get(`/supplier/available/court/${currentCourt.id}`)
