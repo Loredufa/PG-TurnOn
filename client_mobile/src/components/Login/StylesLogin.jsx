@@ -34,14 +34,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "white",
     borderRadius: 20,
-    borderWidth: 1,
     borderColor: "black",
     justifyContent: "center",
     backgroundColor: "#179F34",
   },
   buttonText: {
     fontSize: 15,
-    color: "black",
+    color: "white",
   },
   registerContainer: {
     display: "flex",

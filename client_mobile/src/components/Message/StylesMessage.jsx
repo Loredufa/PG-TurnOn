@@ -18,17 +18,15 @@ const styles = StyleSheet.create({
     marginLeft: 15,
     marginRight: 15,
     backgroundColor: '#179F34',
-    color: 'white'
   },
-  title: {
-    flex: 0.5,
-    width: 200,
-    textAlign: 'center',
-    justifyContent: "center",
-    alignItems: "center",
-    marginTop: 10,
-    fontSize: 20,
-    fontWeight: "bold",
+  text: {
+    color: 'white',
   },
-  container: { flex: 1, alignItems: "center" },
+  question: {
+    fontWeight: "700",
+    fontSize: 18,
+    margin: 10,
+    textAlign: 'center'
+  },
+  container: { flex: 1, alignItems: "center" , justifyContent: 'center' },
 });

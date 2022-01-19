@@ -52,8 +52,8 @@ export default function CourtCard({ courtInfo }) {
 
 const Wrapper = styled.div`
     background: #81b214;
-    height: 60vh;
-    width: 250px;
+    height: 44vh;
+    width: 300px;
     margin: 5px;
     padding: 2%;
     display: flex;
@@ -61,6 +61,8 @@ const Wrapper = styled.div`
     justify-content: space-between;
     align-content: center;
     border-radius: 10px;
+    font-family:'Be Vietnam Pro', sans-serif;
+    box-shadow: 10px 10px 15px 1px #1169127c;
 `
 
 const Button = styled.button`
@@ -72,8 +74,10 @@ const Button = styled.button`
     width: 110px;
     font-size: 14px;
     margin: 3px;
+    color: #81b214;
+    font-weight: bold;
     &:hover {
-        background: #0b4619;
+        background: #179f34;
         color: white;
     }
 `
@@ -86,6 +90,8 @@ const ButtonRed = styled.button`
     width: 110px;
     font-size: 14px;
     margin: 3px;
+    color: #81b214;
+    font-weight: bold;
     &:hover {
         background: red;
         color: white;
@@ -108,7 +114,9 @@ const ButtonRed = styled.button`
 `
  */
 const Img = styled.img`
-    width: 200px;
+    width: 250px;
+    border-radius: 12px;
+    height: 150px
 `
 
 const Buttons1Container = styled.div`
@@ -122,6 +130,9 @@ const Info = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    color: white;
+    font-weight: 700;
+    font-size: 20px
 `
 
 const Buttons2Container = styled.div`

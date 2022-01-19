@@ -8,11 +8,12 @@ const createCourt = async (req, res) => {
   const { name, address, phone, description, sport, price, image } = req.body;
   const { supplierId } = req.params;
   // <<<<<<< HEAD
+  let newCourt
   try {
     // =======
 
     // >>>>>>> mirror
-    var newCourt = await Field.create({
+    newCourt = await Field.create({
       name,
       address,
       phone,

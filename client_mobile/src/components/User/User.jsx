@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import {useSelector , useDispatch} from 'react-redux';
 import { useNavigation } from "@react-navigation/native";
-import {closeSession , changeUserInfo , changeUserPass} from '../../store/actions/index';
+import {closeSession , changeUserInfo , changeUserPass , deleteUser} from '../../store/actions/index';
 import {
   TouchableOpacity,
   StyleSheet,
@@ -18,9 +18,16 @@ import GoogleLogout from "../GoogleLogout/GoogleLogout";
 export default function User() {
   
   const navigation = useNavigation();
-  const {user} = useSelector(state => state.user);
+  const {user , googlesession} = useSelector(state => state.user);
   const { messageBack } = useSelector(state => state);
   const dispatch = useDispatch();
+
+  let [eliminar , setEliminar] = useState(false);
+  function handlerDelete() {
+    dispatch(deleteUser(user.id));
+    dispatch(closeSession);
+    setEliminar(false)
+  }
 
   
   const [passState , changePassState] = useState(false);
@@ -66,16 +73,16 @@ export default function User() {
       switch (name) {
           case "password": 
           errors.password = value.length === 0 || !(!/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/.test(value))? '' : 
-          "La contraseña debe tener entre 8 y 16 caracteres, al menos un dígito, al menos una minúscula y al menos una mayúscula. Puede tener otros símbolos"
-            break;
+          "Entre 8 y 16 caracteres, debe incluir(Mayusculas, Minusculas, Números)"
+          break;
           case "secondPassword": 
             errors.secondPassword = ( value.length === 0 || !(!/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/.test(value)) ) &&
             passEdit.password === value? '' : 
-            "La contraseña debe tener entre 8 y 16 caracteres, al menos un dígito, al menos una minúscula y al menos una mayúscula. Puede tener otros símbolos"
-              break;
+            "Entre 8 y 16 caracteres, debe incluir(Mayusculas, Minusculas, Números)"
+             break;
           case "actualPass":
             errors.actualPass = ( value.length === 0 || !(!/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/.test(value)) ) ? '' : 
-            "La contraseña debe tener entre 8 y 16 caracteres, al menos un dígito, al menos una minúscula y al menos una mayúscula. Puede tener otros símbolos"
+            "Entre 8 y 16 caracteres, debe incluir(Mayusculas, Minusculas, Números)"
               break;
           default:
             break;
@@ -113,6 +120,22 @@ export default function User() {
     //navigation.navigate("Login");
   }
   */
+
+  function handlerCancel () {
+    changeEdit(!editState),
+    changeInfo({
+      name: user?.name,
+      lastname: user?.lastname,
+      phone: user?.phone,
+      mail: user?.mail,
+      errors: {
+        name: '',
+        lastname: '',
+        phone: '',
+        mail: '' ,
+    },
+    })
+  }
   
   function handlerNewInfo () {
     changeEdit(!editState);
@@ -183,6 +206,21 @@ export default function User() {
   }
   
   return (
+    eliminar? 
+    <View style={{flex:1 , justifyContent: 'center'}}> 
+    <View style={{ alignItems: "center", flex: 1 }}>
+      <Text style={styles.question}>¿Esta seguro que quiere eliminar el usuario?</Text>
+      <View style={styles.buttons}>
+        <TouchableOpacity style={styles.btnEdit} onPress={()=>setEliminar(false)}>
+            <Text style={styles.buttonText}>No eliminar</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.btnCancel} onPress={handlerDelete}>
+            <Text style={styles.textCancel}>Eliminar</Text>
+        </TouchableOpacity>
+      </View>
+    </View>
+    </View>
+    :
     <View style={{flex:1 , alignItems: 'center'}}>
         <Text style={styles.title}>Mi perfil</Text>
         <View style={{flex:3}}>
@@ -194,33 +232,33 @@ export default function User() {
                 style={styles.input}
                 defaultValue={infoEdit.name}
                 onChangeText={(e) => handlerChangeInfo("name", e)}
-              /><Text>{infoEdit.errors.name}</Text>
+              /><Text style={styles.error}>{infoEdit.errors.name}</Text>
               <TextInput 
                 name= 'lastname'
                 style={styles.input}
                 defaultValue={infoEdit.lastname}
                 onChangeText={(e) => handlerChangeInfo("lastname", e)}
-              /><Text>{infoEdit.errors.lastname}</Text>
+              /><Text style={styles.error}>{infoEdit.errors.lastname}</Text>
               <TextInput 
                 name= 'phone'
                 style={styles.input}
                 defaultValue={infoEdit.phone}
                 onChangeText={(e) => handlerChangeInfo("phone", e)}
-              /><Text>{infoEdit.errors.phone}</Text>
+              /><Text style={styles.error}>{infoEdit.errors.phone}</Text>
               <TextInput 
                 name = 'mail'
                 style={styles.input}
                 defaultValue={infoEdit.mail}
                 onChangeText={(e) => handlerChangeInfo("mail", e)}
-              /><Text>{infoEdit.errors.mail}</Text>
+              /><Text style={styles.error}>{infoEdit.errors.mail}</Text>
               <View style={styles.cuenta}>
-                <TouchableOpacity onPress={handlerNewInfo}>
+                <TouchableOpacity onPress={handlerNewInfo} disabled={disabled}>
                   <View style={styles.btnUser}>
                     <Text style={styles.text}>Guardar</Text>
                   </View>
                 </TouchableOpacity>
                 <View style={styles.btnDelete}>
-                  <TouchableOpacity onPress={()=>changeEdit(!editState)}>
+                  <TouchableOpacity onPress={handlerCancel}>
                     <Text style={styles.textDelete}>Cancelar</Text>
                   </TouchableOpacity>
                 </View>
@@ -237,7 +275,7 @@ export default function User() {
             defaultValue ={passEdit.actualPass}
             secureTextEntry={true}
             onChangeText={(e) => handlerChangePass("actualPass", e)}
-            /><Text>{passEdit.errors.actualPass}</Text>
+            /><Text style={styles.error}>{passEdit.errors.actualPass}</Text>
             <Text>Contraseña nueva</Text>
             <TextInput 
             name = 'password'
@@ -246,7 +284,7 @@ export default function User() {
             defaultValue ={passEdit.password}
             secureTextEntry={true}
             onChangeText={(e) => handlerChangePass("password", e)}
-            /><Text>{passEdit.errors.password}</Text>
+            /><Text style={styles.error}>{passEdit.errors.password}</Text>
             <Text>Repetir contraseña nueva</Text>
           <TextInput 
             name = 'secondPassword'
@@ -255,9 +293,9 @@ export default function User() {
             defaultValue= {passEdit.secondPassword}
             secureTextEntry={true}
             onChangeText={(e) => handlerChangePass("secondPassword", e)}
-          /><Text>{passEdit.errors.secondPassword}</Text>
+          /><Text style={styles.error}>{passEdit.errors.secondPassword}</Text>
           <View style={styles.cuenta}>
-            <TouchableOpacity onPress={handlerPass}>
+            <TouchableOpacity onPress={handlerPass} disabled={disabled}>
               <View style={styles.btnUser}>
                 <Text style={styles.text}>Guardar</Text>
               </View>
@@ -274,7 +312,9 @@ export default function User() {
             <Message />
             :
             user?.name !== infoEdit.name || user?.lastname !== infoEdit.lastname || user?.phone !== infoEdit.phone || user?.mail !== infoEdit.mail ?
-            <ActivityIndicator size="large" color="#00ff00" />
+            <View style={{flex:5 , justifyContent: 'center'}}>
+              <ActivityIndicator size="large" color="#00ff00" />
+            </View>
             :
             <View style={styles.inputContainers}>
               <View style={styles.input}><Text style={styles.info}>{user?.name}</Text></View>
@@ -289,7 +329,7 @@ export default function User() {
                   <Text style={styles.text}>Editar Informacion</Text>
                 </View>
                 </TouchableOpacity>
-                <View style={styles.btnPass}>
+                {/*googlesession && */}<View style={styles.btnPass}>
                   <TouchableOpacity onPress={() => changePassState(!passState)}>
                     <Text style={styles.text}>Cambiar contraseña</Text>
                   </TouchableOpacity>
@@ -298,7 +338,7 @@ export default function User() {
               <View style={styles.cuenta}>
                 <GoogleLogout />
                 <View style={styles.btnDelete}>
-                  <TouchableOpacity onPress={() => console.log("Eliminar cuenta")}>
+                  <TouchableOpacity onPress={() => setEliminar(true)}>
                     <Text style={styles.textDelete}>Eliminar cuenta</Text>
                   </TouchableOpacity>
                 </View>
