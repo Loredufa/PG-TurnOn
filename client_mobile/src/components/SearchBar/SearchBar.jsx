@@ -9,33 +9,56 @@ import {
 } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { styles } from "./StyleSearchBar";
-import { getSuppliersByName } from "../../store/actions/index";
+import { getSuppliersByName , getFavorites } from "../../store/actions/index";
 import MaterialCommunityIcons from "react-native-vector-icons/Ionicons";
 import { useNavigation } from "@react-navigation/native";
 import Suppliers from "../Suppliers/Suppliers";
 
-export default function SearchBar() {
+export default function SearchBar({screen}) {
   const [input, setInput] = useState("");
   const dispatch = useDispatch();
-  const { court } = useSelector((state) => state);
+  const { court , user} = useSelector((state) => state);
   const navigation = useNavigation();
+
+  const [find , setFind] = useState(false);
 
 
   const screenWidth = useSelector((state) => state.screenWidth);
 
   function handlerFindCourt() {
-    dispatch(getSuppliersByName(input));
-    setInput("");
-    //if (court === input) {
-    navigation.navigate("Suppliers", { type: "Tu busqueda" });
-    /*}
+    if(screen === "Favoritos") {
+      setFind(true);
+      dispatch(getFavorites(user.user.id , input))
+    } else {
+      dispatch(getSuppliersByName(input));
+      setInput("");
+      //if (court === input) {
+      navigation.navigate("Suppliers", { type: "Tu busqueda" });
+      /*}
       else {
         alert("Cancha no encontrada")
       }*/
+    }
+  }
+  function handlerGoBack() {
+    setFind(false);
+    if(screen === "Favoritos") {
+      dispatch(getFavorites(user.user.id))
+      setInput("");
+    } 
   }
 
   return (
     <View style={styles.containerSearch}>
+       {find &&<TouchableOpacity
+        style={[
+          styles.button,
+          { width: screenWidth / 10, height: screenWidth / 10 },
+        ]}
+        onPress={handlerGoBack}
+      >
+        <MaterialCommunityIcons name="chevron-back-outline" size={30} color="#179F34" />
+      </TouchableOpacity>}
       <View style={[styles.posInput, { height: screenWidth / 8.2 }]}>
         <TextInput
           placeholder="Nombre"
@@ -46,6 +69,7 @@ export default function SearchBar() {
           ]}
           onChangeText={(court) => setInput(court)}
           defaultValue={input}
+          value={input}
         />
       </View>
       <TouchableOpacity
