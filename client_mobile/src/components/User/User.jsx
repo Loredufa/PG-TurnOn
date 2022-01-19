@@ -22,7 +22,8 @@ import GoogleLogout from "../GoogleLogout/GoogleLogout";
 
 export default function User() {
   const navigation = useNavigation();
-  const { user, googlesession } = useSelector((state) => state.user);
+  const { user } = useSelector((state) => state.user);
+  const {googlesession} = useSelector ((state) => state);
   const { messageBack } = useSelector((state) => state);
   const screenWidth = useSelector((state) => state.screenWidth);
   const dispatch = useDispatch();
@@ -304,7 +305,9 @@ export default function User() {
             <Text style={[styles.error, { width: screenWidth / 1.5 }]}>
               {infoEdit.errors.phone}
             </Text>
-            <TextInput
+            {!googlesession &&
+              <View>
+              <TextInput
               name="mail"
               style={[
                 styles.input,
@@ -312,10 +315,12 @@ export default function User() {
               ]}
               defaultValue={infoEdit.mail}
               onChangeText={(e) => handlerChangeInfo("mail", e)}
-            />
+              />
             <Text style={[styles.error, { width: screenWidth / 1.5 }]}>
               {infoEdit.errors.mail}
             </Text>
+            </View>
+            }
             <View style={styles.cuenta}>
               <TouchableOpacity onPress={handlerNewInfo} disabled={disabled}>
                 <View
@@ -454,14 +459,14 @@ export default function User() {
             >
               <Text style={styles.info}>{user?.mail}</Text>
             </View>
-            <View
+            {!googlesession &&<View
               style={[
                 styles.input,
                 { width: screenWidth / 1.5, height: screenWidth / 10 },
               ]}
             >
               <Text style={styles.info}>**********</Text>
-            </View>
+            </View>}
 
             <View style={styles.cuenta}>
               <TouchableOpacity onPress={() => changeEdit(!editState)}>
@@ -475,7 +480,8 @@ export default function User() {
                   <Text style={styles.text}>Editar Informacion</Text>
                 </View>
               </TouchableOpacity>
-              {/*googlesession && */}
+              
+              { (!googlesession) &&
               <View
                 style={[
                   styles.btnPass,
@@ -487,6 +493,7 @@ export default function User() {
                 </TouchableOpacity>
 
               </View>
+              }
             </View>
             <View style={styles.cuenta}>
               <GoogleLogout />
