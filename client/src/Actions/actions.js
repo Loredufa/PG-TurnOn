@@ -10,10 +10,7 @@ export const UPDATE_PASSWORD = "UPDATE_PASSWORD";
 export function Register(payload) {
   return async function (dispatch) {
     try {
-      const info = await axios.post(
-        `/supplier/supplier`,
-        payload
-      );
+      const info = await axios.post(`/supplier/supplier`, payload);
       if (info.data.message) {
         return dispatch({
           type: SET_MESSAGE_REG,
@@ -53,14 +50,11 @@ export function loginUser({ user, password }) {
   };
 }
 
-export function changeSupplierProfile({ id, info }) {
-  console.log("VER LO Q DA INFO:", info);
+export function changeSupplierProfile(id, values) {
+  console.log("VER LO Q DA INFO:", values);
   return async function (dispatch) {
     try {
-      const updateinfo = await axios.put(
-        `/supplier/supplier/${id}`,
-        info
-      );
+      const updateinfo = await axios.put(`/supplier/supplier/${id}`, values);
       console.log("QUE TRAE ID", updateinfo.data);
       return dispatch({
         type: SET_USER,
@@ -96,9 +90,7 @@ export function deleteUser(id) {
   console.log("INFO DE DELETE:", id);
   return async function (dispatch) {
     try {
-      const deleteUsario = await axios.delete(
-        `/supplier/supplier/${id}`
-      );
+      const deleteUsario = await axios.delete(`/supplier/supplier/${id}`);
       console.log("QUE TRAE ID", deleteUsario.data);
       return dispatch({
         type: DELETE_USER,
@@ -113,10 +105,10 @@ export function deleteUser(id) {
 export function updatePassword(id, oldPassword, newPassword) {
   return async function (dispatch) {
     try {
-      const pwdupdate = await axios.put(
-        `/supplier/supplier/password/${id}`,
-        { oldPassword, newPassword }
-      );
+      const pwdupdate = await axios.put(`/supplier/supplier/password/${id}`, {
+        oldPassword,
+        newPassword,
+      });
       console.log("VER LO Q DA PWDUPDATE:", pwdupdate);
       return pwdupdate.data;
     } catch (error) {
