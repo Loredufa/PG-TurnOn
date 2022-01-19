@@ -26,7 +26,7 @@ module.exports = (sequelize) => {
     },
     location: {
       type: DataTypes.BOOLEAN,
-      allowNull: false,
+      defaultValue: false,
     },
     reputation: {
       type: DataTypes.FLOAT,
