@@ -1,23 +1,6 @@
 const { Bookings, User } = require("../../../db");
 
 
-function convertirFecha(date) {
-  // la fecha viene en formato "xx/yy/aa", la convierto a "xx/yy/aaaa" 
-  //para poder ordenarlo luego
-
-  let fecha = date.split("/");
-  let año = new Date().getFullYear();
-
-  if (fecha.length == 3) {
-    fecha[2] = año;
-  }
-  var mes = fecha[1] - 1;
-  var dia = fecha[0];
-
-  let fechas = new Date(año, mes, dia);
-  return fechas.toLocaleDateString()
-}
-
 
 const getBookings = async (req, res) => {
 
@@ -66,9 +49,6 @@ const getBookings = async (req, res) => {
 
     // Ordenamiento por fechas
 
-    for (element of allbookings) {
-      element.date = convertirFecha(element.date)
-    }
     if (order=== "asc") {
 
       allbookings = allbookings.sort((a, b) => {
