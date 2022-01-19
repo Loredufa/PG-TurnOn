@@ -10,10 +10,13 @@ import {
 } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import MapView from "react-native-maps";
-import { locales } from "./rutas";
+import { locales, rutas } from "./rutas";
 import { styles } from "./StylesLocation";
 import { Picker } from "@react-native-picker/picker";
-import { getAllSuppliers } from "../../store/actions/index";
+import {
+  getAllSuppliers,
+  getSupplierLocation,
+} from "../../store/actions/index";
 
 const { width, height } = Dimensions.get("window");
 const ASPECT_RATIO = width / height;
@@ -24,7 +27,7 @@ const LONGITUD_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 
 export default function Location(props) {
   const dispatch = useDispatch();
-  let sportTypes = ["futbol", "tenis", "golf", "paddle", "hockey"];
+  let sportTypes = ["Futbol", "Tenis", "Golf", "Paddle", "Hockey"];
 
   const [region, setRegion] = useState({
     latitude: LATITUDE,
@@ -32,21 +35,19 @@ export default function Location(props) {
     latitudeDelta: LATITUDE_DELTA,
     longitudeDelta: LONGITUD_DELTA,
   });
-  //if(route.params) const {courtLocation} = route.params
-  //if(route.params?.courtLocation) const {courtLocation} = route.params
 
   const [section, setSection] = useState("Deporte");
-  const [courts, setCourts] = useState(locales);
+  const suppliersLocation = useSelector((state) => state.suppliersLocation);
+  const [courts, setCourts] = useState(suppliersLocation);
 
   useEffect(() => {
-    dispatch(getAllSuppliers());
+    dispatch(getSupplierLocation());
   }, []);
 
   useEffect(() => {
     props.route.params?.courtLocation
       ? setCourts(props.route.params?.courtLocation)
-      : setCourts(locales);
-    //console.log("effect", courtLocation);
+      : setCourts(suppliersLocation);
   }, [props.route.params?.courtLocation]);
 
   function onChange(itemValue) {
@@ -56,12 +57,11 @@ export default function Location(props) {
     });
     if (itemValue === "Deportes")
       setCourts(() => {
-        const newInput = locales;
+        const newInput = suppliersLocation;
         return newInput;
       });
     else {
-      let court = locales?.filter((e) => e.sport === itemValue);
-      // setCourts(court);
+      let court = suppliersLocation?.filter((e) => e.sport.includes(itemValue));
       setCourts(() => {
         const newInput = court;
         return newInput;
@@ -82,16 +82,6 @@ export default function Location(props) {
             <Picker.Item key={i} label={e} value={e} />
           ))}
         </Picker>
-        {/* <PickerIOS
-          style={{ flex: 1, borderWidth: 1, width: 10, height: 30 }}
-          selectedValue={section}
-          onValueChange={(itemValue, itemIndex) => onChange(itemValue)}
-        >
-          <PickerIOS.Item label="Deportes" value="Deportes" />
-          {sportTypes?.map((e, i) => (
-            <PickerIOS.Item key={i} label={e} value={e} />
-          ))}
-        </PickerIOS> */}
       </View>
       <MapView
         provider={MapView.PROVIDER_GOOGLE}
@@ -117,11 +107,11 @@ export default function Location(props) {
           // props.route.params?.courtLocation ? (
           //   <MapView.Marker
           //     coordinate={{
-          //       latitude: props.route.params.courtLocation.latitude,
-          //       longitude: props.route.params.courtLocation.longitude,
+          //       latitude: props.route.params.courtLocation[0].latitude,
+          //       longitude: props.route.params.courtLocation[0].longitude,
           //     }}
-          //     title={props.route.params.courtLocation.title}
-          //     description={props.route.params.courtLocation.description}
+          //     title={props.route.params.courtLocation[0].title}
+          //     description={props.route.params.courtLocation[0].description}
           //   />
           // ) : (
           courts.map((element) => (
