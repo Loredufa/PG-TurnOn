@@ -261,6 +261,7 @@ export default function User() {
         </View>
       </View>
     </View>
+
   ) : (
     <View style={{ flex: 1, alignItems: "center" }}>
       <Text style={styles.title}>Mi perfil</Text>
@@ -324,6 +325,7 @@ export default function User() {
                   ]}
                 >
                   <Text style={styles.text}>Guardar</Text>
+
                 </View>
               </TouchableOpacity>
               <View
@@ -435,6 +437,7 @@ export default function User() {
             >
               <Text style={styles.info}>{user?.lastname}</Text>
             </View>
+
             <View
               style={[
                 styles.input,
@@ -468,6 +471,7 @@ export default function User() {
                     { width: screenWidth / 3.2, height: screenWidth / 11.5 },
                   ]}
                 >
+
                   <Text style={styles.text}>Editar Informacion</Text>
                 </View>
               </TouchableOpacity>
@@ -481,6 +485,7 @@ export default function User() {
                 <TouchableOpacity onPress={() => changePassState(!passState)}>
                   <Text style={styles.text}>Cambiar contraseña</Text>
                 </TouchableOpacity>
+
               </View>
             </View>
             <View style={styles.cuenta}>

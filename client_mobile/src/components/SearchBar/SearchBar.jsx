@@ -20,6 +20,7 @@ export default function SearchBar() {
   const { court } = useSelector((state) => state);
   const navigation = useNavigation();
 
+
   const screenWidth = useSelector((state) => state.screenWidth);
 
   function handlerFindCourt() {

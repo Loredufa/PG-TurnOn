@@ -25,7 +25,7 @@ export default function FavoritesCourts() {
             //contentContainerStyle={{ alignItems: "center" }}
             renderItem={({ item }) => (
             <View>
-              <Supplier item={item} />
+              <Supplier item={item} sport="Favoritos"/>
               </View>)}
             ItemSeparatorComponent={() => <View style={{ height: 10 }} />}
             //numColumns={3}
