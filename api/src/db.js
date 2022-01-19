@@ -2,19 +2,8 @@ require("dotenv").config();
 const { Sequelize } = require("sequelize");
 const fs = require("fs");
 const path = require("path");
-// const {
-//   dbUser,
-//   dbHost,
-//   dbPassword,
-//   dbName,
-//   dbPort,
-// } = require("./Config/config");
-//const Favorites = require("./models/Favorites");
 const { DB_NAME, DB_HOST, DB_USER, DB_PASSWORD } = process.env;
-/* const UserModel = require("../models/User");
-const ProveedorModel = require("../models/Proveedor");
-const AvailableModel = require("../models/Available");
-const FieldModel = require("../models/Field"); */
+
 let sequelize =
   process.env.NODE_ENV === "production"
     ? new Sequelize({
@@ -70,19 +59,7 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
-// <<<<<<< HEAD
-// const {
-//   User,
-//   Comments,
-//   Statistics,
-//   Payments,
-//   Supplier,
-//   Field,
-//   Available,
-//   Favorites,
-//   Bookings,
-// } = sequelize.models;
-// =======
+
 const {
   User,
   Comments,
@@ -93,16 +70,6 @@ const {
   Available,
   Bookings,
 } = sequelize.models;
-// >>>>>>> mirror
-
-/* const User = UserModel(sequelize);
-const Proveedor = ProveedorModel(sequelize);
-const Available = AvailableModel(sequelize);
-const Field = FieldModel(sequelize);
-console.log(UserModel) */
-// --------------------------- Relaciones ---------------------------------//
-// Recipe.belongsToMany(Diet, { through: "intermediateTable" }); // Relacion de muchos a muchos con la taabla intermedia "intermediateTable"
-// Diet.belongsToMany(Recipe, { through: "intermediateTable" }); // Relacion de muchos a muchos con la taabla intermedia "intermediateTable"
 
 // N a N
 Field.belongsToMany(User, { through: "Booking_Field" });
