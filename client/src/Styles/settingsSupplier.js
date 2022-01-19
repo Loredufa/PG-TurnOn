@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const DivGlobal = styled.div`
   padding-top: 10px;
   background: #dedede;
-  height: 94vh;
+  height: 91vh;
 `;
 export const DivForm = styled.div`
   display: flex;
@@ -15,6 +15,12 @@ export const DivForm = styled.div`
   width: 700px;
   background-color: #6bac48;
   border-radius: 20px;
+  p {
+    color: white;
+    text-align: center;
+    margin-left: 32%;
+    font-family: "Be Vietnam Pro", sans-serif;
+  }
 `;
 
 export const ContenedorForm = styled.div`
@@ -27,7 +33,7 @@ export const EditButton = styled.button`
   font-family: "Be Vietnam Pro", sans-serif;
   font-size: 20px;
   top: 180px;
-  left: 50px;
+  left: 3rem;
   width: 140px;
   height: 45px;
   cursor: pointer;
@@ -40,13 +46,50 @@ export const EditButton = styled.button`
     color: white;
   }
 `;
+
+export const EditButton2 = styled.button`
+  background-color: #6bac48;
+  position: absolute;
+  font-family: "Be Vietnam Pro", sans-serif;
+  font-size: 20px;
+  top: 180px;
+  left: 3rem;
+  width: 140px;
+  height: 45px;
+  cursor: pointer;
+  border-radius: 30px;
+  border-style: none;
+  color: white;
+  padding: 10px;
+  &:disabled {
+    background-color: red;
+    color: white;
+  }
+`;
+
+export const VolverButton = styled.button`
+  background-color: #6bac48;
+  position: absolute;
+  font-family: "Be Vietnam Pro", sans-serif;
+  font-size: 20px;
+  top: 180px;
+  left: 14rem;
+  width: 140px;
+  height: 45px;
+  cursor: pointer;
+  border-radius: 30px;
+  border-style: none;
+  color: white;
+  padding: 10px;
+`;
+
 export const UpdateButton = styled.button`
   background-color: #6bac48;
   position: absolute;
   font-family: "Be Vietnam Pro", sans-serif;
   font-size: 14px;
   top: 180px;
-  left: 230px;
+  left: 25rem;
   width: 140px;
   height: 45px;
   cursor: pointer;
@@ -63,7 +106,7 @@ export const DeleteButton = styled.button`
   font-family: "Be Vietnam Pro", sans-serif;
   font-size: 14px;
   top: 180px;
-  left: 410px;
+  left: 36rem;
   width: 140px;
   height: 45px;
   cursor: pointer;

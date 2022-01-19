@@ -4,6 +4,11 @@ export const DivGlobal = styled.div`
   padding-top: 10px;
   background: #dedede;
   height: 94vh;
+  .p {
+    margin-left: 3.2%;
+    font-weight: bold;
+    font-size: 2vh;
+  }
 `;
 export const DivForm = styled.div`
   display: flex;
@@ -16,6 +21,12 @@ export const DivForm = styled.div`
   width: 700px;
   background-color: #6bac48;
   border-radius: 20px;
+  p {
+    color: white;
+    text-align: center;
+    margin-left: 32%;
+    font-family: "Be Vietnam Pro", sans-serif;
+  }
 `;
 
 export const GuardarButton = styled.button`
