@@ -7,10 +7,11 @@ import { styles } from "./StyleCourt";
 import MaterialCommunityIcons from "react-native-vector-icons/Ionicons";
 import { addToFavorite } from "../../store/actions";
 import { useDispatch, useSelector } from "react-redux";
+import { images } from "../Supplier/Supplier";
 
-export default function Court({ item, supplierID }) {
+export default function Court({ item, supplierID, coordinates }) {
   const { screenWidth, favorites } = useSelector((state) => state);
-  console.log(favorites);
+  //console.log(favorites);
   const navigation = useNavigation();
   const dispatch = useDispatch();
   return (
@@ -20,6 +21,7 @@ export default function Court({ item, supplierID }) {
           court: item,
           dimension: screenWidth,
           supplierID: supplierID,
+          coordinates: coordinates,
         })
       }
     >
@@ -45,7 +47,7 @@ export default function Court({ item, supplierID }) {
       >
         <Image
           source={{
-            uri: item.image,
+            uri: item.image ? item.image : images[item.sport],
           }}
           style={{
             // height: screenWidth / 4,
