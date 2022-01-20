@@ -1,6 +1,7 @@
 const { Payments } = require("../../../db");
 
 const createPayment = async (req, res) => {
+
   const {
     amount,
     idCourt,
@@ -29,7 +30,10 @@ const createPayment = async (req, res) => {
     res.json({ error: "No se puede agregar el pago correctamente" });
   });
   if (newPayments)
-    res.json({ message: "El pago se ha agregado correctamente" });
+    res.json({
+      message: "El pago se ha agregado correctamente",
+      payment: newPayments,
+    });
 };
 
 module.exports = { createPayment };
