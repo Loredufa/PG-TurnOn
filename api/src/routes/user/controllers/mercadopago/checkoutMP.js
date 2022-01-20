@@ -14,6 +14,7 @@ const checkoutMP = async (req, res) => {
   //   { title: "Producto 2", quantity: 15, price: 100.52 },
   //   { title: "Producto 3", quantity: 6, price: 200 },
   // ];
+
   const {
     amount,
     idCourt,
@@ -21,7 +22,7 @@ const checkoutMP = async (req, res) => {
     idSupplier,
     reservationCode,
     state,
-    courtName,
+    courtName, // Nombre de lo que compro que se ve en MP
   } = req.query;
   var price = parseFloat(amount);
   const carrito = [{ title: courtName, quantity: 1, price: price }];
@@ -45,13 +46,13 @@ const checkoutMP = async (req, res) => {
     access_token: PROD_ACCESS_TOKEN, // Unico de la cuenta del vendedor
   });
 
-  console.info("ml configured");
+  // console.info("ml configured");
   const items_ml = carrito.map((i) => ({
     title: i.title,
     unit_price: i.price,
     quantity: i.quantity,
   }));
-  console.info("carrito", items_ml);
+  // console.info("carrito", items_ml);
 
   // Crea un objeto de preferencia
   let preference = {
@@ -62,8 +63,10 @@ const checkoutMP = async (req, res) => {
       failure: "http://localhost:3001/mercadopago/pagos",
       pending: "http://localhost:3001/mercadopago/pagos",
     },
+    installments: 1,
+    auto_return: "approved", ////////////////////////////////////////////////
   };
-  console.info("preference:", preference);
+  // console.info("preference:", preference);
 
   mercadopago.preferences
     .create(preference)
