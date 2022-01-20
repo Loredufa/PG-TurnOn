@@ -17,6 +17,9 @@ import {
   getAllSuppliers,
   getSupplierLocation,
 } from "../../store/actions/index";
+//import Geolocation from "@react-native-community/geolocation";
+
+//Geolocation.getCurrentPosition((info) => console.log(info));
 
 const { width, height } = Dimensions.get("window");
 const ASPECT_RATIO = width / height;
@@ -26,23 +29,21 @@ const LATITUDE_DELTA = 0.0922;
 const LONGITUD_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 
 export default function Location(props) {
+  // Geolocation.getCurrentPosition((info) => console.log(info));
   const dispatch = useDispatch();
   let sportTypes = ["Futbol", "Tenis", "Golf", "Paddle", "Hockey"];
 
+  const { user } = useSelector((state) => state.user);
   const [region, setRegion] = useState({
     latitude: LATITUDE,
     longitude: LONGITUDE,
     latitudeDelta: LATITUDE_DELTA,
     longitudeDelta: LONGITUD_DELTA,
   });
-
+  const [coordenadas, setCoordenadas] = useState({});
   const [section, setSection] = useState("Deporte");
   const suppliersLocation = useSelector((state) => state.suppliersLocation);
   const [courts, setCourts] = useState(suppliersLocation);
-
-  useEffect(() => {
-    dispatch(getSupplierLocation());
-  }, []);
 
   useEffect(() => {
     props.route.params?.courtLocation
@@ -50,6 +51,19 @@ export default function Location(props) {
       : setCourts(suppliersLocation);
   }, [props.route.params?.courtLocation]);
 
+  /* useEffect(() => {
+    navigator.geolocation.getCurrentPosition(
+      (posicion) => {
+        const coordenadas = JSON.stringify(posicion);
+
+        setCoordenadas({ coordenadas });
+      },
+      (error) => Alert.alert(error.message),
+      { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
+    );
+  });
+  console.log(coordenadas);
+  */
   function onChange(itemValue) {
     setSection(() => {
       const newInput = itemValue;
@@ -95,8 +109,8 @@ export default function Location(props) {
         pitchEnabled={true}
         rotateEnabled={true}
         initialRegion={region}
-        showsUserLocation={true}
-        followsUserLocation={true}
+        showsUserLocation={user.location}
+        followsUserLocation={user.location}
         showsMyLocationButton={true}
         showsCompass={true}
         showsScale={true}

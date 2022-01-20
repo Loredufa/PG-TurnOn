@@ -27,6 +27,9 @@ const getCourts = async (req, res) => {
           attributes: ["name"],
         },
       });
+      courts = courts.filter((e) =>
+          e.supplier.name.toLowerCase().includes(name.toLowerCase())
+        );
     }
   } catch (error) {
     console.log(error);

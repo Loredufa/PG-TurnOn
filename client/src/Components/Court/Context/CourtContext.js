@@ -31,7 +31,7 @@ export const CourtProvider = () => {
                 supplier
             }}
         >   
-            <Courts />
+                <Courts />
         </CourtContext.Provider>
     )
 }

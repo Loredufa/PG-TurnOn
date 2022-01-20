@@ -79,7 +79,7 @@ export default function Supplier({ item, sport }) {
           alignItems: "center",
           justifyContent: "center",
           padding: 2,
-          height: screenWidth / 3,
+          height: screenWidth / 2.5,
           width: screenWidth / 1.1,
 
           backgroundColor: "white",
@@ -96,13 +96,10 @@ export default function Supplier({ item, sport }) {
           style={styles.img}
         />
         <View style={styles.info}>
-          <Text style={styles.name}>{item.businessname}</Text>
-          <View style={styles.sports}>
-            <Text style={styles.sportText}>Deportes:</Text>
-            {arrayAux.map((el) => (
-              <Text style={styles.sportText}>{el}</Text>
-            ))}
-          </View>
+          <Text style={styles.name}>{item.name}</Text>
+          <Text style={styles.sportText}>Deportes: 
+          {arrayAux.map((el,index) =>  index===arrayAux.length-1? " " + el : " " + el+" -")} 
+          </Text>
           <Text style={styles.sportText}>Direccion: {item.address}</Text>
           {/*<Text style={styles.mail}>{item.mail}</Text>*/}
           <View

@@ -70,6 +70,7 @@ const {
   Field,
   Available,
   Bookings,
+  Order,
 } = sequelize.models;
 
 // N a N
@@ -106,6 +107,8 @@ Field.belongsTo(Supplier); // coloca supplierId en field
 User.hasMany(Bookings);
 Bookings.belongsTo(User); // Deberia colocar el userId en Bookings
 
+
+
 Comments.belongsTo(Field); // coloca fieldId en comments
 // Field.hasMany(Comments);
 
@@ -119,4 +122,5 @@ module.exports = {
   Payments,
   Field,
   Bookings,
+  Order,
 };

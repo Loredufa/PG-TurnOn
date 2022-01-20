@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const DivGlobal = styled.div`
   padding-top: 10px;
   background: #e9ebed;
-  height: 94vh;
+  height: 91vh;
 `;
 export const DivForm = styled.div`
   display: flex;
@@ -15,6 +15,12 @@ export const DivForm = styled.div`
   width: 720px;
   background-color: #81b214;
   border-radius: 20px;
+  p {
+    color: white;
+    text-align: center;
+    margin-left: 32%;
+    font-family: "Be Vietnam Pro", sans-serif;
+  }
 `;
 
 export const ContenedorForm = styled.div`
@@ -26,8 +32,8 @@ export const EditButton = styled.button`
   position: absolute;
   font-family: "Be Vietnam Pro", sans-serif;
   font-size: 20px;
-  top: 200px;
-  left: 50px;
+  top: 180px;
+  left: 3rem;
   width: 140px;
   height: 54px;
   cursor: pointer;
@@ -45,15 +51,52 @@ export const EditButton = styled.button`
 
   }
 `;
+
+export const EditButton2 = styled.button`
+  background-color: #6bac48;
+  position: absolute;
+  font-family: "Be Vietnam Pro", sans-serif;
+  font-size: 20px;
+  top: 180px;
+  left: 3rem;
+  width: 140px;
+  height: 45px;
+  cursor: pointer;
+  border-radius: 30px;
+  border-style: none;
+  color: white;
+  padding: 10px;
+  &:disabled {
+    background-color: red;
+    color: white;
+  }
+`;
+
+export const VolverButton = styled.button`
+  background-color: #6bac48;
+  position: absolute;
+  font-family: "Be Vietnam Pro", sans-serif;
+  font-size: 20px;
+  top: 180px;
+  left: 14rem;
+  width: 140px;
+  height: 45px;
+  cursor: pointer;
+  border-radius: 30px;
+  border-style: none;
+  color: white;
+  padding: 10px;
+`;
+
 export const UpdateButton = styled.button`
   background-color: #81b214;
   position: absolute;
   font-family: "Be Vietnam Pro", sans-serif;
-  font-size: 17px;
-  top: 200px;
-  left: 230px;
-  width: 170px;
-  height: 54px;
+  font-size: 14px;
+  top: 180px;
+  left: 25rem;
+  width: 140px;
+  height: 45px;
   cursor: pointer;
   border-radius: 30px;
   border-style: none;
@@ -72,9 +115,9 @@ export const DeleteButton = styled.button`
   background-color: #81b214;
   position: absolute;
   font-family: "Be Vietnam Pro", sans-serif;
-  font-size: 17px;
-  top: 200px;
-  left: 438px;
+  font-size: 14px;
+  top: 180px;
+  left: 36rem;
   width: 140px;
   height: 54px;
   cursor: pointer;
