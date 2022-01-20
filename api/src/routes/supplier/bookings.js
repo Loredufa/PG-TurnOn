@@ -1,6 +1,7 @@
 const {Router} = require ("express")
 const router = Router () 
 const {getBookings} = require("./controllers/getBookings") 
+const { getBookingsCourt } = require("./controllers/getBookingsCourt")
 
 // router.get ("/bookings" , (req, res, next) => {
 //     try {
@@ -10,7 +11,7 @@ const {getBookings} = require("./controllers/getBookings")
 
 //     }
 // });
-
+router.get("/bookings/court", getBookingsCourt)
  router.get ("/bookings", getBookings )
 
 module.exports = router
