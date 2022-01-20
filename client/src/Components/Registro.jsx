@@ -5,6 +5,7 @@ import { Link, useHistory } from 'react-router-dom';
 import { Register } from "../Actions/actions";
 import { useDispatch, useSelector } from "react-redux";
 import Swal from "sweetalert2";
+import Map from "./Court/CourtMap/Map"
 
 export default function Registro(){
 
@@ -32,10 +33,12 @@ return (
     <Formik 
         initialValues={{
             name: '',
-            lastname: '',
+            phone: '',
             mail: '',
             cuit: '',
             businessname: '',
+            address: '',
+            coordinates:'',
             password: '',
             password2: '',
             access: 'supplier'
@@ -52,16 +55,16 @@ return (
             errores.name ='El nombre puede contener letras y espacios'
         }
 
-        if(!valores.lastname){
-            errores.lastname = 'Por favor ingresa un apellido'
-        } else if(!/^[a-zA-ZÀ-ÿ\s]{1,40}$/.test(valores.lastname)){
-            errores.lastname ='El apellido puede contener letras y espacios'
+        if(!valores.phone){
+            errores.lastname = 'Por favor ingresa un teléfono'
+        } else if(!/^([0-9])*$/.test(valores.phone)){
+            errores.phone ='El teléfono puede contener solo números'
         }
  
         if(!valores.cuit){
             errores.cuit = 'Por favor ingresa tu CUIT'
         } else if(!/^([0-9]{11}|[0-9]{2}-[0-9]{8}-[0-9]{1})$/g.test(valores.cuit)){
-            errores.cuit ='Tu cuit debe contar con solo con numeros'
+            errores.cuit ='Tu cuit debe contar con solo con números'
         }
 
         if(!valores.businessname){
@@ -70,11 +73,15 @@ return (
             errores.businessname ='La Razon Social puede contener letras y espacios'
         }
 
+        if(!valores.address){
+            errores.address = 'Por favor ingresa tu dirección'
+        } 
+
          
         if(!valores.mail){
             errores.mail = 'Por favor ingresa un correo electrónico'
         } else if(!/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(valores.mail)){
-            errores.mail ='El correo solo puede contener letras, numeros, puntos, guiones'
+            errores.mail ='El correo solo puede contener letras, números, puntos, guiones'
         }
 
         if(!valores.password){
@@ -104,7 +111,7 @@ return (
 
         }}
     > 
-    {({errors}) => (
+    {({errors, valores, initialValues}) => (
     
     <Form className="formulario-registro">
          <h1 className="titulo-registro">REGISTRO</h1>
@@ -117,25 +124,25 @@ return (
                  type="text" 
                  id="name" 
                  name="name" 
-                 placeholder="Nombre"
+                 placeholder="Nombre de Fantasia del negocio"
                  className="innombre"
                  />
         </div>
         <ErrorMessage name="name" component={()=> 
         <div className="error-nombre">{errors.name}</div>}/>
 
-        <div className="labelapellido">
-            <label htmlFor="lastname"></label>
+        <div className="labeltelefono">
+            <label htmlFor="phone"></label>
             <Field 
                  type="text" 
-                 id="lastname" 
-                 name="lastname" 
-                 placeholder="Apellido"
-                 className="in-apellido"
+                 id="phone" 
+                 name="phone" 
+                 placeholder="Teléfono de Contacto"
+                 className="in-telefono"
                  />
         </div>
-        <ErrorMessage name="lastname" component={()=> 
-        <div className="error-apellido">{errors.lastname}</div>}/>
+        <ErrorMessage name="phone" component={()=> 
+        <div className="error-phone">{errors.phone}</div>}/>
 
         <div className="labelcuit">
             <label htmlFor="cuit"></label>
@@ -173,6 +180,13 @@ return (
                  className="in-e-mail"
                  />
         </div>
+
+        <div>
+        <label className="label-all-cc label-address-cc" htmlFor="address">Ubicación :</label>
+            <Map className="cont-map-cc" setInfoCourt={valores} infoCourt={initialValues}/>
+        </div>
+        <ErrorMessage name="address" component={()=> 
+        <div className="error-direccion">{errors.address}</div>}/>
 
         <ErrorMessage name="mail" component={()=> 
         <div className="error-email">{errors.mail}</div>}/>

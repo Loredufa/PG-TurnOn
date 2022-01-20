@@ -10,7 +10,7 @@ export default function CourtCard({ courtInfo }) {
         setCurrentCourt, 
         setSection, 
         supplier, 
-        setSupplierCourts 
+        setSupplierCourts, 
     } = useContext(CourtContext)
 
     const handleSection = (e) => {
@@ -37,7 +37,7 @@ export default function CourtCard({ courtInfo }) {
             </Info>
             <BottomDiv>
                 <Buttons1Container>
-                        <Button>Editar</Button>
+                        <Button onClick={handleSection} value="edit">Editar</Button>
                         <Button>Desactivar</Button>
                         <ButtonRed onClick={handleDelete}>Eliminar</ButtonRed>
                 </Buttons1Container>
