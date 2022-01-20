@@ -23,6 +23,7 @@ export const DELETE_USER = "DELETE_USER";
 export const GET_COURTS_SUPPLIER = "GET_COURTS_SUPPLIER";
 export const GET_ALL_SUPPLIERS = "GET_ALL_SUPPLIERS";
 export const GET_SUPPLIER_LOCATION = "GET_SUPPLIER_LOCATION";
+export const MP_BOOKING_DETAIL = "MP_BOOKING_DETAIL";
 
 //const URL = "http://localhost:3001/";
 const URL = "https://turnon1.herokuapp.com/";
@@ -121,6 +122,32 @@ export function setScreenDimensions(screenWidth, numColumns, titleSize) {
     });
   };
 }
+
+export function MPbookingDetails (
+  amount , 
+  idCourt , 
+  idUser , 
+  idSupplier,
+  courtName ) {
+  return async function (dispatch) {
+    try {
+      const reservationCode= Math.round(Math.random() * (9999 - 1000) + 1000);
+      const state = 'active';
+      amount = Math.round(amount.split('$')[1]/10)
+      console.log(`${URL}user/mercadopago?amount=${amount}&idCourt=${idCourt}&idUser=${idUser}&idSupplier=${idSupplier}&reservationCode=${reservationCode}&state=${state}&courtName=${courtName}`)
+      console.log(amount, " ", idCourt ," ", idUser," ", idSupplier," ", courtName ," ", state," ", reservationCode)
+      const url = await axios.get(`${URL}user/mercadopago?amount=${amount}&idCourt=${idCourt}&idUser=${idUser}&idSupplier=${idSupplier}&reservationCode=${reservationCode}&state=${state}&courtName=${courtName}`)  
+      console.log("URL", url.data);
+      dispatch({
+        type: MP_BOOKING_DETAIL,
+        payload: url.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
 
 export function bookCourt(courtId, userId, date) {
   return async function (dispatch) {
