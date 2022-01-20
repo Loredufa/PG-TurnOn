@@ -18,6 +18,8 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   setScreenDimensions,
   getAllSuppliers,
+  changeUserInfo,
+  getSupplierLocation,
 } from "../../store/actions/index";
 
 export default function Landing() {
@@ -25,9 +27,8 @@ export default function Landing() {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state);
   const screenWidth = useSelector((state) => state.screenWidth);
-
   useEffect(() => {
-    dispatch(getAllSuppliers());
+    dispatch(getSupplierLocation());
   }, []);
   /*    
     const {user} = useSelector(state => state)
@@ -70,6 +71,12 @@ export default function Landing() {
     );
   }, [screenWidth]);
 */
+  const handleChange = () => {
+    dispatch(changeUserInfo(user.user.id, { location: true }));
+    user?.user.phone === "0000000000"
+      ? navigation.navigate("Phone")
+      : navigation.navigate("HomeTab");
+  };
 
   return (
     <View style={styles.screen}>
@@ -88,24 +95,64 @@ export default function Landing() {
         <Text style={styles.slogan}>
           No mas filas. No mas llamadas. No mas espera.
         </Text>
-        <Text style={styles.question}>¿Permitis acceder a tu ubicación?</Text>
-
-        <TouchableOpacity
-          onPress={() =>
-            user?.user.phone === "0000000000"
-              ? navigation.navigate("Phone")
-              : navigation.navigate("HomeTab")
-          }
-        >
-          <View
-            style={[
-              styles.button,
-              { width: screenWidth / 3.2, height: screenWidth / 11.5 },
-            ]}
+        {user.user.location ? (
+          <TouchableOpacity
+            onPress={() =>
+              user?.user.phone === "0000000000"
+                ? navigation.navigate("Phone")
+                : navigation.navigate("HomeTab")
+            }
           >
-            <Text style={styles.buttonText}>Aceptar</Text>
+            <View
+              style={[
+                styles.button,
+                { width: screenWidth / 3.2, height: screenWidth / 11.5 },
+              ]}
+            >
+              <Text style={styles.buttonText}>Comenzar</Text>
+            </View>
+          </TouchableOpacity>
+        ) : (
+          <View style={{ alignItems: "center" }}>
+            <Text style={styles.question}>
+              ¿Permitis acceder a tu ubicación?
+            </Text>
+            <View
+              style={{
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <TouchableOpacity onPress={() => handleChange()}>
+                <View
+                  style={[
+                    styles.button,
+                    { width: screenWidth / 3.2, height: screenWidth / 11.5 },
+                  ]}
+                >
+                  <Text style={styles.buttonText}>Aceptar</Text>
+                </View>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() =>
+                  user?.user.phone === "0000000000"
+                    ? navigation.navigate("Phone")
+                    : navigation.navigate("HomeTab")
+                }
+              >
+                <View
+                  style={[
+                    styles.button,
+                    { width: screenWidth / 3.2, height: screenWidth / 11.5 },
+                  ]}
+                >
+                  <Text style={styles.buttonText}>Cancelar</Text>
+                </View>
+              </TouchableOpacity>
+            </View>
           </View>
-        </TouchableOpacity>
+        )}
       </View>
     </View>
   );
