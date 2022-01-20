@@ -12,7 +12,7 @@ export const styles = StyleSheet.create({
       alignItems: 'center'
     },
     info: {
-      flex: 1,
+      flex: 2,
       flexDirection: "column",
       //alignItems: "flex-start",
     },
@@ -23,12 +23,10 @@ export const styles = StyleSheet.create({
         fontSize:18,
         fontWeight: "bold",
     },
-    sports: {
-      flex: 1,
-      flexDirection: 'row',
-    },
     sportText: {
-      marginLeft: 3,
+      flex:1,
+      marginLeft: 3, 
+      marginRight: 3,
     },
     mail:{
         flex:1,
