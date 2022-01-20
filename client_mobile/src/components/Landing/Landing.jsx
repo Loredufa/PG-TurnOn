@@ -144,10 +144,16 @@ export default function Landing() {
                 <View
                   style={[
                     styles.button,
-                    { width: screenWidth / 3.2, height: screenWidth / 11.5 },
+                    {
+                      width: screenWidth / 3.2,
+                      height: screenWidth / 11.5,
+                      backgroundColor: "#E9EBED",
+                    },
                   ]}
                 >
-                  <Text style={styles.buttonText}>Cancelar</Text>
+                  <Text style={[styles.buttonText, { color: "black" }]}>
+                    Cancelar
+                  </Text>
                 </View>
               </TouchableOpacity>
             </View>

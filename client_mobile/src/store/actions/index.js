@@ -24,9 +24,8 @@ export const GET_COURTS_SUPPLIER = "GET_COURTS_SUPPLIER";
 export const GET_ALL_SUPPLIERS = "GET_ALL_SUPPLIERS";
 export const GET_SUPPLIER_LOCATION = "GET_SUPPLIER_LOCATION";
 
-
-const URL = "http://localhost:3001/";
-//const URL = "https://turnon1.herokuapp.com/";
+//const URL = "http://localhost:3001/";
+const URL = "https://turnon1.herokuapp.com/";
 
 export function getAllSuppliers() {
   return async function (dispatch) {
@@ -323,16 +322,17 @@ export function changeMessage() {
   };
 }
 
-export function getSuppliersByName(name , sport) {
+export function getSuppliersByName(name, sport) {
   return async function (dispatch) {
     try {
       //const postUser = await axios.get("http://localhost:3001/user/court?name="+name);
       //const postUser = await axios.get("https://turnon1.herokuapp.com/user/supplier?name="+name);
-      let postUser =''
+      let postUser = "";
       if (sport)
-      postUser = await axios.get(URL + "user/supplier?name=" + name +"&sport=" + sport);
-      else
-      postUser = await axios.get(URL + "user/supplier?name=" + name);
+        postUser = await axios.get(
+          URL + "user/supplier?name=" + name + "&sport=" + sport
+        );
+      else postUser = await axios.get(URL + "user/supplier?name=" + name);
       console.log("Supplier", postUser.data);
       dispatch({
         type: GET_SUPPLIERS_BY_NAME,
@@ -401,14 +401,15 @@ export function deleteFromFavorite(supplierId, userId) {
   };
 }
 
-export function getFavorites(userId , name) {
+export function getFavorites(userId, name) {
   return async function (dispatch) {
     try {
-      let favs = ''
-      if (name)  
-         favs = await axios.get(URL + "user/favorites?userId=" + userId + '&name=' + name);
-      else   
-         favs = await axios.get(URL + "user/favorites?userId=" + userId);
+      let favs = "";
+      if (name)
+        favs = await axios.get(
+          URL + "user/favorites?userId=" + userId + "&name=" + name
+        );
+      else favs = await axios.get(URL + "user/favorites?userId=" + userId);
       dispatch({
         type: GET_FAVORITES,
         payload: favs.data,
