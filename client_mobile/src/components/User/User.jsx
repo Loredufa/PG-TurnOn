@@ -15,6 +15,7 @@ import {
   View,
   Image,
   ActivityIndicator,
+  Switch,
 } from "react-native";
 import { styles } from "./StylesUser";
 import Message from "../Message/Message";
@@ -23,17 +24,23 @@ import GoogleLogout from "../GoogleLogout/GoogleLogout";
 export default function User() {
   const navigation = useNavigation();
   const { user } = useSelector((state) => state.user);
-  const {googlesession} = useSelector ((state) => state);
+  const { googlesession } = useSelector((state) => state);
   const { messageBack } = useSelector((state) => state);
   const screenWidth = useSelector((state) => state.screenWidth);
   const dispatch = useDispatch();
-
+  console.log("USER", user);
   let [eliminar, setEliminar] = useState(false);
   function handlerDelete() {
     dispatch(deleteUser(user.id));
     dispatch(closeSession);
     setEliminar(false);
   }
+
+  const [isEnabled, setIsEnabled] = useState(!user.location);
+  const toggleSwitch = () => {
+    setIsEnabled((previousState) => !previousState);
+    handlerChangeInfo("location", isEnabled);
+  };
 
   const [passState, changePassState] = useState(false);
   const [passEdit, changePass] = useState({
@@ -124,6 +131,7 @@ export default function User() {
     lastname: user?.lastname,
     phone: user?.phone,
     mail: user?.mail,
+    location: user?.location,
     errors: {
       name: "",
       lastname: "",
@@ -145,6 +153,7 @@ export default function User() {
         lastname: user?.lastname,
         phone: user?.phone,
         mail: user?.mail,
+        location: user?.location,
         errors: {
           name: "",
           lastname: "",
@@ -169,6 +178,9 @@ export default function User() {
       : (infoToSend = { ...infoToSend });
     user?.mail !== infoEdit.mail
       ? (infoToSend = { ...infoToSend, mail: infoEdit.mail })
+      : (infoToSend = { ...infoToSend });
+    user?.location !== infoEdit.location
+      ? (infoToSend = { ...infoToSend, location: infoEdit.location })
       : (infoToSend = { ...infoToSend });
     //infoEdit.password !== '' ? infoToSend={ ...infoToSend , password: infoEdit.password} :infoToSend={ ...infoToSend}
     console.log("Informacion a enviar", infoToSend);
@@ -262,7 +274,6 @@ export default function User() {
         </View>
       </View>
     </View>
-
   ) : (
     <View style={{ flex: 1, alignItems: "center" }}>
       <Text style={styles.title}>Mi perfil</Text>
@@ -305,22 +316,36 @@ export default function User() {
             <Text style={[styles.error, { width: screenWidth / 1.5 }]}>
               {infoEdit.errors.phone}
             </Text>
-            {!googlesession &&
+            {!googlesession && (
               <View>
-              <TextInput
-              name="mail"
-              style={[
-                styles.input,
-                { width: screenWidth / 1.5, height: screenWidth / 10 },
-              ]}
-              defaultValue={infoEdit.mail}
-              onChangeText={(e) => handlerChangeInfo("mail", e)}
+                <TextInput
+                  name="mail"
+                  style={[
+                    styles.input,
+                    { width: screenWidth / 1.5, height: screenWidth / 10 },
+                  ]}
+                  defaultValue={infoEdit.mail}
+                  onChangeText={(e) => handlerChangeInfo("mail", e)}
+                />
+                <Text style={[styles.error, { width: screenWidth / 1.5 }]}>
+                  {infoEdit.errors.mail}
+                </Text>
+              </View>
+            )}
+            <View style={{ alignItems: "center", justifyContent: "center" }}>
+              <Text
+                style={{ fontWeight: "700", fontSize: 15, marginBottom: 15 }}
+              >
+                ¿Permitis acceder a tu ubicación?
+              </Text>
+              <Switch
+                trackColor={{ false: "#81b0ff", true: "#3FC959" }}
+                thumbColor={isEnabled ? "#f4f3f4" : "#E9EBED"}
+                ios_backgroundColor="#3e3e3e"
+                onValueChange={toggleSwitch}
+                value={!isEnabled}
               />
-            <Text style={[styles.error, { width: screenWidth / 1.5 }]}>
-              {infoEdit.errors.mail}
-            </Text>
             </View>
-            }
             <View style={styles.cuenta}>
               <TouchableOpacity onPress={handlerNewInfo} disabled={disabled}>
                 <View
@@ -330,7 +355,6 @@ export default function User() {
                   ]}
                 >
                   <Text style={styles.text}>Guardar</Text>
-
                 </View>
               </TouchableOpacity>
               <View
@@ -459,14 +483,16 @@ export default function User() {
             >
               <Text style={styles.info}>{user?.mail}</Text>
             </View>
-            {!googlesession &&<View
-              style={[
-                styles.input,
-                { width: screenWidth / 1.5, height: screenWidth / 10 },
-              ]}
-            >
-              <Text style={styles.info}>**********</Text>
-            </View>}
+            {!googlesession && (
+              <View
+                style={[
+                  styles.input,
+                  { width: screenWidth / 1.5, height: screenWidth / 10 },
+                ]}
+              >
+                <Text style={styles.info}>**********</Text>
+              </View>
+            )}
 
             <View style={styles.cuenta}>
               <TouchableOpacity onPress={() => changeEdit(!editState)}>
@@ -476,24 +502,22 @@ export default function User() {
                     { width: screenWidth / 3.2, height: screenWidth / 11.5 },
                   ]}
                 >
-
                   <Text style={styles.text}>Editar Informacion</Text>
                 </View>
               </TouchableOpacity>
-              
-              { (!googlesession) &&
-              <View
-                style={[
-                  styles.btnPass,
-                  { width: screenWidth / 3.2, height: screenWidth / 11.5 },
-                ]}
-              >
-                <TouchableOpacity onPress={() => changePassState(!passState)}>
-                  <Text style={styles.text}>Cambiar contraseña</Text>
-                </TouchableOpacity>
 
-              </View>
-              }
+              {!googlesession && (
+                <View
+                  style={[
+                    styles.btnPass,
+                    { width: screenWidth / 3.2, height: screenWidth / 11.5 },
+                  ]}
+                >
+                  <TouchableOpacity onPress={() => changePassState(!passState)}>
+                    <Text style={styles.text}>Cambiar contraseña</Text>
+                  </TouchableOpacity>
+                </View>
+              )}
             </View>
             <View style={styles.cuenta}>
               <GoogleLogout />

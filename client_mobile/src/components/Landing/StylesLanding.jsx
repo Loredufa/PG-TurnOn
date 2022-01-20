@@ -25,6 +25,8 @@ export const styles = StyleSheet.create({
     borderColor: "black",
     justifyContent: "center",
     backgroundColor: "#179F34",
+    marginRight: 20,
+    marginLeft: 20,
   },
   buttonText: {
     fontSize: 15,
@@ -34,6 +36,8 @@ export const styles = StyleSheet.create({
     fontWeight: "700",
     fontSize: 15,
     marginTop: 15,
+    // alignItems: "center",
+    // justifyContent: "center",
   },
   slogan: {
     fontSize: 15,
