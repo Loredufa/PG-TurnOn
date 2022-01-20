@@ -20,6 +20,6 @@ router.post("/available/:idCourt", postAvailability);
 router.get("/available/court/:idCourt", getAvailabilityCourt);
 router.get("/available/supplier/:idSupplier", getAvailabilitySupplier);
 router.put("/available/:idCourt", putAvailability);
-router.delete("/available", deleteAvailability);
+router.delete("/available/:idCourt", deleteAvailability);
 
 module.exports = router;
