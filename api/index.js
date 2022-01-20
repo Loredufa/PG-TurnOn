@@ -4,6 +4,7 @@ const morgan = require("morgan");
 const app = express();
 const routes = require("./src/routes/user_index");
 const routes1 = require("./src/routes/supplier_index");
+const routesMP = require("./src/routes/user/mercadopago");
 const errorHandler = require("./src/utils/middlewares/errorHandler");
 const setHeaders = require("./src/utils/middlewares/setHeaders");
 
@@ -16,6 +17,7 @@ app.use(setHeaders);
 // aca vamos a setear el listen
 app.use("/supplier", routes1);
 app.use("/user", routes);
+app.use("/", routesMP);
 
 app.use(errorHandler);
 
