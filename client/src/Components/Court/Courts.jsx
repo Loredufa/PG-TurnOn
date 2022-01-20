@@ -4,6 +4,7 @@ import CourtList from './CourtList'
 import CalendarSection from './Calendar/CalendarSection'
 import { AvailabilityProvider } from './Context/AvailabilityContext'
 import styled from 'styled-components'
+import EditCourt from './EditCourt/EditCourt'
 
 export default function Courts() {
     
@@ -14,6 +15,7 @@ export default function Courts() {
             { section === "" && <CourtList /> }
             { section === "calendar" && <CalendarSection /> }
             { section === "availability" && <AvailabilityProvider /> }
+            { section === "edit" && <EditCourt /> }
         </SectionContainer>
     )
 }

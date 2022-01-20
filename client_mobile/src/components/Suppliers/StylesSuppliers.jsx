@@ -34,6 +34,17 @@ export const styles = StyleSheet.create({
 
     paddingLeft: 10,
   },
+  filter: {
+    marginBottom: 10,
+    alignSelf:'center',
+    alignItems: 'center',
+    backgroundColor: '#2A2D34',
+    justifyContent: 'center',
+    borderRadius: 15,
+  },
+  textFilter: {
+    color:'white'
+  }
   /*
   card: {
     flex: 1,

@@ -14,7 +14,7 @@ module.exports = (sequelize) => {
     },
     phone: {
       type: DataTypes.STRING,
-      allowNull: false,
+      // allowNull: false,
     },
     mail: {
       type: DataTypes.STRING,
@@ -26,7 +26,7 @@ module.exports = (sequelize) => {
     },
     location: {
       type: DataTypes.BOOLEAN,
-      allowNull: false,
+      defaultValue: false,
     },
     reputation: {
       type: DataTypes.FLOAT,

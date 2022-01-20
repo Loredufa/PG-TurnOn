@@ -51,3 +51,25 @@ export const locales = [
     sport: "paddle",
   },
 ];
+
+export function rutas(arr) {
+  console.log("LLEGO A RUTA", arr);
+  let latitude = "";
+  let longitude = "";
+  let sport = [];
+  let newArr = arr?.map((e) => {
+    latitude = parseFloat(e.coordinates?.split(" ")[0]);
+    longitude = parseFloat(e.coordinates?.split(" ")[1]);
+    sport = e.fields.map((element) => element.sport);
+    return {
+      latitude: latitude,
+      longitude: longitude,
+      title: e.businessname,
+      id: e.id,
+      sport: sport,
+      description: e.address,
+    };
+  });
+  console.log("RUTAS", newArr);
+  return newArr;
+}
