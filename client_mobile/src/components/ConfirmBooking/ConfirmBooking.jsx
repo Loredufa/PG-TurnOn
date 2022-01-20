@@ -10,10 +10,10 @@ import { useSelector } from "react-redux";
 import {styles} from './StylesConfirmBooking';
 
 export default function ConfirmBooking({visible , bookingRef , onClose , onBook}) {
-    const {screenWidth} = useSelector(state => state);
-    const MPurl =
+    const {screenWidth , MPurl} = useSelector(state => state);
+    /*const MPurl =
     "https://www.mercadopago.com.ar/checkout/v1/redirect?pref_id=1059164600-a4b75369-79de-4b42-9fa4-c7fe20665609";
-
+    */
     return (
     <Modal animated transparent animationType="fade" visible={visible}>
         <View style={styles.container}>

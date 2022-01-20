@@ -24,7 +24,7 @@ const getPaymentsMP = async (req, res) => {
         .then((_) => {
           console.info("redirect success");
 
-          return res.redirect("http://localhost:3000");
+          return res.redirect("https://auth.expo.io/@francopizzi/client_mobile");
         })
         .catch((err) => {
           console.error("error al salvar", err);

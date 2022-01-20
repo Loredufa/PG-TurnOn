@@ -59,9 +59,9 @@ const checkoutMP = async (req, res) => {
     items: items_ml,
     external_reference: `${id_orden}`, //`${new Date().valueOf()}`,
     back_urls: {
-      success: "http://localhost:3001/mercadopago/pagos",
-      failure: "http://localhost:3001/mercadopago/pagos",
-      pending: "http://localhost:3001/mercadopago/pagos",
+      success: "https://turnon1.herokuapp.com/mercadopago/pagos",
+      failure: "https://turnon1.herokuapp.com/mercadopago/pagos",
+      pending: "https://turnon1.herokuapp.com/mercadopago/pagos",
     },
     installments: 1,
     auto_return: "approved", ////////////////////////////////////////////////

@@ -11,7 +11,7 @@ import {
 } from "react-native";
 import MaterialCommunityIcons from "react-native-vector-icons/Ionicons";
 import { useDispatch, useSelector } from "react-redux";
-import { addToFavorite, bookCourt } from "../../store/actions/index";
+import { addToFavorite, bookCourt, MPbookingDetails } from "../../store/actions/index";
 import { styles } from "./StyleCourtDetail";
 import { Picker } from "@react-native-picker/picker";
 import DatePicker from "react-native-datepicker";
@@ -27,7 +27,7 @@ export default function CourtDetail({ route }) {
   const dispatch = useDispatch();
   const { user, favorites, messageBack } = useSelector((state) => state);
   //console.log(favorites);
-  let { court } = route.params;
+  let { court , supplierID} = route.params;
   const [bookingRef , setBookingRef] = useState({
     court,
     day: '',
@@ -43,6 +43,12 @@ export default function CourtDetail({ route }) {
     let day = date.split("-").join("/");
     //console.log(typeof day);
     //dispatch(bookCourt(route.params.court.id, user.user.id, day, timeSelected));
+    dispatch(MPbookingDetails(
+      court.price , 
+      court.id , 
+      user.user.id , 
+      supplierID,
+      court.name));
     setBookingRef({court , day , timeSelected});
     setConfirmScreen(true);
 
