@@ -1,3 +1,4 @@
+const { Payments } = require("../../../../db");
 const { PROD_ACCESS_TOKEN } = process.env;
 
 // SDK de Mercado Pago
@@ -5,16 +6,40 @@ const mercadopago = require("mercadopago");
 
 const checkoutMP = async (req, res) => {
   //const id_orden = req.query.id
-  ///////////////////////////////////////////
-  // id y carrito deberian llegar por body //
-  ///////////////////////////////////////////
-  const id_orden = 1;
+
+  // const id_orden = 1;
   // cargamos el carrido de la bd
-  const carrito = [
-    { title: "Producto 1", quantity: 5, price: 10.52 },
-    { title: "Producto 2", quantity: 15, price: 100.52 },
-    { title: "Producto 3", quantity: 6, price: 200 },
-  ];
+  // const carrito = [
+  //   { title: "Producto 1", quantity: 5, price: 10.52 },
+  //   { title: "Producto 2", quantity: 15, price: 100.52 },
+  //   { title: "Producto 3", quantity: 6, price: 200 },
+  // ];
+  const {
+    amount,
+    idCourt,
+    idUser,
+    idSupplier,
+    reservationCode,
+    state,
+    courtName,
+  } = req.query;
+  var price = parseFloat(amount);
+  const carrito = [{ title: courtName, quantity: 1, price: price }];
+
+  let newPayments = await Payments.create({
+    amount,
+    idCourt,
+    idUser,
+    idSupplier,
+    reservationCode,
+    state,
+  });
+  newPayments = await newPayments.save().catch((err) => {
+    console.log(err);
+    res.json({ error: "No se puede agregar el pago correctamente" });
+  });
+  const id_orden = newPayments.id;
+
   // Agrega credenciales
   mercadopago.configure({
     access_token: PROD_ACCESS_TOKEN, // Unico de la cuenta del vendedor
