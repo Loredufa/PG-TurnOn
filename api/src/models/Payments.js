@@ -7,7 +7,7 @@ module.exports = (sequelize) => {
   sequelize.define("payments", {
     status: {
       type: DataTypes.ENUM("created", "processing", "cancelled", "completed"),
-      allowNull: false,
+      // allowNull: false,
     },
     payment_id: {
       type: DataTypes.INTEGER,
@@ -23,11 +23,11 @@ module.exports = (sequelize) => {
     },
     price: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      // allowNull: false,
     },
     quantity: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      // allowNull: false,
     },
     amount: {
       type: DataTypes.STRING,
@@ -58,7 +58,7 @@ module.exports = (sequelize) => {
 // Public Key  TEST-ee0ab28d-f04f-452c-af94-c03376e90d6d
 // Access token  TEST-7424882986110024-011820-a061299477783feb815b4957329eb7fc-1059164600
 
-// usuarios de prueba 
+// usuarios de prueba
 // Comprador  {"id":1059179024,"nickname":"TEST6TGI6VJH","password":"qatest3464","site_status":"active","email":"test_user_21187182@testuser.com"}
 
- // vendedor {"id":1059164600,"nickname":"TETE1332167","password":"qatest4350","site_status":"active","email":"test_user_66070748@testuser.com"}
+// vendedor {"id":1059164600,"nickname":"TETE1332167","password":"qatest4350","site_status":"active","email":"test_user_66070748@testuser.com"}

@@ -3,7 +3,7 @@ const { Payments } = require("../../../db");
 const createPayment = async (req, res) => {
   const { amount, idCourt, idUser, idSupplier, reservationCode, state } =
     req.body;
-  console.log(req.body);
+  // console.log(req.body);
   let newPayments = await Payments.create({
     amount,
     idCourt,
