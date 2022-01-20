@@ -32,7 +32,7 @@ export default function Courts({ route }) {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (route.params.sport)
+    if (route.params.sport !=="Tu busqueda" && route.params.sport !=="Favoritos" )
       dispatch(getCourtBySportSupplier(route.params.name, route.params.sport));
     else dispatch(getCourtsBySupplier(route.params.name));
   }, []);
@@ -54,8 +54,8 @@ export default function Courts({ route }) {
       <View style={styles.searchBarPos}>
         <SearchBar />
       </View>
-      {courtsBySports.length === 0 ||
-      (route.params.sport && courtsBySports[0].sport !== route.params.sport) ? (
+      {courtsBySports.length === 0? /*&&
+      (route.params.sport && courtsBySports[0].sport !== route.params.sport) ?*/ (
         <ActivityIndicator
           size="large"
           color="#00ff00"

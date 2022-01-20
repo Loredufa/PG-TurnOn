@@ -56,15 +56,10 @@ export default function Suppliers({ route }) {
         {route.params.type && route.params.type}
       </Text>
       <View style={styles.searchBarPos}>
-        <SearchBar />
+        <SearchBar screen={route.params.sport? route.params.sport : null}/>
       </View>
       <View style={{flex:5}}>
-      {suppliers.length === 0 ? (
-        <ActivityIndicator size="large" color="#00ff00" style={{flex:1 ,justifyContent: 'center'}} />
-        ) : 
-        (
-          <View>
-          {route.params.sport === "Otros" &&
+      {route.params.sport === "Otros" &&
           <View style={[styles.filter, { width: screenWidth / 3, height: screenWidth / 11.5 }]}>
             <TouchableOpacity onPress={() => setShowPicker(true)}>
               <Text style={styles.textFilter}>Filtrar por deporte</Text>
@@ -78,6 +73,10 @@ export default function Suppliers({ route }) {
             //value={showPicker ? user[showPicker] : ''}
             />
             </View>}
+      {suppliers.length === 0 ? (
+          <ActivityIndicator size="large" color="#00ff00" style={{flex:1 ,justifyContent: 'center'}} />      
+        ) : 
+        (  
           <View style={{  justifyContent: 'space-evenly'}}>
           <FlatList
             data={suppliers}
@@ -93,7 +92,6 @@ export default function Suppliers({ route }) {
               //numColumns={3}
               keyExtractor={(item) => item.id}
               />
-              </View>
               </View>
       )}
       </View>
