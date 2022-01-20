@@ -5,6 +5,7 @@ import { CourtContext } from '../Context/CourtContext'
 import HourItem from './HourItem'
 import axios from 'axios'
 import { verifyHours } from './helpers/functions'
+import { orderAvailability } from '../Context/helpers/functions'
 
 export default function HoursList({ hours, setHours }) {
 
@@ -26,7 +27,7 @@ export default function HoursList({ hours, setHours }) {
             axios.post(`/supplier/available/${currentCourt.id}`, { days, hours })
                 .then(res => {
                     axios.get(`/supplier/available/court/${currentCourt.id}`)
-                    .then(res => setAvailability(res.data))
+                    .then(res => setAvailability(orderAvailability(res.data)))
                     .catch(err => console.log(err))
                 })
                 .catch(err => console.log(err))

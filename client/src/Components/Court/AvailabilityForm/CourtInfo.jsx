@@ -7,6 +7,10 @@ export default function CourtInfo({ currentCourt }) {
 
     const { availability } = useContext(AvailabilityContext)
 
+    const handleX = () => {
+        
+    }
+
     return (
         <Wrapper>
             <Title>Horarios "{currentCourt.name}"</Title>
@@ -23,6 +27,7 @@ export default function CourtInfo({ currentCourt }) {
                                 return (
                                     <Hour>
                                         <p>{h}</p>
+                                        <button onClick={handleX}>X</button>
                                     </Hour>
                                 )
                             })
