@@ -1,9 +1,19 @@
 const { Payments } = require("../../../db");
 
 const createPayment = async (req, res) => {
-  const { amount, idCourt, idUser, idSupplier, reservationCode, state } =
-    req.body;
-  // console.log(req.body);
+
+  const {
+    amount,
+    idCourt,
+    idUser,
+    idSupplier,
+    reservationCode,
+    state,
+    status,
+    price,
+    quantity,
+  } = req.body;
+  console.log(req.body);
   let newPayments = await Payments.create({
     amount,
     idCourt,
@@ -11,6 +21,9 @@ const createPayment = async (req, res) => {
     idSupplier,
     reservationCode,
     state,
+    status,
+    price,
+    quantity,
   });
   newPayments = await newPayments.save().catch((err) => {
     console.log(err);

@@ -19,9 +19,10 @@ const handlerSelect = async value =>{
   const result = await geocodeByAddress(value)
   const latlng = await getLatLng(result[0])
   console.log("Q TRAE LATLNG",latlng)
+  console.log("QUE TRAE RESULT", result[0].formatted_address)
   setAddress(value)
   setCoordinate(latlng)
-  setInfoCourt({...infoCourt, address:`${latlng.lat} ${latlng.lng}`})
+  setInfoCourt({...infoCourt, coordinates:`${latlng.lat} ${latlng.lng}`, address:`${result[0].formatted_address}`})
 }
   return (
     
