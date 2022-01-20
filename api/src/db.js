@@ -70,6 +70,7 @@ const {
   Field,
   Available,
   Bookings,
+  Contact,
 } = sequelize.models;
 
 // N a N
@@ -121,4 +122,5 @@ module.exports = {
   Payments,
   Field,
   Bookings,
+  Contact,
 };

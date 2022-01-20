@@ -7,7 +7,7 @@ const userBooking = require("./user/booking");
 const userFavorites = require("./user/favorites");
 const userAvailability = require("./user/availability");
 const userSupplier = require ("./user/supplier")
-
+const supplierContact = require ("./supplier/contact")
 
 router.use("/", user);
 router.use("/", userCourt);
@@ -15,6 +15,6 @@ router.use("/", userBooking);
 router.use("/", userFavorites);
 router.use("/", userAvailability);
 router.use("/", userSupplier);
-
+router.use ("/", supplierContact)
 
 module.exports = router;
