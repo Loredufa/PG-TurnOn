@@ -25,7 +25,16 @@ export default function Settings() {
   const history = useHistory();
   const dispatch = useDispatch();
   const [edit, setEdit] = useState(false);
-
+  const [infoCourt, setInfoCourt] = useState({
+    name: supplier.name,
+    id: supplier.id,
+    mail: supplier.mail,
+    image: supplier.image,
+    password: supplier.password,
+    cuit: supplier.cuit,
+    businessname: supplier.businessname,
+  });
+  console.log(infoCourt);
   const editPwdClick = () => {
     history.push("/profile/password");
   };
@@ -52,11 +61,35 @@ export default function Settings() {
       ],
     });
   };
+
+  const uploadImage = async (e) => {
+    const files = e.target.files;
+    const data = new FormData();
+    data.append("file", files[0]);
+    data.append("upload_preset", "turnon");
+
+    const respuesta = await fetch(
+      "https://api.cloudinary.com/v1_1/duijak4ks/upload",
+      {
+        method: "POST",
+        body: data,
+      }
+    );
+
+    const file = await respuesta.json();
+    console.log(file.secure_url);
+    setInfoCourt({
+      ...infoCourt,
+      image: file.secure_url,
+    });
+  };
+
   return (
     <Formik
       initialValues={{
         name: supplier.name,
         id: supplier.id,
+        image: supplier.image,
         mail: supplier.mail,
         password: supplier.password,
         cuit: supplier.cuit,
@@ -131,7 +164,6 @@ export default function Settings() {
           <Form>
             <DivGlobal>
               <H1name>Configuración/Perfil</H1name>
-
               <DivForm>
                 {Object.values(errors).length > 0 ? (
                   <EditButton2 type="submit" disabled={true}>
@@ -184,6 +216,27 @@ export default function Settings() {
                   component={() => <p>{errors.businessname}</p>}
                 />
               </DivForm>
+              <div className="cont-in-image-cc">
+                <label className="label-all-cc label-image-cc" htmlFor="image">
+                  Imagen De Perfil:
+                </label>
+                <br />
+                {infoCourt.image && (
+                  <img
+                    src={infoCourt.image}
+                    alt="Imagen"
+                    width="250px"
+                    height="150px"
+                  />
+                )}
+                <br />
+                <input
+                  className="input-image-cc"
+                  type="file"
+                  name="file"
+                  onChange={uploadImage}
+                />
+              </div>
             </DivGlobal>
           </Form>
         )
