@@ -2,8 +2,8 @@ import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
   img: {
-    width: 150,
-    height: 100,
+    //width: 150,
+    //height: 100,
     alignSelf: "center",
     marginTop: 50,
     marginBottom: 20,
@@ -17,8 +17,8 @@ export const styles = StyleSheet.create({
   },
   button: {
     marginTop: 30,
-    width: 130,
-    height: 35,
+    // width: 130,
+    //height: 35,
     alignItems: "center",
     backgroundColor: "white",
     borderRadius: 20,
@@ -33,17 +33,17 @@ export const styles = StyleSheet.create({
   question: {
     fontWeight: "700",
     fontSize: 15,
-    marginTop: 15
+    marginTop: 15,
   },
   slogan: {
     fontSize: 15,
     marginTop: 5,
-    fontStyle: 'italic'
+    fontStyle: "italic",
   },
   welcome: {
     fontWeight: "bold",
     fontSize: 18,
-    marginBottom: 10
+    marginBottom: 10,
   },
   screen: {
     flex: 1,

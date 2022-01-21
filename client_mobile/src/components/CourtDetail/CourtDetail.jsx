@@ -14,6 +14,7 @@ import { styles } from "./StyleCourtDetail";
 import { Picker } from "@react-native-picker/picker";
 import DatePicker from "react-native-datepicker";
 import { useNavigation } from "@react-navigation/native";
+import { images } from "../Supplier/Supplier";
 
 import Message from "../Message/Message";
 
@@ -21,14 +22,16 @@ export default function CourtDetail({ route }) {
   const navigation = useNavigation();
   const dispatch = useDispatch();
   const { user, favorites, messageBack } = useSelector((state) => state);
-  console.log(favorites);
+  //console.log(favorites);
   function handlerBooking() {
-    dispatch(bookCourt(route.params.court.id, user.user.id));
+    let day = date.split("-").join("/");
+    //console.log(typeof day);
+    dispatch(bookCourt(route.params.court.id, user.user.id, day, timeSelected));
   }
   const screenWidth = useSelector((state) => state.screenWidth);
   const titleSize = useSelector((state) => state.titleSize);
   let { court } = route.params;
-  console.log("soy la cancha" , court)
+  //console.log("soy la cancha", court);
   /*court = {
     name: "Futbol 5 Orsai",
     id: 1,
@@ -45,7 +48,9 @@ export default function CourtDetail({ route }) {
   const [timeSelected, setTimeSelected] = useState("Horario");
   const [date, setDate] = useState("");
 
-  let [coordinates , setCoordinates] = useState(["-38.9770815277723" , "-68.05826232925203"])
+  let [coordinates, setCoordinates] = useState(
+    route.params.coordinates.split(" ")
+  );
   //let coordinates = court.coordinates.split(" ");
   function onChange(itemValue) {
     setTimeSelected(() => {
@@ -61,7 +66,7 @@ export default function CourtDetail({ route }) {
     //var today = now.getFullYear() + "-" + (month) + "-" + (day);
 
     setDate(today);
-  } ,[]);
+  }, []);
   //console.log(court);
 
   return messageBack !== "" ? (
@@ -79,7 +84,9 @@ export default function CourtDetail({ route }) {
         /> */}
         </View>
         <Image
-          source={court.img}
+          source={{
+            uri: court.image ? court.image : images[court.sport],
+          }}
           style={{
             flex: 3,
             //height: screenWidth / 3,
@@ -148,7 +155,7 @@ export default function CourtDetail({ route }) {
         </View>
         <View style={styles.priceAndLocationContainer}>
           <View style={styles.priceContainer}>
-            <Text style={styles.textPrice}>Precio: {court.price}$</Text>
+            <Text style={styles.textPrice}>Precio: ${court.price}</Text>
           </View>
           <TouchableOpacity
             style={styles.locationContainer}
