@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useSelector } from "react-redux";
 import MaterialTable from 'material-table';
 /* import { makeStyles, ThemeProvider } from '@material-ui/core'; */
 /* import { Modal, TextField, Button } from '@material-ui/core'; */
@@ -60,7 +61,7 @@ export default function TableBookings (){
         <div>
             <MaterialTable
                 columns={columns}
-                data={infoEj}
+                data={info}
                 title="Historial de Reservas"
                 actions={[
                     { icon: "edit", tooltip: "Editar Estado"},
