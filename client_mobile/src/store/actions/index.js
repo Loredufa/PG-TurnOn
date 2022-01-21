@@ -25,8 +25,8 @@ export const GET_ALL_SUPPLIERS = "GET_ALL_SUPPLIERS";
 export const GET_SUPPLIER_LOCATION = "GET_SUPPLIER_LOCATION";
 export const MP_BOOKING_DETAIL = "MP_BOOKING_DETAIL";
 
-//const URL = "http://localhost:3001/";
-const URL = "https://turnon1.herokuapp.com/";
+const URL = "http://localhost:3001/";
+//const URL = "https://turnon1.herokuapp.com/";
 
 export function getAllSuppliers() {
   return async function (dispatch) {

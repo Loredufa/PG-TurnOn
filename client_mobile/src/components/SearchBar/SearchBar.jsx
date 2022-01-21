@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   TouchableOpacity,
   StyleSheet,
@@ -22,9 +22,8 @@ export default function SearchBar({screen}) {
 
   const [find , setFind] = useState(false);
 
-
   const screenWidth = useSelector((state) => state.screenWidth);
-
+  
   function handlerFindCourt() {
     if(screen === "Favoritos") {
       setFind(true);

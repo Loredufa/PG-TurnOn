@@ -31,10 +31,8 @@ export const images = {
 export default function Supplier({ item, sport }) {
   const { screenWidth, favorites, user, supplierAddFav, messageBack } =
     useSelector((state) => state);
-  //console.log(favorites);
   const navigation = useNavigation();
   const dispatch = useDispatch();
-  // const [status , setStatus] = useState(false);
 
   useEffect(() => {
     dispatch(getFavorites(user.user.id));
@@ -61,7 +59,7 @@ export default function Supplier({ item, sport }) {
       onPress={() =>
         navigation.navigate("Courts", {
           name: item.name, //No se si son necesarios
-          sport: sport,
+          sport: sport !== "Otros" ? sport : 'others',
           id: item.id, //No se si son necesarios
           coordinates: item.coordinates,
         })
