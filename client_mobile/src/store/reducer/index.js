@@ -23,7 +23,8 @@ import {
   GET_COURTS_SUPPLIER,
   GET_ALL_SUPPLIERS,
   GET_SUPPLIER_LOCATION,
-  MP_BOOKING_DETAIL
+  MP_BOOKING_DETAIL,
+  COURT_AVAILABILITY
 } from "../actions/index";
 import {
   findEmail,
@@ -56,6 +57,7 @@ const initialState = {
   allSuppliers: [],
   suppliersLocation: [],
   MPurl: '',
+  availables: [],
 };
 
 const reducer = (state = initialState, action) => {
@@ -153,6 +155,11 @@ const reducer = (state = initialState, action) => {
         flagBooking: !state.flagBooking,
         //bookings: state.bookings.includes(action.payload)? state.bookings : [...state.bookings, action.payload]
       };
+    case COURT_AVAILABILITY: 
+      return {
+        ...state,
+        availables: action.payload.availability,
+      }
     case GET_BOOKINGS:
       return {
         ...state,

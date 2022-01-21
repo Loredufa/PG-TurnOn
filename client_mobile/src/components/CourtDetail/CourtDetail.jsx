@@ -11,7 +11,7 @@ import {
 } from "react-native";
 import MaterialCommunityIcons from "react-native-vector-icons/Ionicons";
 import { useDispatch, useSelector } from "react-redux";
-import { addToFavorite, bookCourt, MPbookingDetails } from "../../store/actions/index";
+import { addToFavorite, bookCourt, MPbookingDetails , courtAvailability } from "../../store/actions/index";
 import { styles } from "./StyleCourtDetail";
 import { Picker } from "@react-native-picker/picker";
 import DatePicker from "react-native-datepicker";
@@ -25,7 +25,7 @@ import ConfirmBooking from "../ConfirmBooking/ConfirmBooking";
 export default function CourtDetail({ route }) {
   const navigation = useNavigation();
   const dispatch = useDispatch();
-  const { user, favorites, messageBack } = useSelector((state) => state);
+  const { user, favorites, messageBack , availables} = useSelector((state) => state);
   //console.log(favorites);
   let { court , supplierID} = route.params;
   const [bookingRef , setBookingRef] = useState({
@@ -75,6 +75,12 @@ export default function CourtDetail({ route }) {
     //var today = now.getFullYear() + "-" + (month) + "-" + (day);
     
     setDate(today);
+    let dateArr = today.split("-");
+    var d = new Date(dateArr[2], dateArr[1]-1, dateArr[0]);
+    d = d.getDay();
+    var daysOfWeek = ['Domingo' , 'Lunes' , 'Martes' , 'Miercoles' , 'Jueves' , 'Viernes' , 'Sabado'];
+    let day1 = daysOfWeek[d]
+    dispatch(courtAvailability(court.id , dateArr.join('/') , day1));
   }, []);
   //console.log(court);
 
@@ -90,6 +96,17 @@ export default function CourtDetail({ route }) {
     } else {
       Alert.alert(`Don't know how to open this URL: ${url}`);
     }
+  }
+
+  function handlerDate () {
+      setDate(date);
+      let dateArr = date.split("-");
+      var d = new Date(dateArr[2], dateArr[1]-1, dateArr[0]);
+      d = d.getDay();
+      var daysOfWeek = ['Domingo' , 'Lunes' , 'Martes' , 'Miercoles' , 'Jueves' , 'Viernes' , 'Sabado'];
+      let day = daysOfWeek[d]
+      console.log(court.id , dateArr.join('/') , day)
+      dispatch(courtAvailability(court.id , dateArr.join('/') , day));
   }
 
   return messageBack !== "" ? (
@@ -161,9 +178,7 @@ export default function CourtDetail({ route }) {
                 fontSize: 17,
               },
             }}
-            onDateChange={(date) => {
-              setDate(date);
-            }}
+            onDateChange={handlerDate}
           />
           <Picker
             style={{
@@ -175,10 +190,17 @@ export default function CourtDetail({ route }) {
             selectedValue={timeSelected}
             onValueChange={(itemValue, itemIndex) => onChange(itemValue)}
           >
-            <Picker.Item label="Horario" value="Horario" />
-            {court.timetable?.map((e, i) => (
-              <Picker.Item key={i} label={e} value={e} />
-            ))}
+            {
+              availables.length?
+              <>
+              <Picker.Item label="Disponibles" value="Disponibles" />
+              {availables?.map((e, i) => (
+                <Picker.Item key={i} label={e} value={`${e.initialTime}-${e.endingTime}`} />
+              ))}
+              </>
+              :
+              <Picker.Item label="Elegir fecha" value="Elegir fecha" />
+            }
           </Picker>
         </View>
         <View style={styles.priceAndLocationContainer}>
@@ -209,8 +231,11 @@ export default function CourtDetail({ route }) {
             <Text style={styles.text}>Ver en el Mapa</Text>
           </TouchableOpacity>
         </View>
-        <TouchableOpacity style={styles.button} onPress={handlerBooking}>
-          {/* <View style={styles.button}> */}
+        <TouchableOpacity 
+        style={styles.button} 
+        onPress={handlerBooking}
+        disabled={timeSelected !== "Disponibles" && timeSelected !== "Elegir fecha" }
+        >
           <Text style={styles.buttonText}>Reservar</Text>
           {/* </View> */}
         </TouchableOpacity>

@@ -5,7 +5,7 @@ const {
   getAvailability,
 } = require("./controllers/availability/getAvailability");
 
-router.get("/available/:idCourt", getAvailability);
+router.get("/available", getAvailability);
 
 // router.get ("/" , (req, res) => {
 //     res.send ("Soy la ruta usuario/disponibilidad")
