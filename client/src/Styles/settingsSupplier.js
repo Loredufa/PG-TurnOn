@@ -45,27 +45,30 @@ export const EditButton = styled.button`
     background-color: red;
     color: white;
   }
-  &:hover{
-    background-color:white;
-    color:#81b214;
-
+  &:hover {
+    background-color: white;
+    color: #81b214;
   }
 `;
 
 export const EditButton2 = styled.button`
-  background-color: #6bac48;
+  background-color: #81b214;
   position: absolute;
   font-family: "Be Vietnam Pro", sans-serif;
   font-size: 20px;
   top: 180px;
   left: 3rem;
   width: 140px;
-  height: 45px;
+  height: 54px;
   cursor: pointer;
   border-radius: 30px;
   border-style: none;
   color: white;
   padding: 10px;
+  &:hover {
+    background-color: white;
+    color: #81b214;
+  }
   &:disabled {
     background-color: red;
     color: white;
@@ -73,19 +76,23 @@ export const EditButton2 = styled.button`
 `;
 
 export const VolverButton = styled.button`
-  background-color: #6bac48;
+  background-color: #81b214;
   position: absolute;
   font-family: "Be Vietnam Pro", sans-serif;
   font-size: 20px;
   top: 180px;
   left: 14rem;
   width: 140px;
-  height: 45px;
+  height: 54px;
   cursor: pointer;
   border-radius: 30px;
   border-style: none;
   color: white;
   padding: 10px;
+  &:hover {
+    background-color: white;
+    color: #81b214;
+  }
 `;
 
 export const UpdateButton = styled.button`
@@ -96,7 +103,7 @@ export const UpdateButton = styled.button`
   top: 180px;
   left: 25rem;
   width: 140px;
-  height: 45px;
+  height: 54px;
   cursor: pointer;
   border-radius: 30px;
   border-style: none;
@@ -104,10 +111,9 @@ export const UpdateButton = styled.button`
   text-align: center;
   padding: 10px;
   line-height: 18px;
-  &:hover{
-    background-color:white;
-    color:#81b214;
-
+  &:hover {
+    background-color: white;
+    color: #81b214;
   }
 `;
 
@@ -131,10 +137,9 @@ export const DeleteButton = styled.button`
     outline: none;
     color: white;
   }
-  &:hover{
+  &:hover {
     background-color: #d62c1c;
     color: white;
-
   }
 `;
 
@@ -192,6 +197,6 @@ export const H1name = styled.h1`
   font-family: "Be Vietnam Pro", sans-serif;
   margin-left: 50px;
   padding-bottom: 50px;
-  color:#81b214;
-  font-size: 45px
+  color: #81b214;
+  font-size: 45px;
 `;
