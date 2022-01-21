@@ -115,67 +115,6 @@
 
 }
 
-/* --Input Address-- */
-
-.cont-in-address-cc{}
-
-.label-address-cc{}
-
-.Map{}
-
-.input-map-cc{
-    padding-left: 20px;
-    padding-right: 20px;
-    background: #FFFFFF;
-    border: 1px solid #b1afaf;
-    box-sizing: border-box;
-    border-radius: 30px;
-    /* border-radius: 5px; */
-    width: 500px;
-    height: 41px;
-    font-size: 112.50%;
-
-}
-
-.autocomplete-dropdown-container{
-    background:rgb(251, 251, 251)
-}
-
-.location-search-input{
-    padding-left: 20px;
-    padding-right: 20px;
-    background: #FFFFFF;
-    border: 1px solid #b1afaf;
-    box-sizing: border-box;
-    border-radius: 30px;
-   /* border-radius: 5px; */
-    width: 400px;
-    height: 41px;
-    font-size: 112.50%;
-}
-
-.get-suggestion{}
-
-.get-suggestion-descrip{
-    color:rgb(0, 0, 0);
-    background:rgb(255, 255, 255)
-}
-
-/* --Input Phone-- */
-
-.cont-in-phone-cc{}
-
-.label-phone-cc{
-    padding: 1%;
-    margin-right: 50%;
-}
-
-.input-phone-cc{
-    width: 400px;
-    height: 41px;
-    font-size: 112.50%;
-}
-
 /* --Input Price-- */
 
 .cont-in-price-cc{}

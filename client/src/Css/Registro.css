@@ -14,14 +14,14 @@
 .formulario-registro{
     background-color: var(--colorAppleGreen);
     width: 800px;
-    height: 500px;
+    height: 550px;
     padding-top: 40px;
     padding-bottom: 180px;
     margin-top: 0px;
     margin-left: 50px;
     border-radius: 30px;
     box-shadow: 10px 10px 15px 1px #1169127c;
-
+    /* word-wrap: break-word; */
 }
 
 .titulo-registro{
@@ -47,7 +47,7 @@
     margin-left: 85px;
 }
 
-.labelapellido{
+.labeltelefono{
     margin-bottom: 15px;
     margin-left: 85px;
 }
@@ -59,6 +59,11 @@
 }
 
 .labelrazonsoc{
+    margin-bottom: 15px;
+    margin-left: 85px;
+}
+
+.labeladdress{
     margin-bottom: 15px;
     margin-left: 85px;
 }
@@ -99,10 +104,11 @@
     color:#ffffff;
     margin-bottom: 10px;
     text-align: left;
-    margin-left: 90px; 
+    margin-left: 90px;
+    margin-top: -1%; 
 }
 
-.in-apellido{
+.in-telefono{
     width: 450px;
     height: 41px;
     padding-left: 20px;
@@ -116,13 +122,14 @@
 
 }
 
-.error-apellido{
+.error-phone{
     font-family: 'Be Vietnam Pro', sans-serif;
     font-size: 12px;  
     color:#ffffff;
     margin-bottom: 10px;
     text-align: left;
     margin-left: 90px;
+    margin-top: -1%;
     
 }
 
@@ -146,6 +153,7 @@
     margin-bottom: 10px;
     text-align: left;
     margin-left: 90px;
+    margin-top: -1%;
     
 }
 
@@ -169,6 +177,7 @@
     margin-bottom: 10px;
     text-align: left;
     margin-left: 90px;
+    margin-top: -1%;
     
 }
 
@@ -192,6 +201,7 @@
     margin-bottom: 10px;
     text-align: left;
     margin-left: 90px;
+    margin-top: -1%;
     
 }
 
@@ -215,7 +225,7 @@
     margin-bottom: 10px;
     text-align: left;
     margin-left: 90px;
-
+    margin-top: -1%;
 }
 
 .in-contraseña-2{
@@ -239,7 +249,26 @@
     margin-bottom: 10px;
     text-align: left;
     margin-left: 90px;
+    margin-top: -1%;
     
+}
+.error-direccion{
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 12px;  
+    color:#ffffff;
+    margin-bottom: 10px;
+    text-align: left;
+    margin-left: 90px;
+    margin-top: 0%;
+}
+
+.message-confirm{
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 14px;  
+    color:#ffffff;
+    margin-bottom: 10px;
+    text-align: left;
+    margin-left: 90px;
 }
 
 
@@ -267,12 +296,50 @@
     position: absolute;
     margin-left: 80px;
     font-family: 'Be Vietnam Pro', sans-serif;
-
 }
 
 .inciar-sesion{
     position: absolute;
     margin-left: 300px;
     font-family: 'Be Vietnam Pro', sans-serif;
+
+}
+
+.cont-map-cc{
+    margin-top: -10%;
+
+}
+
+.autocomplete-dropdown-container{
+    background:rgb(251, 251, 251);
+    width: 450px;
+    /* height: 41px; */
+    margin-left: 85px;
+    margin-top: -1%;
+}
+
+.location-search-input{
+    width: 450px;
+    height: 41px;
+    padding-left: 20px;
+    padding-right: 20px;
+    background: #FFFFFF;
+    border: 1px solid #b1afaf;
+    box-sizing: border-box;
+    border-radius: 30px;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 18px;
+    margin-bottom: 20px;
+    margin-left: 85px;
+    margin-top: -25%
+}
+
+.get-suggestion{
+
+}
+
+.get-suggestion-descrip{
+    color:rgb(0, 0, 0);
+    background:rgb(255, 255, 255);
 
 }
