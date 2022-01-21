@@ -1,24 +1,28 @@
-const { Bookings, User } = require("../../../db");
+const { Bookings, User, Supplier } = require("../../../db");
 
 
 
 const getBookings = async (req, res) => {
 
-  const { date, status, courtId, bookingCode, lastname, order } = req.query
+  const { date, status, courtId, bookingCode, lastname, order, supplierId } = req.query
 
   let allbookings;
+  
 
   try {
 
     allbookings = await Bookings.findAll({
-      include: {
+        where : {supplierId},
+        include: {
         model: User,
         attributes: ["name", "lastname", "phone"],
       },
     })
 
+    
+    //Filtros son acumulativos
 
-    //Filtros son acumulativos 
+    
     if (status) {
       allbookings = allbookings
         .filter((e) => e.status === status)
@@ -77,7 +81,7 @@ const getBookings = async (req, res) => {
     }
   } catch (error) {
 
-    throw new Error("Error al encontrar la informacion solicitada");
+    // throw new Error("Error al encontrar la informacion solicitada");
   }
 
   res.json({ allbookings });

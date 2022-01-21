@@ -106,6 +106,14 @@ Supplier.hasMany(Field, {
 
 Field.belongsTo(Supplier); // coloca supplierId en field
 
+Supplier.hasMany(Bookings)
+Bookings.belongsTo (Supplier) // coloca supplierId en bookings
+
+
+
+Field.belongsTo(Supplier); // coloca supplierId en field
+
+
 User.hasMany(Bookings);
 Bookings.belongsTo(User); // Deberia colocar el userId en Bookings
 
