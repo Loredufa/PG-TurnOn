@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   TouchableOpacity,
   StyleSheet,
@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { styles } from "./StyleSearchBar";
-import { getSuppliersByName , getFavorites } from "../../store/actions/index";
+import { getSuppliersByName , getFavorites, getSupplierBySport } from "../../store/actions/index";
 import MaterialCommunityIcons from "react-native-vector-icons/Ionicons";
 import { useNavigation } from "@react-navigation/native";
 import Suppliers from "../Suppliers/Suppliers";
@@ -22,14 +22,17 @@ export default function SearchBar({screen}) {
 
   const [find , setFind] = useState(false);
 
-
   const screenWidth = useSelector((state) => state.screenWidth);
-
+  
   function handlerFindCourt() {
     if(screen === "Favoritos") {
       setFind(true);
       dispatch(getFavorites(user.user.id , input))
-    } else {
+    } 
+    else if (screen){
+      setFind(true);
+      dispatch(getSuppliersByName(input , screen));
+    }else {
       dispatch(getSuppliersByName(input));
       setInput("");
       //if (court === input) {
@@ -43,9 +46,13 @@ export default function SearchBar({screen}) {
   function handlerGoBack() {
     setFind(false);
     if(screen === "Favoritos") {
-      dispatch(getFavorites(user.user.id))
+      dispatch(getFavorites(user.user.id));
       setInput("");
     } 
+    else if(screen) {
+      dispatch(getSupplierBySport(screen));
+      setInput("");
+    }
   }
 
   return (

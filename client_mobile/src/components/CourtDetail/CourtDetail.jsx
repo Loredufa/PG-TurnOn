@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState ,useCallback } from "react";
 import {
   TouchableOpacity,
   StyleSheet,
@@ -6,10 +6,12 @@ import {
   TextInput,
   View,
   Image,
+  Alert,
+  Linking
 } from "react-native";
 import MaterialCommunityIcons from "react-native-vector-icons/Ionicons";
 import { useDispatch, useSelector } from "react-redux";
-import { addToFavorite, bookCourt } from "../../store/actions/index";
+import { addToFavorite, bookCourt, MPbookingDetails } from "../../store/actions/index";
 import { styles } from "./StyleCourtDetail";
 import { Picker } from "@react-native-picker/picker";
 import DatePicker from "react-native-datepicker";
@@ -17,41 +19,48 @@ import { useNavigation } from "@react-navigation/native";
 import { images } from "../Supplier/Supplier";
 
 import Message from "../Message/Message";
+import { set } from "react-native-reanimated";
+import ConfirmBooking from "../ConfirmBooking/ConfirmBooking";
 
 export default function CourtDetail({ route }) {
   const navigation = useNavigation();
   const dispatch = useDispatch();
   const { user, favorites, messageBack } = useSelector((state) => state);
   //console.log(favorites);
+  let { court , supplierID} = route.params;
+  const [bookingRef , setBookingRef] = useState({
+    court,
+    day: '',
+    timeSelected:''
+  })
+  const [confirmScreen , setConfirmScreen] = useState(false);
+
+  const screenWidth = useSelector((state) => state.screenWidth);
+  const titleSize = useSelector((state) => state.titleSize);
+
+
   function handlerBooking() {
     let day = date.split("-").join("/");
     //console.log(typeof day);
-    dispatch(bookCourt(route.params.court.id, user.user.id, day, timeSelected));
-  }
-  const screenWidth = useSelector((state) => state.screenWidth);
-  const titleSize = useSelector((state) => state.titleSize);
-  let { court } = route.params;
-  //console.log("soy la cancha", court);
-  /*court = {
-    name: "Futbol 5 Orsai",
-    id: 1,
-    description:
-      "Cancha de futbol 5 de pasto sintetico, de largo 30 metros y de ancho 20 metros",
-    timetable: ["9 a 10", "10 a 11", "11 a 12", "17 a 18", "18 a 19"],
-    price: "2000",
-    img: require("../../../Images/FootballCourt.jpg"),
-    rating: "4.8",
-    coordinates: "-38.9770815277723 -68.05826232925203",
-    sport: "futbol",
-  };*/
+    //dispatch(bookCourt(route.params.court.id, user.user.id, day, timeSelected));
+    dispatch(MPbookingDetails(
+      court.price , 
+      court.id , 
+      user.user.id , 
+      supplierID,
+      court.name));
+    setBookingRef({court , day , timeSelected});
+    setConfirmScreen(true);
 
+  }
+  
   const [timeSelected, setTimeSelected] = useState("Horario");
   const [date, setDate] = useState("");
-
+  
   let [coordinates, setCoordinates] = useState(
     route.params.coordinates.split(" ")
-  );
-  //let coordinates = court.coordinates.split(" ");
+    );
+    //let coordinates = court.coordinates.split(" ");
   function onChange(itemValue) {
     setTimeSelected(() => {
       const newInput = itemValue;
@@ -64,15 +73,34 @@ export default function CourtDetail({ route }) {
     var month = ("0" + (now.getMonth() + 1)).slice(-2);
     var today = day + "-" + month + "-" + now.getFullYear();
     //var today = now.getFullYear() + "-" + (month) + "-" + (day);
-
+    
     setDate(today);
   }, []);
   //console.log(court);
 
+  //////////  MERCADO PAGO ////////////////
+  const handlePress = async (url) => {
+    // Checking if the link is supported for links with custom URL scheme.
+    const supported = await Linking.canOpenURL(url);
+
+    if (supported) {
+      // Opening the link with some app, if the URL scheme is "http" the web link should be opened
+      // by some browser in the mobile
+      await Linking.openURL(url);
+    } else {
+      Alert.alert(`Don't know how to open this URL: ${url}`);
+    }
+  }
+
   return messageBack !== "" ? (
     <Message />
-  ) : (
-    <View style={{ justifyContent: "center", flex: 1 }}>
+    ) : (
+      <View style={{ justifyContent: "center", flex: 1 }}>
+      <ConfirmBooking 
+      onBook={handlePress}
+      visible={confirmScreen} 
+      bookingRef={bookingRef} 
+      onClose={() => setConfirmScreen(false)}/>
       <View style={styles.container}>
         <View style={styles.nameContainer}>
           <Text style={styles.nameText}>{court.name}</Text>
@@ -155,7 +183,7 @@ export default function CourtDetail({ route }) {
         </View>
         <View style={styles.priceAndLocationContainer}>
           <View style={styles.priceContainer}>
-            <Text style={styles.textPrice}>Precio: ${court.price}</Text>
+            <Text style={styles.textPrice}>Precio: {court.price}</Text>
           </View>
           <TouchableOpacity
             style={styles.locationContainer}

@@ -1,14 +1,24 @@
 const { Bookings } = require("../../../../db");
+const { User } = require("../../../../db");
 
 const postBooking = async (req, res) => {
-  const { courtId, bookingCode, status, date, day, initialTime, endingTime } =
-    req.body;
+  const {
+    courtId,
+    bookingCode,
+    status,
+    date,
+    day,
+    initialTime,
+    endingTime,
+    userId,
+  } = req.body;
 
   //   const alreadyExists = await Bookings.findOne({
   //     where: { bookingCode: bookingCode },
   //   }).catch((err) => console.log(err));
 
   let newBooking = await Bookings.create({
+    // userId,
     courtId,
     bookingCode,
     status,
@@ -18,6 +28,9 @@ const postBooking = async (req, res) => {
     endingTime,
   });
   // console.log("NUEVA RESERVA: ", newBooking);
+
+  newBooking.setUser(userId);
+
   newBooking = await newBooking.save().catch((err) => {
     console.log(err);
     res.json({ error: "No se puede registrar la reserva en este momento" });

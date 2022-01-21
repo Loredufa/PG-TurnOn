@@ -23,6 +23,7 @@ import {
   GET_COURTS_SUPPLIER,
   GET_ALL_SUPPLIERS,
   GET_SUPPLIER_LOCATION,
+  MP_BOOKING_DETAIL
 } from "../actions/index";
 import {
   findEmail,
@@ -54,6 +55,7 @@ const initialState = {
   supplierAddFav: 0,
   allSuppliers: [],
   suppliersLocation: [],
+  MPurl: '',
 };
 
 const reducer = (state = initialState, action) => {
@@ -162,6 +164,11 @@ const reducer = (state = initialState, action) => {
         messageBack: action.payload,
         flagBooking: !state.flagBooking,
       };
+    case MP_BOOKING_DETAIL: 
+      return {
+        ...state,
+        MPurl: action.payload.init_point,
+      } 
     case SET_SCREEN_DIMENSIONS:
       return {
         ...state,

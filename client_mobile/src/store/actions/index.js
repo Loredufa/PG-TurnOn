@@ -23,17 +23,10 @@ export const DELETE_USER = "DELETE_USER";
 export const GET_COURTS_SUPPLIER = "GET_COURTS_SUPPLIER";
 export const GET_ALL_SUPPLIERS = "GET_ALL_SUPPLIERS";
 export const GET_SUPPLIER_LOCATION = "GET_SUPPLIER_LOCATION";
-/*
-export function addUser(data) {
-  return {
-    type: ADD_USER,
-    payload: data,
-  };
-}
-*/
+export const MP_BOOKING_DETAIL = "MP_BOOKING_DETAIL";
 
-//const URL = "http://localhost:3001/";
-const URL = "https://turnon1.herokuapp.com/";
+const URL = "http://localhost:3001/";
+//const URL = "https://turnon1.herokuapp.com/";
 
 export function getAllSuppliers() {
   return async function (dispatch) {
@@ -129,6 +122,32 @@ export function setScreenDimensions(screenWidth, numColumns, titleSize) {
     });
   };
 }
+
+export function MPbookingDetails (
+  amount , 
+  idCourt , 
+  idUser , 
+  idSupplier,
+  courtName ) {
+  return async function (dispatch) {
+    try {
+      const reservationCode= Math.round(Math.random() * (9999 - 1000) + 1000);
+      const state = 'active';
+      amount = Math.round(amount.split('$')[1]/10)
+      console.log(`${URL}user/mercadopago?amount=${amount}&idCourt=${idCourt}&idUser=${idUser}&idSupplier=${idSupplier}&reservationCode=${reservationCode}&state=${state}&courtName=${courtName}`)
+      console.log(amount, " ", idCourt ," ", idUser," ", idSupplier," ", courtName ," ", state," ", reservationCode)
+      const url = await axios.get(`${URL}user/mercadopago?amount=${amount}&idCourt=${idCourt}&idUser=${idUser}&idSupplier=${idSupplier}&reservationCode=${reservationCode}&state=${state}&courtName=${courtName}`)  
+      console.log("URL", url.data);
+      dispatch({
+        type: MP_BOOKING_DETAIL,
+        payload: url.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
 
 export function bookCourt(courtId, userId, date) {
   return async function (dispatch) {
@@ -330,12 +349,17 @@ export function changeMessage() {
   };
 }
 
-export function getSuppliersByName(name) {
+export function getSuppliersByName(name, sport) {
   return async function (dispatch) {
     try {
       //const postUser = await axios.get("http://localhost:3001/user/court?name="+name);
       //const postUser = await axios.get("https://turnon1.herokuapp.com/user/supplier?name="+name);
-      const postUser = await axios.get(URL + "user/supplier?name=" + name);
+      let postUser = "";
+      if (sport)
+        postUser = await axios.get(
+          URL + "user/supplier?name=" + name + "&sport=" + sport
+        );
+      else postUser = await axios.get(URL + "user/supplier?name=" + name);
       console.log("Supplier", postUser.data);
       dispatch({
         type: GET_SUPPLIERS_BY_NAME,
@@ -404,14 +428,15 @@ export function deleteFromFavorite(supplierId, userId) {
   };
 }
 
-export function getFavorites(userId , name) {
+export function getFavorites(userId, name) {
   return async function (dispatch) {
     try {
-      let favs = ''
-      if (name)  
-         favs = await axios.get(URL + "user/favorites?userId=" + userId + '&name=' + name);
-      else   
-         favs = await axios.get(URL + "user/favorites?userId=" + userId);
+      let favs = "";
+      if (name)
+        favs = await axios.get(
+          URL + "user/favorites?userId=" + userId + "&name=" + name
+        );
+      else favs = await axios.get(URL + "user/favorites?userId=" + userId);
       dispatch({
         type: GET_FAVORITES,
         payload: favs.data,

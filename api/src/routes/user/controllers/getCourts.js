@@ -8,18 +8,36 @@ const getCourts = async (req, res) => {
 
   try {
     if (sport && name) {
-      courts = await Field.findAll({
-        where: { sport },
-        include: {
-          model: Supplier,
-          attributes: ["name"],
-        },
-      });
-
-      if (name)
+      if (sport === "others") {
+        courts = await Field.findAll({
+          include: {
+            model: Supplier,
+            attributes: ["name"],
+          },
+        });
         courts = courts.filter((e) =>
-          e.supplier.name.toLowerCase().includes(name.toLowerCase())
-        );
+            e.supplier.name.toLowerCase().includes(name.toLowerCase())
+          );
+        courts = courts.filter (e =>
+          e.sport !== 'Futbol' && e.sport !== 'Tenis' && e.sport !== 'Paddle' && e.sport !== 'Golf' && e.sport !== 'Hockey' 
+          );
+        //console.log(courts[0])
+      }
+      else{
+
+        courts = await Field.findAll({
+          where: { sport },
+          include: {
+            model: Supplier,
+            attributes: ["name"],
+          },
+      });
+      
+      if (name)
+      courts = courts.filter((e) =>
+      e.supplier.name.toLowerCase().includes(name.toLowerCase())
+      );
+      }
     } else if (name) {
       courts = await Field.findAll({
         include: {
@@ -27,6 +45,9 @@ const getCourts = async (req, res) => {
           attributes: ["name"],
         },
       });
+      courts = courts.filter((e) =>
+          e.supplier.name.toLowerCase().includes(name.toLowerCase())
+        );
     }
   } catch (error) {
     console.log(error);
