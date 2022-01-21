@@ -10,7 +10,7 @@ module.exports = (sequelize) => {
       // allowNull: false,
     },
     payment_id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.BIGINT,
       defaultValue: 0,
     },
     payment_status: {
