@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Formik, Form, Field, ErrorMessage } from "formik"
 import "../Css/Registro.css"
 import { Link, useHistory } from 'react-router-dom';
 import { Register } from "../Actions/actions";
@@ -11,27 +10,11 @@ export default function Registro(){
 
 const [ FormularioEnvidado, cambiarFormularioEnvidado] = useState(false)
 const { message_reg, success } = useSelector(state =>state)
-const history = useHistory()
-
-if(success){
-    Swal.fire({
-        title:'Usuario Creado con Exito',
-        icon: 'success',
-        button: 'Aceptar',
-        })
-    history.push('/login')
-}
-
-
-
 const dispatch = useDispatch()
-
-return (
-
-    <div className="back-ground-register">
-       
-    <Formik 
-        initialValues={{
+const [errors, setErrors] = useState({});
+const [ disabled, setDisabled] = useState(false)
+const history = useHistory()
+const [infoSupplier, setInfoSupplier] = useState({
             name: '',
             phone: '',
             mail: '',
@@ -42,189 +25,232 @@ return (
             password: '',
             password2: '',
             access: 'supplier'
+})
+
+if(success){
+    Swal.fire({
+        title:'Usuario Creado con Exito',
+        icon: 'success',
+        button: 'Aceptar',
+        })
+    history.push('/login')
+}
+
+const infoChange = (e) => {
+    const { name, value } = e.target;
+    setInfoSupplier({
+      ...infoSupplier,
+      [name]: value,
+    });
+    console.log(infoSupplier);
+  };
+
+  const handleBlur = (e) => {
+    infoChange(e);
+    setErrors(validate(infoSupplier));
+  };
 
 
-        }}
-        validate={(valores) => {
-        let errores={}
-        dispatch({type:"SET_MESSAGE_REG", payload:''})
+  const submitSupplier = (e) => {
+    e.preventDefault();
+    console.log("este es el console:", infoSupplier);
+    dispatch(Register(infoSupplier))
+    cambiarFormularioEnvidado(true)
+    setTimeout(() => cambiarFormularioEnvidado(false), 5000 );
+  };
 
-        if(!valores.name){
-            errores.name = 'Por favor ingresa un nombre'
-        } else if(!/^[a-zA-ZÀ-ÿ\s]{1,40}$/.test(valores.name)){
-            errores.name ='El nombre puede contener letras y espacios'
+  const validate = (infoSupplier) => {
+    let errors = {};
+    dispatch({type:"SET_MESSAGE_REG", payload:''})
+
+        if(!infoSupplier.name){
+            errors.name = 'Por favor ingresa un nombre'
+            setDisabled(true)
+        } else if(!/^[a-zA-ZÀ-ÿ\s]{1,40}$/.test(infoSupplier.name)){
+            errors.name ='El nombre puede contener letras y espacios'
+            setDisabled(true)
         }
 
-        if(!valores.phone){
-            errores.lastname = 'Por favor ingresa un teléfono'
-        } else if(!/^([0-9])*$/.test(valores.phone)){
-            errores.phone ='El teléfono puede contener solo números'
+        else if(!infoSupplier.phone){
+            errors.phone = 'Por favor ingresa un teléfono'
+            setDisabled(true)
+        } else if(!/^([0-9])*$/.test(infoSupplier.phone)){
+            errors.phone ='El teléfono puede contener solo números'
+            setDisabled(true)
         }
  
-        if(!valores.cuit){
-            errores.cuit = 'Por favor ingresa tu CUIT'
-        } else if(!/^([0-9]{11}|[0-9]{2}-[0-9]{8}-[0-9]{1})$/g.test(valores.cuit)){
-            errores.cuit ='Tu cuit debe contar con solo con números'
+         else if(!infoSupplier.cuit){
+            errors.cuit = 'Por favor ingresa tu CUIT'
+            setDisabled(true)
+        } else if(!/^([0-9]{11}|[0-9]{2}-[0-9]{8}-[0-9]{1})$/g.test(infoSupplier.cuit)){
+            errors.cuit ='Tu cuit debe contar con solo con números'
+            setDisabled(true)
         }
 
-        if(!valores.businessname){
-            errores.businessname = 'Por favor ingresa tu razon social'
-        } else if(!/^[a-zA-ZÀ-ÿ\s]{1,40}$/.test(valores.businessname)){
-            errores.businessname ='La Razon Social puede contener letras y espacios'
+        else if(!infoSupplier.businessname){
+            errors.businessname = 'Por favor ingresa tu razon social'
+            setDisabled(true)
+        } else if(!/^[a-zA-ZÀ-ÿ\s]{1,40}$/.test(infoSupplier.businessname)){
+            errors.businessname ='La Razon Social puede contener letras y espacios'
+            setDisabled(true)
         }
 
-        if(!valores.address){
-            errores.address = 'Por favor ingresa tu dirección'
+        else if(!infoSupplier.address){
+            errors.address = 'Por favor ingresa tu dirección'
+            setDisabled(true)
         } 
 
          
-        if(!valores.mail){
-            errores.mail = 'Por favor ingresa un correo electrónico'
-        } else if(!/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(valores.mail)){
-            errores.mail ='El correo solo puede contener letras, números, puntos, guiones'
+        else if(!infoSupplier.mail){
+            errors.mail = 'Por favor ingresa un correo electrónico'
+            setDisabled(true)
+        } else if(!/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(infoSupplier.mail)){
+            errors.mail ='El correo solo puede contener letras, números, puntos, guiones'
+            setDisabled(true)
         }
 
-        if(!valores.password){
-            errores.password = 'Por favor ingresa una contraseña'
-        } else if(!/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/.test(valores.password)){
-            errores.password ='La contraseña debe tener entre 8 y 16 caracteres, al menos un dígito, al menos una minúscula y al menos una mayúscula. Puede tener otros símbolos.'
+        else if(!infoSupplier.password){
+            errors.password = 'Por favor ingresa una contraseña'
+            setDisabled(true)
+        } else if(!/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/.test(infoSupplier.password)){
+            errors.password ='La contraseña debe tener entre 8 y 16 caracteres, al menos un dígito, al menos una minúscula y al menos una mayúscula. Puede tener otros símbolos.'
+            setDisabled(true)
         } 
 
-        if(!valores.password2){
-            errores.password2 = 'Por favor ingresa una contraseña'
-        } else if(!/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/.test(valores.password2)){
-            errores.password2 ='La contraseña debe tener entre 8 y 16 caracteres, al menos un dígito, al menos una minúscula y al menos una mayúscula. Puede tener otros símbolos.'
-        } else if(valores.password !== valores.password2){ errores.password2 = 'Las contraseñas no coinciden' }
+        else if(!infoSupplier.password2){
+            errors.password2 = 'Por favor ingresa una contraseña'
+            setDisabled(true)
+        } else if(!/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/.test(infoSupplier.password2)){
+            errors.password2 ='La contraseña debe tener entre 8 y 16 caracteres, al menos un dígito, al menos una minúscula y al menos una mayúscula. Puede tener otros símbolos.'
+            setDisabled(true)
+        } else if(infoSupplier.password !== infoSupplier.password2){ errors.password2 = 'Las contraseñas no coinciden'
+            setDisabled(true) } else {setDisabled(false)}
 
 
-        return errores
-      }}
+        return errors
+  };
 
+return (
 
-        onSubmit={(valores, {resetForm})=>{
-            
-            dispatch(Register(valores))
-            /* resetForm() */
-            cambiarFormularioEnvidado(true)
-            setTimeout(() => cambiarFormularioEnvidado(false), 5000 )
-
-
-        }}
-    > 
-    {({errors, valores, initialValues}) => (
-    
-    <Form className="formulario-registro">
+    <div className="back-ground-register">
+       
+    <form onSubmit={submitSupplier} className="formulario-registro">
          <h1 className="titulo-registro">REGISTRO</h1>
          <p className="parrafo-reg">Si sos un profesional o empresa que quiere ofrecer nuestro servicio de turnos,<br/>
             completa el siguiente formulario.
          </p>
         <div className="labelnombre">
             <label htmlFor="name"></label>
-            <Field 
+            <input 
                  type="text" 
                  id="name" 
                  name="name" 
                  placeholder="Nombre de Fantasia del negocio"
                  className="innombre"
+                 value={infoSupplier.name}
+                 onChange={infoChange}
+                 onBlur={handleBlur}
                  />
         </div>
-        <ErrorMessage name="name" component={()=> 
-        <div className="error-nombre">{errors.name}</div>}/>
+        {errors.name && <p className="error-nombre">{errors.name}</p>}
 
         <div className="labeltelefono">
             <label htmlFor="phone"></label>
-            <Field 
+            <input 
                  type="text" 
                  id="phone" 
                  name="phone" 
                  placeholder="Teléfono de Contacto"
                  className="in-telefono"
+                 value={infoSupplier.phone}
+                 onChange={infoChange}
+                 onBlur={handleBlur}
                  />
         </div>
-        <ErrorMessage name="phone" component={()=> 
-        <div className="error-phone">{errors.phone}</div>}/>
+        {errors.phone && <p name="phone" className="error-phone">{errors.phone}</p>}
 
         <div className="labelcuit">
             <label htmlFor="cuit"></label>
-            <Field 
+            <input 
                  type="text" 
                  id="cuit" 
                  name="cuit" 
                  placeholder="CUIT: xx-xxxxxxxx-x"
                  className="in-cuit"
+                 value={infoSupplier.cuit}
+                 onChange={infoChange}
+                 onBlur={handleBlur}
                  />
         </div>
-        <ErrorMessage name="cuit" component={()=> 
-        <div className="error-cuit">{errors.cuit}</div>}/>
-
+        {errors.cuit && <p name="cuit" className="error-cuit">{errors.cuit}</p>}
         <div className="labelrazonsoc">
             <label htmlFor="businessname"></label>
-            <Field
+            <input
                  type="text" 
                  id="businessname" 
                  name="businessname" 
                  placeholder="Razón Social"
                  className="in-razon-social"
+                 value={infoSupplier.businessname}
+                 onChange={infoChange}
+                 onBlur={handleBlur}
                  />
         </div>
-        <ErrorMessage name="businessname" component={()=> 
-        <div className="error-razon-social">{errors.businessname}</div>}/>
-
+        {errors.businessname && <p name="businessname" className="error-razon-social">{errors.businessname}</p>}
         <div className="labelemail">
             <label htmlFor="mail"></label>
-            <Field 
+            <input 
                  type="email" 
                  id="mail" 
                  name="mail" 
                  placeholder="E-mail"
                  className="in-e-mail"
+                 value={infoSupplier.mail}
+                 onChange={infoChange}
+                 onBlur={handleBlur}
                  />
         </div>
-
+        {errors.mail && <p name="mail" className="error-email">{errors.mail}</p>}
         <div>
-        <label className="label-all-cc label-address-cc" htmlFor="address">Ubicación :</label>
-            <Map className="cont-map-cc" setInfoCourt={valores} infoCourt={initialValues}/>
+        <label className="labeladdress" htmlFor="address"></label>
+            <Map className="cont-map-cc" setInfoSupplier={setInfoSupplier} infoSupplier={infoSupplier}/>
         </div>
-        <ErrorMessage name="address" component={()=> 
-        <div className="error-direccion">{errors.address}</div>}/>
-
-        <ErrorMessage name="mail" component={()=> 
-        <div className="error-email">{errors.mail}</div>}/>
-
+        {errors.address && <p name="address" className="error-direccion">{errors.address}</p>}
         <div className="labelcontraseña">
             <label htmlFor="password"></label>
-            <Field 
+            <input 
                  type="password" 
                  id="password" 
                  name="password"
                  placeholder="Contraseña"
-                 className="in-contraseña" 
+                 className="in-contraseña"
+                 value={infoSupplier.password}
+                 onChange={infoChange}
+                 onBlur={handleBlur}
                  />
         </div>
-        <ErrorMessage  name="password" component={()=> 
-        <div className="error-contraseña">{errors.password}</div>}/>
+        {errors.password && <p name="password" className="error-contraseña">{errors.password}</p>}
 
         <div className="labelcontraseña2">
             <label htmlFor="contraseña2"></label>
-            <Field 
+            <input
                  type="password" 
                  id="password2" 
                  name="password2"
                  placeholder="Confirmar Contraseña" 
                  className="in-contraseña-2"
+                 value={infoSupplier.password2}
+                 onChange={infoChange}
+                 onBlur={handleBlur}
                  />
         </div>
-        
-        <ErrorMessage name="password2" component={()=> 
-        <div className="error-contraseña-2">{errors.password2}</div>}/>
+        {errors.password2 && <p name="password2" className="error-contraseña-2">{errors.password2}</p>}
 
-        <button type="submit" className="buttonSubmitReg">Registrar</button>
-        {FormularioEnvidado && <p>{ message_reg }</p> }
+        <button disabled={disabled} type="submit" className="buttonSubmitReg">Registrar</button>
+        {FormularioEnvidado && <p className="message-confirm">{ message_reg }</p> }
 
 
-    </Form>
-    )}
-    </Formik>
+    </form>
 
     <h4 className="estas-registrado">¿Ya estas Registrado?</h4>
     <Link to='/login'>

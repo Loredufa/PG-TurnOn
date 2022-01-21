@@ -6,7 +6,7 @@ import {
 } from 'react-places-autocomplete';
 import "../../../Css/Supplier Panel/courtcreation.css"
 
-function Map({infoCourt, setInfoCourt}) {
+function Map({infoSupplier, setInfoSupplier}) {
  
 
 const [address, setAddress] = useState("")
@@ -21,8 +21,9 @@ const handlerSelect = async value =>{
   console.log("Q TRAE LATLNG",latlng)
   console.log("QUE TRAE RESULT", result[0].formatted_address)
   setAddress(value)
+  console.log("QUE HAY EN VALUE", value)
   setCoordinate(latlng)
-  setInfoCourt({...infoCourt, coordinates:`${latlng.lat} ${latlng.lng}`, address:`${result[0].formatted_address}`})
+  setInfoSupplier({...infoSupplier, coordinates:`${latlng.lat} ${latlng.lng}`, address:`${result[0].formatted_address}`})
 }
   return (
     

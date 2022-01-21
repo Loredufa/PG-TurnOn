@@ -24,6 +24,7 @@ export const GET_COURTS_SUPPLIER = "GET_COURTS_SUPPLIER";
 export const GET_ALL_SUPPLIERS = "GET_ALL_SUPPLIERS";
 export const GET_SUPPLIER_LOCATION = "GET_SUPPLIER_LOCATION";
 export const MP_BOOKING_DETAIL = "MP_BOOKING_DETAIL";
+export const COURT_AVAILABILITY = "COURT_AVAILABILITY";
 
 const URL = "http://localhost:3001/";
 //const URL = "https://turnon1.herokuapp.com/";
@@ -175,6 +176,22 @@ export function bookCourt(courtId, userId, date) {
     }
   };
 }
+
+export function courtAvailability( idCourt , date , day) {
+  return async function (dispatch) {
+    try {
+      const availables = await axios.get( `${URL}user/available?idCourt=${idCourt}&date=${date}&day=${day}`);
+      console.log("Las disponibles", availables.data);
+      dispatch({
+        type: COURT_AVAILABILITY,
+        payload: availables.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
 
 export function getBookings(userId) {
   return async function (dispatch) {
