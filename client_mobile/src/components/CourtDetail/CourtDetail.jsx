@@ -26,7 +26,8 @@ export default function CourtDetail({ route }) {
   const navigation = useNavigation();
   const dispatch = useDispatch();
   const { user, favorites, messageBack , availables} = useSelector((state) => state);
-  //console.log(favorites);
+  console.log("INFO DEL USUARIO" , user);
+  console.log("LAS DISPONIBLES" , availables);
   let { court , supplierID} = route.params;
   const [bookingRef , setBookingRef] = useState({
     court,
@@ -54,7 +55,7 @@ export default function CourtDetail({ route }) {
 
   }
   
-  const [timeSelected, setTimeSelected] = useState("Horario");
+  const [timeSelected, setTimeSelected] = useState("");
   const [date, setDate] = useState("");
   
   let [coordinates, setCoordinates] = useState(
@@ -73,7 +74,7 @@ export default function CourtDetail({ route }) {
     var month = ("0" + (now.getMonth() + 1)).slice(-2);
     var today = day + "-" + month + "-" + now.getFullYear();
     //var today = now.getFullYear() + "-" + (month) + "-" + (day);
-    
+    console.log("La fecha de hoy" , today)
     setDate(today);
     let dateArr = today.split("-");
     var d = new Date(dateArr[2], dateArr[1]-1, dateArr[0]);
@@ -180,28 +181,40 @@ export default function CourtDetail({ route }) {
             }}
             onDateChange={handlerDate}
           />
-          <Picker
+            {
+              availables?.length?
+              <Picker
             style={{
               //width: screenWidth / 3,
               justifyContent: "center",
               //marginTop: 20,
               flex: 1,
             }}
+            itemStyle={styles.hourItem}
             selectedValue={timeSelected}
             onValueChange={(itemValue, itemIndex) => onChange(itemValue)}
-          >
-            {
-              availables.length?
-              <>
+            >
               <Picker.Item label="Disponibles" value="Disponibles" />
               {availables?.map((e, i) => (
-                <Picker.Item key={i} label={e} value={`${e.initialTime}-${e.endingTime}`} />
+                <Picker.Item key={i} label={`${e.initialTime}-${e.endingTime}`} value={`${e.initialTime}-${e.endingTime}`} />
               ))}
-              </>
+              </Picker>
               :
-              <Picker.Item label="Elegir fecha" value="Elegir fecha" />
+              <Picker
+            style={{
+              //width: screenWidth / 3,
+              justifyContent: "center",
+              //marginTop: 20,
+              flex: 1,
+              
+            }}
+            itemStyle={styles.hourItem}
+            selectedValue={timeSelected}
+            onValueChange={(itemValue, itemIndex) => onChange(itemValue)}
+            >
+              <Picker.Item label="Elegir fecha" value="Elegir fecha"  />
+            </Picker>
             }
-          </Picker>
         </View>
         <View style={styles.priceAndLocationContainer}>
           <View style={styles.priceContainer}>
@@ -234,7 +247,7 @@ export default function CourtDetail({ route }) {
         <TouchableOpacity 
         style={styles.button} 
         onPress={handlerBooking}
-        disabled={timeSelected !== "Disponibles" && timeSelected !== "Elegir fecha" }
+        disabled={timeSelected === "Disponibles" || timeSelected === "Elegir fecha" }
         >
           <Text style={styles.buttonText}>Reservar</Text>
           {/* </View> */}
