@@ -4,7 +4,7 @@ import { AvailabilityContext } from '../Context/AvailabilityContext'
 import { CourtContext } from '../Context/CourtContext'
 import HourItem from './HourItem'
 import axios from 'axios'
-import { verifyHours } from './helpers/functions'
+import { verifyHours, splitHours } from './helpers/functions'
 import { orderAvailability } from '../Context/helpers/functions'
 
 export default function HoursList({ hours, setHours }) {
@@ -24,7 +24,7 @@ export default function HoursList({ hours, setHours }) {
             alert(verify.message)
         }
         else {
-            axios.post(`/supplier/available/${currentCourt.id}`, { days, hours })
+            axios.post(`/supplier/available/${currentCourt.id}`, { days, hours: splitHours(hours) })
                 .then(res => {
                     axios.get(`/supplier/available/court/${currentCourt.id}`)
                     .then(res => setAvailability(orderAvailability(res.data)))

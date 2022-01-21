@@ -40,3 +40,27 @@ export const verifyHours = (availability, days, hours) => {
         message
     }
 }
+
+export const splitHours = (array) => {
+    let newArray = []
+    array.forEach(obj => {
+        let aux = []
+        let difference = Number(obj.end.slice(0, 2)) - Number(obj.start.slice(0, 2))
+        if(difference === 1) {
+            newArray.push(obj)
+        }
+        else if(difference > 1) {
+            let start = Number(obj.start.slice(0, 2))
+            for (let i = 0; i < difference; i++) {
+                let obj = {
+                    start: `${start}:00`,
+                    end: `${start + 1}:00`
+                }
+                aux.push(obj)
+                start = start + 1
+            }
+        }
+        newArray = [...newArray, ...aux]
+    })
+    return newArray
+}
