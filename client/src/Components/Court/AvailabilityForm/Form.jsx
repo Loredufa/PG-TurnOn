@@ -16,16 +16,21 @@ export default function Form() {
 
     const handleAddTime = (e) => {
         e.preventDefault()
-        if(time.start && time.end) {
-            let array = orderHours([...hours, time])
-            setHours(array)
-            setTime({
-                start: "",
-                end: ""
-            })
+        if(time.start === time.end || Number(time.start.slice(0, 2)) >= Number(time.end.slice(0, 2))) {
+            alert("Datos incorrectos")
         }
         else {
-            alert("Datos incompletos")
+            if(time.start && time.end) {
+                let array = orderHours([...hours, time])
+                setHours(array)
+                setTime({
+                    start: "",
+                    end: ""
+                })
+            }
+            else {
+                alert("Datos incompletos")
+            }
         }
     }
 

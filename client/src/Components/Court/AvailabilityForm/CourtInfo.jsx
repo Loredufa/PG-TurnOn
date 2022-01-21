@@ -1,11 +1,22 @@
 import React, { useContext } from 'react'
 import styled from 'styled-components'
 import { AvailabilityContext } from "../Context/AvailabilityContext"
-
+import axios from 'axios'
+import { orderAvailability } from '../Context/helpers/functions'
 
 export default function CourtInfo({ currentCourt }) {
 
-    const { availability } = useContext(AvailabilityContext)
+    const { availability, setAvailability } = useContext(AvailabilityContext)
+
+    const handleX = () => {
+      axios.delete(`/supplier/available/${currentCourt.id}`)
+        .then(() => {
+            axios.get(`/supplier/available/court/${currentCourt.id}`)
+                .then(res => setAvailability(orderAvailability(res.data)))
+                .catch(err => console.log(err))
+        }) 
+        .catch(err => console.log(err))
+    }
 
     return (
         <Wrapper>
@@ -23,6 +34,7 @@ export default function CourtInfo({ currentCourt }) {
                                 return (
                                     <Hour>
                                         <p>{h}</p>
+                                        <button onClick={handleX}>X</button>
                                     </Hour>
                                 )
                             })
