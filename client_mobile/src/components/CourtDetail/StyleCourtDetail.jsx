@@ -17,6 +17,9 @@ export const styles = StyleSheet.create({
     elevation: 20,
     borderColor: "#3fc959",
   },
+  hourItem: {
+    fontSize: 15,
+  },
   nameContainer: {
     flex: 1,
     paddingTop: 20,
