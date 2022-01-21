@@ -23,7 +23,6 @@ export default function SearchBar({screen}) {
   const [find , setFind] = useState(false);
 
   const screenWidth = useSelector((state) => state.screenWidth);
-  
   function handlerFindCourt() {
     if(screen === "Favoritos") {
       setFind(true);
