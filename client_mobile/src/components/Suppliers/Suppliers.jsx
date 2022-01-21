@@ -26,12 +26,20 @@ export default function Suppliers({ route }) {
   const dispatch = useDispatch();
 
   const [showPicker, setShowPicker] = useState(false);
-
-  const [sportFilter , setSportFilter] = useState('others');
+  /*
+  if(route.params.sport === "Otros") {
+    const [sportFilter , setSportFilter] = useState('others');
+  } else {
+    const [sportFilter , setSportFilter] = useState('');
+  }
+  */
+  const [sportFilter , setSportFilter] = useState('');
 
   useEffect(()=> {
-    if (route.params.sport === "Otros")
+    if (route.params.sport === "Otros") {
       dispatch(getSupplierBySport("others"))
+      setSportFilter('others')
+    }
     else {
       route.params.sport && dispatch(getSupplierBySport(route.params.sport));
     }
@@ -56,8 +64,8 @@ export default function Suppliers({ route }) {
         {route.params.type && route.params.type}
       </Text>
       <View style={styles.searchBarPos}>
-        <SearchBar screen={route.params.sport? route.params.sport !== "Otros"? 
-                          route.params.sport : sportFilter : sportFilter}/>
+        <SearchBar screen={ sportFilter === ''? route.params.sport : sportFilter}
+        />
       </View>
       <View style={{flex:5}}>
       {route.params.sport === "Otros" &&
@@ -87,7 +95,9 @@ export default function Suppliers({ route }) {
               <View>
                 <Supplier 
                 item={item} 
-                sport={sportFilter}
+                sport={route.params.type ? route.params.type 
+                      : sportFilter ? sportFilter
+                      : route.params.sport}
                 />
               </View>
 
