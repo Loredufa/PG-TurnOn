@@ -124,20 +124,39 @@ export function setScreenDimensions(screenWidth, numColumns, titleSize) {
   };
 }
 
-export function MPbookingDetails (
-  amount , 
-  idCourt , 
-  idUser , 
+export function MPbookingDetails(
+  amount,
+  idCourt,
+  idUser,
   idSupplier,
-  courtName ) {
+  courtName
+) {
   return async function (dispatch) {
     try {
-      const reservationCode= Math.round(Math.random() * (9999 - 1000) + 1000);
-      const state = 'active';
-      amount = Math.round(amount.split('$')[1]/10)
-      console.log(`${URL}user/mercadopago?amount=${amount}&idCourt=${idCourt}&idUser=${idUser}&idSupplier=${idSupplier}&reservationCode=${reservationCode}&state=${state}&courtName=${courtName}`)
-      console.log(amount, " ", idCourt ," ", idUser," ", idSupplier," ", courtName ," ", state," ", reservationCode)
-      const url = await axios.get(`${URL}user/mercadopago?amount=${amount}&idCourt=${idCourt}&idUser=${idUser}&idSupplier=${idSupplier}&reservationCode=${reservationCode}&state=${state}&courtName=${courtName}`)  
+      const reservationCode = Math.round(Math.random() * (9999 - 1000) + 1000);
+      const state = "active";
+      amount = Math.round(amount.split("$")[1] / 10);
+      console.log(
+        `${URL}user/mercadopago?amount=${amount}&idCourt=${idCourt}&idUser=${idUser}&idSupplier=${idSupplier}&reservationCode=${reservationCode}&state=${state}&courtName=${courtName}`
+      );
+      console.log(
+        amount,
+        " ",
+        idCourt,
+        " ",
+        idUser,
+        " ",
+        idSupplier,
+        " ",
+        courtName,
+        " ",
+        state,
+        " ",
+        reservationCode
+      );
+      const url = await axios.get(
+        `${URL}user/mercadopago?amount=${amount}&idCourt=${idCourt}&idUser=${idUser}&idSupplier=${idSupplier}&reservationCode=${reservationCode}&state=${state}&courtName=${courtName}`
+      );
       console.log("URL", url.data);
       dispatch({
         type: MP_BOOKING_DETAIL,
@@ -148,7 +167,6 @@ export function MPbookingDetails (
     }
   };
 }
-
 
 export function bookCourt(courtId, userId, date) {
   return async function (dispatch) {
@@ -165,6 +183,7 @@ export function bookCourt(courtId, userId, date) {
         day: "Lunes",
         initialTime: "13:00",
         endingTime: "14:00",
+        supplierId,
       });
       console.log("La respuesta del post", postUser.data);
       dispatch({
@@ -177,10 +196,12 @@ export function bookCourt(courtId, userId, date) {
   };
 }
 
-export function courtAvailability( idCourt , date , day) {
+export function courtAvailability(idCourt, date, day) {
   return async function (dispatch) {
     try {
-      const availables = await axios.get( `${URL}user/available?idCourt=${idCourt}&date=${date}&day=${day}`);
+      const availables = await axios.get(
+        `${URL}user/available?idCourt=${idCourt}&date=${date}&day=${day}`
+      );
       console.log("Las disponibles", availables.data);
       dispatch({
         type: COURT_AVAILABILITY,
@@ -191,7 +212,6 @@ export function courtAvailability( idCourt , date , day) {
     }
   };
 }
-
 
 export function getBookings(userId) {
   return async function (dispatch) {
