@@ -25,16 +25,7 @@ export default function Settings() {
   const history = useHistory();
   const dispatch = useDispatch();
   const [edit, setEdit] = useState(false);
-  const [infoCourt, setInfoCourt] = useState({
-    name: supplier.name,
-    id: supplier.id,
-    mail: supplier.mail,
-    image: supplier.image,
-    password: supplier.password,
-    cuit: supplier.cuit,
-    businessname: supplier.businessname,
-  });
-  console.log(infoCourt);
+  const [imagen, setImagen] = useState(supplier.image);
   const editPwdClick = () => {
     history.push("/profile/password");
   };
@@ -61,7 +52,6 @@ export default function Settings() {
       ],
     });
   };
-
   const uploadImage = async (e) => {
     const files = e.target.files;
     const data = new FormData();
@@ -77,11 +67,7 @@ export default function Settings() {
     );
 
     const file = await respuesta.json();
-    console.log(file.secure_url);
-    setInfoCourt({
-      ...infoCourt,
-      image: file.secure_url,
-    });
+    setImagen(file.secure_url);
   };
 
   return (
@@ -130,7 +116,12 @@ export default function Settings() {
         return errors;
       }}
       onSubmit={(values) => {
-        dispatch(changeSupplierProfile(values.id, values));
+        dispatch(
+          changeSupplierProfile(values.id, {
+            ...values,
+            image: imagen,
+          })
+        );
         setEdit(false);
       }}
     >
@@ -221,19 +212,15 @@ export default function Settings() {
                   Imagen De Perfil:
                 </label>
                 <br />
-                {infoCourt.image && (
-                  <img
-                    src={infoCourt.image}
-                    alt="Imagen"
-                    width="250px"
-                    height="150px"
-                  />
+                {values.image && (
+                  <img src={imagen} alt="Imagen" width="250px" height="150px" />
                 )}
                 <br />
                 <input
-                  className="input-image-cc"
                   type="file"
-                  name="file"
+                  name="image"
+                  className="input-image-cc"
+                  id="image"
                   onChange={uploadImage}
                 />
               </div>
