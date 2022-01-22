@@ -10,7 +10,6 @@ const getAllUsers = async (req, res) => {
 
     } 
    
-
     catch (error) {
 
         console.log(error);
