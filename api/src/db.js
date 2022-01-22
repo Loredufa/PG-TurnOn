@@ -94,7 +94,7 @@ Available.hasOne(Bookings);
 Bookings.belongsTo(Available); // bookings tendra una columna idAvailable
 
 Bookings.hasOne(Payments);
-Payments.belongsTo(Available); // Payments tendra una columna idBooking
+Payments.belongsTo(Bookings); // Payments tendra una columna idBooking
 
 //1 a N
 
