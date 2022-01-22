@@ -1,3 +1,5 @@
+import "../Styles/updatePassword.css";
+
 import {
   DivForm,
   DivGlobal,
