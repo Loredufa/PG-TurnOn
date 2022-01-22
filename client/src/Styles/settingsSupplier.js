@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const DivGlobal = styled.div`
   padding-top: 10px;
   background: #e9ebed;
-  height: 91vh;
+  height: 850px;
 `;
 export const DivForm = styled.div`
   display: flex;
@@ -12,9 +12,10 @@ export const DivForm = styled.div`
   flex-direction: column;
   padding: 25px;
   padding-top: 20px;
-  width: 720px;
+  width: 38%;
   background-color: #81b214;
   border-radius: 20px;
+  float: left;
   p {
     color: white;
     text-align: center;
@@ -23,6 +24,35 @@ export const DivForm = styled.div`
   }
 `;
 
+export const DivImagen = styled.div`
+  font-family: "Be Vietnam Pro", sans-serif;
+  float: left;
+  margin: 61px;
+  background: #81b214;
+  border-radius: 20px;
+  width: 15%;
+  margin-left: 140px;
+  .divcont {
+    border-radius: 20px;
+    line-height: 56px;
+    width: 100%;
+    background: #81b214;
+    label {
+      width: 100%;
+      margin: 20%;
+    }
+    img {
+      margin-left: 24%;
+      border-radius: 80px;
+      min-height: 150px;
+      width: 52%;
+    }
+  }
+`;
+
+export const DivBrowser = styled.input`
+  display: none;
+`;
 export const ContenedorForm = styled.div`
   display: flex;
   flex-direction: row;
