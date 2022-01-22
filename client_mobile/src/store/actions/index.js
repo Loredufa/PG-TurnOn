@@ -18,6 +18,7 @@ export const GOOGLE_LOGIN = "GOOGLE_LOGIN";
 export const GET_SUPPLIER_BY_SPORT = "GET_SUPPLIER_BY_SPORT";
 export const GET_COURTS_SUPPLIER_SPORT = "GET_COURTS_SUPPLIER_SPORT";
 export const GET_BOOKINGS = "GET_BOOKINGS";
+export const EDIT_BOOKING = "EDIT_BOOKING";
 export const DELETE_BOOKING = "DELETE_BOOKING";
 export const DELETE_USER = "DELETE_USER";
 export const GET_COURTS_SUPPLIER = "GET_COURTS_SUPPLIER";
@@ -25,6 +26,8 @@ export const GET_ALL_SUPPLIERS = "GET_ALL_SUPPLIERS";
 export const GET_SUPPLIER_LOCATION = "GET_SUPPLIER_LOCATION";
 export const MP_BOOKING_DETAIL = "MP_BOOKING_DETAIL";
 export const COURT_AVAILABILITY = "COURT_AVAILABILITY";
+export const FIND_PAYMENT = "FIND_PAYMENT";
+export const SET_MESSAGE = "SET_MESSAGE";
 
 //const URL = "http://localhost:3001/";
 const URL = "https://turnon1.herokuapp.com/";
@@ -129,10 +132,10 @@ export function MPbookingDetails (
   idCourt , 
   idUser , 
   idSupplier,
-  courtName ) {
+  courtName,
+  reservationCode ) {
   return async function (dispatch) {
     try {
-      const reservationCode= Math.round(Math.random() * (9999 - 1000) + 1000);
       const state = 'active';
       amount = Math.round(amount.split('$')[1]/10)
       console.log(`${URL}user/mercadopago?amount=${amount}&idCourt=${idCourt}&idUser=${idUser}&idSupplier=${idSupplier}&reservationCode=${reservationCode}&state=${state}&courtName=${courtName}`)
@@ -149,22 +152,39 @@ export function MPbookingDetails (
   };
 }
 
+export function findPayment (idSupplier) {
+  return async function (dispatch) {
+    try {
+      const payments = await axios.get(URL + "supplier/payments?idSupplier=" + idSupplier  );
+      console.log("La respuesta de los payments", payments.data);
+      dispatch({
+        type: FIND_PAYMENT,
+        payload: payments.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
 
-export function bookCourt(courtId, userId, date) {
+
+export function bookCourt(courtId, userId, day , date, bookingCode , timeSelected , supplierId) {
   return async function (dispatch) {
     try {
       console.log("La fecha seleccionada es: ", date);
+      timeSelected = timeSelected.split('-');
       //const postUser = await axios.post("http://localhost:3001/user/bookings", {
       //const postUser = await axios.post("https://turnon1.herokuapp.com/user/bookings", {
       const postUser = await axios.post(URL + "user/bookings", {
         courtId,
         userId,
-        bookingCode: Math.round(Math.random() * (9999 - 1000) + 1000),
+        bookingCode,
         status: "active",
-        date: date,
-        day: "Lunes",
-        initialTime: "13:00",
-        endingTime: "14:00",
+        date,
+        day,
+        initialTime: timeSelected[0],
+        endingTime: timeSelected[1],
+        supplierId
       });
       console.log("La respuesta del post", postUser.data);
       dispatch({
@@ -175,6 +195,15 @@ export function bookCourt(courtId, userId, date) {
       console.log(error);
     }
   };
+}
+
+export function setMessage () {
+  return async function (dispatch) {
+    dispatch({
+      type: SET_MESSAGE,
+      payload: {message: 'El pago de la seña fallo'}
+    })
+  }
 }
 
 export function courtAvailability( idCourt , date , day) {
@@ -220,6 +249,32 @@ export function deleteBooking(bookingId) {
       dispatch({
         type: DELETE_BOOKING,
         payload: postUser.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
+export function changeBooking (bookingId , date , timeSelected) {
+  return async function (dispatch) {
+    try {
+      let dateArr = date.split("-");
+        var d = new Date(dateArr[2], dateArr[1]-1, dateArr[0]);
+        d = d.getDay();
+        var daysOfWeek = ['Domingo' , 'Lunes' , 'Martes' , 'Miercoles' , 'Jueves' , 'Viernes' , 'Sabado'];
+        let day = daysOfWeek[d]
+        timeSelected = timeSelected.split('-');
+      const change = await axios.put(URL + "user/bookings/" + bookingId , {
+        date : dateArr.join('/'),
+        day,
+        initialTime: timeSelected[0],
+        endingTime: timeSelected[1],
+      });
+      console.log("La data que esta devolviendo es", change.data);
+      dispatch({
+        type: EDIT_BOOKING,
+        payload: change.data,
       });
     } catch (error) {
       console.log(error);

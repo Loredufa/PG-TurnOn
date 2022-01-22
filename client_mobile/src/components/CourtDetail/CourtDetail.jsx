@@ -11,7 +11,7 @@ import {
 } from "react-native";
 import MaterialCommunityIcons from "react-native-vector-icons/Ionicons";
 import { useDispatch, useSelector } from "react-redux";
-import { addToFavorite, bookCourt, MPbookingDetails , courtAvailability } from "../../store/actions/index";
+import { addToFavorite, bookCourt, MPbookingDetails , courtAvailability ,findPayment , setMessage} from "../../store/actions/index";
 import { styles } from "./StyleCourtDetail";
 import { Picker } from "@react-native-picker/picker";
 import DatePicker from "react-native-datepicker";
@@ -25,7 +25,7 @@ import ConfirmBooking from "../ConfirmBooking/ConfirmBooking";
 export default function CourtDetail({ route }) {
   const navigation = useNavigation();
   const dispatch = useDispatch();
-  const { user, favorites, messageBack , availables} = useSelector((state) => state);
+  const { user, favorites, messageBack , availables , payment} = useSelector((state) => state);
   console.log("INFO DEL USUARIO" , user);
   console.log("LAS DISPONIBLES" , availables);
   let { court , supplierID} = route.params;
@@ -38,18 +38,20 @@ export default function CourtDetail({ route }) {
 
   const screenWidth = useSelector((state) => state.screenWidth);
   const titleSize = useSelector((state) => state.titleSize);
-
-
+  const [reservationCode , setRC ] = useState(0);
+  
   function handlerBooking() {
     let day = date.split("-").join("/");
     //console.log(typeof day);
     //dispatch(bookCourt(route.params.court.id, user.user.id, day, timeSelected));
+    setRC (Math.round(Math.random() * (9999 - 1000) + 1000));
     dispatch(MPbookingDetails(
       court.price , 
       court.id , 
       user.user.id , 
       supplierID,
-      court.name));
+      court.name,
+      reservationCode));
     setBookingRef({court , day , timeSelected});
     setConfirmScreen(true);
 
@@ -85,7 +87,9 @@ export default function CourtDetail({ route }) {
   }, []);
   //console.log(court);
 
-  //////////  MERCADO PAGO ////////////////
+  /////////////////////////////////  MERCADO PAGO ////////////////////////////////////////////////
+  
+  const [screenPayment , setScreenPayment] = useState(false);
   const handlePress = async (url) => {
     // Checking if the link is supported for links with custom URL scheme.
     const supported = await Linking.canOpenURL(url);
@@ -97,6 +101,8 @@ export default function CourtDetail({ route }) {
     } else {
       Alert.alert(`Don't know how to open this URL: ${url}`);
     }
+    setConfirmScreen(false);
+    setScreenPayment(true)
   }
 
   function handlerDate () {
@@ -110,9 +116,44 @@ export default function CourtDetail({ route }) {
       dispatch(courtAvailability(court.id , dateArr.join('/') , day));
   }
 
+  function handlerPayment () {
+    dispatch (findPayment(supplierID)); 
+    setScreenPayment(false);
+  }
+
+  useEffect(() => {
+    let dateArr = date.split("-");
+    var d = new Date(dateArr[2], dateArr[1]-1, dateArr[0]);
+    d = d.getDay();
+    var daysOfWeek = ['Domingo' , 'Lunes' , 'Martes' , 'Miercoles' , 'Jueves' , 'Viernes' , 'Sabado'];
+    let day = daysOfWeek[d]
+    let thePayment = payment.find (e => e.reservationCode === reservationCode);
+    if (thePayment?.payment_status === 'approved') {
+      dispatch(bookCourt(route.params.court.id, user.user.id, day , dateArr.join('/') , reservationCode , timeSelected , supplierID));
+      setRC(0);
+      //navigation.navigate('Home');
+    } else {
+      reservationCode !== 0 && dispatch(setMessage());
+      setRC(0);
+    }
+  }, [payment])
+
   return messageBack !== "" ? (
     <Message />
-    ) : (
+  ) : (
+      screenPayment? 
+      <View style={{ justifyContent: "center", flex: 1 , alignItems: "center" }}>
+          <View style={styles.container}>
+            <Text style={styles.alert}>Esperando la confirmación del pago de mercado pago</Text>
+            <TouchableOpacity 
+            style={styles.btn} 
+            onPress={handlerPayment}
+            >
+            <Text style={styles.buttonText}>Aceptar</Text>
+            </TouchableOpacity>
+          </View>
+      </View>
+      :
       <View style={{ justifyContent: "center", flex: 1 }}>
       <ConfirmBooking 
       onBook={handlePress}

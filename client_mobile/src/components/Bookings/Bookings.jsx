@@ -57,7 +57,7 @@ export default function Bookings({ route }) {
   useEffect(()=>{
     dispatch(getBookings(user.user.id));
   },[flagBooking])
-  console.log(flagBooking)
+  console.log(bookings)
   return (
     <View style={styles.container}>
       <Text style={styles.title} >
