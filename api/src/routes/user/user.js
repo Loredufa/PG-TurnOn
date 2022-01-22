@@ -27,7 +27,7 @@ router.put("/user/:id", updateUser)
 router.delete("/user/:id", deleteUser)
 router.get("/user/google" , getGoogle)
 
-router.get("/user/users", getAllUsers)
+router.get("/users", getAllUsers)
 
 
 
