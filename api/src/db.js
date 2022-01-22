@@ -70,7 +70,7 @@ const {
   Field,
   Available,
   Bookings,
-
+  Rating,
   Contact,
 
 } = sequelize.models;
@@ -95,6 +95,9 @@ Bookings.belongsTo(Available); // bookings tendra una columna idAvailable
 
 Bookings.hasOne(Payments);
 Payments.belongsTo(Available); // Payments tendra una columna idBooking
+
+Supplier.hasOne(Rating)
+Rating.belongsTo(Supplier)
 
 //1 a N
 
@@ -132,7 +135,7 @@ module.exports = {
   Payments,
   Field,
   Bookings,
-
+  Rating,
   Contact,
 
 };
