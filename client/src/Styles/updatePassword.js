@@ -3,7 +3,9 @@ import styled from "styled-components";
 export const DivGlobal = styled.div`
   padding-top: 10px;
   background: #e9ebed;
-  height: 94vh;
+  height: 850px;
+  width: 100%;
+  font-family: "Be Vietnam Pro", sans-serif;
   .p {
     margin-left: 3.2%;
     font-weight: bold;

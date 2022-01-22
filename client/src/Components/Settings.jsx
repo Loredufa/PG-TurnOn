@@ -1,9 +1,12 @@
 import "react-confirm-alert/src/react-confirm-alert.css";
+import "../Styles/settingsSupplier.css";
 
 import {
   DeleteButton,
+  DivBrowser,
   DivForm,
   DivGlobal,
+  DivImagen,
   EditButton,
   EditButton2,
   H1name,
@@ -207,23 +210,37 @@ export default function Settings() {
                   component={() => <p>{errors.businessname}</p>}
                 />
               </DivForm>
-              <div className="cont-in-image-cc">
-                <label className="label-all-cc label-image-cc" htmlFor="image">
-                  Imagen De Perfil:
-                </label>
-                <br />
-                {values.image && (
-                  <img src={imagen} alt="Imagen" width="250px" height="150px" />
-                )}
-                <br />
-                <input
-                  type="file"
-                  name="image"
-                  className="input-image-cc"
-                  id="image"
-                  onChange={uploadImage}
-                />
-              </div>
+              <DivImagen>
+                <div className="divcont">
+                  <label
+                    className="label-all-cc label-image-cc"
+                    htmlFor="image"
+                  >
+                    Imagen De Perfil:
+                  </label>
+                  <br />
+                  {values.image && (
+                    <img
+                      src={imagen}
+                      alt="Imagen"
+                      width="250px"
+                      height="150px"
+                    />
+                  )}
+                  <br />
+
+                  <DivBrowser
+                    type="file"
+                    name="image"
+                    className="file"
+                    id="file-input"
+                    onChange={uploadImage}
+                  />
+                  <label className="browseL" htmlFor="file-input">
+                    SELECCIONAR ARCHIVO
+                  </label>
+                </div>
+              </DivImagen>
             </DivGlobal>
           </Form>
         )
