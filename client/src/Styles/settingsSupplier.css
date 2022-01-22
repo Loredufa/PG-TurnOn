@@ -1,7 +1,7 @@
-*{
+/* {
     margin:0px;
     padding:0px;
-}
+} */
 
 input#file-input + label{
         background:rgba(255, 255, 255, 0.664);
