@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   TouchableOpacity,
   Text,
@@ -9,21 +9,36 @@ import MaterialCommunityIcons from "react-native-vector-icons/Ionicons";
 import { useNavigation } from "@react-navigation/native";
 import { useDispatch, useSelector } from "react-redux";
 import {styles} from './StylesBookingDetail'
-import {deleteBooking} from '../../store/actions/index';
+import {deleteBooking , changeBooking} from '../../store/actions/index';
 import Message from '../Message/Message';
 import { images } from '../Supplier/Supplier'
+import EditBooking from "../EditBooking/EditBooking";
 
 export default function BookingDetail({route}) {
-    const {screenWidth , messageBack} = useSelector(state => state);
+    const {screenWidth , messageBack , flagBooking} = useSelector(state => state);
     const navigation = useNavigation();
     const {booking} = route.params;
     const dispatch = useDispatch();
-    let [coordinates , setCoordinates] = useState(booking.court.address.split(" "))
+    //let [coordinates , setCoordinates] = useState(booking.court.address.split(" "))
     let [eliminar , setEliminar] = useState(false)
     function handlerDelete() {
       dispatch(deleteBooking(booking.booking.id));
       setEliminar(false)
     }
+    let [editBooking , setEditBooking] = useState(false);
+
+    function handlerEditBooking () {
+      setEditBooking(true);
+    }
+
+    function handlerChangeBooking (bookingId , date , timeSelected) {
+      dispatch(changeBooking(bookingId , date , timeSelected))
+      setEditBooking(false);
+      navigation.navigate("Bookings")
+  }
+  useEffect(()=> {
+
+  }, [flagBooking])
 
   return (
     messageBack?
@@ -43,6 +58,12 @@ export default function BookingDetail({route}) {
     </View>
     :
     <View style={{ justifyContent: "center", flex: 1 }}> 
+    <EditBooking 
+    booking = {booking}
+    visible={editBooking}
+    onClose={() => setEditBooking(false)}
+    onEdit = {handlerChangeBooking}
+    />
     <View style={styles.container}>
       <View style={styles.nameContainer}>
         <Text style={styles.nameText}>{booking.court.name}</Text>
@@ -70,11 +91,11 @@ export default function BookingDetail({route}) {
                     </View>
                     <View style={styles.dateContainer}>
                       <Text style={styles.date}>{booking.booking.date}</Text>
-                      <Text style={styles.hour}>{booking.booking.endingTime} - {booking.booking.initialTime}</Text>
+                      <Text style={styles.hour}>{booking.booking.initialTime}-{booking.booking.endingTime}</Text>
                     </View>
                     <View style={styles.phoneAndLocationContainer}>
                       <Text style={styles.phone}>Teléfono: {booking.court.phone}</Text>
-                      <TouchableOpacity
+                      {/*<TouchableOpacity
                       style={styles.location}
                       onPress={() =>
                         navigation.navigate("Ubicacion", {
@@ -89,21 +110,21 @@ export default function BookingDetail({route}) {
                           ],
                         })
                       }
-                      >
+                    >*
                         <Text style={styles.map}>Ver en el Mapa</Text>
                         <MaterialCommunityIcons
                           name={"location"}
                           color={"#E64E39"}
                           size={30}
                         />
-                      </TouchableOpacity>
+                    </TouchableOpacity> */}
                     </View>
                     <View style={styles.codigoContainer}>
                       <Text style={styles.textCod}>Código de reserva: </Text>
                       <Text style={styles.numCod}>{booking.booking.bookingCode}</Text>
                     </View>
                     <View style={styles.buttons}>
-                      <TouchableOpacity style={styles.btnEdit}>
+                      <TouchableOpacity style={styles.btnEdit} onPress={handlerEditBooking}>
                         <Text style={styles.buttonText}>Editar</Text>
                       </TouchableOpacity>
                       <TouchableOpacity style={styles.btnCancel} onPress={() => setEliminar(true)}>

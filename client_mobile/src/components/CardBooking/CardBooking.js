@@ -45,7 +45,7 @@ export default function CardBooking({item}) {
                 >
                   <Image
                     source={{
-                      uri: item.court.image? item.court.image : images[item.court.sport]
+                      uri: item.court?.image? item.court?.image : images[item.court.sport]
                     }}
                     style={{
                       height: '90%',

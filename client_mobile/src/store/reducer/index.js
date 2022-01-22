@@ -18,13 +18,16 @@ import {
   GET_SUPPLIER_BY_SPORT,
   GET_COURTS_SUPPLIER_SPORT,
   GET_BOOKINGS,
+  EDIT_BOOKING,
   DELETE_BOOKING,
   DELETE_USER,
   GET_COURTS_SUPPLIER,
   GET_ALL_SUPPLIERS,
   GET_SUPPLIER_LOCATION,
   MP_BOOKING_DETAIL,
-  COURT_AVAILABILITY
+  COURT_AVAILABILITY,
+  FIND_PAYMENT,
+  SET_MESSAGE
 } from "../actions/index";
 import {
   findEmail,
@@ -58,6 +61,7 @@ const initialState = {
   suppliersLocation: [],
   MPurl: '',
   availables: [],
+  payment:[],
 };
 
 const reducer = (state = initialState, action) => {
@@ -155,6 +159,11 @@ const reducer = (state = initialState, action) => {
         flagBooking: !state.flagBooking,
         //bookings: state.bookings.includes(action.payload)? state.bookings : [...state.bookings, action.payload]
       };
+    case SET_MESSAGE:
+      return {
+        ...state,
+        messageBack: action.payload,
+      }
     case COURT_AVAILABILITY: 
       return {
         ...state,
@@ -165,12 +174,22 @@ const reducer = (state = initialState, action) => {
         ...state,
         bookings: action.payload,
       };
+    case FIND_PAYMENT:
+      return {
+        ...state,
+        payment: action.payload.payment
+      }
     case DELETE_BOOKING:
       return {
         ...state,
         messageBack: action.payload,
         flagBooking: !state.flagBooking,
       };
+    case EDIT_BOOKING:
+    return {
+      ...state,
+      flagBooking: !state.flagBooking
+    }
     case MP_BOOKING_DETAIL: 
       return {
         ...state,
