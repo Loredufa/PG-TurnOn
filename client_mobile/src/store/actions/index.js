@@ -127,20 +127,39 @@ export function setScreenDimensions(screenWidth, numColumns, titleSize) {
   };
 }
 
-export function MPbookingDetails (
-  amount , 
-  idCourt , 
-  idUser , 
+export function MPbookingDetails(
+  amount,
+  idCourt,
+  idUser,
   idSupplier,
   courtName,
-  reservationCode ) {
+  reservationCode
+) {
   return async function (dispatch) {
     try {
-      const state = 'active';
-      amount = Math.round(amount.split('$')[1]/10)
-      console.log(`${URL}user/mercadopago?amount=${amount}&idCourt=${idCourt}&idUser=${idUser}&idSupplier=${idSupplier}&reservationCode=${reservationCode}&state=${state}&courtName=${courtName}`)
-      console.log(amount, " ", idCourt ," ", idUser," ", idSupplier," ", courtName ," ", state," ", reservationCode)
-      const url = await axios.get(`${URL}user/mercadopago?amount=${amount}&idCourt=${idCourt}&idUser=${idUser}&idSupplier=${idSupplier}&reservationCode=${reservationCode}&state=${state}&courtName=${courtName}`)  
+      const state = "active";
+      amount = Math.round(amount.split("$")[1] / 10);
+      console.log(
+        `${URL}user/mercadopago?amount=${amount}&idCourt=${idCourt}&idUser=${idUser}&idSupplier=${idSupplier}&reservationCode=${reservationCode}&state=${state}&courtName=${courtName}`
+      );
+      console.log(
+        amount,
+        " ",
+        idCourt,
+        " ",
+        idUser,
+        " ",
+        idSupplier,
+        " ",
+        courtName,
+        " ",
+        state,
+        " ",
+        reservationCode
+      );
+      const url = await axios.get(
+        `${URL}user/mercadopago?amount=${amount}&idCourt=${idCourt}&idUser=${idUser}&idSupplier=${idSupplier}&reservationCode=${reservationCode}&state=${state}&courtName=${courtName}`
+      );
       console.log("URL", url.data);
       dispatch({
         type: MP_BOOKING_DETAIL,
@@ -152,10 +171,16 @@ export function MPbookingDetails (
   };
 }
 
-export function findPayment (idSupplier) {
+export function findPayment(idSupplier) {
   return async function (dispatch) {
     try {
-      const payments = await axios.get(URL + "supplier/payments?idSupplier=" + idSupplier  );
+      const payments = await axios.get(
+        URL + "supplier/payments?idSupplier=" + idSupplier
+      );
+      console.log(
+        "URL de la peticion:",
+        URL + "supplier/payments?idSupplier=" + idSupplier
+      );
       console.log("La respuesta de los payments", payments.data);
       dispatch({
         type: FIND_PAYMENT,
@@ -167,26 +192,34 @@ export function findPayment (idSupplier) {
   };
 }
 
-
-export function bookCourt(courtId, userId, day , date, bookingCode , timeSelected , supplierId) {
+export function bookCourt(
+  courtId,
+  userId,
+  day,
+  date,
+  bookingCode,
+  timeSelected,
+  supplierId
+) {
   return async function (dispatch) {
     try {
       console.log("La fecha seleccionada es: ", date);
-      timeSelected = timeSelected.split('-');
+      timeSelected = timeSelected.split("-");
       //const postUser = await axios.post("http://localhost:3001/user/bookings", {
       //const postUser = await axios.post("https://turnon1.herokuapp.com/user/bookings", {
       const postUser = await axios.post(URL + "user/bookings", {
         courtId,
-        userId,
-        bookingCode,
-        status: "active",
         date,
         day,
         initialTime: timeSelected[0],
         endingTime: timeSelected[1],
-        supplierId
+        bookingCode,
+        status: "active",
+        userId,
+        supplierId,
       });
       console.log("La respuesta del post", postUser.data);
+      console.log("BOOKINGCODE :", bookingCode);
       dispatch({
         type: BOOK_COURT,
         payload: postUser.data,
@@ -197,19 +230,21 @@ export function bookCourt(courtId, userId, day , date, bookingCode , timeSelecte
   };
 }
 
-export function setMessage () {
+export function setMessage() {
   return async function (dispatch) {
     dispatch({
       type: SET_MESSAGE,
-      payload: {message: 'El pago de la seña fallo'}
-    })
-  }
+      payload: { message: "El pago de la seña fallo" },
+    });
+  };
 }
 
-export function courtAvailability( idCourt , date , day) {
+export function courtAvailability(idCourt, date, day) {
   return async function (dispatch) {
     try {
-      const availables = await axios.get( `${URL}user/available?idCourt=${idCourt}&date=${date}&day=${day}`);
+      const availables = await axios.get(
+        `${URL}user/available?idCourt=${idCourt}&date=${date}&day=${day}`
+      );
       console.log("Las disponibles", availables.data);
       dispatch({
         type: COURT_AVAILABILITY,
@@ -220,7 +255,6 @@ export function courtAvailability( idCourt , date , day) {
     }
   };
 }
-
 
 export function getBookings(userId) {
   return async function (dispatch) {
@@ -256,17 +290,25 @@ export function deleteBooking(bookingId) {
   };
 }
 
-export function changeBooking (bookingId , date , timeSelected) {
+export function changeBooking(bookingId, date, timeSelected) {
   return async function (dispatch) {
     try {
       let dateArr = date.split("-");
-        var d = new Date(dateArr[2], dateArr[1]-1, dateArr[0]);
-        d = d.getDay();
-        var daysOfWeek = ['Domingo' , 'Lunes' , 'Martes' , 'Miercoles' , 'Jueves' , 'Viernes' , 'Sabado'];
-        let day = daysOfWeek[d]
-        timeSelected = timeSelected.split('-');
-      const change = await axios.put(URL + "user/bookings/" + bookingId , {
-        date : dateArr.join('/'),
+      var d = new Date(dateArr[2], dateArr[1] - 1, dateArr[0]);
+      d = d.getDay();
+      var daysOfWeek = [
+        "Domingo",
+        "Lunes",
+        "Martes",
+        "Miercoles",
+        "Jueves",
+        "Viernes",
+        "Sabado",
+      ];
+      let day = daysOfWeek[d];
+      timeSelected = timeSelected.split("-");
+      const change = await axios.put(URL + "user/bookings/" + bookingId, {
+        date: dateArr.join("/"),
         day,
         initialTime: timeSelected[0],
         endingTime: timeSelected[1],

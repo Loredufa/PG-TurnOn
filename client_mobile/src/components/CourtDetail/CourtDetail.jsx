@@ -1,4 +1,4 @@
-import React, { useEffect, useState ,useCallback } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import {
   TouchableOpacity,
   StyleSheet,
@@ -7,11 +7,18 @@ import {
   View,
   Image,
   Alert,
-  Linking
+  Linking,
 } from "react-native";
 import MaterialCommunityIcons from "react-native-vector-icons/Ionicons";
 import { useDispatch, useSelector } from "react-redux";
-import { addToFavorite, bookCourt, MPbookingDetails , courtAvailability ,findPayment , setMessage} from "../../store/actions/index";
+import {
+  addToFavorite,
+  bookCourt,
+  MPbookingDetails,
+  courtAvailability,
+  findPayment,
+  setMessage,
+} from "../../store/actions/index";
 import { styles } from "./StyleCourtDetail";
 import { Picker } from "@react-native-picker/picker";
 import DatePicker from "react-native-datepicker";
@@ -25,45 +32,51 @@ import ConfirmBooking from "../ConfirmBooking/ConfirmBooking";
 export default function CourtDetail({ route }) {
   const navigation = useNavigation();
   const dispatch = useDispatch();
-  const { user, favorites, messageBack , availables , payment} = useSelector((state) => state);
-  console.log("INFO DEL USUARIO" , user);
-  console.log("LAS DISPONIBLES" , availables);
-  let { court , supplierID} = route.params;
-  const [bookingRef , setBookingRef] = useState({
+  const { user, favorites, messageBack, availables, payment } = useSelector(
+    (state) => state
+  );
+  // console.log("INFO DEL USUARIO" , user);
+  // console.log("LAS DISPONIBLES" , availables);
+  let { court, supplierID } = route.params;
+  const [bookingRef, setBookingRef] = useState({
     court,
-    day: '',
-    timeSelected:''
-  })
-  const [confirmScreen , setConfirmScreen] = useState(false);
+    day: "",
+    timeSelected: "",
+  });
+  const [confirmScreen, setConfirmScreen] = useState(false);
 
   const screenWidth = useSelector((state) => state.screenWidth);
   const titleSize = useSelector((state) => state.titleSize);
-  const [reservationCode , setRC ] = useState(0);
-  
+  const [reservationCode, setRC] = useState(0);
+
   function handlerBooking() {
     let day = date.split("-").join("/");
     //console.log(typeof day);
     //dispatch(bookCourt(route.params.court.id, user.user.id, day, timeSelected));
-    setRC (Math.round(Math.random() * (9999 - 1000) + 1000));
-    dispatch(MPbookingDetails(
-      court.price , 
-      court.id , 
-      user.user.id , 
-      supplierID,
-      court.name,
-      reservationCode));
-    setBookingRef({court , day , timeSelected});
+    let codigo = Math.round(Math.random() * (9999 - 1000) + 1000);
+    setRC(codigo);
+    dispatch(
+      MPbookingDetails(
+        court.price,
+        court.id,
+        user.user.id,
+        supplierID,
+        court.name,
+        // reservationCode
+        codigo
+      )
+    );
+    setBookingRef({ court, day, timeSelected });
     setConfirmScreen(true);
-
   }
-  
+
   const [timeSelected, setTimeSelected] = useState("");
   const [date, setDate] = useState("");
-  
+
   let [coordinates, setCoordinates] = useState(
     route.params.coordinates.split(" ")
-    );
-    //let coordinates = court.coordinates.split(" ");
+  );
+  //let coordinates = court.coordinates.split(" ");
   function onChange(itemValue) {
     setTimeSelected(() => {
       const newInput = itemValue;
@@ -76,20 +89,28 @@ export default function CourtDetail({ route }) {
     var month = ("0" + (now.getMonth() + 1)).slice(-2);
     var today = day + "-" + month + "-" + now.getFullYear();
     //var today = now.getFullYear() + "-" + (month) + "-" + (day);
-    console.log("La fecha de hoy" , today)
+    // console.log("La fecha de hoy" , today)
     setDate(today);
     let dateArr = today.split("-");
-    var d = new Date(dateArr[2], dateArr[1]-1, dateArr[0]);
+    var d = new Date(dateArr[2], dateArr[1] - 1, dateArr[0]);
     d = d.getDay();
-    var daysOfWeek = ['Domingo' , 'Lunes' , 'Martes' , 'Miercoles' , 'Jueves' , 'Viernes' , 'Sabado'];
-    let day1 = daysOfWeek[d]
-    dispatch(courtAvailability(court.id , dateArr.join('/') , day1));
+    var daysOfWeek = [
+      "Domingo",
+      "Lunes",
+      "Martes",
+      "Miercoles",
+      "Jueves",
+      "Viernes",
+      "Sabado",
+    ];
+    let day1 = daysOfWeek[d];
+    dispatch(courtAvailability(court.id, dateArr.join("/"), day1));
   }, []);
   //console.log(court);
 
   /////////////////////////////////  MERCADO PAGO ////////////////////////////////////////////////
-  
-  const [screenPayment , setScreenPayment] = useState(false);
+
+  const [screenPayment, setScreenPayment] = useState(false);
   const handlePress = async (url) => {
     // Checking if the link is supported for links with custom URL scheme.
     const supported = await Linking.canOpenURL(url);
@@ -102,64 +123,94 @@ export default function CourtDetail({ route }) {
       Alert.alert(`Don't know how to open this URL: ${url}`);
     }
     setConfirmScreen(false);
-    setScreenPayment(true)
+    setScreenPayment(true);
+  };
+
+  function handlerDate() {
+    setDate(date);
+    let dateArr = date.split("-");
+    var d = new Date(dateArr[2], dateArr[1] - 1, dateArr[0]);
+    d = d.getDay();
+    var daysOfWeek = [
+      "Domingo",
+      "Lunes",
+      "Martes",
+      "Miercoles",
+      "Jueves",
+      "Viernes",
+      "Sabado",
+    ];
+    let day = daysOfWeek[d];
+    // console.log(court.id , dateArr.join('/') , day)
+    dispatch(courtAvailability(court.id, dateArr.join("/"), day));
   }
 
-  function handlerDate () {
-      setDate(date);
-      let dateArr = date.split("-");
-      var d = new Date(dateArr[2], dateArr[1]-1, dateArr[0]);
-      d = d.getDay();
-      var daysOfWeek = ['Domingo' , 'Lunes' , 'Martes' , 'Miercoles' , 'Jueves' , 'Viernes' , 'Sabado'];
-      let day = daysOfWeek[d]
-      console.log(court.id , dateArr.join('/') , day)
-      dispatch(courtAvailability(court.id , dateArr.join('/') , day));
-  }
-
-  function handlerPayment () {
-    dispatch (findPayment(supplierID)); 
+  function handlerPayment() {
+    dispatch(findPayment(supplierID));
     setScreenPayment(false);
   }
 
   useEffect(() => {
     let dateArr = date.split("-");
-    var d = new Date(dateArr[2], dateArr[1]-1, dateArr[0]);
+    var d = new Date(dateArr[2], dateArr[1] - 1, dateArr[0]);
     d = d.getDay();
-    var daysOfWeek = ['Domingo' , 'Lunes' , 'Martes' , 'Miercoles' , 'Jueves' , 'Viernes' , 'Sabado'];
-    let day = daysOfWeek[d]
-    let thePayment = payment.find (e => e.reservationCode === reservationCode);
-    if (thePayment?.payment_status === 'approved') {
-      dispatch(bookCourt(route.params.court.id, user.user.id, day , dateArr.join('/') , reservationCode , timeSelected , supplierID));
-      setRC(0);
+    var daysOfWeek = [
+      "Domingo",
+      "Lunes",
+      "Martes",
+      "Miercoles",
+      "Jueves",
+      "Viernes",
+      "Sabado",
+    ];
+    let day = daysOfWeek[d];
+    console.log("reservationCode", reservationCode);
+
+    let thePayment = payment.find(
+      (e) => e.reservationCode === `${reservationCode}`
+    );
+    console.log("resultado de la busqueda del payment", thePayment);
+    if (thePayment?.payment_status === "approved") {
+      dispatch(
+        bookCourt(
+          route.params.court.id,
+          user.user.id,
+          day,
+          dateArr.join("/"),
+          reservationCode,
+          timeSelected,
+          supplierID
+        )
+      );
+      // setRC(0);
       //navigation.navigate('Home');
     } else {
       reservationCode !== 0 && dispatch(setMessage());
-      setRC(0);
+      // setRC(0);
     }
-  }, [payment])
+  }, [payment]);
 
   return messageBack !== "" ? (
     <Message />
-  ) : (
-      screenPayment? 
-      <View style={{ justifyContent: "center", flex: 1 , alignItems: "center" }}>
-          <View style={styles.container}>
-            <Text style={styles.alert}>Esperando la confirmación del pago de mercado pago</Text>
-            <TouchableOpacity 
-            style={styles.btn} 
-            onPress={handlerPayment}
-            >
-            <Text style={styles.buttonText}>Aceptar</Text>
-            </TouchableOpacity>
-          </View>
+  ) : screenPayment ? (
+    <View style={{ justifyContent: "center", flex: 1, alignItems: "center" }}>
+      <View style={styles.container}>
+        <Text style={styles.alert}>
+          Esperando la confirmación del pago de mercado pago
+        </Text>
+        <TouchableOpacity style={styles.btn} onPress={handlerPayment}>
+          <Text style={styles.buttonText}>Aceptar</Text>
+        </TouchableOpacity>
       </View>
-      :
-      <View style={{ justifyContent: "center", flex: 1 }}>
-      <ConfirmBooking 
-      onBook={handlePress}
-      visible={confirmScreen} 
-      bookingRef={bookingRef} 
-      onClose={() => setConfirmScreen(false)}/>
+    </View>
+  ) : (
+    <View style={{ justifyContent: "center", flex: 1 }}>
+      <ConfirmBooking
+        onBook={handlePress}
+        visible={confirmScreen}
+        bookingRef={bookingRef}
+        onClose={() => setConfirmScreen(false)}
+      />
       <View style={styles.container}>
         <View style={styles.nameContainer}>
           <Text style={styles.nameText}>{court.name}</Text>
@@ -222,40 +273,42 @@ export default function CourtDetail({ route }) {
             }}
             onDateChange={handlerDate}
           />
-            {
-              availables?.length?
-              <Picker
-            style={{
-              //width: screenWidth / 3,
-              justifyContent: "center",
-              //marginTop: 20,
-              flex: 1,
-            }}
-            itemStyle={styles.hourItem}
-            selectedValue={timeSelected}
-            onValueChange={(itemValue, itemIndex) => onChange(itemValue)}
+          {availables?.length ? (
+            <Picker
+              style={{
+                //width: screenWidth / 3,
+                justifyContent: "center",
+                //marginTop: 20,
+                flex: 1,
+              }}
+              itemStyle={styles.hourItem}
+              selectedValue={timeSelected}
+              onValueChange={(itemValue, itemIndex) => onChange(itemValue)}
             >
               <Picker.Item label="Disponibles" value="Disponibles" />
               {availables?.map((e, i) => (
-                <Picker.Item key={i} label={`${e.initialTime}-${e.endingTime}`} value={`${e.initialTime}-${e.endingTime}`} />
+                <Picker.Item
+                  key={i}
+                  label={`${e.initialTime}-${e.endingTime}`}
+                  value={`${e.initialTime}-${e.endingTime}`}
+                />
               ))}
-              </Picker>
-              :
-              <Picker
-            style={{
-              //width: screenWidth / 3,
-              justifyContent: "center",
-              //marginTop: 20,
-              flex: 1,
-              
-            }}
-            itemStyle={styles.hourItem}
-            selectedValue={timeSelected}
-            onValueChange={(itemValue, itemIndex) => onChange(itemValue)}
-            >
-              <Picker.Item label="Elegir fecha" value="Elegir fecha"  />
             </Picker>
-            }
+          ) : (
+            <Picker
+              style={{
+                //width: screenWidth / 3,
+                justifyContent: "center",
+                //marginTop: 20,
+                flex: 1,
+              }}
+              itemStyle={styles.hourItem}
+              selectedValue={timeSelected}
+              onValueChange={(itemValue, itemIndex) => onChange(itemValue)}
+            >
+              <Picker.Item label="Elegir fecha" value="Elegir fecha" />
+            </Picker>
+          )}
         </View>
         <View style={styles.priceAndLocationContainer}>
           <View style={styles.priceContainer}>
@@ -285,10 +338,12 @@ export default function CourtDetail({ route }) {
             <Text style={styles.text}>Ver en el Mapa</Text>
           </TouchableOpacity>
         </View>
-        <TouchableOpacity 
-        style={styles.button} 
-        onPress={handlerBooking}
-        disabled={timeSelected === "Disponibles" || timeSelected === "Elegir fecha" }
+        <TouchableOpacity
+          style={styles.button}
+          onPress={handlerBooking}
+          disabled={
+            timeSelected === "Disponibles" || timeSelected === "Elegir fecha"
+          }
         >
           <Text style={styles.buttonText}>Reservar</Text>
           {/* </View> */}
