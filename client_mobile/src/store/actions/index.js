@@ -28,9 +28,27 @@ export const MP_BOOKING_DETAIL = "MP_BOOKING_DETAIL";
 export const COURT_AVAILABILITY = "COURT_AVAILABILITY";
 export const FIND_PAYMENT = "FIND_PAYMENT";
 export const SET_MESSAGE = "SET_MESSAGE";
+export const RATE_SUPPLIER = "RATE_SUPPLIER";
 
 //const URL = "http://localhost:3001/";
 const URL = "https://turnon1.herokuapp.com/";
+
+
+export function rateSupplier (supplierId, rating) {
+  return async function (dispatch) {
+    try {
+      const response = await axios.put(URL + "supplier/rating/" + supplierId , {
+        number: rating,
+      });
+      dispatch({
+        type: RATE_SUPPLIER,
+        payload: response.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
 
 export function getAllSuppliers() {
   return async function (dispatch) {
@@ -38,7 +56,7 @@ export function getAllSuppliers() {
       //const postUser = await axios.get("http://localhost:3001/user/supplier");
       //const postUser = await axios.get("https://turnon1.herokuapp.com/user/supplier");
       const getSuppliers = await axios.get(URL + "user/supplier");
-      console.log("SUPPLIERS", getSuppliers.data);
+      //console.log("SUPPLIERS", getSuppliers.data);
       dispatch({
         type: GET_ALL_SUPPLIERS,
         payload: getSuppliers.data,
@@ -55,7 +73,7 @@ export function getCourtBySport(sport) {
       //const postUser = await axios.get("http://localhost:3001/user/court?sport="+sport);
       //const postUser = await axios.get("https://turnon1.herokuapp.com/user/court?sport="+sport);
       const postUser = await axios.get(URL + "user/court?sport=" + sport);
-      console.log(postUser.data);
+     // console.log(postUser.data);
       dispatch({
         type: GET_COURT_BY_SPORT,
         payload: postUser.data,
@@ -74,7 +92,7 @@ export function getCourtBySportSupplier(name, sport) {
       const postUser = await axios.get(
         URL + "user/court?sport=" + sport + "&name=" + name
       );
-      console.log("Cancha buscada en back", postUser.data);
+      //console.log("Cancha buscada en back", postUser.data);
       dispatch({
         type: GET_COURTS_SUPPLIER_SPORT,
         payload: postUser.data,
@@ -90,7 +108,7 @@ export function getCourtsBySupplier(name) {
       //const postUser = await axios.get("http://localhost:3001/user/court?sport="+sport+ "&name=" + name);
       //const postUser = await axios.get("https://turnon1.herokuapp.com/user/court?name=" + name);
       const postUser = await axios.get(URL + "user/court?name=" + name);
-      console.log("Cancha buscada en back", postUser.data);
+     // console.log("Cancha buscada en back", postUser.data);
       dispatch({
         type: GET_COURTS_SUPPLIER,
         payload: postUser.data,
@@ -107,7 +125,7 @@ export function getSupplierBySport(sport) {
       //const postUser = await axios.get("http://localhost:3001/user/supplier?sport="+sport );
       //const postUser = await axios.get("https://turnon1.herokuapp.com/user/supplier?sport=" + sport);
       const postUser = await axios.get(URL + "user/supplier?sport=" + sport);
-      console.log(postUser.data);
+      //console.log(postUser.data);
       dispatch({
         type: GET_SUPPLIER_BY_SPORT,
         payload: postUser.data,
@@ -139,10 +157,10 @@ export function MPbookingDetails(
     try {
       const state = "active";
       amount = Math.round(amount.split("$")[1] / 10);
-      console.log(
+      /*console.log(
         `${URL}user/mercadopago?amount=${amount}&idCourt=${idCourt}&idUser=${idUser}&idSupplier=${idSupplier}&reservationCode=${reservationCode}&state=${state}&courtName=${courtName}`
-      );
-      console.log(
+      );*/
+      /*console.log(
         amount,
         " ",
         idCourt,
@@ -156,11 +174,11 @@ export function MPbookingDetails(
         state,
         " ",
         reservationCode
-      );
+      );*/
       const url = await axios.get(
         `${URL}user/mercadopago?amount=${amount}&idCourt=${idCourt}&idUser=${idUser}&idSupplier=${idSupplier}&reservationCode=${reservationCode}&state=${state}&courtName=${courtName}`
       );
-      console.log("URL", url.data);
+     // console.log("URL", url.data);
       dispatch({
         type: MP_BOOKING_DETAIL,
         payload: url.data,
@@ -177,11 +195,11 @@ export function findPayment(idSupplier) {
       const payments = await axios.get(
         URL + "supplier/payments?idSupplier=" + idSupplier
       );
-      console.log(
+      /*console.log(
         "URL de la peticion:",
         URL + "supplier/payments?idSupplier=" + idSupplier
       );
-      console.log("La respuesta de los payments", payments.data);
+      console.log("La respuesta de los payments", payments.data);*/
       dispatch({
         type: FIND_PAYMENT,
         payload: payments.data,
@@ -203,26 +221,42 @@ export function bookCourt(
 ) {
   return async function (dispatch) {
     try {
-      console.log("La fecha seleccionada es: ", date);
+     // console.log("La fecha seleccionada es: ", date);
       timeSelected = timeSelected.split("-");
       //const postUser = await axios.post("http://localhost:3001/user/bookings", {
       //const postUser = await axios.post("https://turnon1.herokuapp.com/user/bookings", {
-      const postUser = await axios.post(URL + "user/bookings", {
-        courtId,
-        date,
-        day,
-        initialTime: timeSelected[0],
-        endingTime: timeSelected[1],
-        bookingCode,
-        status: "active",
-        userId,
-        supplierId,
-      });
-      console.log("La respuesta del post", postUser.data);
-      console.log("BOOKINGCODE :", bookingCode);
+      let postUser = '';
+      if (bookingCode === '0000') {
+         postUser = await axios.post(URL + "user/bookings", {
+          courtId,
+          date,
+          day,
+          initialTime: timeSelected[0],
+          endingTime: timeSelected[1],
+          bookingCode,
+          status: "voucher",
+          userId,
+          supplierId,
+        });
+      }
+      else {
+        postUser = await axios.post(URL + "user/bookings", {
+          courtId,
+          date,
+          day,
+          initialTime: timeSelected[0],
+          endingTime: timeSelected[1],
+          bookingCode,
+          status: "active",
+          userId,
+          supplierId,
+        });
+      }
+     // console.log("La respuesta del post", postUser.data);
+     // console.log("BOOKINGCODE :", bookingCode);
       dispatch({
         type: BOOK_COURT,
-        payload: postUser.data,
+        payload: bookingCode !== '0000' ? postUser.data : '',
       });
     } catch (error) {
       console.log(error);
@@ -245,7 +279,7 @@ export function courtAvailability(idCourt, date, day) {
       const availables = await axios.get(
         `${URL}user/available?idCourt=${idCourt}&date=${date}&day=${day}`
       );
-      console.log("Las disponibles", availables.data);
+     // console.log("Las disponibles", availables.data);
       dispatch({
         type: COURT_AVAILABILITY,
         payload: availables.data,
@@ -256,13 +290,18 @@ export function courtAvailability(idCourt, date, day) {
   };
 }
 
-export function getBookings(userId) {
+export function getBookings(userId , active) {
   return async function (dispatch) {
     try {
       //const postUser = await axios.get("http://localhost:3001/user/bookings/"+userId);
       //const postUser = await axios.get("https://turnon1.herokuapp.com/user/bookings/"+userId)
-      const postUser = await axios.get(URL + "user/bookings/" + userId);
-      console.log("La respuesta del GET BOOKINGS es ", postUser.data.result);
+      let postUser = ''
+      if (active) {
+        postUser = await axios.get(URL + "user/bookings/" + userId + '?active=' + true);
+      } else {
+        postUser = await axios.get(URL + "user/bookings/" + userId);
+      }
+      //console.log("La respuesta del GET BOOKINGS es ", postUser.data.result);
       dispatch({
         type: GET_BOOKINGS,
         payload: postUser.data.result,
@@ -279,7 +318,7 @@ export function deleteBooking(bookingId) {
       //const postUser = await axios.get("http://localhost:3001/user/bookings/"+userId);
       //const postUser = await axios.delete("https://turnon1.herokuapp.com/user/bookings/"+bookingId)
       const postUser = await axios.delete(URL + "user/bookings/" + bookingId);
-      console.log("La data que esta devolviendo es", postUser.data);
+      //console.log("La data que esta devolviendo es", postUser.data);
       dispatch({
         type: DELETE_BOOKING,
         payload: postUser.data,
@@ -313,7 +352,7 @@ export function changeBooking(bookingId, date, timeSelected) {
         initialTime: timeSelected[0],
         endingTime: timeSelected[1],
       });
-      console.log("La data que esta devolviendo es", change.data);
+      //console.log("La data que esta devolviendo es", change.data);
       dispatch({
         type: EDIT_BOOKING,
         payload: change.data,
@@ -337,7 +376,7 @@ export function deleteUser(userId) {
       //const postUser = await axios.post("http://localhost:3001/user/user", {
       //const message = await axios.delete("https://turnon1.herokuapp.com/user/user/" + userId);
       const message = await axios.delete(URL + "user/user/" + userId);
-      console.log("El mensaje al eliminar", message.data);
+      // console.log("El mensaje al eliminar", message.data);
       dispatch({
         type: DELETE_USER,
         payload: message.data,
@@ -374,7 +413,7 @@ export function changeUserInfo(id, userInfo) {
       //const newInfo = await axios.put("http://localhost:3001/user/user/"+id,
       //const newInfo = await axios.put("https://turnon1.herokuapp.com/user/user/"+id,
       const newInfo = await axios.put(URL + "user/user/" + id, userInfo);
-      console.log("Informacion recibida", newInfo.data);
+      //console.log("Informacion recibida", newInfo.data);
       dispatch({
         type: CHANGE_USER_INFO,
         payload: newInfo.data,
@@ -394,7 +433,7 @@ export function changeUserPass(id, userInfo) {
         oldPassword: userInfo.actualPass,
         newPassword: userInfo.password,
       });
-      console.log("Informacion recibida", newInfo.data);
+      //console.log("Informacion recibida", newInfo.data);
       dispatch({
         type: CHANGE_USER_PASS,
         payload: newInfo.data,
@@ -407,7 +446,7 @@ export function changeUserPass(id, userInfo) {
 
 export function findCreatedUser({ user, password }) {
   return async function (dispatch) {
-    console.log("voy a despachar", user, password);
+    //console.log("voy a despachar", user, password);
     try {
       await axios
         .get(
@@ -416,7 +455,7 @@ export function findCreatedUser({ user, password }) {
           `${URL}user/user?mail=${user}&password=${password}`
         )
         .then((resolve) => {
-          console.log(resolve.data);
+          //console.log(resolve.data);
           dispatch({
             type: FIND_CREATED_USER,
             payload: resolve.data,
@@ -474,7 +513,7 @@ export function getSuppliersByName(name, sport) {
           URL + "user/supplier?name=" + name + "&sport=" + sport
         );
       else postUser = await axios.get(URL + "user/supplier?name=" + name);
-      console.log("Supplier", postUser.data);
+      //console.log("Supplier", postUser.data);
       dispatch({
         type: GET_SUPPLIERS_BY_NAME,
         payload: postUser.data,
