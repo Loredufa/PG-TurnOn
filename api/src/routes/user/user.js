@@ -3,10 +3,12 @@ const router = Router ()
 const { register } = require("./controllers/register")
 const { login } = require("./controllers/login")
 const { updateUser } = require("./controllers/updateUser")
-const {deleteUser} = require("./controllers/deleteUser")
+const { deleteUser } = require("./controllers/deleteUser")
 const { updatePassword } = require("./controllers/updatePassword")
 const { getGoogle } = require("./controllers/getGoogle")
- 
+
+const { getAllUsers} = require ("./controllers/getAllUsers")
+
 
 // router.get ("/" , (req, res, next) => {
 //      res.send ("Soy la ruta usuario")
@@ -24,6 +26,8 @@ router.put("/user/password/:id", updatePassword)
 router.put("/user/:id", updateUser)
 router.delete("/user/:id", deleteUser)
 router.get("/user/google" , getGoogle)
+
+router.get("/users", getAllUsers)
 
 
 

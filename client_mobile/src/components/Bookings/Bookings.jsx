@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect , useState } from "react";
 import {
   Text,
   View,
@@ -9,57 +9,70 @@ import { useDispatch, useSelector } from "react-redux";
 import SearchBar from "../SearchBar/SearchBar";
 import Court from "../Court/Court";
 import {styles} from './StyleBookings';
-import {getBookings} from '../../store/actions/index';
+import {getBookings , rateSupplier} from '../../store/actions/index';
 import CardBooking from "../CardBooking/CardBooking";
+import RatingBooking from "../RatingBooking/RatingBooking";
+import Message from "../Message/Message";
 
 export default function Bookings({ route }) {
-  let {bookings , user , flagBooking} = useSelector((state) => state);
-  /*bookings =  [
-        {
-            "booking": {
-                "id": 2,
-                "courtId": "2",
-                "userId": "1",
-                "date": "01/02/03",
-                "day": "Lunes",
-                "initialTime": "13:00",
-                "endingTime": "14:00",
-                "bookingCode": "1231",
-                "status": "active",
-                "createdAt": "2022-01-15T22:26:07.715Z",
-                "updatedAt": "2022-01-15T22:26:07.715Z",
-                "availableId": null
-            },
-            "court": {
-                "id": 2,
-                "name": "Los metecos",
-                "address": "asdasdds",
-                "city": null,
-                "state": null,
-                "postcode": null,
-                "phone": "166546466",
-                "mail": null,
-                "password": null,
-                "sport": "asdasd",
-                "price": "3213",
-                "image": "asdasd",
-                "coordinates": null,
-                "comments": null,
-                "reputation": null,
-                "description": "asdasdsa",
-                "createdAt": "2022-01-15T22:24:19.266Z",
-                "updatedAt": "2022-01-15T22:24:19.266Z",
-                "supplierId": 1
-            }
-        }
-    ]*/
+  let {bookings , user , flagBooking , messageBack} = useSelector((state) => state);
+  //console.log("LAS BOOKINGS" , bookings)
   const dispatch = useDispatch();
+  
+  let [rateBooking , setRateBooking] = useState(false);
+  let [bookingsToRate , setBookingsToRate] = useState(undefined);
+
+  
+  useEffect(() => {
+      if (Array.isArray(bookings)){
+        var now = new Date();
+        var day = ("0" + now.getDate()).slice(-2);
+        var month = ("0" + (now.getMonth() + 1)).slice(-2);
+        var today = day + "-" + month + "-" + now.getFullYear();
+        let dateArr = today.split("-");
+        var compareDate = new Date(dateArr[2], dateArr[1] - 1, dateArr[0]);
+        let bookingsRate = bookings.find (
+          (el) => {
+            let date = el?.booking?.date.split('/')
+            date = new Date(date[2], date[1] - 1, date[0]);
+            console.log (date , compareDate)
+            if (date.getTime() < compareDate.getTime()){
+              /// cuando hago cancelar o confirmar cambio el estado de la variable de booking rating de todas formas
+              //if(el.booking.status === 'completed') { 
+                return el
+              //} 
+            }
+          }
+          )
+          setBookingsToRate(bookingsRate);
+          bookingsToRate !== undefined  && setRateBooking(true)
+          console.log("Las bookings a hacer el rate" ,bookingsToRate);
+        } 
+    },[bookings])
+  
   useEffect(()=>{
-    dispatch(getBookings(user.user.id));
+    dispatch(getBookings(user.user.id , true));
   },[flagBooking])
-  console.log(flagBooking)
-  return (
+  
+  function handlerRate (supplierId , rating) {
+    setRateBooking(false);
+    // agregar el id court
+    console.log("ACA VOY A HACER EL DISPATCH CON SupplierId= ", supplierId , "y el rating es ", rating)
+    // aca al final tengo que pasar el id de la cancha tambien
+    //dispatch(rateSupplier(supplierId,rating))
+  }
+
+  return messageBack !== "" ? (
+    <Message />
+  ) :  (
     <View style={styles.container}>
+      {bookingsToRate !== undefined &&<RatingBooking 
+      visible = {rateBooking}
+      onClose={() => setRateBooking(false)}
+      name = {bookingsToRate?.court.name}
+      supplierId = {bookingsToRate?.court.supplierId}
+      onRate = {handlerRate}
+      /> }
       <Text style={styles.title} >
       Reservas
       </Text>

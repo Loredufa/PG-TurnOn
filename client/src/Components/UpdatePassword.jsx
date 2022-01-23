@@ -1,3 +1,5 @@
+import "../Styles/updatePassword.css";
+
 import {
   DivForm,
   DivGlobal,
@@ -5,7 +7,6 @@ import {
   H1name,
   LabelSetting,
   VolverButton,
-  ResponseContr,
 } from "../Styles/updatePassword";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import React, { useState } from "react";

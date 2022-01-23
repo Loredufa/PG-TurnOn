@@ -3,13 +3,18 @@ const { Bookings, Field } = require("../../../../db");
 const getBooking = async (req, res) => {
   const { userId } = req.params;
   const { active } = req.query;
+  const { voucher } = req.query;
   // console.log("active", typeof active);
   var booking;
   if (active === "true") {
     booking = await Bookings.findAll({
       where: { userId: `${userId}`, status: "active" },
     }).catch((err) => console.log(err));
-  } else {
+  } else if (voucher === 'true') {
+    booking = await Bookings.findAll({
+      where: { userId: `${userId}`, status: "voucher" },
+    }).catch((err) => console.log(err));
+  }else {
     booking = await Bookings.findAll({
       where: { userId: `${userId}` },
     }).catch((err) => console.log(err));

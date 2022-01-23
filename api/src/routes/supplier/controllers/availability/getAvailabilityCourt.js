@@ -7,7 +7,6 @@ const getAvailabilityCourt = async (req, res) => {
   let availability = await Available.findAll({
     where: { idCourt: idCourt },
   }).catch((err) => console.log(err));
-  console.log(availability)
   // El findAll() retorna un array vacío si no encuentra nada.
   // Para el front me sirve que responda con [] en ese caso.
 

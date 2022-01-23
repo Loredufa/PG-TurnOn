@@ -16,6 +16,10 @@ import {
   bookCourt,
   MPbookingDetails,
   courtAvailability,
+  findPayment,
+  setMessage,
+  getBookings,
+  deleteBooking
 } from "../../store/actions/index";
 import { styles } from "./StyleCourtDetail";
 import { Picker } from "@react-native-picker/picker";
@@ -30,11 +34,11 @@ import ConfirmBooking from "../ConfirmBooking/ConfirmBooking";
 export default function CourtDetail({ route }) {
   const navigation = useNavigation();
   const dispatch = useDispatch();
-  const { user, favorites, messageBack, availables } = useSelector(
+  const { bookings , user, favorites, messageBack, availables, payment } = useSelector(
     (state) => state
   );
-  console.log("INFO DEL USUARIO", user);
-  console.log("LAS DISPONIBLES", availables);
+  // console.log("INFO DEL USUARIO" , user);
+  // console.log("LAS DISPONIBLES" , availables);
   let { court, supplierID } = route.params;
   const [bookingRef, setBookingRef] = useState({
     court,
@@ -45,22 +49,57 @@ export default function CourtDetail({ route }) {
 
   const screenWidth = useSelector((state) => state.screenWidth);
   const titleSize = useSelector((state) => state.titleSize);
+  const [reservationCode, setRC] = useState(0);
 
   function handlerBooking() {
     let day = date.split("-").join("/");
     //console.log(typeof day);
-    //dispatch(bookCourt(route.params.court.id, user.user.id, day, timeSelected, supplierID));
+    //dispatch(bookCourt(route.params.court.id, user.user.id, day, timeSelected));
+    let codigo = Math.round(Math.random() * (9999 - 1000) + 1000);
+    setRC(codigo);
     dispatch(
       MPbookingDetails(
         court.price,
         court.id,
         user.user.id,
         supplierID,
-        court.name
+        court.name,
+        // reservationCode
+        codigo
       )
     );
     setBookingRef({ court, day, timeSelected });
     setConfirmScreen(true);
+  }
+
+
+  function handlerVoucher () {
+    let code = Math.round(Math.random() * (9999 - 1000) + 1000);
+    let dateArr = date.split("-");
+    var d = new Date(dateArr[2], dateArr[1] - 1, dateArr[0]);
+    d = d.getDay();
+    var daysOfWeek = [
+      "Domingo",
+      "Lunes",
+      "Martes",
+      "Miercoles",
+      "Jueves",
+      "Viernes",
+      "Sabado",
+    ];
+    let day = daysOfWeek[d];
+
+    dispatch(deleteBooking(voucher.booking.id));
+    dispatch(
+      bookCourt(
+        route.params.court.id,
+        user.user.id,
+        day,
+        dateArr.join("/"),
+        code,
+        timeSelected,
+        supplierID
+      ))
   }
 
   const [timeSelected, setTimeSelected] = useState("");
@@ -82,7 +121,7 @@ export default function CourtDetail({ route }) {
     var month = ("0" + (now.getMonth() + 1)).slice(-2);
     var today = day + "-" + month + "-" + now.getFullYear();
     //var today = now.getFullYear() + "-" + (month) + "-" + (day);
-    console.log("La fecha de hoy", today);
+    // console.log("La fecha de hoy" , today)
     setDate(today);
     let dateArr = today.split("-");
     var d = new Date(dateArr[2], dateArr[1] - 1, dateArr[0]);
@@ -98,10 +137,21 @@ export default function CourtDetail({ route }) {
     ];
     let day1 = daysOfWeek[d];
     dispatch(courtAvailability(court.id, dateArr.join("/"), day1));
+    dispatch (getBookings(user.user.id));
   }, []);
   //console.log(court);
+  const [voucher , setVoucher] = useState(undefined)
 
-  //////////  MERCADO PAGO ////////////////
+  useEffect(() => {
+    if (bookings !== undefined) {
+      setVoucher(bookings.find((el) => el.booking.status === 'voucher' && el.court.id === court.id));
+    }
+
+  },[bookings])
+
+  /////////////////////////////////  MERCADO PAGO ////////////////////////////////////////////////
+
+  const [screenPayment, setScreenPayment] = useState(false);
   const handlePress = async (url) => {
     // Checking if the link is supported for links with custom URL scheme.
     const supported = await Linking.canOpenURL(url);
@@ -113,6 +163,8 @@ export default function CourtDetail({ route }) {
     } else {
       Alert.alert(`Don't know how to open this URL: ${url}`);
     }
+    setConfirmScreen(false);
+    setScreenPayment(true);
   };
 
   function handlerDate() {
@@ -130,12 +182,68 @@ export default function CourtDetail({ route }) {
       "Sabado",
     ];
     let day = daysOfWeek[d];
-    console.log(court.id, dateArr.join("/"), day);
+    // console.log(court.id , dateArr.join('/') , day)
     dispatch(courtAvailability(court.id, dateArr.join("/"), day));
   }
 
+  function handlerPayment() {
+    dispatch(findPayment(supplierID));
+    setScreenPayment(false);
+  }
+
+  useEffect(() => {
+    let dateArr = date.split("-");
+    var d = new Date(dateArr[2], dateArr[1] - 1, dateArr[0]);
+    d = d.getDay();
+    var daysOfWeek = [
+      "Domingo",
+      "Lunes",
+      "Martes",
+      "Miercoles",
+      "Jueves",
+      "Viernes",
+      "Sabado",
+    ];
+    let day = daysOfWeek[d];
+    console.log("reservationCode", reservationCode);
+
+    let thePayment = payment.find(
+      (e) => e.reservationCode === `${reservationCode}`
+    );
+    console.log("resultado de la busqueda del payment", thePayment);
+    if (thePayment?.payment_status === "approved") {
+      dispatch(
+        bookCourt(
+          route.params.court.id,
+          user.user.id,
+          day,
+          dateArr.join("/"),
+          reservationCode,
+          timeSelected,
+          supplierID
+        )
+      );
+      // setRC(0);
+      //navigation.navigate('Home');
+    } else {
+      reservationCode !== 0 && dispatch(setMessage());
+      // setRC(0);
+    }
+  }, [payment]);
+
   return messageBack !== "" ? (
     <Message />
+  ) : screenPayment ? (
+    <View style={{ justifyContent: "center", flex: 1, alignItems: "center" }}>
+      <View style={styles.container}>
+        <Text style={styles.alert}>
+          Esperando la confirmación del pago de mercado pago
+        </Text>
+        <TouchableOpacity style={styles.btn} onPress={handlerPayment}>
+          <Text style={styles.buttonText}>Aceptar</Text>
+        </TouchableOpacity>
+      </View>
+    </View>
   ) : (
     <View style={{ justifyContent: "center", flex: 1 }}>
       <ConfirmBooking
@@ -271,6 +379,8 @@ export default function CourtDetail({ route }) {
             <Text style={styles.text}>Ver en el Mapa</Text>
           </TouchableOpacity>
         </View>
+        {
+        voucher === undefined?
         <TouchableOpacity
           style={styles.button}
           onPress={handlerBooking}
@@ -281,6 +391,18 @@ export default function CourtDetail({ route }) {
           <Text style={styles.buttonText}>Reservar</Text>
           {/* </View> */}
         </TouchableOpacity>
+        :
+        <TouchableOpacity
+          style={styles.button}
+          onPress={handlerVoucher}
+          disabled={
+            timeSelected === "Disponibles" || timeSelected === "Elegir fecha"
+          }
+        >
+          <Text style={styles.buttonText}>Canjear Voucher</Text>
+          {/* </View> */}
+        </TouchableOpacity>
+        }
       </View>
     </View>
   );

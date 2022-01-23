@@ -1,9 +1,12 @@
 import "react-confirm-alert/src/react-confirm-alert.css";
+import "../Styles/settingsSupplier.css";
 
 import {
   DeleteButton,
+  DivBrowser,
   DivForm,
   DivGlobal,
+  DivImagen,
   EditButton,
   EditButton2,
   H1name,
@@ -25,16 +28,7 @@ export default function Settings() {
   const history = useHistory();
   const dispatch = useDispatch();
   const [edit, setEdit] = useState(false);
-  const [infoCourt, setInfoCourt] = useState({
-    name: supplier.name,
-    id: supplier.id,
-    mail: supplier.mail,
-    image: supplier.image,
-    password: supplier.password,
-    cuit: supplier.cuit,
-    businessname: supplier.businessname,
-  });
-  console.log(infoCourt);
+  const [imagen, setImagen] = useState(supplier.image);
   const editPwdClick = () => {
     history.push("/profile/password");
   };
@@ -61,7 +55,6 @@ export default function Settings() {
       ],
     });
   };
-
   const uploadImage = async (e) => {
     const files = e.target.files;
     const data = new FormData();
@@ -77,11 +70,7 @@ export default function Settings() {
     );
 
     const file = await respuesta.json();
-    console.log(file.secure_url);
-    setInfoCourt({
-      ...infoCourt,
-      image: file.secure_url,
-    });
+    setImagen(file.secure_url);
   };
 
   return (
@@ -130,7 +119,12 @@ export default function Settings() {
         return errors;
       }}
       onSubmit={(values) => {
-        dispatch(changeSupplierProfile(values.id, values));
+        dispatch(
+          changeSupplierProfile(values.id, {
+            ...values,
+            image: imagen,
+          })
+        );
         setEdit(false);
       }}
     >
@@ -216,27 +210,37 @@ export default function Settings() {
                   component={() => <p>{errors.businessname}</p>}
                 />
               </DivForm>
-              <div className="cont-in-image-cc">
-                <label className="label-all-cc label-image-cc" htmlFor="image">
-                  Imagen De Perfil:
-                </label>
-                <br />
-                {infoCourt.image && (
-                  <img
-                    src={infoCourt.image}
-                    alt="Imagen"
-                    width="250px"
-                    height="150px"
+              <DivImagen>
+                <div className="divcont">
+                  <label
+                    className="label-all-cc label-image-cc"
+                    htmlFor="image"
+                  >
+                    Imagen De Perfil:
+                  </label>
+                  <br />
+                  {values.image && (
+                    <img
+                      src={imagen}
+                      alt="Imagen"
+                      width="250px"
+                      height="150px"
+                    />
+                  )}
+                  <br />
+
+                  <DivBrowser
+                    type="file"
+                    name="image"
+                    className="file"
+                    id="file-input"
+                    onChange={uploadImage}
                   />
-                )}
-                <br />
-                <input
-                  className="input-image-cc"
-                  type="file"
-                  name="file"
-                  onChange={uploadImage}
-                />
-              </div>
+                  <label className="browseL" htmlFor="file-input">
+                    SELECCIONAR ARCHIVO
+                  </label>
+                </div>
+              </DivImagen>
             </DivGlobal>
           </Form>
         )

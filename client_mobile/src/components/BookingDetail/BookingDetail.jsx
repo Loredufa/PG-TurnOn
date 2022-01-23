@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   TouchableOpacity,
   Text,
@@ -9,21 +9,76 @@ import MaterialCommunityIcons from "react-native-vector-icons/Ionicons";
 import { useNavigation } from "@react-navigation/native";
 import { useDispatch, useSelector } from "react-redux";
 import {styles} from './StylesBookingDetail'
-import {deleteBooking} from '../../store/actions/index';
+import {deleteBooking , changeBooking , bookCourt} from '../../store/actions/index';
 import Message from '../Message/Message';
 import { images } from '../Supplier/Supplier'
+import EditBooking from "../EditBooking/EditBooking";
 
 export default function BookingDetail({route}) {
-    const {screenWidth , messageBack} = useSelector(state => state);
+    const {screenWidth , messageBack , flagBooking , user} = useSelector(state => state);
     const navigation = useNavigation();
     const {booking} = route.params;
     const dispatch = useDispatch();
-    let [coordinates , setCoordinates] = useState(booking.court.address.split(" "))
+    //let [coordinates , setCoordinates] = useState(booking.court.address.split(" "))
     let [eliminar , setEliminar] = useState(false)
     function handlerDelete() {
-      dispatch(deleteBooking(booking.booking.id));
+      //dispatch(deleteBooking(booking.booking.id));
+      /*
+      var now = new Date();
+      var day = ("0" + now.getDate()).slice(-2);
+      var month = ("0" + (now.getMonth() + 1)).slice(-2);
+      var today = day + "-" + month + "-" + now.getFullYear();
+      //var today = now.getFullYear() + "-" + (month) + "-" + (day);
+      // console.log("La fecha de hoy" , today)
+      setDate(today);
+      let dateArr = today.split("-");
+      var d = new Date(dateArr[2], dateArr[1] - 1, dateArr[0]);
+      d = d.getDay();
+      var daysOfWeek = [
+        "Domingo",
+        "Lunes",
+        "Martes",
+        "Miercoles",
+        "Jueves",
+        "Viernes",
+        "Sabado",
+      ];
+      let day1 = daysOfWeek[d];
+      */
+      //UN DIA EN MILI SEGUNDOS 86400000
+      dispatch(changeBooking(
+        booking.booking.id , 
+        booking.booking.date , 
+        `${booking.booking.initialTime}-${booking.booking.endingTime}`,
+        'canceled'
+      ));
+      
+      dispatch(bookCourt(
+        booking.court.id,
+        user.user.id,
+        'Lunes',
+        '00/00/0000',
+        '0000',
+        '00:00-00:00',
+        booking.court.supplierId,
+        ));
+      navigation.navigate("Bookings")
       setEliminar(false)
     }
+    let [editBooking , setEditBooking] = useState(false);
+
+    function handlerEditBooking () {
+      setEditBooking(true);
+    }
+
+    function handlerChangeBooking (bookingId , date , timeSelected) {
+      dispatch(changeBooking(bookingId , date , timeSelected))
+      setEditBooking(false);
+      navigation.navigate("Bookings")
+  }
+  useEffect(()=> {
+
+  }, [flagBooking])
 
   return (
     messageBack?
@@ -43,6 +98,12 @@ export default function BookingDetail({route}) {
     </View>
     :
     <View style={{ justifyContent: "center", flex: 1 }}> 
+    <EditBooking 
+    booking = {booking}
+    visible={editBooking}
+    onClose={() => setEditBooking(false)}
+    onEdit = {handlerChangeBooking}
+    />
     <View style={styles.container}>
       <View style={styles.nameContainer}>
         <Text style={styles.nameText}>{booking.court.name}</Text>
@@ -70,11 +131,11 @@ export default function BookingDetail({route}) {
                     </View>
                     <View style={styles.dateContainer}>
                       <Text style={styles.date}>{booking.booking.date}</Text>
-                      <Text style={styles.hour}>{booking.booking.endingTime} - {booking.booking.initialTime}</Text>
+                      <Text style={styles.hour}>{booking.booking.initialTime}-{booking.booking.endingTime}</Text>
                     </View>
                     <View style={styles.phoneAndLocationContainer}>
                       <Text style={styles.phone}>Teléfono: {booking.court.phone}</Text>
-                      <TouchableOpacity
+                      {/*<TouchableOpacity
                       style={styles.location}
                       onPress={() =>
                         navigation.navigate("Ubicacion", {
@@ -89,21 +150,21 @@ export default function BookingDetail({route}) {
                           ],
                         })
                       }
-                      >
+                    >*
                         <Text style={styles.map}>Ver en el Mapa</Text>
                         <MaterialCommunityIcons
                           name={"location"}
                           color={"#E64E39"}
                           size={30}
                         />
-                      </TouchableOpacity>
+                    </TouchableOpacity> */}
                     </View>
                     <View style={styles.codigoContainer}>
                       <Text style={styles.textCod}>Código de reserva: </Text>
                       <Text style={styles.numCod}>{booking.booking.bookingCode}</Text>
                     </View>
                     <View style={styles.buttons}>
-                      <TouchableOpacity style={styles.btnEdit}>
+                      <TouchableOpacity style={styles.btnEdit} onPress={handlerEditBooking}>
                         <Text style={styles.buttonText}>Editar</Text>
                       </TouchableOpacity>
                       <TouchableOpacity style={styles.btnCancel} onPress={() => setEliminar(true)}>
