@@ -9,13 +9,13 @@ import MaterialCommunityIcons from "react-native-vector-icons/Ionicons";
 import { useNavigation } from "@react-navigation/native";
 import { useDispatch, useSelector } from "react-redux";
 import {styles} from './StylesBookingDetail'
-import {deleteBooking , changeBooking} from '../../store/actions/index';
+import {deleteBooking , changeBooking , bookCourt} from '../../store/actions/index';
 import Message from '../Message/Message';
 import { images } from '../Supplier/Supplier'
 import EditBooking from "../EditBooking/EditBooking";
 
 export default function BookingDetail({route}) {
-    const {screenWidth , messageBack , flagBooking} = useSelector(state => state);
+    const {screenWidth , messageBack , flagBooking , user} = useSelector(state => state);
     const navigation = useNavigation();
     const {booking} = route.params;
     const dispatch = useDispatch();
@@ -23,6 +23,26 @@ export default function BookingDetail({route}) {
     let [eliminar , setEliminar] = useState(false)
     function handlerDelete() {
       dispatch(deleteBooking(booking.booking.id));
+      dispatch(bookCourt(
+        booking.court.id,
+        user.user.id,
+        'Lunes',
+        '00/00/0000',
+        '0000',
+        '00:00-00:00',
+        booking.court.supplierId,
+        ));
+      /*
+      courtId,
+      date,
+      day,
+      initialTime: timeSelected[0],
+      endingTime: timeSelected[1],
+      bookingCode,
+      status: "active",
+      userId,
+      supplierId,
+      */
       setEliminar(false)
     }
     let [editBooking , setEditBooking] = useState(false);

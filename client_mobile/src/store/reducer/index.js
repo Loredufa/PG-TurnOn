@@ -46,6 +46,7 @@ const initialState = {
   courtTypes: [],
   favorites: [],
   bookings: [],
+  bookingsRate: [],
   authToken: null, //"abc123",
   screenWidth: 375,
   numColumns: 6,
@@ -63,6 +64,9 @@ const initialState = {
   availables: [],
   payment:[],
 };
+
+
+
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -155,7 +159,7 @@ const reducer = (state = initialState, action) => {
     case BOOK_COURT:
       return {
         ...state,
-        messageBack: action.payload,
+        messageBack: action.payload === '' ? state.messageBack : action.payload,
         flagBooking: !state.flagBooking,
         //bookings: state.bookings.includes(action.payload)? state.bookings : [...state.bookings, action.payload]
       };
@@ -173,6 +177,18 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         bookings: action.payload,
+       /* bookingsRate: 
+        Array.isArray(action.payload) && action.payload.map (
+          (el) => {
+             let a = el?.booking?.date.split('/').join('-');
+             a= new Date(a);
+             let b= new Date (today);
+             if (a.getTime() < b.getTime())
+             return true;
+             else 
+             return false;
+            }
+             ), */
       };
     case FIND_PAYMENT:
       return {

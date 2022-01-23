@@ -18,6 +18,8 @@ import {
   courtAvailability,
   findPayment,
   setMessage,
+  getBookings,
+  deleteBooking
 } from "../../store/actions/index";
 import { styles } from "./StyleCourtDetail";
 import { Picker } from "@react-native-picker/picker";
@@ -32,7 +34,7 @@ import ConfirmBooking from "../ConfirmBooking/ConfirmBooking";
 export default function CourtDetail({ route }) {
   const navigation = useNavigation();
   const dispatch = useDispatch();
-  const { user, favorites, messageBack, availables, payment } = useSelector(
+  const { bookings , user, favorites, messageBack, availables, payment } = useSelector(
     (state) => state
   );
   // console.log("INFO DEL USUARIO" , user);
@@ -70,6 +72,36 @@ export default function CourtDetail({ route }) {
     setConfirmScreen(true);
   }
 
+
+  function handlerVoucher () {
+    let code = Math.round(Math.random() * (9999 - 1000) + 1000);
+    let dateArr = date.split("-");
+    var d = new Date(dateArr[2], dateArr[1] - 1, dateArr[0]);
+    d = d.getDay();
+    var daysOfWeek = [
+      "Domingo",
+      "Lunes",
+      "Martes",
+      "Miercoles",
+      "Jueves",
+      "Viernes",
+      "Sabado",
+    ];
+    let day = daysOfWeek[d];
+
+    dispatch(deleteBooking(voucher.booking.id));
+    dispatch(
+      bookCourt(
+        route.params.court.id,
+        user.user.id,
+        day,
+        dateArr.join("/"),
+        code,
+        timeSelected,
+        supplierID
+      ))
+  }
+
   const [timeSelected, setTimeSelected] = useState("");
   const [date, setDate] = useState("");
 
@@ -105,8 +137,17 @@ export default function CourtDetail({ route }) {
     ];
     let day1 = daysOfWeek[d];
     dispatch(courtAvailability(court.id, dateArr.join("/"), day1));
+    dispatch (getBookings(user.user.id));
   }, []);
   //console.log(court);
+  const [voucher , setVoucher] = useState(undefined)
+
+  useEffect(() => {
+    if (bookings !== undefined) {
+      setVoucher(bookings.find((el) => el.booking.status === 'voucher' && el.court.id === court.id));
+    }
+
+  },[bookings])
 
   /////////////////////////////////  MERCADO PAGO ////////////////////////////////////////////////
 
@@ -338,6 +379,8 @@ export default function CourtDetail({ route }) {
             <Text style={styles.text}>Ver en el Mapa</Text>
           </TouchableOpacity>
         </View>
+        {
+        voucher === undefined?
         <TouchableOpacity
           style={styles.button}
           onPress={handlerBooking}
@@ -348,6 +391,18 @@ export default function CourtDetail({ route }) {
           <Text style={styles.buttonText}>Reservar</Text>
           {/* </View> */}
         </TouchableOpacity>
+        :
+        <TouchableOpacity
+          style={styles.button}
+          onPress={handlerVoucher}
+          disabled={
+            timeSelected === "Disponibles" || timeSelected === "Elegir fecha"
+          }
+        >
+          <Text style={styles.buttonText}>Canjear Voucher</Text>
+          {/* </View> */}
+        </TouchableOpacity>
+        }
       </View>
     </View>
   );
