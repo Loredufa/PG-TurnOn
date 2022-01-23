@@ -1,0 +1,23 @@
+/* {
+    margin:0px;
+    padding:0px;
+} */
+
+input#file-input + label{
+        background:rgba(255, 255, 255, 0.664);
+        border: 1px solid #000;
+        border-radius: 4px;
+        margin: 15%;
+        color: #81b214;
+        cursor: pointer;
+        font-size: 70%;
+        padding: 5% 10%;
+        text-transform: uppercase;
+        transition: all 1s ease;
+}
+
+input#file-input + label:hover{
+    background: white;
+      border: 1px solid #535353;
+      color: #81b214;
+}

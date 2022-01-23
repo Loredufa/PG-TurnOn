@@ -3,7 +3,9 @@ import styled from "styled-components";
 export const DivGlobal = styled.div`
   padding-top: 10px;
   background: #e9ebed;
-  height: 94vh;
+  height: 850px;
+  width: 100%;
+  font-family: "Be Vietnam Pro", sans-serif;
   .p {
     margin-left: 3.2%;
     font-weight: bold;
@@ -12,14 +14,14 @@ export const DivGlobal = styled.div`
 `;
 export const DivForm = styled.div`
   width: 700px;
-  height: auto; 
+  height: auto;
   display: flex;
   margin-left: 50px;
   margin-top: 60px;
   flex-direction: column;
   flex-wrap: wrap;
   align-content: flex-start;
-  justify-content:space-between;
+  justify-content: space-between;
   flex-grow: 0;
   padding: 10px;
   padding-bottom: 30px;
@@ -52,10 +54,9 @@ export const GuardarButton = styled.button`
     background-color: red;
     color: white;
   }
-  &:hover{
+  &:hover {
     background-color: #179f34;
-    color:white;
-
+    color: white;
   }
 `;
 export const VolverButton = styled.button`
@@ -72,10 +73,9 @@ export const VolverButton = styled.button`
   border-style: none;
   color: white;
   padding: 10px;
-  &:hover{
-    background-color:white;
-    color:#81b214;
-
+  &:hover {
+    background-color: white;
+    color: #81b214;
   }
 `;
 
@@ -103,7 +103,7 @@ export const LabelSetting = styled.label`
     background-color: white;
     border-radius: 30px;
   }
-  p{
+  p {
     font-family: "Be Vietnam Pro", sans-serif;
     font-size: 15px;
     margin-left: 0px;
@@ -114,12 +114,6 @@ export const H1name = styled.h1`
   font-family: "Be Vietnam Pro", sans-serif;
   margin-left: 50px;
   padding-bottom: 50px;
-  color:#81b214;
-  font-size: 45px
+  color: #81b214;
+  font-size: 45px;
 `;
-
-export const ResponseContr= styled.p`
-font-family: "Be Vietnam Pro", sans-serif;
-font-size: 20px;
-margin-left: 55px;
-`

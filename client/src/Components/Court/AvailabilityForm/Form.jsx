@@ -41,7 +41,8 @@ export default function Form() {
         borderRadius: "20px",
         borderStyle: "none",
         textAlign: "center",
-        marginRight:"10px"
+        marginRight: "5px",
+        marginLeft: "5px"
     }
 
     return (

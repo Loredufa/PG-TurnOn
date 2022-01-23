@@ -10,7 +10,8 @@ const getAvailability = async (req, res) => {
   let booking = await Bookings.findAll({
     where: { courtId: idCourt,
              date: date,
-            day: day},
+            day: day, 
+            status: 'active'},
   }).catch((err) => console.log(err));
   //console.log("Reservas: " , booking);
   availability = availability.filter (el => el.date === day);
