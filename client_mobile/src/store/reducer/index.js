@@ -27,7 +27,8 @@ import {
   MP_BOOKING_DETAIL,
   COURT_AVAILABILITY,
   FIND_PAYMENT,
-  SET_MESSAGE
+  SET_MESSAGE,
+  GET_VOUCHERS
 } from "../actions/index";
 import {
   findEmail,
@@ -63,6 +64,7 @@ const initialState = {
   MPurl: '',
   availables: [],
   payment:[],
+  voucher: [],
 };
 
 
@@ -156,6 +158,22 @@ const reducer = (state = initialState, action) => {
         messageBack: action.payload,
         supplierAddFav: 0,
       };
+      case SET_MESSAGE:
+        return {
+          ...state,
+          messageBack: action.payload,
+        }
+      case COURT_AVAILABILITY: 
+        return {
+          ...state,
+          availables: action.payload.availability,
+        }
+    case GET_VOUCHERS: 
+    return {
+      ...state, 
+      flagBooking: !state.flagBooking,
+      voucher:  action.payload.hasOwnProperty("message")? [] : action.payload,
+    }
     case BOOK_COURT:
       return {
         ...state,
@@ -163,32 +181,10 @@ const reducer = (state = initialState, action) => {
         flagBooking: !state.flagBooking,
         //bookings: state.bookings.includes(action.payload)? state.bookings : [...state.bookings, action.payload]
       };
-    case SET_MESSAGE:
-      return {
-        ...state,
-        messageBack: action.payload,
-      }
-    case COURT_AVAILABILITY: 
-      return {
-        ...state,
-        availables: action.payload.availability,
-      }
     case GET_BOOKINGS:
       return {
         ...state,
-        bookings: action.payload,
-       /* bookingsRate: 
-        Array.isArray(action.payload) && action.payload.map (
-          (el) => {
-             let a = el?.booking?.date.split('/').join('-');
-             a= new Date(a);
-             let b= new Date (today);
-             if (a.getTime() < b.getTime())
-             return true;
-             else 
-             return false;
-            }
-             ), */
+        bookings: action.payload.hasOwnProperty("message") ? [] : action.payload,
       };
     case FIND_PAYMENT:
       return {
@@ -198,13 +194,17 @@ const reducer = (state = initialState, action) => {
     case DELETE_BOOKING:
       return {
         ...state,
-        messageBack: action.payload,
+        //messageBack: action.payload,
         flagBooking: !state.flagBooking,
       };
     case EDIT_BOOKING:
     return {
       ...state,
-      flagBooking: !state.flagBooking
+      flagBooking: !state.flagBooking,
+      messageBack: action.payload.status === 'canceled'? 
+        {message: "Reserva cancelada con exito"}
+        :
+        {message: "Reserva modificada con exito"}
     }
     case MP_BOOKING_DETAIL: 
       return {

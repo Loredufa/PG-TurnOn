@@ -329,30 +329,42 @@ export function deleteBooking(bookingId) {
   };
 }
 
-export function changeBooking(bookingId, date, timeSelected) {
+export function changeBooking(bookingId, date, timeSelected , status) {
   return async function (dispatch) {
     try {
-      let dateArr = date.split("-");
-      var d = new Date(dateArr[2], dateArr[1] - 1, dateArr[0]);
-      d = d.getDay();
-      var daysOfWeek = [
-        "Domingo",
-        "Lunes",
-        "Martes",
-        "Miercoles",
-        "Jueves",
-        "Viernes",
-        "Sabado",
-      ];
-      let day = daysOfWeek[d];
-      timeSelected = timeSelected.split("-");
-      const change = await axios.put(URL + "user/bookings/" + bookingId, {
-        date: dateArr.join("/"),
-        day,
-        initialTime: timeSelected[0],
-        endingTime: timeSelected[1],
-      });
-      //console.log("La data que esta devolviendo es", change.data);
+      let change = ''
+      if (status === 'canceled') {
+        timeSelected = timeSelected.split("-");
+        change = await axios.put(URL + "user/bookings/" + bookingId, {
+          date: date,
+          initialTime: timeSelected[0],
+          endingTime: timeSelected[1],
+          status: status
+        });
+        //console.log("LO QUE DEVUELVE CUANDO LA CANCELAS" , change.data);
+      }else {
+        let dateArr = date.split("-");
+        var d = new Date(dateArr[2], dateArr[1] - 1, dateArr[0]);
+        d = d.getDay();
+        var daysOfWeek = [
+          "Domingo",
+          "Lunes",
+          "Martes",
+          "Miercoles",
+          "Jueves",
+          "Viernes",
+          "Sabado",
+        ];
+        let day = daysOfWeek[d];
+        timeSelected = timeSelected.split("-");
+        change = await axios.put(URL + "user/bookings/" + bookingId, {
+          date: dateArr.join("/"),
+          day,
+          initialTime: timeSelected[0],
+          endingTime: timeSelected[1],
+        });
+        //console.log("La data que esta devolviendo es", change.data);
+      }
       dispatch({
         type: EDIT_BOOKING,
         payload: change.data,

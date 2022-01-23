@@ -22,7 +22,37 @@ export default function BookingDetail({route}) {
     //let [coordinates , setCoordinates] = useState(booking.court.address.split(" "))
     let [eliminar , setEliminar] = useState(false)
     function handlerDelete() {
-      dispatch(deleteBooking(booking.booking.id));
+      //dispatch(deleteBooking(booking.booking.id));
+      /*
+      var now = new Date();
+      var day = ("0" + now.getDate()).slice(-2);
+      var month = ("0" + (now.getMonth() + 1)).slice(-2);
+      var today = day + "-" + month + "-" + now.getFullYear();
+      //var today = now.getFullYear() + "-" + (month) + "-" + (day);
+      // console.log("La fecha de hoy" , today)
+      setDate(today);
+      let dateArr = today.split("-");
+      var d = new Date(dateArr[2], dateArr[1] - 1, dateArr[0]);
+      d = d.getDay();
+      var daysOfWeek = [
+        "Domingo",
+        "Lunes",
+        "Martes",
+        "Miercoles",
+        "Jueves",
+        "Viernes",
+        "Sabado",
+      ];
+      let day1 = daysOfWeek[d];
+      */
+      //UN DIA EN MILI SEGUNDOS 86400000
+      dispatch(changeBooking(
+        booking.booking.id , 
+        booking.booking.date , 
+        `${booking.booking.initialTime}-${booking.booking.endingTime}`,
+        'canceled'
+      ));
+      
       dispatch(bookCourt(
         booking.court.id,
         user.user.id,
@@ -32,17 +62,7 @@ export default function BookingDetail({route}) {
         '00:00-00:00',
         booking.court.supplierId,
         ));
-      /*
-      courtId,
-      date,
-      day,
-      initialTime: timeSelected[0],
-      endingTime: timeSelected[1],
-      bookingCode,
-      status: "active",
-      userId,
-      supplierId,
-      */
+      navigation.navigate("Bookings")
       setEliminar(false)
     }
     let [editBooking , setEditBooking] = useState(false);
