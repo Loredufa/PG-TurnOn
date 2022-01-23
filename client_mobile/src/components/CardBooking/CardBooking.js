@@ -45,7 +45,7 @@ export default function CardBooking({item}) {
                 >
                   <Image
                     source={{
-                      uri: item.court.image? item.court.image : images[item.court.sport]
+                      uri: item.court?.image? item.court?.image : images[item.court.sport]
                     }}
                     style={{
                       height: '90%',
@@ -65,7 +65,7 @@ export default function CardBooking({item}) {
                     <Text style={styles.text}>{item.booking.initialTime}-{item.booking.endingTime}</Text>
                     </View>
                     <View style={styles.ref}>
-                    <Text style={styles.text}>${item.court.price}</Text>
+                    <Text style={styles.text}>{item.court.price}</Text>
                     <Text style={styles.text}>Código: {item.booking.bookingCode}</Text>
                     </View>
                   </View>

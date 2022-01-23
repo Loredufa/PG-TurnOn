@@ -17,6 +17,9 @@ export const styles = StyleSheet.create({
     elevation: 20,
     borderColor: "#3fc959",
   },
+  hourItem: {
+    fontSize: 15,
+  },
   nameContainer: {
     flex: 1,
     paddingTop: 20,
@@ -34,13 +37,29 @@ export const styles = StyleSheet.create({
     //margin: 20,
     //justifyContent: "space-between",
   },
+  alert: {
+    fontWeight: "700",
+    fontSize: 18,
+    margin: 10,
+    textAlign: 'center'
+  }, 
+  btn:{
+    height: '7%',
+    width: 130,
+    alignItems: "center",
+    backgroundColor: "#179F34",
+    borderRadius: 20,
+    borderColor: "black",
+    justifyContent: "center",
+    marginBottom: 10,
+  },
   button: {
     flex: 1,
     //marginTop: 30,
     width: 130,
     //height: 35,
     alignItems: "center",
-    backgroundColor: "#3FC959",
+    backgroundColor: "#179F34",
     borderRadius: 20,
     //borderWidth: 0,
     borderColor: "black",
