@@ -1,4 +1,4 @@
-const { Bookings, User, Supplier } = require("../../../db");
+const { Bookings, User, Supplier, Payments } = require("../../../db");
 
 
 
@@ -13,11 +13,15 @@ const getBookings = async (req, res) => {
 
     allbookings = await Bookings.findAll({
         where : {supplierId},
-        include: {
+        include: [{
         model: User,
         attributes: ["name", "lastname", "phone"],
       },
-    })
+      {
+        model: Payments,
+        attributes: ["price", "payment_status", "amount"],
+       }],
+  })
 
     
     //Filtros son acumulativos
