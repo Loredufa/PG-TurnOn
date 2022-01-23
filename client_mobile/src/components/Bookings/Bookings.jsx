@@ -12,10 +12,11 @@ import {styles} from './StyleBookings';
 import {getBookings , rateSupplier} from '../../store/actions/index';
 import CardBooking from "../CardBooking/CardBooking";
 import RatingBooking from "../RatingBooking/RatingBooking";
+import Message from "../Message/Message";
 
 export default function Bookings({ route }) {
-  let {bookings , user , flagBooking} = useSelector((state) => state);
-  console.log("LAS BOOKINGS" , bookings)
+  let {bookings , user , flagBooking , messageBack} = useSelector((state) => state);
+  //console.log("LAS BOOKINGS" , bookings)
   const dispatch = useDispatch();
   
   let [rateBooking , setRateBooking] = useState(false);
@@ -61,7 +62,9 @@ export default function Bookings({ route }) {
     //dispatch(rateSupplier(supplierId,rating))
   }
 
-  return (
+  return messageBack !== "" ? (
+    <Message />
+  ) :  (
     <View style={styles.container}>
       {bookingsToRate !== undefined &&<RatingBooking 
       visible = {rateBooking}
