@@ -2,8 +2,9 @@ import React from 'react'
 import styled from 'styled-components'
 import BookingItem from './BookingItem'
 
-export default function CourtAvailability({ bookings }) {
-    console.log(bookings)
+export default function CourtAvailability({ bookings, setBookings }) {
+    
+
     return (
         <Wrapper>
         {
@@ -16,6 +17,7 @@ export default function CourtAvailability({ bookings }) {
                             start={b.initialTime} 
                             end={b.endingTime}
                             status={b.status}
+                            setBookings={setBookings}
                         />
                     ))
                 }

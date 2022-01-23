@@ -27,7 +27,7 @@ export default function CalendarSection() {
             </ButtonContainer>
             <Container>
                 <CourtCalendar currentCourt={currentCourt} setBookings={setBookings} />
-                <CourtAvailability bookings={bookings} />
+                <CourtAvailability bookings={bookings} setBookings={setBookings}/>
             </Container>
             
         </Wrapper>
