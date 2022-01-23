@@ -70,7 +70,7 @@ const {
   Field,
   Available,
   Bookings,
-
+  Rating,
   Contact,
 
 } = sequelize.models;
@@ -92,9 +92,10 @@ Statistics.belongsTo(Field); //statistics tendra una columna idField
 
 Available.hasOne(Bookings);
 Bookings.belongsTo(Available); // bookings tendra una columna idAvailable
+ 
 
-Bookings.hasOne(Payments);
-Payments.belongsTo(Available); // Payments tendra una columna idBooking
+Supplier.hasOne(Rating)
+Rating.belongsTo(Supplier)
 
 //1 a N
 
@@ -106,18 +107,16 @@ Supplier.hasMany(Field, {
 
 Field.belongsTo(Supplier); // coloca supplierId en field
 
+
 Supplier.hasMany(Bookings)
 Bookings.belongsTo (Supplier) // coloca supplierId en bookings
 
 
-
-Field.belongsTo(Supplier); // coloca supplierId en field
-
+Payments.hasMany(Bookings);
+Bookings.belongsTo(Payments) //coloca el paymentId en bookings
 
 User.hasMany(Bookings);
 Bookings.belongsTo(User); // Deberia colocar el userId en Bookings
-
-
 
 Comments.belongsTo(Field); // coloca fieldId en comments
 // Field.hasMany(Comments);
@@ -132,7 +131,7 @@ module.exports = {
   Payments,
   Field,
   Bookings,
-
+  Rating,
   Contact,
 
 };

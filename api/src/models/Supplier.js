@@ -40,6 +40,7 @@ module.exports = (sequelize) => {
     },
     reputation: {
       type: DataTypes.FLOAT,
+      defaultValue: 0
       // allowNull: false,
     },
     comments: {

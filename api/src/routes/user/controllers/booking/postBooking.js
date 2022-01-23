@@ -12,6 +12,7 @@ const postBooking = async (req, res) => {
     endingTime,
     userId,
     supplierId,
+    paymentId,
   } = req.body;
 
   //   const alreadyExists = await Bookings.findOne({
@@ -27,11 +28,13 @@ const postBooking = async (req, res) => {
     day,
     initialTime,
     endingTime,
+    paymentId
   });
   // console.log("NUEVA RESERVA: ", newBooking);
 
+  // newBooking.setPayments(paymentId)
   newBooking.setUser(userId);
-  newBooking.setSupplier (supplierId)
+  newBooking.setSupplier(supplierId)
 
 
   newBooking = await newBooking.save().catch((err) => {
