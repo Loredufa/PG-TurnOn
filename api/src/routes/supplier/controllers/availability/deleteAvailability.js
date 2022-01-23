@@ -1,19 +1,22 @@
 const { Available } = require("../../../../db");
 
 const deleteAvailability = async (req, res) => {
-  //   const { idCourt } = req.params;
-  const { id } = req.body; // id de la disponibilidad que se quiere borrar
+  const { idCourt } = req.params;
+  const { date, initialTime, endingTime } = req.body;
 
   try {
     const availabilityDeleted = await Available.destroy({
       where: {
-        id,
+        idCourt,
+        date,
+        initialTime,
+        endingTime
       },
     });
 
     if (availabilityDeleted) {
       res.json({
-        message: "La disponibilidad ha sido borrado correctamente",
+        message: "La franja horaria ha sido borrado correctamente",
       });
     } else {
       res.json({

@@ -4,6 +4,7 @@ import Form from '../AvailabilityForm/Form'
 import styled from 'styled-components'
 import { CourtContext } from "../Context/CourtContext"
 import axios from 'axios'
+import { orderAvailability } from './helpers/functions'
 
 export const AvailabilityContext = createContext()
 
@@ -27,7 +28,7 @@ export const AvailabilityProvider = () => {
 
     useEffect(() => {
         axios.get(`/supplier/available/court/${currentCourt.id}`)
-          .then(res => setAvailability(res.data))
+          .then(res => setAvailability(orderAvailability(res.data)))
           .catch(err => console.log(err))
     }, [currentCourt.id])
 
