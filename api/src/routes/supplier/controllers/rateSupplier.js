@@ -1,9 +1,9 @@
-const { Rating, Supplier } = require("../../../db")
+const { Rating, Supplier, Booking } = require("../../../db")
 
 const rateSupplier = async (req, res) => {
   
     const { supplierId } = req.params
-    const { number } = req.body
+    const { number, bookingId } = req.body
     
     let obj = {
         5: "five",
@@ -42,6 +42,13 @@ const rateSupplier = async (req, res) => {
             id: supplierId
         }
     })
+
+    await Booking.update({ rated: true }, {
+        where: {
+            id: bookingId
+        }
+    })
+    
     res.send({ message: "Proveedor valorado con éxito" })
 }   
 
