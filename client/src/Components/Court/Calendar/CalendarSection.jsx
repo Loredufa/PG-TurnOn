@@ -11,8 +11,7 @@ export default function CalendarSection() {
     const { setSection, currentCourt } = useContext(CourtContext)
 
     const [bookings, setBookings] = useState([])
-
-    const date = new Date()
+    const [date, setDate] = useState(new Date())
 
     useEffect(() => {
         axios.get(`/supplier/bookings/court?id=${currentCourt.id}&date=${date.toLocaleDateString()}`) 
@@ -26,8 +25,8 @@ export default function CalendarSection() {
                 <Button onClick={() => setSection("")}>Volver a la lista de canchas</Button>
             </ButtonContainer>
             <Container>
-                <CourtCalendar currentCourt={currentCourt} setBookings={setBookings} />
-                <CourtAvailability bookings={bookings} setBookings={setBookings}/>
+                <CourtCalendar date={date} setDate={setDate} currentCourt={currentCourt} setBookings={setBookings} />
+                <CourtAvailability date={date} bookings={bookings} setBookings={setBookings}/>
             </Container>
             
         </Wrapper>

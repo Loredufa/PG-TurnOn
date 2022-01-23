@@ -4,9 +4,7 @@ import 'react-calendar/dist/Calendar.css';
 import axios from 'axios'
 import { parseDate } from './helpers/functions'
 
-export default function CourtCalendar({ setBookings, currentCourt }) {
-
-    const [date, setDate] = useState(new Date())
+export default function CourtCalendar({ setBookings, currentCourt, date, setDate}) {
 
     useEffect(() => {
         console.log("ID/Date: ", currentCourt.id, parseDate(date.toLocaleDateString('es-ES')))

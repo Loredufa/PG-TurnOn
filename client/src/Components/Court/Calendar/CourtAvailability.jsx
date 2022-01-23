@@ -2,9 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 import BookingItem from './BookingItem'
 
-export default function CourtAvailability({ bookings, setBookings }) {
+export default function CourtAvailability({ bookings, setBookings, date }) {
     
-
     return (
         <Wrapper>
         {
@@ -12,7 +11,9 @@ export default function CourtAvailability({ bookings, setBookings }) {
             <div>
                 {
                     bookings.map(b => (
-                        <BookingItem 
+                        <BookingItem key={b.id}
+                            date={date}
+                            id={b.id}
                             date={b.date} 
                             start={b.initialTime} 
                             end={b.endingTime}
