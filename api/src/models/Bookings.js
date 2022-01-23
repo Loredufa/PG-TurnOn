@@ -40,6 +40,10 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    rated: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
+    }
   });
 };
 
