@@ -19,7 +19,8 @@ import {
   findPayment,
   setMessage,
   getBookings,
-  deleteBooking
+  deleteBooking,
+  getVouchers
 } from "../../store/actions/index";
 import { styles } from "./StyleCourtDetail";
 import { Picker } from "@react-native-picker/picker";
@@ -34,7 +35,7 @@ import ConfirmBooking from "../ConfirmBooking/ConfirmBooking";
 export default function CourtDetail({ route }) {
   const navigation = useNavigation();
   const dispatch = useDispatch();
-  const { bookings , user, favorites, messageBack, availables, payment } = useSelector(
+  const { bookings , user, vouchers, messageBack, availables, payment } = useSelector(
     (state) => state
   );
   // console.log("INFO DEL USUARIO" , user);
@@ -89,7 +90,6 @@ export default function CourtDetail({ route }) {
     ];
     let day = daysOfWeek[d];
 
-    dispatch(deleteBooking(voucher.booking.id));
     dispatch(
       bookCourt(
         route.params.court.id,
@@ -98,8 +98,10 @@ export default function CourtDetail({ route }) {
         dateArr.join("/"),
         code,
         timeSelected,
-        supplierID
-      ))
+        supplierID,
+        vouchers[0].booking.paymentId
+        ))
+    dispatch(deleteBooking(vouchers[0].booking.id));
   }
 
   const [timeSelected, setTimeSelected] = useState("");
@@ -137,17 +139,18 @@ export default function CourtDetail({ route }) {
     ];
     let day1 = daysOfWeek[d];
     dispatch(courtAvailability(court.id, dateArr.join("/"), day1));
-    dispatch (getBookings(user.user.id));
+    dispatch (getVouchers(user.user.id , true ));
+    //dispatch (getBookings(user.user.id))
   }, []);
   //console.log(court);
-  const [voucher , setVoucher] = useState(undefined)
+  // const [voucher , setVoucher] = useState(undefined)
 
-  useEffect(() => {
-    if (bookings !== undefined) {
-      setVoucher(bookings.find((el) => el.booking.status === 'voucher' && el.court.id === court.id));
-    }
+  // useEffect(() => {
+  //   if (bookings !== undefined) {
+  //     setVoucher(bookings.find((el) => el.booking.status === 'voucher' && el.court.id === court.id));
+  //   }
 
-  },[bookings])
+  // },[bookings])
 
   /////////////////////////////////  MERCADO PAGO ////////////////////////////////////////////////
 
@@ -380,7 +383,7 @@ export default function CourtDetail({ route }) {
           </TouchableOpacity>
         </View>
         {
-        voucher === undefined?
+        vouchers.length === 0?
         <TouchableOpacity
           style={styles.button}
           onPress={handlerBooking}

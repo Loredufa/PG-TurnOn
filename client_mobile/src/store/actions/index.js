@@ -32,15 +32,19 @@ export const RATE_SUPPLIER = "RATE_SUPPLIER";
 export const GET_GEO_LOCATION = "GET_GEO_LOCATION";
 export const GET_SUPPLIER_BY_LOCATION_RATING =
   "GET_SUPPLIER_BY_LOCATION_RATING";
+export const GET_COMPLETED_BOOKINGS = "GET_COMPLETED_BOOKINGS";
+export const GET_VOUCHERS = "GET_VOUCHERS";
 
 const URL = "http://localhost:3001/";
 //const URL = "https://turnon1.herokuapp.com/";
 
-export function rateSupplier(supplierId, rating) {
+
+export function rateSupplier (supplierId, rating , bookingId) {
   return async function (dispatch) {
     try {
       const response = await axios.put(URL + "supplier/rating/" + supplierId, {
         number: rating,
+        bookingId
       });
       dispatch({
         type: RATE_SUPPLIER,
@@ -219,7 +223,8 @@ export function bookCourt(
   date,
   bookingCode,
   timeSelected,
-  supplierId
+  supplierId,
+  paymentId
 ) {
   return async function (dispatch) {
     try {
@@ -239,6 +244,7 @@ export function bookCourt(
           status: "voucher",
           userId,
           supplierId,
+          paymentId,
         });
       } else {
         postUser = await axios.post(URL + "user/bookings", {
@@ -265,11 +271,11 @@ export function bookCourt(
   };
 }
 
-export function setMessage() {
+export function setMessage(message) {
   return async function (dispatch) {
     dispatch({
       type: SET_MESSAGE,
-      payload: { message: "El pago de la seña fallo" },
+      payload: message? {message} : { message: "El pago de la seña fallo" },
     });
   };
 }
@@ -315,6 +321,35 @@ export function getBookings(userId, active) {
   };
 }
 
+export function getCompletedBookings(userId ,  completed ) {
+  return async function (dispatch) {
+    try {
+      let postUser = await axios.get(URL + "user/bookings/" + userId + '?completed=' + true);
+      dispatch({
+        type: GET_COMPLETED_BOOKINGS,
+        payload: postUser.data.result,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
+export function getVouchers(userId ,  voucher ) {
+  return async function (dispatch) {
+    try {
+      let postUser = await axios.get(URL + "user/bookings/" + userId + '?voucher=' + true);
+      console.log("LOS VOUCHERS" , postUser.data.result)
+      dispatch({
+        type: GET_VOUCHERS,
+        payload: postUser.data.result,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
 export function deleteBooking(bookingId) {
   return async function (dispatch) {
     try {
@@ -332,7 +367,16 @@ export function deleteBooking(bookingId) {
   };
 }
 
-export function changeBooking(bookingId, date, timeSelected, status) {
+
+export function changeBookingRated(bookingId) {
+  return async function (dispatch) {
+    let rated = await axios.put(URL + "user/bookings/" + bookingId, {
+      rated: true
+    });
+  }
+}
+
+export function changeBooking(bookingId, date, timeSelected , status) {
   return async function (dispatch) {
     try {
       let change = "";
