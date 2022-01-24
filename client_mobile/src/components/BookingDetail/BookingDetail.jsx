@@ -23,12 +23,12 @@ export default function BookingDetail({route}) {
     let [eliminar , setEliminar] = useState(false)
     function handlerDelete() {
       //dispatch(deleteBooking(booking.booking.id));
-      var now = new Date();
-      var day = ("0" + now.getDate()).slice(-2);
-      var month = ("0" + (now.getMonth() + 1)).slice(-2);
-      var today = day + "-" + month + "-" + now.getFullYear();
+      let now = new Date();
+      let day = ("0" + now.getDate()).slice(-2);
+      let month = ("0" + (now.getMonth() + 1)).slice(-2);
+      let today = day + "-" + month + "-" + now.getFullYear();
       let dateArr = today.split("-");
-      var compareDate = new Date(dateArr[2], dateArr[1] - 1, dateArr[0]);
+      let compareDate = new Date(dateArr[2], dateArr[1] - 1, dateArr[0]);
      
           let bkDate = booking.booking.date.split('/')
           bkDate = new Date(bkDate[2], bkDate[1] - 1, bkDate[0]);
@@ -41,8 +41,8 @@ export default function BookingDetail({route}) {
               `${booking.booking.initialTime}-${booking.booking.endingTime}`,
               'canceled'
             ));
-            dispatch(setMessage("Reserva eliminada, la seña realizada es retenida por la cancha debido a que se cancelo con menos de 24hs"))
-            //navigation.navigate("Bookings");
+            //dispatch(setMessage("Reserva eliminada, la seña realizada es retenida por la cancha debido a que se cancelo con menos de 24hs"))
+            navigation.navigate("Bookings");
           }
           else {
 
@@ -75,7 +75,7 @@ export default function BookingDetail({route}) {
     function handlerChangeBooking (bookingId , date , timeSelected) {
       dispatch(changeBooking(bookingId , date , timeSelected))
       setEditBooking(false);
-      navigation.navigate("Bookings")
+      navigation.navigate("Home")
   }
   useEffect(()=> {
 
@@ -96,6 +96,7 @@ export default function BookingDetail({route}) {
             <Text style={styles.textCancel}>Eliminar</Text>
         </TouchableOpacity>
       </View>
+      <Text style={styles.text}>Recordar que en caso de cancelación con menos de 48hs la seña es retenida por el proveedor de la cancha, en caso contrario un voucher sera entregado para utilizar en la misma cancha que habia reservado.</Text>
     </View>
     :
     <View style={{ justifyContent: "center", flex: 1 }}> 

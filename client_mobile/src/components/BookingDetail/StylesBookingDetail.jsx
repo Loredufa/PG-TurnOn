@@ -149,7 +149,13 @@ export const styles = StyleSheet.create({
   question: {
     fontWeight: "700",
     fontSize: 18,
-    margin: 10,
+    margin: 20,
     textAlign: 'center'
   },
+  text: {
+    fontStyle: 'italic',
+    fontSize: 12,
+    margin: 20,
+    textAlign: 'justify'
+  }
 });

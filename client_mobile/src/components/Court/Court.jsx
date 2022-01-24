@@ -11,7 +11,6 @@ import { images } from "../Supplier/Supplier";
 
 export default function Court({ item, supplierID, coordinates }) {
   const { screenWidth, favorites } = useSelector((state) => state);
-  //console.log(favorites);
   const navigation = useNavigation();
   const dispatch = useDispatch();
   return (
@@ -53,23 +52,23 @@ export default function Court({ item, supplierID, coordinates }) {
             // height: screenWidth / 4,
             // width: screenWidth / 4,
             height: "90%",
-            width: "40%",
+            width: "35%",
             padding: 3,
-            borderBottomLeftRadius: 10,
-            borderTopLeftRadius: 10,
+            borderRadius: 10,
+            marginLeft: 5
           }}
         />
         <View
           style={{
             flex: 1,
             flexDirection: "column",
-            //alignItems: "center",
+            marginLeft: 5
           }}
         >
           <Text style={styles.name}>{item.name}</Text>
           <View style={styles.date}>
-            <Text style={styles.text}>Lun - Dom</Text>
-            <Text style={styles.text}>Horario: 16 a 23 hs</Text>
+            <Text style={styles.text}>{item.description}</Text>
+            {/*<Text style={styles.text}>Horario: 16 a 23 hs</Text>*/}
           </View>
           <View style={styles.ref}>
             <Text>Precio: {item.price}</Text>

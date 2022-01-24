@@ -34,9 +34,10 @@ export const GET_SUPPLIER_BY_LOCATION_RATING =
   "GET_SUPPLIER_BY_LOCATION_RATING";
 export const GET_COMPLETED_BOOKINGS = "GET_COMPLETED_BOOKINGS";
 export const GET_VOUCHERS = "GET_VOUCHERS";
+export const CHANGE_BOOKING_RATED = "CHANGE_BOOKING_RATED";
 
-const URL = "http://localhost:3001/";
-//const URL = "https://turnon1.herokuapp.com/";
+//const URL = "http://localhost:3001/";
+const URL = "https://turnon1.herokuapp.com/";
 
 
 export function rateSupplier (supplierId, rating , bookingId) {
@@ -310,10 +311,10 @@ export function getBookings(userId, active) {
       } else {
         postUser = await axios.get(URL + "user/bookings/" + userId);
       }
-      //console.log("La respuesta del GET BOOKINGS es ", postUser.data.result);
+      console.log("La respuesta del GET BOOKINGS es ", postUser.data);
       dispatch({
         type: GET_BOOKINGS,
-        payload: postUser.data.result,
+        payload: postUser.data,
       });
     } catch (error) {
       console.log(error);
@@ -327,7 +328,7 @@ export function getCompletedBookings(userId ,  completed ) {
       let postUser = await axios.get(URL + "user/bookings/" + userId + '?completed=' + true);
       dispatch({
         type: GET_COMPLETED_BOOKINGS,
-        payload: postUser.data.result,
+        payload: postUser.data,
       });
     } catch (error) {
       console.log(error);
@@ -335,14 +336,14 @@ export function getCompletedBookings(userId ,  completed ) {
   };
 }
 
-export function getVouchers(userId ,  voucher ) {
+export function getVouchers(userId ,  voucher , courtId, ) {
   return async function (dispatch) {
     try {
-      let postUser = await axios.get(URL + "user/bookings/" + userId + '?voucher=' + true);
-      console.log("LOS VOUCHERS" , postUser.data.result)
+      let postUser = await axios.get(URL + "user/bookings/" + userId + '?voucher=' + true + "&courtId=" + courtId);
+      console.log("LOS VOUCHERS" , postUser.data)
       dispatch({
         type: GET_VOUCHERS,
-        payload: postUser.data.result,
+        payload: postUser.data,
       });
     } catch (error) {
       console.log(error);
@@ -372,6 +373,10 @@ export function changeBookingRated(bookingId) {
   return async function (dispatch) {
     let rated = await axios.put(URL + "user/bookings/" + bookingId, {
       rated: true
+    });
+    dispatch({
+      type: CHANGE_BOOKING_RATED,
+      payload: change.data,
     });
   }
 }

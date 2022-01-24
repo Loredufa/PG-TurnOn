@@ -26,6 +26,8 @@ export const images = {
   Favoritos: "https://cdn5.dibujos.net/dibujos/pintar/corazon_2.png",
   Busqueda:
     "https://play-lh.googleusercontent.com/WL9oSrJxfO6XDrSnuERVcjFXN--XztDibPGtAxIJsJBfm2ZAv4WvkR5yFuOcFKKR0_A",
+  Voley: 
+  "https://prints.ultracoloringpages.com/647b8308c601b394d1b5963f10f029ad.png"
 };
 
 export default function Supplier({ item, sport }) {
@@ -98,7 +100,7 @@ export default function Supplier({ item, sport }) {
           <Text style={styles.sportText}>Deportes: 
           {arrayAux.map((el,index) =>  index===arrayAux.length-1? " " + el : " " + el+" -")} 
           </Text>
-          <Text style={styles.sportText}>Direccion: {item.address}</Text>
+          <Text style={styles.sportText}>{item.address}</Text>
           {/*<Text style={styles.mail}>{item.mail}</Text>*/}
           <View
             style={{
@@ -123,7 +125,7 @@ export default function Supplier({ item, sport }) {
             </TouchableOpacity>
             <View style={styles.containerRating}>
               <MaterialCommunityIcons name="star" size={20} color="#FFC900" />
-              <Text style={styles.rating}>{/*item.rating*/}5</Text>
+              <Text style={styles.rating}>{item.reputation.toFixed(1)}</Text>
             </View>
           </View>
         </View>
