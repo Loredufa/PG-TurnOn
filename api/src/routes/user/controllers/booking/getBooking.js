@@ -3,8 +3,8 @@ const { Bookings, Field, Payments } = require("../../../../db");
 const getBooking = async (req, res) => {
   const { userId } = req.params;
   const { active } = req.query;
-  const { voucher } = req.query;
-  const {completed} = req.query;
+  const { voucher, courtId } = req.query;
+  const { completed } = req.query;
   // console.log("active", typeof active);
   var booking;
   if (active === "true") {
@@ -15,23 +15,23 @@ const getBooking = async (req, res) => {
         attributes: ["id"],
       },
     }).catch((err) => console.log(err));
-  } else if (voucher === 'true') {
+  } else if (voucher === "true") {
     booking = await Bookings.findAll({
-      where: { userId: `${userId}`, status: "voucher" },
+      where: { userId: `${userId}`, courtId, status: "voucher" },
       include: {
         model: Payments,
         attributes: ["id"],
       },
     }).catch((err) => console.log(err));
-  }else if (completed === 'true') {
+  } else if (completed === "true") {
     booking = await Bookings.findAll({
-      where: { userId: `${userId}`, status: "completed" },
+      where: { userId: `${userId}`, rated: false, status: "completed" },
       include: {
         model: Payments,
         attributes: ["id"],
       },
     }).catch((err) => console.log(err));
-  }else {
+  } else {
     booking = await Bookings.findAll({
       where: { userId: `${userId}` },
     }).catch((err) => console.log(err));
@@ -50,7 +50,7 @@ const getBooking = async (req, res) => {
         }),
       };
     }
-    if (completed) result = result [0] //envio solo uno para puntuar
+    if (completed) result = result[0]; //envio solo uno para puntuar
     res.json({ result });
   }
 };
