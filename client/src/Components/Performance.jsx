@@ -16,7 +16,7 @@ function Performance() {
       </p>
       <img
         className="imgcomo"
-        src={require("../Assets/Images/Imagen-Persona.png")}
+        src={require("../Assets/Images/Cel-Mockup-2.png")}
         alt="img not found"
       />
     </div>

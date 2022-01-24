@@ -133,64 +133,65 @@ const infoChange = (e) => {
 return (
 
     <div className="back-ground-register">
+    <div id="contenedor-registro">
        
     <form onSubmit={submitSupplier} className="formulario-registro">
          <h1 className="titulo-registro">REGISTRO</h1>
          <p className="parrafo-reg">Si sos un profesional o empresa que quiere ofrecer nuestro servicio de turnos,<br/>
             completa el siguiente formulario.
          </p>
-        <div className="labelnombre">
+        <div className="labelinputs">
             <label htmlFor="name"></label>
             <input 
                  type="text" 
                  id="name" 
                  name="name" 
                  placeholder="Nombre de Fantasia del negocio"
-                 className="innombre"
+                 className="in-register"
                  value={infoSupplier.name}
                  onChange={infoChange}
                  onBlur={handleBlur}
                  />
         </div>
-        {errors.name && <p className="error-nombre">{errors.name}</p>}
+        {errors.name && <p className="error-register">{errors.name}</p>}
 
-        <div className="labeltelefono">
+        <div className="labelinputs">
             <label htmlFor="phone"></label>
             <input 
                  type="text" 
                  id="phone" 
                  name="phone" 
                  placeholder="Teléfono de Contacto"
-                 className="in-telefono"
+                 className="in-register"
                  value={infoSupplier.phone}
                  onChange={infoChange}
                  onBlur={handleBlur}
                  />
         </div>
-        {errors.phone && <p name="phone" className="error-phone">{errors.phone}</p>}
+        {errors.phone && <p name="phone" className="error-register">{errors.phone}</p>}
 
-        <div className="labelcuit">
+        <div className="labelinputs">
             <label htmlFor="cuit"></label>
             <input 
                  type="text" 
                  id="cuit" 
                  name="cuit" 
                  placeholder="CUIT: xx-xxxxxxxx-x"
-                 className="in-cuit"
+                 className="in-register"
                  value={infoSupplier.cuit}
                  onChange={infoChange}
                  onBlur={handleBlur}
                  />
         </div>
-        {errors.cuit && <p name="cuit" className="error-cuit">{errors.cuit}</p>}
-        <div className="labelrazonsoc">
+        {errors.cuit && <p name="cuit" className="error-register">{errors.cuit}</p>}
+        <div className="labelinputs">
             <label htmlFor="businessname"></label>
             <input
                  type="text" 
                  id="businessname" 
                  name="businessname" 
                  placeholder="Razón Social"
-                 className="in-razon-social"
+                 className="in-register"
                  value={infoSupplier.businessname}
                  onChange={infoChange}
                  onBlur={handleBlur}
@@ -204,47 +205,47 @@ return (
                  id="mail" 
                  name="mail" 
                  placeholder="E-mail"
-                 className="in-e-mail"
+                 className="in-register"
                  value={infoSupplier.mail}
                  onChange={infoChange}
                  onBlur={handleBlur}
                  />
         </div>
-        {errors.mail && <p name="mail" className="error-email">{errors.mail}</p>}
+        {errors.mail && <p name="mail" className="error-register error-email">{errors.mail}</p>}
         <div>
-        <label className="labeladdress" htmlFor="address"></label>
+        <label className="labelinputs" htmlFor="address"></label>
             <Map className="cont-map-cc" setInfoSupplier={setInfoSupplier} infoSupplier={infoSupplier}/>
         </div>
-        {errors.address && <p name="address" className="error-direccion">{errors.address}</p>}
-        <div className="labelcontraseña">
+        {errors.address && <p name="address" className="error-register error-direccion">{errors.address}</p>}
+        <div className="labelinputs">
             <label htmlFor="password"></label>
             <input 
                  type="password" 
                  id="password" 
                  name="password"
                  placeholder="Contraseña"
-                 className="in-contraseña"
+                 className="in-register"
                  value={infoSupplier.password}
                  onChange={infoChange}
                  onBlur={handleBlur}
                  />
         </div>
-        {errors.password && <p name="password" className="error-contraseña">{errors.password}</p>}
+        {errors.password && <p name="password" className="error-register">{errors.password}</p>}
 
-        <div className="labelcontraseña2">
+        <div className="labelinputs">
             <label htmlFor="contraseña2"></label>
             <input
                  type="password" 
                  id="password2" 
                  name="password2"
                  placeholder="Confirmar Contraseña" 
-                 className="in-contraseña-2"
+                 className="in-register"
                  value={infoSupplier.password2}
                  onChange={infoChange}
                  onBlur={handleBlur}
                  />
         </div>
-        {errors.password2 && <p name="password2" className="error-contraseña-2">{errors.password2}</p>}
+        {errors.password2 && <p name="password2" className="error-register">{errors.password2}</p>}
 
         <button disabled={disabled} type="submit" className="buttonSubmitReg">Registrar</button>
         {FormularioEnvidado && <p className="message-confirm">{ message_reg }</p> }
@@ -252,10 +253,13 @@ return (
 
     </form>
 
+    <div className="contenedor-pregunta">
     <h4 className="estas-registrado">¿Ya estas Registrado?</h4>
     <Link to='/login'>
         <h4 className="inciar-sesion">Iniciar Sesión</h4>
     </Link>
+    </div>
+    </div>
 
      </div>
 

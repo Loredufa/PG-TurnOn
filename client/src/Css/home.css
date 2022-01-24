@@ -1,23 +1,30 @@
+*{
+    /* margin: 0px; */
+    padding: 0px;
+}
 
 .container-title{
     background-image: url('../Assets/Images/cancha-4.jpg');
-    width: 100vw;
+    width: 1669xp;
     height: 60vh;
     background-repeat: no-repeat;
     /* background-attachment: fixed; */
     background-position: center;
     background-size: cover;
+    /* position: relative; */
 
 }
 
 .h1-home{
+    position: relative;
+    line-height: 550px;
     font-family: 'Be Vietnam Pro', sans-serif;
     color:rgb(253, 253, 253);
     font-size: 4rem;
     position: static;
     margin-top: 0rem;
     margin-left: 5rem;
-    padding-top: 16rem;
+    /* padding-top: 600%; */
     font-weight: 900;
     text-shadow: 1px 5px 5px rgba(65, 64, 64, 0.89);
 }
@@ -27,6 +34,6 @@
     color:rgb(253, 253, 253);
     font-size: 2rem;
     margin-left: 5rem;
-    margin-top: -3rem;
+    margin-top: -280px;
 
 }
