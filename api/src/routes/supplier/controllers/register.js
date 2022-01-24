@@ -14,6 +14,7 @@ const register = async (req, res) => {
     coordinates,
     phone,
     address,
+    image,
   } = req.body;
 
   const encryptedPassword = bcrypt.hashSync(password, 10);
@@ -36,6 +37,9 @@ const register = async (req, res) => {
     coordinates,
     phone,
     address,
+    image: image
+      ? image
+      : "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Breezeicons-actions-22-im-user.svg/1200px-Breezeicons-actions-22-im-user.svg.png",
   });
 
   newSupplier = await newSupplier.save().catch((err) => {
