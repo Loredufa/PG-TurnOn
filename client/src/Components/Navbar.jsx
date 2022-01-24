@@ -4,11 +4,12 @@ import { Link, useLocation } from "react-router-dom";
 
 import { BiUserCircle } from "react-icons/bi";
 import React from "react";
+import { useHistory } from "react-router-dom";
 
 export default function Navbar() {
   const user = window.localStorage.getItem("loguodeusuario");
   const location = useLocation();
-
+  const history = useHistory();
   return (
     <div
       className="navbar-contenedor"
@@ -46,6 +47,16 @@ export default function Navbar() {
           <Link className="navbar-home-perfil" to="/profile/settings">
             Configuración/Perfil
           </Link>
+          <button
+            className="button-logout"
+            onClick={() => {
+              history.push("/");
+              window.localStorage.removeItem("loguodeusuario");
+              window.location.reload(false);
+            }}
+          >
+            Logout
+          </button>
         </div>
       ) : (
         <div className="navbar-home">
@@ -77,8 +88,8 @@ export default function Navbar() {
                   size="40"
                   style={{
                     color: "#81b214",
-                    marginTop:"0px",
-                    marginRight:"20px",
+                    marginTop: "0px",
+                    marginRight: "20px",
                   }}
                 />
               </Link>
