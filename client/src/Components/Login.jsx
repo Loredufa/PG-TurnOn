@@ -15,7 +15,9 @@ function Login() {
     password: " ",
   });
 
-  if (user) {
+  if (user && user.supplier.access === "admin") {
+    history.push("/panel");
+  } else if (user && user.supplier.access !== "admin") {
     history.push("/");
   }
 
