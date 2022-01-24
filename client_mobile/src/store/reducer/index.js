@@ -29,7 +29,10 @@ import {
   FIND_PAYMENT,
   SET_MESSAGE,
   GET_VOUCHERS,
+  GET_GEO_LOCATION,
+  GET_SUPPLIER_BY_LOCATION_RATING,
   GET_COMPLETED_BOOKINGS
+
 } from "../actions/index";
 import {
   findEmail,
@@ -64,13 +67,13 @@ const initialState = {
   supplierAddFav: 0,
   allSuppliers: [],
   suppliersLocation: [],
-  MPurl: '',
+  MPurl: "",
   availables: [],
-  payment:[],
+  payment: [],
+  voucher: [],
+  geoLocation: {},
+  supplierByLocation: [],
 };
-
-
-
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -179,14 +182,16 @@ const reducer = (state = initialState, action) => {
     case BOOK_COURT:
       return {
         ...state,
-        messageBack: action.payload === '' ? state.messageBack : action.payload,
+        messageBack: action.payload === "" ? state.messageBack : action.payload,
         flagBooking: !state.flagBooking,
         //bookings: state.bookings.includes(action.payload)? state.bookings : [...state.bookings, action.payload]
       };
     case GET_BOOKINGS:
       return {
         ...state,
-        bookings: action.payload.hasOwnProperty("message") ? [] : action.payload,
+        bookings: action.payload.hasOwnProperty("message")
+          ? []
+          : action.payload,
       };
     case GET_VOUCHERS:
       return {
@@ -201,8 +206,8 @@ const reducer = (state = initialState, action) => {
     case FIND_PAYMENT:
       return {
         ...state,
-        payment: action.payload.payment
-      }
+        payment: action.payload.payment,
+      };
     case DELETE_BOOKING:
       return {
         ...state,
@@ -210,19 +215,19 @@ const reducer = (state = initialState, action) => {
         flagBooking: !state.flagBooking,
       };
     case EDIT_BOOKING:
-    return {
-      ...state,
-      flagBooking: !state.flagBooking,
-      messageBack: action.payload.status === 'canceled'? 
-        {message: "Reserva cancelada con exito"}
-        :
-        {message: "Reserva modificada con exito"}
-    }
-    case MP_BOOKING_DETAIL: 
+      return {
+        ...state,
+        flagBooking: !state.flagBooking,
+        messageBack:
+          action.payload.status === "canceled"
+            ? { message: "Reserva cancelada con exito" }
+            : { message: "Reserva modificada con exito" },
+      };
+    case MP_BOOKING_DETAIL:
       return {
         ...state,
         MPurl: action.payload.init_point,
-      } 
+      };
     case SET_SCREEN_DIMENSIONS:
       return {
         ...state,
@@ -259,6 +264,16 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         suppliersLocation: rutas(state.allSuppliers),
+      };
+    case GET_GEO_LOCATION:
+      return {
+        ...state,
+        geoLocation: action.payload,
+      };
+    case GET_SUPPLIER_BY_LOCATION_RATING:
+      return {
+        ...state,
+        supplierByLocation: action.payload,
       };
     default:
       return state;

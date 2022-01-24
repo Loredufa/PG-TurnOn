@@ -2,7 +2,7 @@ const { Supplier } = require("../../../db");
 const { Field } = require("../../../db");
 
 const getSupplier = async (req, res) => {
-  let { sport, name } = req.query;
+  let { sport, name, latitude, longitude } = req.query;
 
   // el name es cdo ponen el nombre del lugar en el buscador general.
   let suppliers;
@@ -19,29 +19,33 @@ const getSupplier = async (req, res) => {
       });
       if (sport === "others") {
         suppliers = suppliers
-        .map((el) => el.dataValues)
-        .filter((e) => {
-          let deporte = e.fields.map((ele) => ele.sport);
-          deporte = deporte.filter(el => el !== "Futbol"  && el !=="Golf" && el !=="Tenis" && el !=="Paddle" && el !=="Hockey")
-          return deporte.length>0;
-        });
-      }
-      else {  
+          .map((el) => el.dataValues)
+          .filter((e) => {
+            let deporte = e.fields.map((ele) => ele.sport);
+            deporte = deporte.filter(
+              (el) =>
+                el !== "Futbol" &&
+                el !== "Golf" &&
+                el !== "Tenis" &&
+                el !== "Paddle" &&
+                el !== "Hockey"
+            );
+            return deporte.length > 0;
+          });
+      } else {
         suppliers = suppliers
-        .map((el) => el.dataValues)
-        .filter((e) => {
-          let deporte = e.fields.map((ele) => ele.sport);
-          //console.log(deporte);
-          return deporte.includes(sport);
-        });
+          .map((el) => el.dataValues)
+          .filter((e) => {
+            let deporte = e.fields.map((ele) => ele.sport);
+            //console.log(deporte);
+            return deporte.includes(sport);
+          });
       }
       if (name) {
         suppliers = suppliers
-        //.map((el) => el.dataValues)
-        .filter((e) => e.name.toLowerCase().includes(name.toLowerCase()));
+          //.map((el) => el.dataValues)
+          .filter((e) => e.name.toLowerCase().includes(name.toLowerCase()));
       }
-
-
     } else if (name) {
       suppliers = await Supplier.findAll({
         include: {
@@ -52,6 +56,27 @@ const getSupplier = async (req, res) => {
       suppliers = suppliers
         .map((el) => el.dataValues)
         .filter((e) => e.name.toLowerCase().includes(name.toLowerCase()));
+    } else if (latitude && longitude) {
+      try {
+        suppliers = await Supplier.findAll({});
+        suppliers = suppliers?.filter(
+          (e) =>
+            (((e.coordinates.split(" ")[0] - latitude) * 40000) / 360) ** 2 +
+              (((e.coordinates.split(" ")[1] - longitude) * 40000) / 360) **
+                2 <=
+            20 ** 2
+        );
+        suppliers = suppliers?.sort((a, b) => {
+          if (a.reputation > b.reputation) return 1;
+          if (a.reputation < a.reputation) return -1;
+          return 0;
+        });
+        suppliers?.length > 10
+          ? (suppliers = suppliers.slice(0, 10))
+          : (suppliers = suppliers);
+      } catch (error) {
+        throw new Error(error);
+      }
     } else {
       suppliers = await Supplier.findAll({
         include: {

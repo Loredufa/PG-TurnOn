@@ -14,13 +14,16 @@ import User from "../User/User";
 import { styles } from "./StylesLanding";
 import * as SecureStore from "expo-secure-store";
 import { useSelector, useDispatch } from "react-redux";
-//COMO NO FUNCIONA EL BACK EN EXPO SE AGREGA ESTO
+
 import {
   setScreenDimensions,
   getAllSuppliers,
   changeUserInfo,
   getSupplierLocation,
+  getGeoLocation,
+  getSupplierByLocationRating,
 } from "../../store/actions/index";
+import * as GeoLocation from "expo-location";
 
 export default function Landing() {
   const navigation = useNavigation();
@@ -71,6 +74,41 @@ export default function Landing() {
     );
   }, [screenWidth]);
 */
+
+  useEffect(() => {
+    //if (user.user.location) {
+    (async () => {
+      let { status } = await GeoLocation.requestForegroundPermissionsAsync();
+      !user.user.location ? (status = "denied") : (status = status);
+      //console.log("STATUS", status);
+      if (status !== "granted") {
+        console.log("Permission to access location was denied");
+        dispatch(getGeoLocation({}));
+        return;
+      }
+      let location = await GeoLocation.getCurrentPositionAsync({});
+      console.log("MI UBICACION", location);
+      //setLocation(location);
+      dispatch(getGeoLocation(location));
+      dispatch(
+        getSupplierByLocationRating(
+          location.coords.latitude,
+          location.coords.longitude
+        )
+      );
+      //console.log("estoy", location);
+    })();
+    // } else {
+
+    //(async () => {
+    //await location.remove();
+    //console.log("REMOVE", location);
+
+    // dispatch(getGeoLocation({}));
+    //})();
+    // }
+  }, [user.user.location]);
+
   const handleChange = () => {
     dispatch(changeUserInfo(user.user.id, { location: true }));
     user?.user.phone === "0000000000"
