@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from "react-redux";
 import MaterialTable from '@material-table/core';
+import { ExportCsv, ExportPdf } from '@material-table/exporters';
 import axios from 'axios';
+import styled from "styled-components"
 
 
 /* const useStyles = makeStyles ((theme) => ({
@@ -35,7 +37,7 @@ const columns =[
     { title:"Nombre", field: "user.name"},
     { title:"Apellido", field: "user.lastname"},
     { title:"Teléfono", field: "user.phone"},
-    { title:"Estado", field:"status"},
+    { title:"Estado de Reserva", field:"status"},
     { title:"Codigo de Reserva", field:"bookingCode"}
 ]
 
@@ -55,16 +57,51 @@ export default function TableBookings (){
 
  
     return(
-        <div>
+        <Root>
             <br/>
             <MaterialTable
                 columns={columns}
                 data={info.allbookings}
-                title="Historial de Reservas"
-                options={{ actionsColumnIndex: -1}}
-                localization={{ header:{ actions:"Acciones"}}}
+                title="Movimientos"
+                options={{ actionsColumnIndex: -1,
+                    headerStyle: {
+                        backgroundColor: '#81b214',
+                        color: '#FFF',
+                        fontFamily: 'Be Vietnam Pro',
+                        textAlign: 'left',
+                        border: '1px solid white',
+
+                      },
+                      rowStyle: {
+                        backgroundColor: '#e9ebed',
+                        textAlign: 'left',
+                        color: '#2a2d34',
+                        fontFamily: 'Be Vietnam Pro',
+                      },exportMenu: [{
+                        label: 'Export PDF',
+                        exportFunc: (cols, datas) => ExportPdf(cols, datas, 'myPdfFileName')
+                      }, {
+                        label: 'Export CSV',
+                        exportFunc: (cols, datas) => ExportCsv(cols, datas, 'myCsvFileName')
+                      }]
+                       }}
             
             />
-        </div>
+        </Root>
     )
 }
+
+export const Root = styled.div`
+  margin-left: 20px;
+  margin-right: 20px;
+  table {
+  }
+
+  td,
+  th {
+    border: 1px solid #a8aaac;
+    color: '#2a2d34';
+  }
+  svg {
+    color: #81b214;
+  }`

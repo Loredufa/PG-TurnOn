@@ -9,7 +9,15 @@ a:link, a:visited, a:active {
     flex-direction: row;
     justify-content: space-between;
     font-family: 'Be Vietnam Pro', sans-serif;
-    /* position: fixed; */
+    margin-right: 40px;
+    align-items: center;
+    height: 80px;
+    /* position: relative; */
+    background-color: #ffffff;
+    /* overflow: hidden; */
+    position: fixed; /* Set the navbar to fixed position */
+    top: 0; /* Position the navbar at the top of the page */
+    width: 100%;
 }
 
 .navbar-logo{}
@@ -159,3 +167,6 @@ a:link, a:visited, a:active {
     background: var(--colorGrey);
     color: var(--colorAppleGreen);
 }
+
+@media (max-width: 1440px){};
+@media (max-width: 940px){};

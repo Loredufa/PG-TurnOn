@@ -12,16 +12,16 @@ export default function Navbar() {
   return (
     <div
       className="navbar-contenedor"
-      style={{
+      /* style={{
         display: "flex",
         flexDirection: "row",
         justifyContent: "space-between",
         marginRight: "40px",
         alignItems: "center",
         height: "80px",
-        position: "static",
+        position: "relative",
         backgroundColor: "#ffffff",
-      }}
+      }} */
     >
       <Link className="navbar-logo" to="/">
         <img

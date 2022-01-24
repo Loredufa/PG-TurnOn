@@ -10,6 +10,7 @@ export const DivForm = styled.div`
   margin-left: 50px;
   margin-top: 60px;
   flex-direction: column;
+  box-shadow: 10px 10px 15px 1px #1169127c;
   padding: 25px;
   padding-top: 20px;
   width: 38%;
@@ -26,11 +27,13 @@ export const DivForm = styled.div`
 
 export const DivImagen = styled.div`
   font-family: "Be Vietnam Pro", sans-serif;
+  box-shadow: 10px 10px 15px 1px #1169127c;
   float: left;
-  margin: 61px;
+  margin: 60px;
   background: #81b214;
   border-radius: 20px;
   width: 15%;
+  height: 35%;
   margin-left: 140px;
   .divcont {
     border-radius: 20px;
@@ -86,7 +89,7 @@ export const EditButton2 = styled.button`
   position: absolute;
   font-family: "Be Vietnam Pro", sans-serif;
   font-size: 20px;
-  top: 180px;
+  top: 200px;
   left: 3rem;
   width: 140px;
   height: 54px;
@@ -110,7 +113,7 @@ export const VolverButton = styled.button`
   position: absolute;
   font-family: "Be Vietnam Pro", sans-serif;
   font-size: 20px;
-  top: 180px;
+  top: 200px;
   left: 14rem;
   width: 140px;
   height: 54px;
@@ -130,7 +133,7 @@ export const UpdateButton = styled.button`
   position: absolute;
   font-family: "Be Vietnam Pro", sans-serif;
   font-size: 14px;
-  top: 180px;
+  top: 200px;
   left: 25rem;
   width: 140px;
   height: 54px;
@@ -152,7 +155,7 @@ export const DeleteButton = styled.button`
   position: absolute;
   font-family: "Be Vietnam Pro", sans-serif;
   font-size: 14px;
-  top: 180px;
+  top: 200px;
   left: 36rem;
   width: 140px;
   height: 54px;
@@ -226,7 +229,7 @@ export const LabelSetting2 = styled.div`
 export const H1name = styled.h1`
   font-family: "Be Vietnam Pro", sans-serif;
   margin-left: 50px;
-  padding-bottom: 50px;
+  padding-bottom: 60px;
   color: #81b214;
   font-size: 45px;
 `;
