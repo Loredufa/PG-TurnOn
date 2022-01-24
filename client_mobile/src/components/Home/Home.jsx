@@ -81,6 +81,7 @@ export default function Home() {
     return () => subscription?.remove();
   });
 */
+
   useEffect(() => {
     //alert("Permitir acceder a tu ubicacion");
     dispatch(bestCourtsNearMe(5));
@@ -150,24 +151,28 @@ export default function Home() {
           />
         </View>
         <View style={styles.review}>
-          {courts.length === 0 ? (
-            <ActivityIndicator size="large" color="#00ff00" />
-          ) : (
-            <View style={{ flex: 2 }}>
-              <Text
-                style={{
-                  flex: 1,
-                  height: screenWidth / 8,
-                  textAlign: "left",
-                  justifyContent: "center",
-                  marginLeft: 20,
-                  fontSize: 20,
-                  fontWeight: "bold",
-                  marginTop: 5,
-                }}
-              >
-                Los mejores de tu zona
-              </Text>
+          <View style={{ flex: 2 }}>
+            <Text
+              style={{
+                flex: 1,
+                height: screenWidth / 8,
+                textAlign: "left",
+                justifyContent: "center",
+                marginLeft: 20,
+                fontSize: 20,
+                fontWeight: "bold",
+                marginTop: 5,
+              }}
+            >
+              Los mejores de tu zona
+            </Text>
+            {bestSuppliers.length === 0 ? (
+              <ActivityIndicator
+                style={{ flex: 1 }}
+                size="large"
+                color="#00ff00"
+              />
+            ) : (
               <FlatList
                 data={bestSuppliers}
                 pagingEnabled={true}
@@ -203,7 +208,7 @@ export default function Home() {
                       }
                     >
                       <Image
-                        source={item.image}
+                        source={{ uri: item.image }}
                         style={{
                           height: (1.5 * screenWidth) / 6,
                           width: (3 * screenWidth) / 4 - 2,
@@ -226,7 +231,7 @@ export default function Home() {
                             size={15}
                             color="#FFC900"
                           />
-                          <Text>{item.reputation}</Text>
+                          <Text>{item.reputation.toFixed(1)}</Text>
                         </View>
                       </View>
                     </View>
@@ -236,8 +241,8 @@ export default function Home() {
                 //numColumns={3}
                 keyExtractor={(item) => item.id}
               />
-            </View>
-          )}
+            )}
+          </View>
         </View>
         {/* </View> */}
       </View>
