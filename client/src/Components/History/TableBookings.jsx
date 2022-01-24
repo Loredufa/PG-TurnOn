@@ -32,13 +32,16 @@ const columns =[
     { title:"Fecha", field:"date"},
     { title:"Día", field:"day"},
     { title:"Cancha", field:"courtId"},
-    { title:"Hora de inicio", field:"initialTime"},
-    { title:"Hora de finalización", field:"endingTime"},
+    { title:"Hora inicio", field:"initialTime"},
+    { title:"Hora finalización", field:"endingTime"},
     { title:"Nombre", field: "user.name"},
     { title:"Apellido", field: "user.lastname"},
     { title:"Teléfono", field: "user.phone"},
-    { title:"Estado de Reserva", field:"status"},
-    { title:"Codigo de Reserva", field:"bookingCode"}
+    { title:"Precio", field: "payments.price"},
+    { title:"Estado Seña", field: "payments.payment_status"},
+    { title:"Seña", field: "payments.amount"},
+    { title:"Estado Reserva", field:"status"},
+    { title:"Codigo Reserva", field:"bookingCode"}
 ]
 
 
