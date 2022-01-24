@@ -31,15 +31,49 @@ const LONGITUD_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 export default function Location(props) {
   // Geolocation.getCurrentPosition((info) => console.log(info));
   const dispatch = useDispatch();
-  let sportTypes = ["Futbol", "Tenis", "Golf", "Paddle", "Hockey"];
+  let sportTypes = [
+    "Futbol",
+    "Tenis",
+    "Golf",
+    "Paddle",
+    "Hockey",
+    "Basket",
+    "Pool",
+    "Squash",
+    "Voley",
+  ];
 
-  const { user } = useSelector((state) => state.user);
+  const geoLocation = useSelector((state) => state.geoLocation);
+  console.log("LLEGO GEOLO", geoLocation);
   const [region, setRegion] = useState({
-    latitude: LATITUDE,
-    longitude: LONGITUDE,
+    latitude: geoLocation.coords ? geoLocation.coords.latitude : LATITUDE,
+    longitude: geoLocation.coords ? geoLocation.coords.longitude : LONGITUDE,
     latitudeDelta: LATITUDE_DELTA,
     longitudeDelta: LONGITUD_DELTA,
   });
+  const { user } = useSelector((state) => state.user);
+
+  useEffect(() => {
+    if (geoLocation.coords) {
+      setRegion((geo) => {
+        const newGeo = {
+          ...geo,
+          latitude: geoLocation.coords.latitude,
+          longitude: geoLocation.coords.longitude,
+        };
+        return newGeo;
+      });
+    } else
+      setRegion((geo) => {
+        const newGeo = {
+          ...geo,
+          latitude: LATITUDE,
+          longitude: LONGITUDE,
+        };
+        return newGeo;
+      });
+  }, [geoLocation.coords]);
+
   const [coordenadas, setCoordenadas] = useState({});
   const [section, setSection] = useState("Deporte");
   const suppliersLocation = useSelector((state) => state.suppliersLocation);
