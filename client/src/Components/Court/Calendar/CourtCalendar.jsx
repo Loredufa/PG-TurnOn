@@ -1,19 +1,16 @@
-import React, { useEffect, useState, useContext } from 'react'
+import React, { useEffect, useState } from 'react'
 import Calendar from 'react-calendar'
 import 'react-calendar/dist/Calendar.css';
-import { CourtContext } from '../Context/CourtContext';
+import axios from 'axios'
+import { parseDate } from './helpers/functions'
 
-export default function CourtCalendar({ setBookings }) {
-
-    const [date, setDate] = useState(new Date())
-
-    const { currentCourt } = useContext(CourtContext)
+export default function CourtCalendar({ setBookings, currentCourt, date, setDate}) {
 
     useEffect(() => {
-        console.log("ID/Date: ", currentCourt.id, date.toLocaleDateString())
-        // axios.get(".../booking") me trae las reservas de un día determinado
-        //      .then(res => setBookings(res.data))
-        //      .catch(err => console.log(err))
+        console.log("ID/Date: ", currentCourt.id, parseDate(date.toLocaleDateString('es-ES')))
+        axios.get(`/supplier/bookings/court?id=${currentCourt.id}&date=${parseDate(date.toLocaleDateString('es-ES'))}`) 
+            .then(res => setBookings(res.data))
+            .catch(err => console.log(err))
     }, [currentCourt, date])
 
     const handleChange = (date) => setDate(date)
