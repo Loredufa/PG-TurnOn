@@ -97,7 +97,7 @@ export const styles = StyleSheet.create({
     backgroundColor: "#E9EBED",
   },
   buttons: {
-    flex: 1,
+    
     flexDirection: "row",
     alignSelf: "center",
   },

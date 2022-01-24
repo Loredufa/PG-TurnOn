@@ -23,9 +23,9 @@ export default function Bookings({ route }) {
   //let [bookingsToRate , setBookingsToRate] = useState(undefined);
 
   useEffect(() => {
-    completedBookings.length && completedBookings[0]?.booking?.rated === false?
+    if (completedBookings.length > 0 && completedBookings[0]?.booking?.rated === false)
     setRateBooking(true)
-    :
+    else
     setRateBooking(false)
   },[completedBookings])
 
@@ -70,13 +70,18 @@ export default function Bookings({ route }) {
     dispatch(changeBookingRated(bookingId))
   }
 
+  function handlerNotRate (bookingId) {
+    setRateBooking(false);
+    dispatch(changeBookingRated(bookingId))
+  }
+
   return messageBack !== "" ? (
     <Message />
   ) :  (
     <View style={styles.container}>
       {rateBooking &&<RatingBooking 
       visible = {rateBooking}
-      onClose={() => setRateBooking(false)}
+      onClose={handlerNotRate}
       name = {completedBookings[0]?.court?.name}
       supplierId = {completedBookings[0]?.court?.supplierId}
       bookingId = {completedBookings[0]?.booking?.id}

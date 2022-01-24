@@ -5,15 +5,15 @@ import {
 export const styles = StyleSheet.create({
     img: {
       height: '90%',
-      width: '40%',
+      width: '35%',
       padding: 3,
-      borderBottomLeftRadius: 10,
-      borderTopLeftRadius: 10,
+      borderRadius: 10,
       alignItems: 'center'
     },
     info: {
       flex: 2,
       flexDirection: "column",
+      marginLeft: 5,
       //alignItems: "flex-start",
     },
     name: {
