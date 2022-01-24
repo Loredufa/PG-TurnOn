@@ -1,4 +1,3 @@
-/* import "./App.css"; */
 import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 
 import CourtCreation from "./Components/CourtCreation";
@@ -57,17 +56,7 @@ function App() {
               )
             }
           />
-          <Route
-            exact
-            path="/registro"
-            component={() =>
-              user && user.supplier.access === "admin" ? (
-                <Redirect to="/panel" />
-              ) : (
-                <Registro />
-              )
-            }
-          />
+          <Route exact path="/registro" component={Registro} />
           <Route
             exact
             path="/login"
@@ -130,6 +119,7 @@ function App() {
             }
           />
           <Route
+            exact
             path="/"
             component={() =>
               user && user.supplier.access === "admin" ? (
