@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import {
   TouchableOpacity,
   StyleSheet,
@@ -6,10 +6,22 @@ import {
   TextInput,
   View,
   Image,
+  Alert,
+  Linking,
 } from "react-native";
 import MaterialCommunityIcons from "react-native-vector-icons/Ionicons";
 import { useDispatch, useSelector } from "react-redux";
-import { addToFavorite, bookCourt } from "../../store/actions/index";
+import {
+  addToFavorite,
+  bookCourt,
+  MPbookingDetails,
+  courtAvailability,
+  findPayment,
+  setMessage,
+  getBookings,
+  deleteBooking,
+  getVouchers
+} from "../../store/actions/index";
 import { styles } from "./StyleCourtDetail";
 import { Picker } from "@react-native-picker/picker";
 import DatePicker from "react-native-datepicker";
@@ -17,35 +29,82 @@ import { useNavigation } from "@react-navigation/native";
 import { images } from "../Supplier/Supplier";
 
 import Message from "../Message/Message";
+import { set } from "react-native-reanimated";
+import ConfirmBooking from "../ConfirmBooking/ConfirmBooking";
 
 export default function CourtDetail({ route }) {
   const navigation = useNavigation();
   const dispatch = useDispatch();
-  const { user, favorites, messageBack } = useSelector((state) => state);
-  //console.log(favorites);
+  const { bookings , user, vouchers, messageBack, availables, payment } = useSelector(
+    (state) => state
+  );
+  // console.log("INFO DEL USUARIO" , user);
+  // console.log("LAS DISPONIBLES" , availables);
+  let { court, supplierID } = route.params;
+  const [bookingRef, setBookingRef] = useState({
+    court,
+    day: "",
+    timeSelected: "",
+  });
+  const [confirmScreen, setConfirmScreen] = useState(false);
+
+  const screenWidth = useSelector((state) => state.screenWidth);
+  const titleSize = useSelector((state) => state.titleSize);
+  const [reservationCode, setRC] = useState(0);
+
   function handlerBooking() {
     let day = date.split("-").join("/");
     //console.log(typeof day);
-    dispatch(bookCourt(route.params.court.id, user.user.id, day, timeSelected));
+    //dispatch(bookCourt(route.params.court.id, user.user.id, day, timeSelected));
+    let codigo = Math.round(Math.random() * (9999 - 1000) + 1000);
+    setRC(codigo);
+    dispatch(
+      MPbookingDetails(
+        court.price,
+        court.id,
+        user.user.id,
+        supplierID,
+        court.name,
+        // reservationCode
+        codigo
+      )
+    );
+    setBookingRef({ court, day, timeSelected });
+    setConfirmScreen(true);
   }
-  const screenWidth = useSelector((state) => state.screenWidth);
-  const titleSize = useSelector((state) => state.titleSize);
-  let { court } = route.params;
-  //console.log("soy la cancha", court);
-  /*court = {
-    name: "Futbol 5 Orsai",
-    id: 1,
-    description:
-      "Cancha de futbol 5 de pasto sintetico, de largo 30 metros y de ancho 20 metros",
-    timetable: ["9 a 10", "10 a 11", "11 a 12", "17 a 18", "18 a 19"],
-    price: "2000",
-    img: require("../../../Images/FootballCourt.jpg"),
-    rating: "4.8",
-    coordinates: "-38.9770815277723 -68.05826232925203",
-    sport: "futbol",
-  };*/
 
-  const [timeSelected, setTimeSelected] = useState("Horario");
+
+  function handlerVoucher () {
+    let code = Math.round(Math.random() * (9999 - 1000) + 1000);
+    let dateArr = date.split("-");
+    var d = new Date(dateArr[2], dateArr[1] - 1, dateArr[0]);
+    d = d.getDay();
+    var daysOfWeek = [
+      "Domingo",
+      "Lunes",
+      "Martes",
+      "Miercoles",
+      "Jueves",
+      "Viernes",
+      "Sabado",
+    ];
+    let day = daysOfWeek[d];
+
+    dispatch(
+      bookCourt(
+        route.params.court.id,
+        user.user.id,
+        day,
+        dateArr.join("/"),
+        code,
+        timeSelected,
+        supplierID,
+        vouchers[0].booking.paymentId
+        ))
+    dispatch(deleteBooking(vouchers[0].booking.id));
+  }
+
+  const [timeSelected, setTimeSelected] = useState("");
   const [date, setDate] = useState("");
 
   let [coordinates, setCoordinates] = useState(
@@ -64,15 +123,138 @@ export default function CourtDetail({ route }) {
     var month = ("0" + (now.getMonth() + 1)).slice(-2);
     var today = day + "-" + month + "-" + now.getFullYear();
     //var today = now.getFullYear() + "-" + (month) + "-" + (day);
-
+    // console.log("La fecha de hoy" , today)
     setDate(today);
+    let dateArr = today.split("-");
+    var d = new Date(dateArr[2], dateArr[1] - 1, dateArr[0]);
+    d = d.getDay();
+    var daysOfWeek = [
+      "Domingo",
+      "Lunes",
+      "Martes",
+      "Miercoles",
+      "Jueves",
+      "Viernes",
+      "Sabado",
+    ];
+    let day1 = daysOfWeek[d];
+    dispatch(courtAvailability(court.id, dateArr.join("/"), day1));
+    dispatch (getVouchers(user.user.id , true ));
+    //dispatch (getBookings(user.user.id))
   }, []);
   //console.log(court);
+  // const [voucher , setVoucher] = useState(undefined)
+
+  // useEffect(() => {
+  //   if (bookings !== undefined) {
+  //     setVoucher(bookings.find((el) => el.booking.status === 'voucher' && el.court.id === court.id));
+  //   }
+
+  // },[bookings])
+
+  /////////////////////////////////  MERCADO PAGO ////////////////////////////////////////////////
+
+  const [screenPayment, setScreenPayment] = useState(false);
+  const handlePress = async (url) => {
+    // Checking if the link is supported for links with custom URL scheme.
+    const supported = await Linking.canOpenURL(url);
+
+    if (supported) {
+      // Opening the link with some app, if the URL scheme is "http" the web link should be opened
+      // by some browser in the mobile
+      await Linking.openURL(url);
+    } else {
+      Alert.alert(`Don't know how to open this URL: ${url}`);
+    }
+    setConfirmScreen(false);
+    setScreenPayment(true);
+  };
+
+  function handlerDate() {
+    setDate(date);
+    let dateArr = date.split("-");
+    var d = new Date(dateArr[2], dateArr[1] - 1, dateArr[0]);
+    d = d.getDay();
+    var daysOfWeek = [
+      "Domingo",
+      "Lunes",
+      "Martes",
+      "Miercoles",
+      "Jueves",
+      "Viernes",
+      "Sabado",
+    ];
+    let day = daysOfWeek[d];
+    // console.log(court.id , dateArr.join('/') , day)
+    dispatch(courtAvailability(court.id, dateArr.join("/"), day));
+  }
+
+  function handlerPayment() {
+    dispatch(findPayment(supplierID));
+    setScreenPayment(false);
+  }
+
+  useEffect(() => {
+    let dateArr = date.split("-");
+    var d = new Date(dateArr[2], dateArr[1] - 1, dateArr[0]);
+    d = d.getDay();
+    var daysOfWeek = [
+      "Domingo",
+      "Lunes",
+      "Martes",
+      "Miercoles",
+      "Jueves",
+      "Viernes",
+      "Sabado",
+    ];
+    let day = daysOfWeek[d];
+    console.log("reservationCode", reservationCode);
+
+    let thePayment = payment.find(
+      (e) => e.reservationCode === `${reservationCode}`
+    );
+    console.log("resultado de la busqueda del payment", thePayment);
+    if (thePayment?.payment_status === "approved") {
+      dispatch(
+        bookCourt(
+          route.params.court.id,
+          user.user.id,
+          day,
+          dateArr.join("/"),
+          reservationCode,
+          timeSelected,
+          supplierID
+        )
+      );
+      // setRC(0);
+      //navigation.navigate('Home');
+    } else {
+      reservationCode !== 0 && dispatch(setMessage());
+      // setRC(0);
+    }
+  }, [payment]);
 
   return messageBack !== "" ? (
     <Message />
+  ) : screenPayment ? (
+    <View style={{ justifyContent: "center", flex: 1, alignItems: "center" }}>
+      <View style={styles.container}>
+        <Text style={styles.alert}>
+          Esperando la confirmación del pago de mercado pago
+        </Text>
+        <TouchableOpacity style={styles.btn} onPress={handlerPayment}>
+          <Text style={styles.buttonText}>Aceptar</Text>
+        </TouchableOpacity>
+      </View>
+    </View>
   ) : (
     <View style={{ justifyContent: "center", flex: 1 }}>
+      <ConfirmBooking
+        onBook={handlePress}
+        visible={confirmScreen}
+        bookingRef={bookingRef}
+        onClose={() => setConfirmScreen(false)}
+      />
       <View style={styles.container}>
         <View style={styles.nameContainer}>
           <Text style={styles.nameText}>{court.name}</Text>
@@ -133,29 +315,48 @@ export default function CourtDetail({ route }) {
                 fontSize: 17,
               },
             }}
-            onDateChange={(date) => {
-              setDate(date);
-            }}
+            onDateChange={handlerDate}
           />
-          <Picker
-            style={{
-              //width: screenWidth / 3,
-              justifyContent: "center",
-              //marginTop: 20,
-              flex: 1,
-            }}
-            selectedValue={timeSelected}
-            onValueChange={(itemValue, itemIndex) => onChange(itemValue)}
-          >
-            <Picker.Item label="Horario" value="Horario" />
-            {court.timetable?.map((e, i) => (
-              <Picker.Item key={i} label={e} value={e} />
-            ))}
-          </Picker>
+          {availables?.length ? (
+            <Picker
+              style={{
+                //width: screenWidth / 3,
+                justifyContent: "center",
+                //marginTop: 20,
+                flex: 1,
+              }}
+              itemStyle={styles.hourItem}
+              selectedValue={timeSelected}
+              onValueChange={(itemValue, itemIndex) => onChange(itemValue)}
+            >
+              <Picker.Item label="Disponibles" value="Disponibles" />
+              {availables?.map((e, i) => (
+                <Picker.Item
+                  key={i}
+                  label={`${e.initialTime}-${e.endingTime}`}
+                  value={`${e.initialTime}-${e.endingTime}`}
+                />
+              ))}
+            </Picker>
+          ) : (
+            <Picker
+              style={{
+                //width: screenWidth / 3,
+                justifyContent: "center",
+                //marginTop: 20,
+                flex: 1,
+              }}
+              itemStyle={styles.hourItem}
+              selectedValue={timeSelected}
+              onValueChange={(itemValue, itemIndex) => onChange(itemValue)}
+            >
+              <Picker.Item label="Elegir fecha" value="Elegir fecha" />
+            </Picker>
+          )}
         </View>
         <View style={styles.priceAndLocationContainer}>
           <View style={styles.priceContainer}>
-            <Text style={styles.textPrice}>Precio: ${court.price}</Text>
+            <Text style={styles.textPrice}>Precio: {court.price}</Text>
           </View>
           <TouchableOpacity
             style={styles.locationContainer}
@@ -181,11 +382,30 @@ export default function CourtDetail({ route }) {
             <Text style={styles.text}>Ver en el Mapa</Text>
           </TouchableOpacity>
         </View>
-        <TouchableOpacity style={styles.button} onPress={handlerBooking}>
-          {/* <View style={styles.button}> */}
+        {
+        vouchers.length === 0?
+        <TouchableOpacity
+          style={styles.button}
+          onPress={handlerBooking}
+          disabled={
+            timeSelected === "Disponibles" || timeSelected === "Elegir fecha"
+          }
+        >
           <Text style={styles.buttonText}>Reservar</Text>
           {/* </View> */}
         </TouchableOpacity>
+        :
+        <TouchableOpacity
+          style={styles.button}
+          onPress={handlerVoucher}
+          disabled={
+            timeSelected === "Disponibles" || timeSelected === "Elegir fecha"
+          }
+        >
+          <Text style={styles.buttonText}>Canjear Voucher</Text>
+          {/* </View> */}
+        </TouchableOpacity>
+        }
       </View>
     </View>
   );

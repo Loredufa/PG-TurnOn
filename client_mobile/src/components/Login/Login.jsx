@@ -13,7 +13,10 @@ import { useNavigation } from "@react-navigation/native";
 import { useSelector, useDispatch } from "react-redux";
 import { findCreatedUser } from "../../store/actions/index";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { setScreenDimensions } from "../../store/actions/index";
+import {
+  setScreenDimensions,
+  getAllSuppliers,
+} from "../../store/actions/index";
 import { styles } from "./StylesLogin";
 import * as SecureStore from "expo-secure-store";
 import GoogleLogin from "../GoogleLogin/GoogleLogin";
@@ -39,6 +42,10 @@ export default function Login() {
   useEffect(() => {
     dispatch(setScreenDimensions(screenWidth, numColumns, titleSize));
   }, [screenWidth]);
+
+  useEffect(() => {
+    dispatch(getAllSuppliers());
+  }, []);
   /*
 
   async function getValueFor(key) {

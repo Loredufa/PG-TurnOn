@@ -31,10 +31,8 @@ export const images = {
 export default function Supplier({ item, sport }) {
   const { screenWidth, favorites, user, supplierAddFav, messageBack } =
     useSelector((state) => state);
-  //console.log(favorites);
   const navigation = useNavigation();
   const dispatch = useDispatch();
-  // const [status , setStatus] = useState(false);
 
   useEffect(() => {
     dispatch(getFavorites(user.user.id));
@@ -61,7 +59,7 @@ export default function Supplier({ item, sport }) {
       onPress={() =>
         navigation.navigate("Courts", {
           name: item.name, //No se si son necesarios
-          sport: sport,
+          sport: sport !== "Otros" ? sport : 'others',
           id: item.id, //No se si son necesarios
           coordinates: item.coordinates,
         })
@@ -79,7 +77,7 @@ export default function Supplier({ item, sport }) {
           alignItems: "center",
           justifyContent: "center",
           padding: 2,
-          height: screenWidth / 3,
+          height: screenWidth / 2.5,
           width: screenWidth / 1.1,
 
           backgroundColor: "white",
@@ -96,13 +94,10 @@ export default function Supplier({ item, sport }) {
           style={styles.img}
         />
         <View style={styles.info}>
-          <Text style={styles.name}>{item.businessname}</Text>
-          <View style={styles.sports}>
-            <Text style={styles.sportText}>Deportes:</Text>
-            {arrayAux.map((el) => (
-              <Text style={styles.sportText}>{el}</Text>
-            ))}
-          </View>
+          <Text style={styles.name}>{item.name}</Text>
+          <Text style={styles.sportText}>Deportes: 
+          {arrayAux.map((el,index) =>  index===arrayAux.length-1? " " + el : " " + el+" -")} 
+          </Text>
           <Text style={styles.sportText}>Direccion: {item.address}</Text>
           {/*<Text style={styles.mail}>{item.mail}</Text>*/}
           <View

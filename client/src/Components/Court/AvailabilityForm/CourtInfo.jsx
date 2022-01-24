@@ -1,11 +1,23 @@
 import React, { useContext } from 'react'
 import styled from 'styled-components'
 import { AvailabilityContext } from "../Context/AvailabilityContext"
-
+import axios from 'axios'
+import { orderAvailability } from '../Context/helpers/functions'
 
 export default function CourtInfo({ currentCourt }) {
 
-    const { availability } = useContext(AvailabilityContext)
+    const { availability, setAvailability } = useContext(AvailabilityContext)
+
+    const handleX = (e) => {
+        let info = e.target.value.split(" - ")
+        axios.delete(`/supplier/available/${currentCourt.id}`, { data: {date: info[0], initialTime: info[1], endingTime: info[2]} })
+            .then(() => {
+                axios.get(`/supplier/available/court/${currentCourt.id}`)
+                    .then(res => setAvailability(orderAvailability(res.data)))
+                    .catch(err => console.log(err))
+            }) 
+            .catch(err => console.log(err))
+    }
 
     return (
         <Wrapper>
@@ -20,10 +32,12 @@ export default function CourtInfo({ currentCourt }) {
                         <HoursContainer>
                         {
                             obj.hours.map(h => {
+                                let date = obj.day
                                 return (
-                                    <Hour>
-                                        <p>{h}</p>
-                                    </Hour>
+                                    <HourContainer>
+                                        <Hour>{h}</Hour>
+                                        <Button value={`${date} - ${h}`} onClick={handleX}>X</Button>
+                                    </HourContainer>
                                 )
                             })
                         }
@@ -60,8 +74,12 @@ const DayContainer = styled.div`
 const HoursContainer = styled.div`
     
 `
-const Hour = styled.div`
-
+const HourContainer = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 4px;
 `
 
 const MapContainer = styled.div`
@@ -77,4 +95,21 @@ const Title = styled.p`
     font-size: 25px;
     font-weight: bold;
     color: #81b214;
+`
+
+const Button = styled.button`
+    height: 25px;
+    width: 25px;
+    text-align: center;
+    background: #116913;
+    border-style: none;
+    border-radius: 10px;
+    color: white;
+    &:hover {
+        background: #0b4619;
+    }
+`
+
+const Hour = styled.span`
+    
 `
