@@ -9,7 +9,7 @@ import MaterialCommunityIcons from "react-native-vector-icons/Ionicons";
 import { useNavigation } from "@react-navigation/native";
 import { useDispatch, useSelector } from "react-redux";
 import {styles} from './StylesBookingDetail'
-import {deleteBooking , changeBooking , bookCourt} from '../../store/actions/index';
+import {deleteBooking , changeBooking , bookCourt, setMessage} from '../../store/actions/index';
 import Message from '../Message/Message';
 import { images } from '../Supplier/Supplier'
 import EditBooking from "../EditBooking/EditBooking";
@@ -23,46 +23,47 @@ export default function BookingDetail({route}) {
     let [eliminar , setEliminar] = useState(false)
     function handlerDelete() {
       //dispatch(deleteBooking(booking.booking.id));
-      /*
       var now = new Date();
       var day = ("0" + now.getDate()).slice(-2);
       var month = ("0" + (now.getMonth() + 1)).slice(-2);
       var today = day + "-" + month + "-" + now.getFullYear();
-      //var today = now.getFullYear() + "-" + (month) + "-" + (day);
-      // console.log("La fecha de hoy" , today)
-      setDate(today);
       let dateArr = today.split("-");
-      var d = new Date(dateArr[2], dateArr[1] - 1, dateArr[0]);
-      d = d.getDay();
-      var daysOfWeek = [
-        "Domingo",
-        "Lunes",
-        "Martes",
-        "Miercoles",
-        "Jueves",
-        "Viernes",
-        "Sabado",
-      ];
-      let day1 = daysOfWeek[d];
-      */
-      //UN DIA EN MILI SEGUNDOS 86400000
-      dispatch(changeBooking(
-        booking.booking.id , 
-        booking.booking.date , 
-        `${booking.booking.initialTime}-${booking.booking.endingTime}`,
-        'canceled'
-      ));
-      
-      dispatch(bookCourt(
-        booking.court.id,
-        user.user.id,
-        'Lunes',
-        '00/00/0000',
-        '0000',
-        '00:00-00:00',
-        booking.court.supplierId,
-        ));
-      navigation.navigate("Bookings")
+      var compareDate = new Date(dateArr[2], dateArr[1] - 1, dateArr[0]);
+     
+          let bkDate = booking.booking.date.split('/')
+          bkDate = new Date(bkDate[2], bkDate[1] - 1, bkDate[0]);
+          console.log (bkDate , compareDate)
+          //UN DIA EN MILI SEGUNDOS 86400000
+          if (bkDate.getTime() - compareDate.getTime() < 86400000) {
+            dispatch(changeBooking(
+              booking.booking.id , 
+              booking.booking.date , 
+              `${booking.booking.initialTime}-${booking.booking.endingTime}`,
+              'canceled'
+            ));
+            dispatch(setMessage("Reserva eliminada, la seña realizada es retenida por la cancha debido a que se cancelo con menos de 24hs"))
+            //navigation.navigate("Bookings");
+          }
+          else {
+
+            dispatch(changeBooking(
+              booking.booking.id , 
+              booking.booking.date , 
+              `${booking.booking.initialTime}-${booking.booking.endingTime}`,
+              'canceled'
+            ));
+            dispatch(bookCourt(
+              booking.court.id,
+              user.user.id,
+              'Lunes',
+              '00/00/0000',
+              '0000',
+              '00:00-00:00',
+              booking.court.supplierId,
+              booking.booking.paymentId
+              ));
+              navigation.navigate("Bookings");
+            }
       setEliminar(false)
     }
     let [editBooking , setEditBooking] = useState(false);

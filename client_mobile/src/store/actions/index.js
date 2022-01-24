@@ -29,16 +29,22 @@ export const COURT_AVAILABILITY = "COURT_AVAILABILITY";
 export const FIND_PAYMENT = "FIND_PAYMENT";
 export const SET_MESSAGE = "SET_MESSAGE";
 export const RATE_SUPPLIER = "RATE_SUPPLIER";
+export const GET_GEO_LOCATION = "GET_GEO_LOCATION";
+export const GET_SUPPLIER_BY_LOCATION_RATING =
+  "GET_SUPPLIER_BY_LOCATION_RATING";
+export const GET_COMPLETED_BOOKINGS = "GET_COMPLETED_BOOKINGS";
+export const GET_VOUCHERS = "GET_VOUCHERS";
 
-//const URL = "http://localhost:3001/";
-const URL = "https://turnon1.herokuapp.com/";
+const URL = "http://localhost:3001/";
+//const URL = "https://turnon1.herokuapp.com/";
 
 
-export function rateSupplier (supplierId, rating) {
+export function rateSupplier (supplierId, rating , bookingId) {
   return async function (dispatch) {
     try {
-      const response = await axios.put(URL + "supplier/rating/" + supplierId , {
+      const response = await axios.put(URL + "supplier/rating/" + supplierId, {
         number: rating,
+        bookingId
       });
       dispatch({
         type: RATE_SUPPLIER,
@@ -73,7 +79,7 @@ export function getCourtBySport(sport) {
       //const postUser = await axios.get("http://localhost:3001/user/court?sport="+sport);
       //const postUser = await axios.get("https://turnon1.herokuapp.com/user/court?sport="+sport);
       const postUser = await axios.get(URL + "user/court?sport=" + sport);
-     // console.log(postUser.data);
+      // console.log(postUser.data);
       dispatch({
         type: GET_COURT_BY_SPORT,
         payload: postUser.data,
@@ -108,7 +114,7 @@ export function getCourtsBySupplier(name) {
       //const postUser = await axios.get("http://localhost:3001/user/court?sport="+sport+ "&name=" + name);
       //const postUser = await axios.get("https://turnon1.herokuapp.com/user/court?name=" + name);
       const postUser = await axios.get(URL + "user/court?name=" + name);
-     // console.log("Cancha buscada en back", postUser.data);
+      // console.log("Cancha buscada en back", postUser.data);
       dispatch({
         type: GET_COURTS_SUPPLIER,
         payload: postUser.data,
@@ -178,7 +184,7 @@ export function MPbookingDetails(
       const url = await axios.get(
         `${URL}user/mercadopago?amount=${amount}&idCourt=${idCourt}&idUser=${idUser}&idSupplier=${idSupplier}&reservationCode=${reservationCode}&state=${state}&courtName=${courtName}`
       );
-     // console.log("URL", url.data);
+      // console.log("URL", url.data);
       dispatch({
         type: MP_BOOKING_DETAIL,
         payload: url.data,
@@ -217,17 +223,18 @@ export function bookCourt(
   date,
   bookingCode,
   timeSelected,
-  supplierId
+  supplierId,
+  paymentId
 ) {
   return async function (dispatch) {
     try {
-     // console.log("La fecha seleccionada es: ", date);
+      // console.log("La fecha seleccionada es: ", date);
       timeSelected = timeSelected.split("-");
       //const postUser = await axios.post("http://localhost:3001/user/bookings", {
       //const postUser = await axios.post("https://turnon1.herokuapp.com/user/bookings", {
-      let postUser = '';
-      if (bookingCode === '0000') {
-         postUser = await axios.post(URL + "user/bookings", {
+      let postUser = "";
+      if (bookingCode === "0000") {
+        postUser = await axios.post(URL + "user/bookings", {
           courtId,
           date,
           day,
@@ -237,9 +244,9 @@ export function bookCourt(
           status: "voucher",
           userId,
           supplierId,
+          paymentId,
         });
-      }
-      else {
+      } else {
         postUser = await axios.post(URL + "user/bookings", {
           courtId,
           date,
@@ -252,11 +259,11 @@ export function bookCourt(
           supplierId,
         });
       }
-     // console.log("La respuesta del post", postUser.data);
-     // console.log("BOOKINGCODE :", bookingCode);
+      // console.log("La respuesta del post", postUser.data);
+      // console.log("BOOKINGCODE :", bookingCode);
       dispatch({
         type: BOOK_COURT,
-        payload: bookingCode !== '0000' ? postUser.data : '',
+        payload: bookingCode !== "0000" ? postUser.data : "",
       });
     } catch (error) {
       console.log(error);
@@ -264,11 +271,11 @@ export function bookCourt(
   };
 }
 
-export function setMessage() {
+export function setMessage(message) {
   return async function (dispatch) {
     dispatch({
       type: SET_MESSAGE,
-      payload: { message: "El pago de la seña fallo" },
+      payload: message? {message} : { message: "El pago de la seña fallo" },
     });
   };
 }
@@ -279,7 +286,7 @@ export function courtAvailability(idCourt, date, day) {
       const availables = await axios.get(
         `${URL}user/available?idCourt=${idCourt}&date=${date}&day=${day}`
       );
-     // console.log("Las disponibles", availables.data);
+      // console.log("Las disponibles", availables.data);
       dispatch({
         type: COURT_AVAILABILITY,
         payload: availables.data,
@@ -290,20 +297,51 @@ export function courtAvailability(idCourt, date, day) {
   };
 }
 
-export function getBookings(userId , active) {
+export function getBookings(userId, active) {
   return async function (dispatch) {
     try {
       //const postUser = await axios.get("http://localhost:3001/user/bookings/"+userId);
       //const postUser = await axios.get("https://turnon1.herokuapp.com/user/bookings/"+userId)
-      let postUser = ''
+      let postUser = "";
       if (active) {
-        postUser = await axios.get(URL + "user/bookings/" + userId + '?active=' + true);
+        postUser = await axios.get(
+          URL + "user/bookings/" + userId + "?active=" + true
+        );
       } else {
         postUser = await axios.get(URL + "user/bookings/" + userId);
       }
       //console.log("La respuesta del GET BOOKINGS es ", postUser.data.result);
       dispatch({
         type: GET_BOOKINGS,
+        payload: postUser.data.result,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
+export function getCompletedBookings(userId ,  completed ) {
+  return async function (dispatch) {
+    try {
+      let postUser = await axios.get(URL + "user/bookings/" + userId + '?completed=' + true);
+      dispatch({
+        type: GET_COMPLETED_BOOKINGS,
+        payload: postUser.data.result,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
+export function getVouchers(userId ,  voucher ) {
+  return async function (dispatch) {
+    try {
+      let postUser = await axios.get(URL + "user/bookings/" + userId + '?voucher=' + true);
+      console.log("LOS VOUCHERS" , postUser.data.result)
+      dispatch({
+        type: GET_VOUCHERS,
         payload: postUser.data.result,
       });
     } catch (error) {
@@ -329,20 +367,29 @@ export function deleteBooking(bookingId) {
   };
 }
 
+
+export function changeBookingRated(bookingId) {
+  return async function (dispatch) {
+    let rated = await axios.put(URL + "user/bookings/" + bookingId, {
+      rated: true
+    });
+  }
+}
+
 export function changeBooking(bookingId, date, timeSelected , status) {
   return async function (dispatch) {
     try {
-      let change = ''
-      if (status === 'canceled') {
+      let change = "";
+      if (status === "canceled") {
         timeSelected = timeSelected.split("-");
         change = await axios.put(URL + "user/bookings/" + bookingId, {
           date: date,
           initialTime: timeSelected[0],
           endingTime: timeSelected[1],
-          status: status
+          status: status,
         });
         //console.log("LO QUE DEVUELVE CUANDO LA CANCELAS" , change.data);
-      }else {
+      } else {
         let dateArr = date.split("-");
         var d = new Date(dateArr[2], dateArr[1] - 1, dateArr[0]);
         d = d.getDay();
@@ -615,5 +662,33 @@ export function getFavorites(userId, name) {
 export function getSupplierLocation() {
   return {
     type: GET_SUPPLIER_LOCATION,
+  };
+}
+
+export function getGeoLocation(data) {
+  //console.log("DATA LOCATION", data);
+  return {
+    type: GET_GEO_LOCATION,
+    payload: data,
+  };
+}
+
+export function getSupplierByLocationRating(latitude, longitude) {
+  return async function (dispatch) {
+    try {
+      //const postUser = await axios.get("http://localhost:3001/user/court?name="+name);
+      //const postUser = await axios.get("https://turnon1.herokuapp.com/user/supplier?name="+name);
+
+      let getSupplier = await axios.get(
+        URL + "user/supplier?latitude=" + latitude + "&longitude=" + longitude
+      );
+      //console.log("Supplier", postUser.data);
+      dispatch({
+        type: GET_SUPPLIER_BY_LOCATION_RATING,
+        payload: getSupplier.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 }

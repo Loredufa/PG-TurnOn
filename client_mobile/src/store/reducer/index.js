@@ -28,7 +28,11 @@ import {
   COURT_AVAILABILITY,
   FIND_PAYMENT,
   SET_MESSAGE,
-  GET_VOUCHERS
+  GET_VOUCHERS,
+  GET_GEO_LOCATION,
+  GET_SUPPLIER_BY_LOCATION_RATING,
+  GET_COMPLETED_BOOKINGS
+
 } from "../actions/index";
 import {
   findEmail,
@@ -47,6 +51,8 @@ const initialState = {
   courtTypes: [],
   favorites: [],
   bookings: [],
+  vouchers:[],
+  completedBookings:[],
   bookingsRate: [],
   authToken: null, //"abc123",
   screenWidth: 375,
@@ -61,14 +67,13 @@ const initialState = {
   supplierAddFav: 0,
   allSuppliers: [],
   suppliersLocation: [],
-  MPurl: '',
+  MPurl: "",
   availables: [],
-  payment:[],
+  payment: [],
   voucher: [],
+  geoLocation: {},
+  supplierByLocation: [],
 };
-
-
-
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -168,29 +173,41 @@ const reducer = (state = initialState, action) => {
           ...state,
           availables: action.payload.availability,
         }
-    case GET_VOUCHERS: 
-    return {
-      ...state, 
-      flagBooking: !state.flagBooking,
-      voucher:  action.payload.hasOwnProperty("message")? [] : action.payload,
-    }
+    // case GET_VOUCHERS: 
+    // return {
+    //   ...state, 
+    //   flagBooking: !state.flagBooking,
+    //   vouchers:  action.payload.hasOwnProperty("booking")?  action.payload : []
+    // }
     case BOOK_COURT:
       return {
         ...state,
-        messageBack: action.payload === '' ? state.messageBack : action.payload,
+        messageBack: action.payload === "" ? state.messageBack : action.payload,
         flagBooking: !state.flagBooking,
         //bookings: state.bookings.includes(action.payload)? state.bookings : [...state.bookings, action.payload]
       };
     case GET_BOOKINGS:
       return {
         ...state,
-        bookings: action.payload.hasOwnProperty("message") ? [] : action.payload,
+        bookings: action.payload.hasOwnProperty("message")
+          ? []
+          : action.payload,
       };
+    case GET_VOUCHERS:
+      return {
+        ...state,
+        vouchers: action.payload.hasOwnProperty("message") ? [] : action.payload,
+      }
+    case GET_COMPLETED_BOOKINGS:
+      return {
+        ...state,
+        completedBookings: action.payload.hasOwnProperty("message") ? [] : [action.payload],
+      }
     case FIND_PAYMENT:
       return {
         ...state,
-        payment: action.payload.payment
-      }
+        payment: action.payload.payment,
+      };
     case DELETE_BOOKING:
       return {
         ...state,
@@ -198,19 +215,19 @@ const reducer = (state = initialState, action) => {
         flagBooking: !state.flagBooking,
       };
     case EDIT_BOOKING:
-    return {
-      ...state,
-      flagBooking: !state.flagBooking,
-      messageBack: action.payload.status === 'canceled'? 
-        {message: "Reserva cancelada con exito"}
-        :
-        {message: "Reserva modificada con exito"}
-    }
-    case MP_BOOKING_DETAIL: 
+      return {
+        ...state,
+        flagBooking: !state.flagBooking,
+        messageBack:
+          action.payload.status === "canceled"
+            ? { message: "Reserva cancelada con exito" }
+            : { message: "Reserva modificada con exito" },
+      };
+    case MP_BOOKING_DETAIL:
       return {
         ...state,
         MPurl: action.payload.init_point,
-      } 
+      };
     case SET_SCREEN_DIMENSIONS:
       return {
         ...state,
@@ -247,6 +264,16 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         suppliersLocation: rutas(state.allSuppliers),
+      };
+    case GET_GEO_LOCATION:
+      return {
+        ...state,
+        geoLocation: action.payload,
+      };
+    case GET_SUPPLIER_BY_LOCATION_RATING:
+      return {
+        ...state,
+        supplierByLocation: action.payload,
       };
     default:
       return state;

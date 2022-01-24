@@ -12,7 +12,7 @@ import { ViewBase } from "react-native";
 import { images } from "../Supplier/Supplier";
 import {styles} from './StylesRatingBooking';
 
-export default function RatingBooking({name, booking , visible , onClose , supplierId , onRate}) {
+export default function RatingBooking({name, booking , visible , onClose , supplierId , bookingId , onRate}) {
     const {screenWidth} = useSelector(state => state);
     const dispatch = useDispatch();
     const [stars , setStars] = useState(0);
@@ -82,7 +82,7 @@ export default function RatingBooking({name, booking , visible , onClose , suppl
                 <View style={styles.buttons}>
                     <TouchableOpacity 
                     onPress={() => {
-                      onRate(supplierId , stars)
+                      onRate(supplierId , stars , bookingId)
                       setStars(0);
                     }}
                     style={[styles.btnEdit , { width: screenWidth / 3.2, height: screenWidth / 11.5 }]}
