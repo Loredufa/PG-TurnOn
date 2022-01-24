@@ -58,7 +58,12 @@ const getSupplier = async (req, res) => {
         .filter((e) => e.name.toLowerCase().includes(name.toLowerCase()));
     } else if (latitude && longitude) {
       try {
-        suppliers = await Supplier.findAll({});
+        suppliers = await Supplier.findAll({
+          include: {
+            model: Field,
+            attributes: ["sport"],
+          },
+        });
         suppliers = suppliers?.filter(
           (e) =>
             (((e.coordinates.split(" ")[0] - latitude) * 40000) / 360) ** 2 +

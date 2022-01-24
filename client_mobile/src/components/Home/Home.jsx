@@ -183,7 +183,12 @@ export default function Home() {
                 renderItem={({ item }) => (
                   <TouchableOpacity
                     onPress={() =>
-                      navigation.navigate("CourtDetail", { court: item })
+                      navigation.navigate("Courts", {
+                        name: item.name,
+                        id: item.id,
+                        coordinates: item.coordinates,
+                        sport: "Tu busqueda",
+                      })
                     }
                   >
                     <View
