@@ -6,6 +6,7 @@ export default function CourtAvailability({ bookings, setBookings, date }) {
     
     return (
         <Wrapper>
+            <Title>Reservas:</Title>
         {
             bookings.length ?
             <div>
@@ -34,5 +35,8 @@ export default function CourtAvailability({ bookings, setBookings, date }) {
 
 
 const Wrapper = styled.div`
+`
 
+const Title = styled.h2`
+    font-size: 30px;
 `

@@ -8,6 +8,12 @@ import Swal from 'sweetalert2'
 export default function BookingItem ({ date, start, end, status, setBookings, id }) {
     const { currentCourt } = useContext(CourtContext)
 
+    const states = {
+        completed: "Completada",
+        cancelled: "Cancelada",
+        voucher: "Voucher"
+    }
+
     const handleCompleted = () => {
         Swal.fire({
             title: 'Solicitar valoración?',
@@ -15,26 +21,30 @@ export default function BookingItem ({ date, start, end, status, setBookings, id
             showCancelButton: true,
             confirmButtonText: 'SI',
             denyButtonText: `NO`,
-          }).then((result) => {
+        })
+        .then((result) => {
             let rating
             if (result.isConfirmed) {   
-              rating = "true"
+            rating = "true"
             } else if (result.isDenied) {
                 rating = "false"
-            } console.log(rating)
-            axios.put(`/supplier/bookings/${id}?status=completed&rating=${rating}`) // cambia de estado la reserva
-            .then(() => {
-             axios.get(`/bookings/court?id=${currentCourt.id}&date=${date}`) // pide la lista actualizada
-             .then(res => setBookings(res.data))
-             .catch(err => console.log(err))
-             })
-             .catch(err => console.log(err)) 
-          })
+            }
+            if(rating) {
+                axios.put(`/supplier/bookings/${id}?status=completed&rating=${rating}`) // cambia de estado la reserva
+                .then(() => {
+                    axios.get(`/bookings/court?id=${currentCourt.id}&date=${date}`) // pide la lista actualizada
+                    .then(res => setBookings(res.data))
+                    .catch(err => console.log(err))
+                })
+                .catch(err => console.log(err)) 
+            }
+        })
+        .catch(err => console.log(err))
      }
     // /supplier/bookings/:id?status=cancelled&rating=true
 
     const handleCancelled = () => {
-        axios.put(`/supplier/bookings/${id}?status=cancelled&rating=false`) // cambia de estado la reserva
+        axios.put(`/supplier/bookings/${id}?status=voucher&rating=false`) // cambia de estado la reserva
         .then(() => {
          axios.get(`/bookings/court?id=${currentCourt.id}&date=${date}`) // pide la lista actualizada
          .then(res => setBookings(res.data))
@@ -47,19 +57,67 @@ export default function BookingItem ({ date, start, end, status, setBookings, id
 
     return (
         <Wrapper>
-            <span>Fecha: {date}</span><br/>
-            <span>Hora de inicio: {start}</span><br/>
-            <span>Hora de finalización: {end}</span><br/>
-            <span>Estado: {status}</span>
-            <div>
-                {<button onClick={handleCancelled} value = "canceled" >Cancelar</button> }
-                {<button onClick={handleCompleted} value = "active" >Completada</button> } 
-            </div>
+            <InfoContainer>
+                <span><strong>Fecha:</strong> {date}</span><br/>
+                <span><strong>Hora de inicio:</strong> {start}</span><br/>
+                <span><strong>Hora de finalización:</strong> {end}</span><br/>
+                <span><strong>Estado:</strong> {states[status]}</span>
+            </InfoContainer>
+            <ButtonsContainer>
+                {
+                    status === "active" ?
+                    <>
+                    <ButtonCancel onClick={handleCancelled}>Cancelar</ButtonCancel>
+                    <ButtonComplete onClick={handleCompleted}>Completar</ButtonComplete> 
+                    </> : null
+                }
+            </ButtonsContainer>
         </Wrapper>
     )
     
 }
 
 const Wrapper = styled.div`
+    font-family: 'Be Vietnam Pro', sans-serif;
+    text-align: center;
+    background: white;
+    border-radius: 20px;
+    padding: 5px;
 `
 
+const ButtonComplete = styled.button`
+    height: 35px;
+    width: 100px;
+    border-radius: 30px;
+    border-style: none;
+    background: #179f34;
+    color: white;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 14px;
+    margin: 5px;
+    &:hover {
+        background: #116913;
+    }
+`
+const ButtonCancel = styled.button`
+    height: 35px;
+    width: 100px;
+    border-radius: 30px;
+    border-style: none;
+    background: red;
+    color: white;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 14px;
+    margin: 5px;
+    &:hover {
+        background: darkred;
+    }
+`
+
+const InfoContainer = styled.div`
+
+`
+
+const ButtonsContainer = styled.div`
+
+`
