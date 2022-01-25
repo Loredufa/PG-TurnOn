@@ -4,7 +4,7 @@ import CourtAvailability from './CourtAvailability'
 import { CourtContext } from '../Context/CourtContext'
 import styled from 'styled-components'
 import axios from 'axios'
-import { AvailabilityProvider } from '../Context/AvailabilityContext'
+import { parseDate } from './helpers/functions'
 
 export default function CalendarSection() {
 
@@ -12,12 +12,15 @@ export default function CalendarSection() {
 
     const [bookings, setBookings] = useState([])
     const [date, setDate] = useState(new Date())
+    console.log("DATE: ", date)
 
-    useEffect(() => {
-        axios.get(`/supplier/bookings/court?id=${currentCourt.id}&date=${date.toLocaleDateString()}`) 
-            .then(res => setBookings(res.data))
+    /* useEffect(() => {
+        axios.get(`/supplier/bookings/court?id=${currentCourt.id}&date=${parseDate(date.toLocaleDateString())}`) 
+            .then(res => {
+                setBookings(res.data)
+            })
             .catch(err => console.log(err))
-    }, [])
+    }, []) */
 
     return (
         <Wrapper>
@@ -28,7 +31,6 @@ export default function CalendarSection() {
                 <CourtCalendar date={date} setDate={setDate} currentCourt={currentCourt} setBookings={setBookings} />
                 <CourtAvailability date={date} bookings={bookings} setBookings={setBookings}/>
             </Container>
-            
         </Wrapper>
     )
 }
@@ -43,6 +45,12 @@ const Container = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    height: 85%;
+    @media (max-width: 1025px) {
+        flex-direction: column;
+        height: auto;
+        align-items: center;
+    }
 `
 
 const ButtonContainer = styled.div`
