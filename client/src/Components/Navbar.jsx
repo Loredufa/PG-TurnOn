@@ -1,5 +1,7 @@
 import "../Css/navbar.css";
+
 import { Link, useLocation } from "react-router-dom";
+
 import { BiUserCircle } from "react-icons/bi";
 import React from "react";
 import { useHistory } from "react-router-dom";
@@ -81,7 +83,7 @@ export default function Navbar() {
                 </button>
               </div>
               <div>
-                <Link className="navbar-profile" to="/profile">
+                <Link className="navbar-profile" to="/profile/guia">
                   <BiUserCircle
                     size="80"
                     style={{

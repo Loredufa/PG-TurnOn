@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const DivGlobal = styled.div`
-  padding-top: 10px;
+  padding-top: 80px;
   background: #e9ebed;
   height: 850px;
   width: 100%;
