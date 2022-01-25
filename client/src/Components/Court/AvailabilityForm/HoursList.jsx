@@ -6,7 +6,6 @@ import HourItem from './HourItem'
 import axios from 'axios'
 import { verifyHours, splitHours } from './helpers/functions'
 import { orderAvailability } from '../Context/helpers/functions'
-import Swal from 'sweetalert2'
 
 export default function HoursList({ hours, setHours }) {
 
@@ -16,22 +15,13 @@ export default function HoursList({ hours, setHours }) {
     const handleClick = () => {
         let verify = verifyHours(availability, days, hours)
         if (!days.length) {
-            Swal.fire({
-                title: 'Error!',
-                text: 'Debes seleccionar al menos un día de la semana.',
-              })
+            alert("Debes seleccionar al menos un día de la semana")
         }
         else if (!hours.length) {
-            Swal.fire({
-                title: 'Error!',
-                text: 'Debes configurar una franja horaria.',
-            })
+            alert("Debes configurar una franja horaria")
         }
         else if (verify.isIncorrect) {
-            Swal.fire({
-                title: 'Error!',
-                text: verify.message + ".",
-            })
+            alert(verify.message)
         }
         else {
             axios.post(`/supplier/available/${currentCourt.id}`, { days, hours: splitHours(hours) })
@@ -41,13 +31,9 @@ export default function HoursList({ hours, setHours }) {
                     .catch(err => console.log(err))
                 })
                 .catch(err => console.log(err))
+            console.log({ days, hours })
             setDays([])
             setHours([])
-            Swal.fire(
-                'Hecho!',
-                'La franja horaria ha sido guardada.',
-                'success'
-            )
         }
     }
 

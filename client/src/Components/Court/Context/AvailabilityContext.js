@@ -57,7 +57,6 @@ export const AvailabilityProvider = () => {
 
 const Wrapper = styled.div`
   height: 88.5vh;
-  width: 100vw;
 `
 
 const Container = styled.div`

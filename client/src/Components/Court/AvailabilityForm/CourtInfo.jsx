@@ -3,38 +3,20 @@ import styled from 'styled-components'
 import { AvailabilityContext } from "../Context/AvailabilityContext"
 import axios from 'axios'
 import { orderAvailability } from '../Context/helpers/functions'
-import Swal from 'sweetalert2'
 
 export default function CourtInfo({ currentCourt }) {
 
     const { availability, setAvailability } = useContext(AvailabilityContext)
 
     const handleX = (e) => {
-        Swal.fire({
-            title: 'Estas seguro?',
-            text: "El horario será eliminado!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Eliminar!',
-            cancelButtonText: 'Cancelar'
-          }).then((result) => {
-            if (result.isConfirmed) {
-                let info = e.target.value.split(" - ")
-                axios.delete(`/supplier/available/${currentCourt.id}`, { data: {date: info[0], initialTime: info[1], endingTime: info[2]} })
-                    .then(() => {
-                        axios.get(`/supplier/available/court/${currentCourt.id}`)
-                            .then(res => setAvailability(orderAvailability(res.data)))
-                            .catch(err => console.log(err))
-                    }) .catch(err => console.log(err))
-                Swal.fire(
-                    'Eliminado!',
-                    'El horario ha sido eliminado.',
-                    'success'
-                )
-            }
-          })
+        let info = e.target.value.split(" - ")
+        axios.delete(`/supplier/available/${currentCourt.id}`, { data: {date: info[0], initialTime: info[1], endingTime: info[2]} })
+            .then(() => {
+                axios.get(`/supplier/available/court/${currentCourt.id}`)
+                    .then(res => setAvailability(orderAvailability(res.data)))
+                    .catch(err => console.log(err))
+            }) 
+            .catch(err => console.log(err))
     }
 
     return (
@@ -76,7 +58,7 @@ const Wrapper = styled.div`
     flex-direction: column;
     align-items: center;
     align-content: center;
-
+    width: 100%;
     
 `
 const DayContainer = styled.div`
@@ -88,7 +70,6 @@ const DayContainer = styled.div`
     margin-right: 3px;
     font-family: 'Be Vietnam Pro', sans-serif;
     color:white;
-    flex-wrap: wrap;
 `
 const HoursContainer = styled.div`
     
@@ -99,7 +80,6 @@ const HourContainer = styled.div`
     justify-content: space-between;
     align-items: center;
     margin-bottom: 4px;
-    width: 100%;
 `
 
 const MapContainer = styled.div`

@@ -1,87 +1,32 @@
-@import "./Variables/var.css";
 
 .container-title{
-    background-image: url('../Assets/Images/Slide.png');
-    /* width: 100vw; */
-    height: 55vh;
+    background-image: url('../Assets/Images/cancha-4.jpg');
+    width: 100vw;
+    height: 60vh;
     background-repeat: no-repeat;
-    background-attachment: fixed;
+    /* background-attachment: fixed; */
     background-position: center;
     background-size: cover;
-    position: relative;
 
-}
-
-.container-frase{
-    /* width: 100vw; */
-    height: 40vh;
-    background-color: rgb(253, 251, 251);
 }
 
 .h1-home{
-    position: relative;
-    line-height: 280px;
     font-family: 'Be Vietnam Pro', sans-serif;
-    color:var(--colorAppleGreen);
+    color:rgb(253, 253, 253);
     font-size: 4rem;
     position: static;
     margin-top: 0rem;
     margin-left: 5rem;
+    padding-top: 16rem;
     font-weight: 900;
-    text-shadow: 6px 6px 7px rgba(71, 71, 71, 0.418);
+    text-shadow: 1px 5px 5px rgba(65, 64, 64, 0.89);
 }
 
 .h3-home{
     font-family: 'Be Vietnam Pro', sans-serif;
-    color:var(--colorBlack);
+    color:rgb(253, 253, 253);
     font-size: 2rem;
     margin-left: 5rem;
-    margin-top: -120px;
+    margin-top: -3rem;
 
-}
-
-.trianguloGris{
-    display: block;
-    position: relative;
-    top: -2px;
-    height: 166px;
-    background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1920 166" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path fill="rgba(233, 235, 237, 1)" d="M 0 0 L 969 147 L 969 0 L 0 0 Z" stroke-width="0"></path> <path fill="rgba(233, 235, 237, 1)" d="M 968 147 L 1920 0 L 1920 0 L 968 0 Z" stroke-width="0"></path> </svg>');
-    background-size: cover;
-    background-repeat: no-repeat;
-}
-   
-@media (max-width:1919px) {
-    .trianguloGris{
-      background-size: contain;
-    }
-}
-
-  
-/*    .trianguloVerde{
-    display: block;
-    position: relative;
-    bottom:-2px;
-    height: 200px;
-    background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1920 200" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path fill="rgb(129, 178, 20,1)" d="M 0 0 L 967 125 L 967 0 L 0 0 Z" stroke-width="0"></path> <path fill="rgb(129, 178, 20,1)" d="M 966 125 L 1920 0 L 1920 0 L 966 0 Z" stroke-width="0"></path> </svg>');
-    background-size: cover;
-    background-repeat: no-repeat;
-    transform: rotate(180deg) rotateY(180deg);
-}
-   
-@media (max-width:1919px) {
-    .trianguloGris{
-      background-size: contain;
-    }
-} */
-
-.trianguloVerde{
-display: block;
- position: relative;
- bottom: -2px;
- height: 223px;
- background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1920 223" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path fill="rgba(129, 178, 20, 1)" d="M 0 0 L 971 110 L 971 0 L 0 0 Z" stroke-width="0"></path> <path fill="rgba(129, 178, 20, 1)" d="M 970 110 L 1920 200 L 1920 0 L 970 0 Z" stroke-width="0"></path> </svg>');
- background-size: cover;
- background-repeat: no-repeat;
- transform: rotate(180deg);
- 
 }

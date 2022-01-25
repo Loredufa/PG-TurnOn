@@ -26,7 +26,7 @@ const SectionContainer = styled.div`
     background-repeat: no-repeat;
     background-position: center;
     width: 100vw;
-    height: 90.5vh;
+    height: 100vh;
     background-attachment: fixed;
     overflow: visible;
     overflow-x: hidden;

@@ -32,11 +32,11 @@ return (
         }
 
  
-        /* if(!valores.phone){
+        if(!valores.phone){
             errores.phone = 'Por favor ingresa tu teléfono'
         } else if(!/^([+]?[\s0-9]+)?(\d{3}|[(]?[0-9]+[)])?([-]?[\s]?[0-9])+$/g.test(valores.phone)){
             errores.phone ='Tu teléfono debe contar con solo con numeros'
-        } */
+        }
 
         if(!valores.message){
             errores.message = 'Por favor ingresa tu mensaje'}
@@ -81,7 +81,7 @@ return (
         <ErrorMessage name="name" component={()=> 
         <div className="error-contact">{errors.name}</div>}/>
 
-        {/* <div className="label-input">
+        <div className="label-input">
             <label htmlFor="phone"></label>
             <Field 
                  type="text" 
@@ -92,7 +92,7 @@ return (
                  />
         </div>
         <ErrorMessage name="phone" component={()=> 
-        <div className="error-contact">{errors.phone}</div>}/> */}
+        <div className="error-contact">{errors.phone}</div>}/>
 
         <div className="label-input">
             <label htmlFor="mail"></label>

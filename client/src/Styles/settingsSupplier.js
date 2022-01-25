@@ -1,24 +1,18 @@
 import styled from "styled-components";
 
 export const DivGlobal = styled.div`
-  width: 100%;
-  height: 42rem;
   padding-top: 10px;
-  background-position: fixed;
-  background-color: #e9ebed;
-  @media (max-width: 1241px) {
-    height: 55rem;
-    background-color: #e9ebed;
-  }
+  background: #e9ebed;
+  height: 850px;
 `;
 export const DivForm = styled.div`
-  margin-left: 3rem;
-  margin-right: 3rem;
+  display: flex;
+  margin-left: 50px;
   margin-top: 60px;
-  box-shadow: 10px 10px 15px 1px #1169127c;
+  flex-direction: column;
   padding: 25px;
   padding-top: 20px;
-  width: 40rem;
+  width: 38%;
   background-color: #81b214;
   border-radius: 20px;
   float: left;
@@ -28,30 +22,20 @@ export const DivForm = styled.div`
     margin-left: 32%;
     font-family: "Be Vietnam Pro", sans-serif;
   }
-  @media (max-width: 1426px) {
-    width: 40rem;
-  }
-  @media (max-width: 840px) {
-    width: 40rem;
-  }
 `;
 
 export const DivImagen = styled.div`
   font-family: "Be Vietnam Pro", sans-serif;
-  box-shadow: 10px 10px 15px 1px #1169127c;
   float: left;
-  margin: 60px;
+  margin: 61px;
   background: #81b214;
   border-radius: 20px;
-  width: 16rem;
-  height: 35%;
+  width: 15%;
   margin-left: 140px;
   .divcont {
     border-radius: 20px;
-    ${"" /* line-height: 44px; */}
-    height:242px;
+    line-height: 56px;
     width: 100%;
-    padding: 10px;
     background: #81b214;
     label {
       width: 100%;
@@ -102,7 +86,7 @@ export const EditButton2 = styled.button`
   position: absolute;
   font-family: "Be Vietnam Pro", sans-serif;
   font-size: 20px;
-  top: 200px;
+  top: 180px;
   left: 3rem;
   width: 140px;
   height: 54px;
@@ -126,7 +110,7 @@ export const VolverButton = styled.button`
   position: absolute;
   font-family: "Be Vietnam Pro", sans-serif;
   font-size: 20px;
-  top: 200px;
+  top: 180px;
   left: 14rem;
   width: 140px;
   height: 54px;
@@ -146,7 +130,7 @@ export const UpdateButton = styled.button`
   position: absolute;
   font-family: "Be Vietnam Pro", sans-serif;
   font-size: 14px;
-  top: 200px;
+  top: 180px;
   left: 25rem;
   width: 140px;
   height: 54px;
@@ -168,7 +152,7 @@ export const DeleteButton = styled.button`
   position: absolute;
   font-family: "Be Vietnam Pro", sans-serif;
   font-size: 14px;
-  top: 200px;
+  top: 180px;
   left: 36rem;
   width: 140px;
   height: 54px;
@@ -218,30 +202,31 @@ export const LabelSetting = styled.label`
 export const LabelSetting2 = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-gap: 20%;
-  width: 96%;
+  grid-gap: 20px;
   font-family: "Be Vietnam Pro", sans-serif;
   font-size: 20px;
-  text-align: left;
+  ${"" /* text-align: center; */}
   justify-content: space-between;
-  padding: 2%;
-  margin-top: 2%;
-  margin-bottom: 2%;
+  padding: 13px;
+  padding-left: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
   border-radius: 30px;
   color: rgb(255, 255, 255);
   background: rgba(25, 123, 0, 0.2);
   label {
-    align-items: center;
-    word-wrap: break-word;
-    width: 80%;
+    padding: 0px;
     color: white;
+    margin-left: 10px;
     text-align: center;
   }
 `;
 export const H1name = styled.h1`
   font-family: "Be Vietnam Pro", sans-serif;
   margin-left: 50px;
-  padding-bottom: 60px;
+  padding-bottom: 50px;
   color: #81b214;
   font-size: 45px;
 `;

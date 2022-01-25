@@ -7,17 +7,14 @@
 .contenedor-form-createcourt{
     background-color: var(--colorGrey);
     position:absolute;
-    margin:0;
     left:0;
     right:0;
-    /* height:100vh;
-    width:100vw; */
+    height:92%;
+    width:100%;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
     font-size: 16px;
-    display:inline-block;
-
 }
 
 .form-createcourt{
@@ -30,15 +27,11 @@
     height: 650px;
     margin-left: 5% ;
     margin-top: 1% ;
-    margin-bottom: 2%;
     font-family:'Be Vietnam Pro', sans-serif;
    /*  border-radius: 5px; */
     border-radius: 30px;
     box-shadow: 10px 10px 15px 1px #1169127c;
-    
-    
 }
-  
 
 .cont-all-cc{
     width: 450px;
@@ -88,7 +81,6 @@
     width: 400px;
     height: 41px;
     font-size: 112.50%;
-    margin-top:5%;
     
 }
 
@@ -100,7 +92,7 @@
     padding: 1%;
     margin: 1%;
     margin-right: 50%;
-    padding-bottom: 15%;
+    padding-bottom: 5%;
 }
 
 .select-cc{
@@ -108,7 +100,6 @@
     padding-left: 4%;
     margin-left: 2%;
     margin-bottom: 2%;
-    margin-top:5%;
     font-family:'Be Vietnam Pro', sans-serif;
     width: 400px;
     height: 41px;
@@ -137,7 +128,6 @@
     width: 400px;
     height: 41px;
     font-size: 112.50%;
-    margin-top:5%;
 }
 
 /* --Input Image-- */
@@ -147,7 +137,6 @@
 }
 
 .label-image-cc{
-    
     /* padding: 1%;
     margin: 2%; */
 }
@@ -158,37 +147,7 @@
     font-family:'Be Vietnam Pro', sans-serif;
     font-size: 112.50%;
     color: white;
-    margin-top:5%;
-    display:none
 }
-
-
-input#imagen + label{
-    background:rgba(255, 255, 255, 0.664);
-    /* border: 1px solid #000; */
-    border-radius: 30px;
-    margin-top: 4%;
-    color:black ;
-    /* color: #81b214; */
-    cursor: pointer;
-    font-size: 72%;
-    padding: 3.5% 5%;
-    text-transform: uppercase;
-    transition: all 1s ease;
-    display: grid;
-    width:40%;
-    font-family:'Be Vietnam Pro', sans-serif;
-    justify-content: center;
-    
-}
-
-
-input#imagen + label:hover{
-    background: white;
-      /* border: 1px solid #535353; */
-      color: #81b214;
-} 
-
 
 /* --Input Description-- */
 
@@ -205,7 +164,6 @@ input#imagen + label:hover{
     padding-top: 2%;
     font-family:'Be Vietnam Pro', sans-serif;
     resize: none;
-    margin-top:5%;
 }
 
 /* --Button Save-- */
@@ -234,62 +192,5 @@ input#imagen + label:hover{
 .button-save-cc:hover{
     color: var(--colorAppleGreen);
     background-color: var(--colorGrey);
-
-}
-
-.button-volver-cc {
-    width: 180px;
-    height: 45px;
-    /* background: #FFFFFF; */
-    background-color: var(--colorAppleGreen);
-    border: none;
-    box-sizing: border-box;
-    border-radius: 30px;
-    font-family: 'Be Vietnam Pro', sans-serif;
-    font-size: 18px;
-    color: #FFFFFF;
-    /* margin-top: 90px; */
-    margin-left: 5%;
-    transition: all .3s;
-    
-}
-
-       
-.button-volver-cc:hover {
-    background: #dedede;
-    color: #f7faf5; 
-} 
-
-
-@media(max-width: 1000px) {
-
-    .contenedor-form-createcourt{
-        width:100%;
-    }
-
-    .form-createcourt{
-        display:inline-block;
-        width:60%;
-        height:auto;
-        margin-bottom: 30px;
-        margin-top:60px;
-        /* overflow:hidden;  */
-    }
-    .button-save-cc{
-        width:30%;
-        margin-bottom:5px;
-        margin-top:110px;
-    }
-
-    .button-volver-cc {
-        position:absolute
-    }
-
-    .label-sport-cc{
-       margin-left:0px
-}
-    .select-cc{
-        margin-left:0px;
-    }
 
 }
