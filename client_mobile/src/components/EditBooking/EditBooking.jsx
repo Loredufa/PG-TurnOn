@@ -56,7 +56,7 @@ export default function EditBooking({ booking , visible , onClose , onEdit}) {
 
       function handlerDate (newDate) {
         setDate(newDate);
-        let dateArr = newDate.split("/");
+        let dateArr = newDate.split("-");
         let d = new Date(dateArr[2], dateArr[1]-1, dateArr[0]);
         d = d.getDay();
         let daysOfWeek = ['Domingo' , 'Lunes' , 'Martes' , 'Miercoles' , 'Jueves' , 'Viernes' , 'Sabado'];
@@ -69,7 +69,7 @@ export default function EditBooking({ booking , visible , onClose , onEdit}) {
       <View style={styles.container}>
             <View style={styles.detail}>
                 <View style={styles.info}>
-                    <Text style={styles.title}>Editar reserva en</Text>
+                    <Text style={styles.title1}>Editar reserva en</Text>
                     <Text style={styles.title}>{booking.court.name}</Text>
                     <Text style={styles.text}>Seleccionar dia y horario para editar la reserva</Text>
                     <Text style={styles.text}>actuales {booking.booking.date} de {booking.booking.initialTime} a {booking.booking.endingTime} </Text>
@@ -81,7 +81,7 @@ export default function EditBooking({ booking , visible , onClose , onEdit}) {
             style={styles.date}
             mode="date"
             //placeholder="Dia"
-            format="DD/MM/YYYY"
+            format="DD-MM-YYYY"
             minDate="01-01-2022"
             maxDate="01-01-2030"
             confirmBtnText="Ok"
