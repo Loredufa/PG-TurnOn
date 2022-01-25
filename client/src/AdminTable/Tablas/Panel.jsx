@@ -3,25 +3,28 @@ import styled from "styled-components";
 function Panel() {
   return (
     <Div>
+      <IMG2 src={require("../../Assets/Images/cancha-6.jpg")} alt="foto" />
       <IMG src={require("../../Assets/logo/LogoTurnON.png")} alt="foto" />
       <H1>Panel De Administrador</H1>
     </Div>
   );
 }
 
-export const Div = styled.div`
+const Div = styled.div`
   display: flex;
   flex-wrap: wrap;
-  background: white;
+  background-image: url("../../Assets/Images/cancha-6.jpg")
   width: 100%;
+
 `;
-export const H1 = styled.h1`
+const H1 = styled.h1`
   float: left;
   font-size: 4rem;
   margin-left: 38rem;
   font-family: "Be Vietnam Pro", sans-serif;
   text-align: center;
   color: #81b214;
+  font-weight: 900;
   @media (max-width: 810px) {
     margin-left: 16rem;
   }
@@ -38,7 +41,7 @@ export const H1 = styled.h1`
     margin-left: 16rem;
   }
 `;
-export const IMG = styled.img`
+const IMG = styled.img`
   float: left;
   margin-left: 48rem;
   margin-top: 5%;
@@ -55,6 +58,19 @@ export const IMG = styled.img`
     float: left;
     margin-left: 20rem;
   }
+`;
+export const IMG2 = styled.img`
+  position: absolute;
+  z-index: -1;
+  background: white;
+  background-repeat: repeat;
+  background-attachment: fixed;
+  background-color: rgba(0, 0, 0, 0.712);
+  box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.712);
+  width: 100%;
+  height: 91.4%;
+  opacity: 100%;
+  filter: brightness(0.7);
 `;
 
 export default Panel;
