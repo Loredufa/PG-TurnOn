@@ -53,7 +53,7 @@ export default function Navbar() {
               window.location.reload(false);
             }}
           >
-            Sign Out
+            Cerrar sesión
           </button>
         </div>
       ) : (
@@ -89,7 +89,7 @@ export default function Navbar() {
                     window.location.reload(false);
                   }}
                 >
-                  Sign Out
+                  Cerrar sesión
                 </button>
               </div>
               <div>
