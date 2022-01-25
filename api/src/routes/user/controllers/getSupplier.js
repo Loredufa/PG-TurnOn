@@ -72,9 +72,7 @@ const getSupplier = async (req, res) => {
             20 ** 2
         );
         suppliers = suppliers?.sort((a, b) => {
-          if (a.reputation > b.reputation) return 1;
-          if (a.reputation < a.reputation) return -1;
-          return 0;
+          return b.reputation - a.reputation;
         });
         suppliers?.length > 10
           ? (suppliers = suppliers.slice(0, 10))
