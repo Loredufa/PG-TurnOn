@@ -95,9 +95,7 @@ export default function Suppliers({ route }) {
               <View>
                 <Supplier 
                 item={item} 
-                sport={route.params.type ? route.params.type 
-                      : sportFilter ? sportFilter
-                      : route.params.sport}
+                sport={sportFilter === ''? route.params.sport : sportFilter}
                 />
               </View>
 

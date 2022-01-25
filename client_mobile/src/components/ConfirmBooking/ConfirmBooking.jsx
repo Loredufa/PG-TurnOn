@@ -32,7 +32,7 @@ export default function ConfirmBooking({visible , bookingRef , onClose , onBook}
                         <Text>Precio: </Text>
                         <Text>{bookingRef?.court.price}</Text>
                     </View>
-                    <Text style={styles.text}>Recorda que para reservar hay que realizar una seña del 10%, en caso de cancelar la reserva con 24hs la misma se reintegra a tu cuenta.</Text>
+                    <Text style={styles.text}>Recorda que para reservar hay que realizar una seña del 10%, en caso de cancelar con 48hs de anticipación recibiras un voucher para utilizar en la misma cancha.</Text>
                     <View style={styles.column}>
                         <Text>Monto a señar: </Text>
                         <Text>${Math.round(bookingRef?.court.price.split('$')[1]/10)}</Text>  

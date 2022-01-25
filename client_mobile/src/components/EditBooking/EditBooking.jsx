@@ -39,28 +39,29 @@ export default function EditBooking({ booking , visible , onClose , onEdit}) {
         });
       }
       useEffect(() => {
-        var now = new Date();
-        var day = ("0" + now.getDate()).slice(-2);
-        var month = ("0" + (now.getMonth() + 1)).slice(-2);
-        var today = day + "-" + month + "-" + now.getFullYear();
+        let now = new Date();
+        let day = ("0" + now.getDate()).slice(-2);
+        let month = ("0" + (now.getMonth() + 1)).slice(-2);
+        let today = day + "-" + month + "-" + now.getFullYear();
         //var today = now.getFullYear() + "-" + (month) + "-" + (day);
-        console.log("La fecha de hoy" , today)
+        // console.log("La fecha de hoy" , today)
         setDate(today);
         let dateArr = today.split("-");
-        var d = new Date(dateArr[2], dateArr[1]-1, dateArr[0]);
+        let d = new Date(dateArr[2], dateArr[1]-1, dateArr[0]);
         d = d.getDay();
-        var daysOfWeek = ['Domingo' , 'Lunes' , 'Martes' , 'Miercoles' , 'Jueves' , 'Viernes' , 'Sabado'];
+        let daysOfWeek = ['Domingo' , 'Lunes' , 'Martes' , 'Miercoles' , 'Jueves' , 'Viernes' , 'Sabado'];
         let day1 = daysOfWeek[d]
         dispatch(courtAvailability(booking.court.id , dateArr.join('/') , day1));
       }, []);
-      function handlerDate () {
-        setDate(date);
-        let dateArr = date.split("-");
-        var d = new Date(dateArr[2], dateArr[1]-1, dateArr[0]);
+
+      function handlerDate (newDate) {
+        setDate(newDate);
+        let dateArr = newDate.split("-");
+        let d = new Date(dateArr[2], dateArr[1]-1, dateArr[0]);
         d = d.getDay();
-        var daysOfWeek = ['Domingo' , 'Lunes' , 'Martes' , 'Miercoles' , 'Jueves' , 'Viernes' , 'Sabado'];
+        let daysOfWeek = ['Domingo' , 'Lunes' , 'Martes' , 'Miercoles' , 'Jueves' , 'Viernes' , 'Sabado'];
         let day = daysOfWeek[d]
-        console.log(booking.court.id , dateArr.join('/') , day)
+        // console.log(booking.court.id , dateArr.join('/') , day)
         dispatch(courtAvailability(booking.court.id , dateArr.join('/') , day));
     }
   return (
@@ -68,19 +69,21 @@ export default function EditBooking({ booking , visible , onClose , onEdit}) {
       <View style={styles.container}>
             <View style={styles.detail}>
                 <View style={styles.info}>
-                    <Text style={styles.title}>Editar reserva en</Text>
+                    <Text style={styles.title1}>Editar reserva en</Text>
                     <Text style={styles.title}>{booking.court.name}</Text>
+                    <View style={{flex:1, paddingTop:10}}>
                     <Text style={styles.text}>Seleccionar dia y horario para editar la reserva</Text>
                     <Text style={styles.text}>actuales {booking.booking.date} de {booking.booking.initialTime} a {booking.booking.endingTime} </Text>
-                    <View style={styles.optionsContainer}>
+                    </View>
           {/* <Text style={{ marginRight: 20, borderWidth: 1 }}>Horario</Text> */}
           {/* <Text style={styles.date}>Dia</Text> */}
+        <View style={styles.optionsContainer}>
           <DatePicker
             date={date}
             style={styles.date}
             mode="date"
             //placeholder="Dia"
-            format="DD/MM/YYYY"
+            format="DD-MM-YYYY"
             minDate="01-01-2022"
             maxDate="01-01-2030"
             confirmBtnText="Ok"
@@ -100,14 +103,14 @@ export default function EditBooking({ booking , visible , onClose , onEdit}) {
                 borderBottomWidth: 1,
               },
               placeholderText: {
-                fontSize: 17,
+                fontSize: 15,
                 color: "gray",
               },
               dateText: {
-                fontSize: 17,
+                fontSize: 15,
               },
             }}
-            onDateChange={handlerDate}
+            onDateChange={(newDate) => handlerDate(newDate)}
           />
             {
               availables?.length?

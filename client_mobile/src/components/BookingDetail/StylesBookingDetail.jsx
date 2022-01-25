@@ -70,7 +70,7 @@ export const styles = StyleSheet.create({
   },
   date: {
     flex: 1,
-    marginLeft: 10,
+    marginLeft: 20,
     justifyContent: "flex-start",
     fontSize: 15,
     // borderWidth: 1,
@@ -83,7 +83,7 @@ export const styles = StyleSheet.create({
   
   phone: {
     flex: 1,
-    marginLeft: 10,
+    marginLeft: 20,
     justifyContent: "flex-start",
     alignSelf: 'center',
     fontSize: 15,
@@ -114,7 +114,8 @@ export const styles = StyleSheet.create({
   buttons: {
       //flex: 1,
       flexDirection: 'row',
-      alignSelf: 'center'
+      alignSelf: 'center',
+      paddingBottom: 10,
   },
   btnEdit: {
     width: 130,
@@ -149,7 +150,13 @@ export const styles = StyleSheet.create({
   question: {
     fontWeight: "700",
     fontSize: 18,
-    margin: 10,
+    margin: 20,
     textAlign: 'center'
   },
+  text: {
+    fontStyle: 'italic',
+    fontSize: 12,
+    margin: 20,
+    textAlign: 'justify'
+  }
 });

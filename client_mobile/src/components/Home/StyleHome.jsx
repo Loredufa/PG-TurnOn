@@ -4,7 +4,8 @@ export const styles = StyleSheet.create({
   container: { flex: 1, alignItems: "center" },
   searchBarPos: {
     justifyContent: "flex-start",
-    flex:0.7,
+    paddingBottom: 10,
+    flex: 0.5,
   },
   globalContainer: {
     flexDirection: "column",
@@ -12,19 +13,19 @@ export const styles = StyleSheet.create({
   card: {
     flex: 1,
     borderRadius: 10,
-    borderWidth:1,
+    borderWidth: 1,
     margin: 10,
-    
+
     alignItems: "center",
     //justifyContent: "center",
-    padding: 2,
-/*
-*/
-backgroundColor: 'white',
-shadowOpacity: 0.50,
-shadowRadius: 5,
-shadowColor: "#000",
-elevation: 20,
+    padding: 6,
+    /*
+     */
+    backgroundColor: "white",
+    shadowOpacity: 0.5,
+    shadowRadius: 5,
+    shadowColor: "#000",
+    elevation: 20,
     //borderColor: "black",
   },
   input: {
@@ -49,37 +50,42 @@ elevation: 20,
   button: {},
   //icon: { fontSize: 15 },
   review: {
-    flex: 2,
+    flex: 3,
     justifyContent: "flex-start",
+    //marginTop: 10,
   },
   card2: {
-    flex: 1,
-    borderRadius: 10,
-    margin: 10,
     borderWidth: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    padding: 2,
-    flexDirection: "column",
+    borderRadius: 25,
+    backgroundColor: "white",
+    shadowOpacity: 0.5,
+    shadowRadius: 5,
+    shadowColor: "#000",
+    elevation: 20,
 
     //borderColor: "black",
   },
   sport: {
-      textAlign: "center",
-      fontSize: 15,
-      fontWeight: "bold",
+    textAlign: "center",
+    fontSize: 17,
+    fontWeight: "bold",
+    paddingBottom: 15,
   },
   supplier: {
     textAlign: "left",
     marginLeft: 10,
     fontSize: 15,
     fontWeight: "bold",
+    paddingTop: 10,
+    paddingLeft: 15,
   },
   ratingContainer: {
-    marginRight:10,
-    flexDirection: 'row',
-    justifyContent: 'flex-end',
-    alignItems: 'center'
+    marginRight: 10,
+    flexDirection: "row",
+    justifyContent: "flex-end",
+    alignItems: "center",
+    paddingRight: 15,
+    paddingTop: 10,
   },
   title: {
     textAlign: "center",

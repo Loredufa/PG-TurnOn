@@ -70,5 +70,7 @@ export const styles = StyleSheet.create({
     textAlign: "justify",
     marginLeft: 10,
     marginRight: 10,
+    marginTop: 10,
+    //color: "red",
   },
 });
