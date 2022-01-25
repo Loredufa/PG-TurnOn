@@ -220,6 +220,7 @@ input#imagen + label:hover{
     background: #FFFFFF;
     border: 0px solid #ffffff;
     box-sizing: border-box;
+    cursor: pointer;
     border-radius: 30px;
     font-family: 'Be Vietnam Pro', sans-serif;
     font-size: 112.50%;
