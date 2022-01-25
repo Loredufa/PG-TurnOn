@@ -20,8 +20,6 @@ const columnas = [
   { title: "Coordenadas", field: "coordinates" },
 ];
 
-const URL = "http://localhost:3001";
-
 const useStyles = makeStyles((theme) => ({
   modal: {
     position: "absolute",
@@ -86,7 +84,7 @@ function Supplier() {
   };
 
   const allSuppliers = async () => {
-    await axios.get(`${URL}/supplier/suppliers`).then((response) => {
+    await axios.get("/supplier/suppliers").then((response) => {
       setData(response.data);
       console.log(response.data);
     });
@@ -94,10 +92,10 @@ function Supplier() {
 
   const peticionPost = async () => {
     await axios
-      .post(`${URL}supplier/supplier`, supplierSelected)
+      .post("/supplier/supplier", supplierSelected)
       .then(() => {
         axios
-          .get("supplier/suppliers")
+          .get("/supplier/suppliers")
           .then((response) => {
             setData(response.data);
           })
@@ -111,7 +109,7 @@ function Supplier() {
 
   const peticionPut = async () => {
     await axios
-      .put(`${URL}/supplier/supplier/${supplierSelected.id}`, supplierSelected)
+      .put(`/supplier/supplier/${supplierSelected.id}`, supplierSelected)
       .then(() => {
         axios
           .get("supplier/suppliers")
@@ -126,7 +124,7 @@ function Supplier() {
 
   const peticionDelete = async () => {
     await axios
-      .delete(`supplier/supplier/${supplierSelected.id}`)
+      .delete(`/supplier/supplier/${supplierSelected.id}`)
       .then((response) => {
         setData(data.filter((supplier) => supplier.id !== supplierSelected.id));
         abrirCerrarModalEliminar();
@@ -145,7 +143,7 @@ function Supplier() {
   //MOdal de Insertar
   const bodyInsertar = (
     <div className={styles.modal}>
-      <h3>Agregar Nuevo Proveedor</h3>
+      <h3>Crear Nuevo Proveedor</h3>
       <TextField
         className={styles.inputMaterial}
         label="Nombre"
@@ -213,7 +211,7 @@ function Supplier() {
       <br />
       <div align="right">
         <Button color="primary" onClick={() => peticionPost()}>
-          Insertar
+          Crear
         </Button>
         <Button onClick={() => abrirCerrarModalInsertar()}>Cancelar</Button>
       </div>
@@ -330,7 +328,7 @@ function Supplier() {
         className="CrearSupplier"
         onClick={() => abrirCerrarModalInsertar()}
       >
-        Insertar Proveedor
+        Crear Proveedor
       </Button>
       <br />
       <br />

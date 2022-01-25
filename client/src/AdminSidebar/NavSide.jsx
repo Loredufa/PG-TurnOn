@@ -102,7 +102,7 @@ const Button2 = styled.button`
   font-size: 23px;
   cursor: pointer;
  margin-top: 1rem;
- margin-left: 3rem;
+ margin-left: 2rem;
  font-size: 12px;
  text-transform: uppercase;
  letter-spacing: 2.5px;
@@ -129,7 +129,7 @@ const Button2 = styled.button`
 `;
 const Button = styled.button`
  padding: 1.3em 3em;
- margin-left: 3rem;
+ margin-left: 2rem;
  margin-top: 3rem;
  font-size: 12px;
  text-transform: uppercase;

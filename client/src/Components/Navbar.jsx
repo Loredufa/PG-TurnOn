@@ -1,5 +1,7 @@
 import "../Css/navbar.css";
+
 import { Link, useLocation } from "react-router-dom";
+
 import { BiUserCircle } from "react-icons/bi";
 import React from "react";
 import { useHistory } from "react-router-dom";
@@ -9,19 +11,7 @@ export default function Navbar() {
   const location = useLocation();
   const history = useHistory();
   return (
-    <div
-      className="navbar-contenedor"
-      /* style={{
-        display: "flex",
-        flexDirection: "row",
-        justifyContent: "space-between",
-        marginRight: "40px",
-        alignItems: "center",
-        height: "80px",
-        position: "relative",
-        backgroundColor: "#ffffff",
-      }} */
-    >
+    <div className="navbar-contenedor">
       <Link className="navbar-logo" to="/">
         <img
           style={{
@@ -93,7 +83,7 @@ export default function Navbar() {
                 </button>
               </div>
               <div>
-                <Link className="navbar-profile" to="/profile">
+                <Link className="navbar-profile" to="/profile/guia">
                   <BiUserCircle
                     size="80"
                     style={{

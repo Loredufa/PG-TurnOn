@@ -14,19 +14,19 @@ const columnas = [
     field: "id",
   },
   {
-    title: "Name",
+    title: "Nombre",
     field: "name",
   },
   {
-    title: "Lastname",
+    title: "Apellido",
     field: "lastname",
   },
   {
-    title: "Phone",
+    title: "Telefono",
     field: "phone",
   },
   {
-    title: "Password",
+    title: "Contraseña",
     field: "password",
   },
   {
@@ -34,7 +34,6 @@ const columnas = [
     field: "mail",
   },
 ];
-const URL = "http://localhost:3001";
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -101,7 +100,7 @@ function User() {
   };
 
   const allUsers = async () => {
-    await axios.get(`${URL}/user/users`).then((response) => {
+    await axios.get("/user/users").then((response) => {
       setData(response.data);
       console.log(response.data);
     });
@@ -109,10 +108,10 @@ function User() {
 
   const createUsers = async () => {
     await axios
-      .post(`${URL}/user/user`, user)
+      .post("/user/user", user)
       .then(() => {
         axios
-          .get("user/users")
+          .get("/user/users")
           .then((response) => {
             setData(response.data);
           })
@@ -124,10 +123,10 @@ function User() {
 
   const peticionPut = async () => {
     await axios
-      .put(`user/user/${user.id}`, user)
+      .put(`/user/user/${user.id}`, user)
       .then(() => {
         axios
-          .get("user/users")
+          .get("/user/users")
           .then((response) => {
             setData(response.data);
           })
@@ -139,7 +138,7 @@ function User() {
 
   const peticionDelete = async () => {
     await axios
-      .delete(`user/user/${user.id}`)
+      .delete(`/user/user/${user.id}`)
       .then((response) => {
         setData(data.filter((euser) => euser.id !== user.id));
         abrirCerrarModalEliminar();
@@ -151,38 +150,38 @@ function User() {
 
   const bodyInsertar = (
     <div className={styles.modal}>
-      <h3>Agregar Nuevo Usuario</h3>
+      <h3>Crear Nuevo Usuario</h3>
       <TextField
         className={styles.inputMaterial}
-        label="name"
+        label="Nombre"
         name="name"
         onChange={handleChange}
       />
       <br />
       <TextField
         className={styles.inputMaterial}
-        label="lastname"
+        label="Apellido"
         name="lastname"
         onChange={handleChange}
       />
       <br />
       <TextField
         className={styles.inputMaterial}
-        label="phone"
+        label="Telefono"
         name="phone"
         onChange={handleChange}
       />
       <br />
       <TextField
         className={styles.inputMaterial}
-        label="password"
+        label="Contraseña"
         name="password"
         onChange={handleChange}
       />
       <br />
       <TextField
         className={styles.inputMaterial}
-        label="mail"
+        label="Mail"
         name="mail"
         onChange={handleChange}
       />
@@ -190,7 +189,7 @@ function User() {
       <br />
       <div align="right">
         <Button color="primary" onClick={() => createUsers()}>
-          Insertar
+          Crear
         </Button>
         <Button onClick={() => abrirCerrarModalInsertar()}>Cancelar</Button>
       </div>
