@@ -14,68 +14,37 @@ import Message from "../Message/Message";
 import { images } from "../Supplier/Supplier";
 import EditBooking from "../EditBooking/EditBooking";
 
-
-export default function BookingDetail({route}) {
-    const {screenWidth , messageBack , flagBooking , user} = useSelector(state => state);
-    const navigation = useNavigation();
-    const {booking} = route.params;
-    const dispatch = useDispatch();
-    //let [coordinates , setCoordinates] = useState(booking.court.address.split(" "))
-    let [eliminar , setEliminar] = useState(false)
-    const suppliersLocation = useSelector((state) => state.suppliersLocation);
+export default function BookingDetail({ route }) {
+  const { screenWidth, messageBack, flagBooking, user } = useSelector(
+    (state) => state
+  );
+  const navigation = useNavigation();
+  const { booking } = route.params;
+  const dispatch = useDispatch();
+  //let [coordinates , setCoordinates] = useState(booking.court.address.split(" "))
+  let [eliminar, setEliminar] = useState(false);
+  const suppliersLocation = useSelector((state) => state.suppliersLocation);
   let courtLocation = suppliersLocation?.find(
     (e) => e.id === booking.court.supplierId
   );
-    function handlerDelete() {
-      //dispatch(deleteBooking(booking.booking.id));
-      let now = new Date();
-      let day = ("0" + now.getDate()).slice(-2);
-      let month = ("0" + (now.getMonth() + 1)).slice(-2);
-      let today = day + "-" + month + "-" + now.getFullYear();
-      let dateArr = today.split("-");
-      let compareDate = new Date(dateArr[2], dateArr[1] - 1, dateArr[0]);
-     
-          let bkDate = booking.booking.date.split('/')
-          bkDate = new Date(bkDate[2], bkDate[1] - 1, bkDate[0]);
-          console.log ("SOY LAS FECHASASADSDSADSA " ,bkDate.getTime() , compareDate.getTime())
-          //UN DIA EN MILI SEGUNDOS 86400000
-          if (bkDate.getTime() - compareDate.getTime() <= 2*86400000) {
-            dispatch(changeBooking(
-              booking.booking.id , 
-              booking.booking.date , 
-              `${booking.booking.initialTime}-${booking.booking.endingTime}`,
-              'canceled'
-            ));
-            //dispatch(setMessage("Reserva eliminada, la seña realizada es retenida por la cancha debido a que se cancelo con menos de 24hs"))
-            navigation.navigate("Bookings");
-          }
-          else {
+  function handlerDelete() {
+    //dispatch(deleteBooking(booking.booking.id));
+    let now = new Date();
+    let day = ("0" + now.getDate()).slice(-2);
+    let month = ("0" + (now.getMonth() + 1)).slice(-2);
+    let today = day + "-" + month + "-" + now.getFullYear();
+    let dateArr = today.split("-");
+    let compareDate = new Date(dateArr[2], dateArr[1] - 1, dateArr[0]);
 
-            dispatch(changeBooking(
-              booking.booking.id , 
-              booking.booking.date , 
-              `${booking.booking.initialTime}-${booking.booking.endingTime}`,
-              'canceled'
-            ));
-            dispatch(bookCourt(
-              booking.court.id,
-              user.user.id,
-              'Lunes',
-              '00/00/0000',
-              '0000',
-              '00:00-00:00',
-              booking.court.supplierId,
-              booking.booking.paymentId
-              ));
-              navigation.navigate("Bookings");
-            }
-      setEliminar(false)
-    }
-    let [editBooking , setEditBooking] = useState(false);
     let bkDate = booking.booking.date.split("/");
     bkDate = new Date(bkDate[2], bkDate[1] - 1, bkDate[0]);
+    console.log(
+      "SOY LAS FECHASASADSDSADSA ",
+      bkDate.getTime(),
+      compareDate.getTime()
+    );
     //UN DIA EN MILI SEGUNDOS 86400000
-    if (bkDate.getTime() - compareDate.getTime() < 86400000) {
+    if (bkDate.getTime() - compareDate.getTime() <= 2 * 86400000) {
       dispatch(
         changeBooking(
           booking.booking.id,
@@ -111,6 +80,7 @@ export default function BookingDetail({route}) {
     }
     setEliminar(false);
   }
+
   let [editBooking, setEditBooking] = useState(false);
 
   function handlerEditBooking() {
