@@ -76,10 +76,11 @@ export default function CourtDetail({ route }) {
 
   function handlerVoucher () {
     let code = Math.round(Math.random() * (9999 - 1000) + 1000);
-    let dateArr = date.split("/");
-    var d = new Date(dateArr[2], dateArr[1] - 1, dateArr[0]);
+    let dateArr = date.split("-");
+    console.log(dateArr);
+    let d = new Date(dateArr[2], dateArr[1] - 1, dateArr[0]);
     d = d.getDay();
-    var daysOfWeek = [
+    let daysOfWeek = [
       "Domingo",
       "Lunes",
       "Martes",
@@ -90,6 +91,16 @@ export default function CourtDetail({ route }) {
     ];
     let day = daysOfWeek[d];
 
+    console.log(
+      "courtId: " , route.params.court.id,
+      " userId: " ,user.user.id,
+      " day: " ,day,
+      " date: ",dateArr.join("/"),
+      " code: " ,code,
+      " hour: " , timeSelected,
+      " supplierId: " , supplierID,
+      " paymentId: " , vouchers[0].booking.paymentId
+      )
     dispatch(
       bookCourt(
         route.params.court.id,
@@ -102,6 +113,7 @@ export default function CourtDetail({ route }) {
         vouchers[0].booking.paymentId
         ))
     dispatch(deleteBooking(vouchers[0].booking.id));
+    //navigation.navigate("Bookings");
   }
 
   const [timeSelected, setTimeSelected] = useState("");
@@ -172,7 +184,7 @@ export default function CourtDetail({ route }) {
 
   function handlerDate(newDate) {
     setDate(newDate);
-    let dateArr = newDate.split("/");
+    let dateArr = newDate.split("-");
     // console.log("SOY NEW DATEarr" , dateArr)
     let d = new Date(dateArr[2], dateArr[1] - 1, dateArr[0]);
     d = d.getDay();
@@ -291,7 +303,7 @@ export default function CourtDetail({ route }) {
             style={styles.date}
             mode="date"
             //placeholder="Dia"
-            format="DD/MM/YYYY"
+            format="DD-MM-YYYY"
             minDate="01-01-2022"
             maxDate="01-01-2030"
             confirmBtnText="Ok"

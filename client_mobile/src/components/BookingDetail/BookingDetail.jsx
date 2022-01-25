@@ -32,9 +32,9 @@ export default function BookingDetail({route}) {
      
           let bkDate = booking.booking.date.split('/')
           bkDate = new Date(bkDate[2], bkDate[1] - 1, bkDate[0]);
-          console.log (bkDate , compareDate)
+          console.log ("SOY LAS FECHASASADSDSADSA " ,bkDate.getTime() , compareDate.getTime())
           //UN DIA EN MILI SEGUNDOS 86400000
-          if (bkDate.getTime() - compareDate.getTime() < 86400000) {
+          if (bkDate.getTime() - compareDate.getTime() <= 2*86400000) {
             dispatch(changeBooking(
               booking.booking.id , 
               booking.booking.date , 
