@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState, useContext } from "react";
 import { CourtContext } from '../Context/CourtContext'
 import Swal from "sweetalert2";
+// import "../../../Css/Supplier Panel/courtcreation.css";
 
 
 export default function EditCourt (){
@@ -117,7 +118,7 @@ export default function EditCourt (){
     return(
         <div className="contenedor-form-createcourt">
         <h1 className="title-creationcourt">Editar datos de tu Cancha</h1>
-        <button onClick={() => setSection("")}>Volver</button>
+        <button className="button-volver-cc" onClick={() => setSection("")}>Volver</button>
         <form onSubmit={submitCourt} className="form-createcourt">
           <div className="cont-all-cc cont-in-name-cc">
             <label className="label-all-cc label-name-cc" htmlFor="name">Nombre de Cancha :</label>
@@ -182,7 +183,8 @@ export default function EditCourt (){
           <div className="cont-in-image-cc">
             <label className="label-all-cc label-image-cc" htmlFor="image">Imagen : </label><br/>
             <img src={editInfo.image} alt="Imagen" width= "250px" height="150px"/>
-            <input className="input-image-cc" type="file" name="file" onChange={uploadImage} />
+            <input id="imagen" className="input-image-cc" type="file" name="file" onChange={uploadImage} />
+            <label htmlFor="imagen" className="input-image">Seleccionar archivo</label>
           </div>
   
           <div className="cont-all-cc cont-in-description-cc">

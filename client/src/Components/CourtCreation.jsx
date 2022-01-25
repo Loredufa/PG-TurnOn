@@ -152,14 +152,18 @@ export default function CourtCreation() {
           value={infoCourt.sport} 
           onChange={handlerselect}>
             <option className="options-cc">Deporte</option>
-            <option className="options-cc"value="futbol">Futbol</option>
-            <option className="options-cc"value="tenis">Tenis</option>
-            <option className="options-cc" value="paddle">Paddle</option>
-            <option className="options-cc" value="basket">Basket</option>
-            <option className="options-cc" value="hockey">Hockey</option>
-            <option className="options-cc" value="golf">Golf</option>
-            <option className="options-cc" value="baseball">Baseball</option>
-            <option className="options-cc" value="otro">Otro</option>
+            <option className="options-cc"value="Futbol">Futbol</option>
+            <option className="options-cc"value="Tenis">Tenis</option>
+            <option className="options-cc" value="Paddle">Paddle</option>
+            <option className="options-cc" value="Basket">Basket</option>
+            <option className="options-cc" value="Hockey">Hockey</option>
+            <option className="options-cc" value="Golf">Golf</option>
+            <option className="options-cc" value="Baseball">Baseball</option>
+            <option className="options-cc" value="PingPong">Ping Pong</option>
+            <option className="options-cc" value="Voley">Voleyball</option>
+            <option className="options-cc" value="Squash">Squash</option>
+            <option className="options-cc" value="Pool">Pool</option>
+            
           </select>
           {errors.sport && <p className="error-all-cc">{errors.sport}</p>}
         </div>

@@ -17,7 +17,6 @@
     background-position: center;
     font-size: 16px;
     display:inline-block;
-
 }
 
 .form-createcourt{
@@ -35,8 +34,7 @@
    /*  border-radius: 5px; */
     border-radius: 30px;
     box-shadow: 10px 10px 15px 1px #1169127c;
-    
-    
+     
 }
   
 
@@ -150,6 +148,7 @@
     
     /* padding: 1%;
     margin: 2%; */
+      
 }
 
 .input-image-cc{
