@@ -48,7 +48,7 @@ function Login() {
                   type="text"
                   id="user"
                   name="user"
-                  placeholder="correo electrónico"
+                  placeholder="Correo electrónico"
                   values={input.user}
                   onChange={handleChange}
                 />
@@ -59,7 +59,7 @@ function Login() {
                     type="password"
                     id="password"
                     name="password"
-                    placeholder="password"
+                    placeholder="Password"
                     values={input.password}
                     onChange={handleChange}
                   />
