@@ -145,11 +145,11 @@ export function getSupplierBySport(sport) {
   };
 }
 
-export function setScreenDimensions(screenWidth, numColumns, titleSize) {
+export function setScreenDimensions(screenWidth, numColumns, titleSize, ScreenHeight) {
   return function (dispatch) {
     dispatch({
       type: SET_SCREEN_DIMENSIONS,
-      payload: { screenWidth, numColumns, titleSize },
+      payload: { screenWidth, numColumns, titleSize , ScreenHeight},
     });
   };
 }

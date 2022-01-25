@@ -66,7 +66,7 @@ export default function Court({ item, supplierID, coordinates }) {
           }}
         >
           <Text style={styles.name}>{item.name}</Text>
-          <View style={styles.date}>
+          <View style={item.description.length > 50 ? styles.date :styles.date1 }>
             <Text style={styles.text}>{item.description}</Text>
             {/*<Text style={styles.text}>Horario: 16 a 23 hs</Text>*/}
           </View>

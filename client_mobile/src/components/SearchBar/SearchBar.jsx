@@ -59,7 +59,7 @@ export default function SearchBar({screen}) {
        {find &&<TouchableOpacity
         style={[
           styles.button,
-          { width: screenWidth / 10, height: screenWidth / 10 },
+          { width: screenWidth / 10, height: ScreenHeight / 20 },
         ]}
         onPress={handlerGoBack}
       >

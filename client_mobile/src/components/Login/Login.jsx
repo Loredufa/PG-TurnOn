@@ -24,23 +24,24 @@ import GoogleLogin from "../GoogleLogin/GoogleLogin";
 export default function Login() {
   const dispatch = useDispatch();
   const screenWidth = Dimensions.get("window").width;
+  let ScreenHeight = Dimensions.get("window").height;
   const numColumns = 6;
   const titleSize = screenWidth / numColumns;
 
-  const [dimension, setDimension] = useState({ screenWidth, titleSize });
+  const [dimension, setDimension] = useState({ screenWidth, titleSize , ScreenHeight});
 
   useEffect(() => {
     const subscription = Dimensions.addEventListener(
       "change",
-      ({ screenWidth, titleSize }) => {
-        setDimension({ screenWidth, titleSize });
+      ({ screenWidth, titleSize , ScreenHeight}) => {
+        setDimension({ screenWidth, titleSize , ScreenHeight });
       }
     );
     return () => subscription?.remove();
   });
 
   useEffect(() => {
-    dispatch(setScreenDimensions(screenWidth, numColumns, titleSize));
+    dispatch(setScreenDimensions(screenWidth, numColumns, titleSize , ScreenHeight));
   }, [screenWidth]);
 
   useEffect(() => {

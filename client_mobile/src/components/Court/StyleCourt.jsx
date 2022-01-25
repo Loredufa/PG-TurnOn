@@ -14,7 +14,14 @@ export const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     paddingLeft: 10,
-    paddingRight: 10,
+    paddingRight: 14,
+  },
+  date1: {
+    flex: 2,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    paddingLeft: 10,
+    paddingRight: 14,
   },
   text: {
     color: "#2A2D34",

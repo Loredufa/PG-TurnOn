@@ -58,6 +58,7 @@ const initialState = {
   authToken: null, //"abc123",
   screenWidth: 375,
   numColumns: 6,
+  ScreenHeight: 667,
   titleSize: 62,
   courtsBySports: [],
   messageBack: "",
@@ -241,6 +242,7 @@ const reducer = (state = initialState, action) => {
         screenWidth: action.payload.screenWidth,
         numColumns: action.payload.numColumns,
         titleSize: action.payload.titleSize,
+        ScreenHeight: action.payload.ScreenHeight
       };
     case GET_COURT_BY_SPORT:
       return {

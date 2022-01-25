@@ -47,7 +47,7 @@ export default function CourtDetail({ route }) {
   });
   const [confirmScreen, setConfirmScreen] = useState(false);
 
-  const screenWidth = useSelector((state) => state.screenWidth);
+  const {screenWidth , ScreenHeight } = useSelector((state) => state);
   const titleSize = useSelector((state) => state.titleSize);
   const [reservationCode, setRC] = useState(0);
 
@@ -301,7 +301,7 @@ export default function CourtDetail({ route }) {
             borderRadius: 10,
           }}
         />
-        <View style={styles.descriptionContainer}>
+        <View style={[styles.descriptionContainer , {width: screenWidth/1.4}]}>
           <Text style={styles.description}>{court.description}</Text>
         </View>
         <View style={styles.optionsContainer}>
@@ -348,7 +348,9 @@ export default function CourtDetail({ route }) {
                 justifyContent: "center",
                 //marginTop: 20,
                 flex: 1,
+                paddingRight: 10,
               }}
+              
               itemStyle={styles.hourItem}
               selectedValue={timeSelected}
               onValueChange={(itemValue, itemIndex) => onChange(itemValue)}
