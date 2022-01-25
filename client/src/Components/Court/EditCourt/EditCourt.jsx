@@ -1,8 +1,7 @@
-import React, { useContext, useState } from "react";
-
-import { CourtContext } from "../Context/CourtContext";
-import Swal from "sweetalert2";
 import axios from "axios";
+import React, { useState, useContext } from "react";
+import { CourtContext } from '../Context/CourtContext'
+import Swal from "sweetalert2";
 
 export default function EditCourt() {
   const { currentCourt, setSection } = useContext(CourtContext);
@@ -212,45 +211,32 @@ export default function EditCourt() {
             {{errors.phone && <p className="error-all-cc">{errors.phone}</p>}}
           </div> */}
 
-        <div className="cont-in-image-cc">
-          <label className="label-all-cc label-image-cc" htmlFor="image">
-            Imagen :{" "}
-          </label>
-          <br />
-          <img src={editInfo.image} alt="Imagen" width="250px" height="150px" />
-          <input
-            className="input-image-cc"
-            type="file"
-            name="file"
-            onChange={uploadImage}
-          />
-        </div>
-
-        <div className="cont-all-cc cont-in-description-cc">
-          <label className="label-all-cc label-image-cc" htmlFor="description">
-            Características de la Cancha :
-          </label>
-          <textarea
-            className="input-all-cc input-description-cc"
-            type="text"
-            col="50"
-            row="6"
-            placeholder="Ej: Futbol 5, Pasto sintetico..."
-            name="description"
-            value={editInfo.description}
-            onChange={handleChange}
-            onBlur={handleBlur}
-          />
-          {errors.description && (
-            <p className="error-all-cc">{errors.description}</p>
-          )}
-        </div>
-        <div>
-          <button disabled={disabled} className="button-save-cc" type="submit">
-            Guardar
-          </button>
-        </div>
-      </form>
-    </div>
-  );
+          <div className="cont-in-image-cc">
+            <label className="label-all-cc label-image-cc" htmlFor="image">Imagen : </label><br/>
+            <img src={editInfo.image} alt="Imagen" width= "250px" height="150px"/>
+            <input id="imagen" className="input-image-cc" type="file" name="file" onChange={uploadImage} />
+            <label htmlFor="imagen" className="input-image">Seleccionar archivo</label>
+          </div>
+  
+          <div className="cont-all-cc cont-in-description-cc">
+            <label className="label-all-cc label-image-cc" htmlFor="description">Características de la Cancha :</label>
+            <textarea
+              className="input-all-cc input-description-cc"
+              type="text"
+              col="50"
+              row="6"
+              placeholder="Ej: Futbol 5, Pasto sintetico..."
+              name="description"
+              value={editInfo.description}
+              onChange={handleChange}
+              onBlur={handleBlur}
+            />
+            {errors.description && <p className="error-all-cc">{errors.description}</p>}
+          </div>
+          <div>
+            <button disabled={disabled} className="button-save-cc" type="submit">Guardar</button>
+          </div>
+        </form>
+      </div>
+    )
 }
