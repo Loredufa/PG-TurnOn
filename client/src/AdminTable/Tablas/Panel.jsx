@@ -15,7 +15,6 @@ const Div = styled.div`
   flex-wrap: wrap;
   background-image: url("../../Assets/Images/cancha-6.jpg")
   width: 100%;
-
 `;
 const H1 = styled.h1`
   float: left;
@@ -23,7 +22,7 @@ const H1 = styled.h1`
   margin-left: 38rem;
   font-family: "Be Vietnam Pro", sans-serif;
   text-align: center;
-  color: #81b214;
+  color: #cfcfcf;
   font-weight: 900;
   @media (max-width: 810px) {
     margin-left: 16rem;
