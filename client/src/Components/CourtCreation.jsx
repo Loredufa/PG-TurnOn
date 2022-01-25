@@ -130,7 +130,7 @@ export default function CourtCreation() {
   return (
     <div className="contenedor-form-createcourt">
       <h1 className="title-creationcourt">Datos para creación de Cancha</h1>
-      <button onClick={() => window.history.back()}>Volver</button>
+      <button className="button-volver-cc" onClick={() => window.history.back()}>Volver</button>
       <form onSubmit={submitCourt} className="form-createcourt">
         <div className="cont-all-cc cont-in-name-cc">
           <label className="label-all-cc label-name-cc" htmlFor="name">Nombre de Cancha :</label>
@@ -181,7 +181,8 @@ export default function CourtCreation() {
         <div className="cont-in-image-cc">
           <label className="label-all-cc label-image-cc" htmlFor="image">Imagen :</label><br/>
             { infoCourt.image && <img src={infoCourt.image} alt="Imagen" width= "250px" height="150px"/>}
-          <input className="input-image-cc" type="file" name="file" onChange={uploadImage} />
+          <input id="imagen" className="input-image-cc" type="file" name="file" onChange={uploadImage} />
+          <label htmlFor="imagen" className="input-image">Seleccionar archivo</label>
         </div>
 
         <div className="cont-all-cc cont-in-description-cc">
