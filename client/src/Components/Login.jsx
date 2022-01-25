@@ -66,7 +66,7 @@ function Login() {
                 </div>
               </div>
               <button className="boton" type="submit">
-                Login
+                Iniciar sesión
               </button>
               <p className="mensaje-error">{message}</p>
             </div>
