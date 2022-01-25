@@ -38,9 +38,11 @@ export default function Location(props) {
     "Paddle",
     "Hockey",
     "Basket",
-    "Pool",
+    "PingPong",
     "Squash",
     "Voley",
+    "Baseball",
+    "Pool",
   ];
 
   const geoLocation = useSelector((state) => state.geoLocation);
