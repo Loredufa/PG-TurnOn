@@ -190,7 +190,19 @@ export default function Register() {
           secureTextEntry={true}
         />
         {inputFullfilled && errors.password && (
-          <Text style={styles.text}>{errors.password}</Text>
+          <Text
+            style={[
+              styles.text,
+              {
+                marginLeft: 60,
+                marginRight: 60,
+                paddingRight: 28,
+                paddingLeft: 28,
+              },
+            ]}
+          >
+            {errors.password}
+          </Text>
         )}
         <TextInput
           placeholder="Repita Contraseña"

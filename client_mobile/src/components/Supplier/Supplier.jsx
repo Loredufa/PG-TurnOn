@@ -26,8 +26,8 @@ export const images = {
   Favoritos: "https://cdn5.dibujos.net/dibujos/pintar/corazon_2.png",
   Busqueda:
     "https://play-lh.googleusercontent.com/WL9oSrJxfO6XDrSnuERVcjFXN--XztDibPGtAxIJsJBfm2ZAv4WvkR5yFuOcFKKR0_A",
-  Voley: 
-  "https://prints.ultracoloringpages.com/647b8308c601b394d1b5963f10f029ad.png"
+  Voley:
+    "https://prints.ultracoloringpages.com/647b8308c601b394d1b5963f10f029ad.png",
 };
 
 export default function Supplier({ item, sport }) {
@@ -61,33 +61,20 @@ export default function Supplier({ item, sport }) {
       onPress={() =>
         navigation.navigate("Courts", {
           name: item.name, //No se si son necesarios
-          sport: sport !== "Otros" ? sport : 'others',
+          sport: sport !== "Otros" ? sport : "others",
           id: item.id, //No se si son necesarios
           coordinates: item.coordinates,
         })
       }
     >
       <View
-        style={{
-          flex: 1,
-          flexDirection: "row",
-          borderRadius: 10,
-          margin: 10,
-          borderWidth: 1,
-          borderColor: "#3FC959",
-          //backgroundColor: '#F8F1D9'
-          alignItems: "center",
-          justifyContent: "center",
-          padding: 2,
-          height: screenWidth / 2.5,
-          width: screenWidth / 1.1,
-
-          backgroundColor: "white",
-          shadowOpacity: 0.5,
-          shadowRadius: 5,
-          shadowColor: "#000",
-          elevation: 20,
-        }}
+        style={[
+          styles.container,
+          {
+            height: screenWidth / 2.5,
+            width: screenWidth / 1.1,
+          },
+        ]}
       >
         <Image
           source={{
@@ -97,21 +84,15 @@ export default function Supplier({ item, sport }) {
         />
         <View style={styles.info}>
           <Text style={styles.name}>{item.name}</Text>
-          <Text style={styles.sportText}>Deportes: 
-          {arrayAux.map((el,index) =>  index===arrayAux.length-1? " " + el : " " + el+" -")} 
+          <Text style={styles.sportText}>
+            Deportes:
+            {arrayAux.map((el, index) =>
+              index === arrayAux.length - 1 ? " " + el : " " + el + " -"
+            )}
           </Text>
           <Text style={styles.sportText}>{item.address}</Text>
           {/*<Text style={styles.mail}>{item.mail}</Text>*/}
-          <View
-            style={{
-              flex: 1,
-              flexDirection: "row",
-              alignItems: "stretch",
-              justifyContent: "space-evenly",
-              padding: 3,
-              marginTop: 10,
-            }}
-          >
+          <View style={styles.icons}>
             <TouchableOpacity onPress={handlerFavorites}>
               {favorites?.find((element) => element.name === item.name) ? (
                 <MaterialCommunityIcons name="heart" size={25} color="red" />
