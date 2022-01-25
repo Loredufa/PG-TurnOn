@@ -77,9 +77,10 @@ export default function CourtDetail({ route }) {
   function handlerVoucher () {
     let code = Math.round(Math.random() * (9999 - 1000) + 1000);
     let dateArr = date.split("-");
-    var d = new Date(dateArr[2], dateArr[1] - 1, dateArr[0]);
+    console.log(dateArr);
+    let d = new Date(dateArr[2], dateArr[1] - 1, dateArr[0]);
     d = d.getDay();
-    var daysOfWeek = [
+    let daysOfWeek = [
       "Domingo",
       "Lunes",
       "Martes",
@@ -90,6 +91,16 @@ export default function CourtDetail({ route }) {
     ];
     let day = daysOfWeek[d];
 
+    console.log(
+      "courtId: " , route.params.court.id,
+      " userId: " ,user.user.id,
+      " day: " ,day,
+      " date: ",dateArr.join("/"),
+      " code: " ,code,
+      " hour: " , timeSelected,
+      " supplierId: " , supplierID,
+      " paymentId: " , vouchers[0].booking.paymentId
+      )
     dispatch(
       bookCourt(
         route.params.court.id,
@@ -102,6 +113,7 @@ export default function CourtDetail({ route }) {
         vouchers[0].booking.paymentId
         ))
     dispatch(deleteBooking(vouchers[0].booking.id));
+    //navigation.navigate("Bookings");
   }
 
   const [timeSelected, setTimeSelected] = useState("");
@@ -118,17 +130,17 @@ export default function CourtDetail({ route }) {
     });
   }
   useEffect(() => {
-    var now = new Date();
-    var day = ("0" + now.getDate()).slice(-2);
-    var month = ("0" + (now.getMonth() + 1)).slice(-2);
-    var today = day + "-" + month + "-" + now.getFullYear();
+    let now = new Date();
+    let day = ("0" + now.getDate()).slice(-2);
+    let month = ("0" + (now.getMonth() + 1)).slice(-2);
+    let today = day + "-" + month + "-" + now.getFullYear();
     //var today = now.getFullYear() + "-" + (month) + "-" + (day);
     // console.log("La fecha de hoy" , today)
     setDate(today);
     let dateArr = today.split("-");
-    var d = new Date(dateArr[2], dateArr[1] - 1, dateArr[0]);
+    let d = new Date(dateArr[2], dateArr[1] - 1, dateArr[0]);
     d = d.getDay();
-    var daysOfWeek = [
+    let daysOfWeek = [
       "Domingo",
       "Lunes",
       "Martes",
@@ -139,7 +151,7 @@ export default function CourtDetail({ route }) {
     ];
     let day1 = daysOfWeek[d];
     dispatch(courtAvailability(court.id, dateArr.join("/"), day1));
-    dispatch (getVouchers(user.user.id , true ));
+    dispatch (getVouchers(user.user.id , true  , court.id, ));
     //dispatch (getBookings(user.user.id))
   }, []);
   //console.log(court);
@@ -170,12 +182,14 @@ export default function CourtDetail({ route }) {
     setScreenPayment(true);
   };
 
-  function handlerDate() {
-    setDate(date);
-    let dateArr = date.split("-");
-    var d = new Date(dateArr[2], dateArr[1] - 1, dateArr[0]);
+  function handlerDate(newDate) {
+    setDate(newDate);
+    let dateArr = newDate.split("-");
+    // console.log("SOY NEW DATEarr" , dateArr)
+    let d = new Date(dateArr[2], dateArr[1] - 1, dateArr[0]);
     d = d.getDay();
-    var daysOfWeek = [
+    // console.log("EL VALOR DE D" , d);
+    let daysOfWeek = [
       "Domingo",
       "Lunes",
       "Martes",
@@ -186,6 +200,7 @@ export default function CourtDetail({ route }) {
     ];
     let day = daysOfWeek[d];
     // console.log(court.id , dateArr.join('/') , day)
+    // console.log("DESPACHO EL ID DE LA CANCHA" , court.id , "la fecha" , dateArr.join("/") ,"el dia" , day)
     dispatch(courtAvailability(court.id, dateArr.join("/"), day));
   }
 
@@ -226,6 +241,7 @@ export default function CourtDetail({ route }) {
           supplierID
         )
       );
+      //navigation.navigate("Home");   VER SI AGREGO ESTA LINEA
       // setRC(0);
       //navigation.navigate('Home');
     } else {
@@ -288,7 +304,7 @@ export default function CourtDetail({ route }) {
             style={styles.date}
             mode="date"
             //placeholder="Dia"
-            format="DD/MM/YYYY"
+            format="DD-MM-YYYY"
             minDate="01-01-2022"
             maxDate="01-01-2030"
             confirmBtnText="Ok"
@@ -315,7 +331,7 @@ export default function CourtDetail({ route }) {
                 fontSize: 17,
               },
             }}
-            onDateChange={handlerDate}
+            onDateChange={(newDate) => handlerDate(newDate)}
           />
           {availables?.length ? (
             <Picker
@@ -383,7 +399,7 @@ export default function CourtDetail({ route }) {
           </TouchableOpacity>
         </View>
         {
-        vouchers.length === 0?
+        vouchers.length ===0 ?
         <TouchableOpacity
           style={styles.button}
           onPress={handlerBooking}

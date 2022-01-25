@@ -30,9 +30,11 @@ export default function Landing() {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state);
   const screenWidth = useSelector((state) => state.screenWidth);
+
   useEffect(() => {
     dispatch(getSupplierLocation());
   }, []);
+
   /*    
     const {user} = useSelector(state => state)
 
@@ -96,6 +98,7 @@ export default function Landing() {
           location.coords.longitude
         )
       );
+      // setReadyToGo(true);
       //console.log("estoy", location);
     })();
     // } else {

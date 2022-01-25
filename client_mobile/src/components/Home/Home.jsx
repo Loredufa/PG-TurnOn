@@ -23,39 +23,7 @@ import {
 } from "../../store/actions/index";
 import SearchBar from "../SearchBar/SearchBar";
 import { styles } from "./StyleHome";
-
-const sports = [
-  {
-    key: "Futbol",
-    img: require("../../../Images/Football.jpg"),
-    url: "https://i.pinimg.com/originals/37/ee/9e/37ee9e13208a4b3a3cb3c49ae7d4338c.png",
-  },
-  {
-    key: "Golf",
-    img: require("../../../Images/Golf.jpg"),
-    url: "https://2.bp.blogspot.com/-ZIMcXanor7I/WZhBGNfOLAI/AAAAAAAHVTA/mEfwzM42yX4RwpS6CwumQ0ZhHsou1m9EwCLcBGAs/s1600/Golf-Ball-PNG-Clipart.png",
-  },
-  {
-    key: "Hockey",
-    img: require("../../../Images/Hockey.jpg"),
-    url: "https://images.vexels.com/media/users/3/227283/isolated/preview/90710bdb5ce01b6d75b9bc710c116f3c-palos-de-hockey-azul-y-verde-planos.png",
-  },
-  {
-    key: "Paddle",
-    img: require("../../../Images/Paddle.jpg"),
-    url: "https://cdn-icons-png.flaticon.com/512/434/434062.png",
-  },
-  {
-    key: "Tenis",
-    img: require("../../../Images/Tennis.jpg"),
-    url: "https://images.vexels.com/media/users/3/132448/isolated/preview/baf01fb517749ccf4e1215d7576fe262-pelota-de-tenis.png",
-  },
-  {
-    key: "Otros",
-    img: require("../../../Images/Otros.jpg"),
-    url: "https://images-na.ssl-images-amazon.com/images/I/61poZwdANWL.png",
-  },
-];
+import { sports } from "./sports";
 
 /*
 const screenWidth = Dimensions.get("window").width;
@@ -81,6 +49,7 @@ export default function Home() {
     return () => subscription?.remove();
   });
 */
+
   useEffect(() => {
     //alert("Permitir acceder a tu ubicacion");
     dispatch(bestCourtsNearMe(5));
@@ -89,7 +58,7 @@ export default function Home() {
 
   const courts = useSelector((state) => state.bestCourts);
   const bestSuppliers = useSelector((state) => state.supplierByLocation);
-  console.log("CANCHAS CERCAS", bestSuppliers);
+  //console.log("CANCHAS CERCAS", bestSuppliers);
   const { user } = useSelector((state) => state);
   const screenWidth = useSelector((state) => state.screenWidth);
   const titleSize = useSelector((state) => state.titleSize);
@@ -110,11 +79,11 @@ export default function Home() {
       <View style={styles.searchBarPos}>
         <SearchBar />
       </View>
-      <View style={{ flex: 5, alignItems: "center" }}>
+      <View style={{ flex: 6, alignItems: "center" }}>
         <View
           style={{
             width: screenWidth,
-            flex: 3,
+            flex: 4,
             justifyContent: "center",
           }}
         >
@@ -137,8 +106,10 @@ export default function Home() {
                     source={{ uri: item.url }}
                     style={{
                       height: screenWidth / 4,
-                      width: titleSize + 10,
+                      width: titleSize + 30,
                       padding: 3,
+                      paddingTop: 10,
+                      resizeMode: "contain",
                     }}
                   />
                 </TouchableOpacity>
@@ -150,29 +121,34 @@ export default function Home() {
           />
         </View>
         <View style={styles.review}>
-          {courts.length === 0 ? (
-            <ActivityIndicator size="large" color="#00ff00" />
-          ) : (
-            <View style={{ flex: 2 }}>
-              <Text
-                style={{
-                  flex: 1,
-                  height: screenWidth / 8,
-                  textAlign: "left",
-                  justifyContent: "center",
-                  marginLeft: 20,
-                  fontSize: 20,
-                  fontWeight: "bold",
-                  marginTop: 5,
-                }}
-              >
-                Los mejores de tu zona
-              </Text>
+          <View style={{ flex: 1, justifyContent: "flex-start" }}>
+            <Text
+              style={{
+                flex: 0.5,
+                height: screenWidth / 8,
+                textAlign: "left",
+                //justifyContent: "center",
+                justifyContent: "flex-start",
+                marginLeft: 25,
+                fontSize: 22,
+                fontWeight: "bold",
+                //marginTop: 15,
+              }}
+            >
+              Los mejores de tu zona
+            </Text>
+            {bestSuppliers.length === 0 ? (
+              <ActivityIndicator
+                style={{ flex: 2.8 }}
+                size="large"
+                color="#00ff00"
+              />
+            ) : (
               <FlatList
                 data={bestSuppliers}
                 pagingEnabled={true}
                 style={{
-                  flexGrow: 1.5,
+                  flexGrow: 2.8,
                   width: screenWidth,
                   height: screenWidth / 4,
                   marginLeft: 20,
@@ -192,30 +168,29 @@ export default function Home() {
                     }
                   >
                     <View
-                      style={
-                        (styles.card2,
+                      style={[
+                        styles.card2,
                         {
-                          height: (2 * screenWidth) / 6,
-                          width: (3 * screenWidth) / 4,
-                          borderWidth: 1,
-                          borderRadius: 25,
-                        })
-                      }
+                          height: (3 * screenWidth) / 6,
+                          width: (2.5 * screenWidth) / 4,
+                        },
+                      ]}
                     >
                       <Image
-                        source={item.image}
+                        source={{ uri: item.image }}
                         style={{
-                          height: (1.5 * screenWidth) / 6,
-                          width: (3 * screenWidth) / 4 - 2,
+                          height: (2.5 * screenWidth) / 6,
+                          width: (2.5 * screenWidth) / 4 - 2,
                           //padding: 3,
                           borderTopLeftRadius: 25,
                           borderTopRightRadius: 25,
+                          resizeMode: "stretch",
                         }}
                       />
                       <View
                         style={{
                           flexDirection: "row",
-                          width: (3 * screenWidth) / 4 - 2,
+                          width: (2.5 * screenWidth) / 4 - 2,
                           justifyContent: "space-between",
                         }}
                       >
@@ -226,7 +201,7 @@ export default function Home() {
                             size={15}
                             color="#FFC900"
                           />
-                          <Text>{item.reputation}</Text>
+                          <Text>{item.reputation.toFixed(1)}</Text>
                         </View>
                       </View>
                     </View>
@@ -236,8 +211,8 @@ export default function Home() {
                 //numColumns={3}
                 keyExtractor={(item) => item.id}
               />
-            </View>
-          )}
+            )}
+          </View>
         </View>
         {/* </View> */}
       </View>

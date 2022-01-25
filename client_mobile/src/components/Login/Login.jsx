@@ -65,10 +65,12 @@ export default function Login() {
 
   // SOMEWHERE INSIDE LOGIN.JS
   const [loading, setLoading] = useState(false);
+  const [press, setPress] = useState(false);
   const handleStartPress = () => {
     // WE COULD DISPATCH FROM HERE
     // HOWEVER, THAT WOULD NOT TRIGGER THE LOADING VIEW
     setLoading(true);
+    setPress(true);
   };
 
   useEffect(async () => {
@@ -141,7 +143,7 @@ export default function Login() {
           defaultValue={inputs.password}
           secureTextEntry={true}
         />
-        {user.message && (
+        {user.message && press && (
           <Text style={styles.error}>Usuario o contraseña incorrectos</Text>
         )}
         <TouchableOpacity onPress={handleStartPress}>

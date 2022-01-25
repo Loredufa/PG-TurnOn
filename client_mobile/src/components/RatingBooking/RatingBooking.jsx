@@ -91,7 +91,9 @@ export default function RatingBooking({name, booking , visible , onClose , suppl
                     </TouchableOpacity>
                     <TouchableOpacity 
                     style={[styles.btnCancel  , { width: screenWidth / 3.2, height: screenWidth / 11.5 }]} 
-                    onPress={onClose}>
+                    onPress={() => 
+                      { onClose(bookingId) 
+                      setStars(0)}}>
                       <Text style={styles.textCancel}>Cancelar</Text>
                     </TouchableOpacity>
                 </View>

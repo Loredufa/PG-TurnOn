@@ -27,6 +27,9 @@ export default function Message() {
         else if (messageBack.message ===  "El pago de la seña fallo" ){
           navigation.navigate("Home");
         }
+        else if (messageBack.message === "La reserva se ha registrado correctamente") {
+          navigation.navigate("Bookings");
+        }
         dispatch (changeMessage());
     }
 

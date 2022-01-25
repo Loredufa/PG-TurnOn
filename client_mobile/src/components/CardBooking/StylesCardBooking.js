@@ -7,6 +7,7 @@ export const styles = StyleSheet.create({
     info: {
         flex: 1,
         flexDirection: "column",
+        marginLeft: 5,
         //alignItems: "flex-start",
     },
     name: {

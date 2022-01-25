@@ -49,11 +49,11 @@ export default function CardBooking({item}) {
                     }}
                     style={{
                       height: '90%',
-                      width: '40%',
+                      width: '35%',
                       padding: 3,
-                      borderBottomLeftRadius: 10,
-                      borderTopLeftRadius: 10,
-                      alignItems: 'center'
+                      borderRadius: 10,
+                      alignItems: 'center',
+                      marginLeft: 5
                     }}
                   />
                   <View

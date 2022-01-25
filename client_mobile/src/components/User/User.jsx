@@ -247,8 +247,8 @@ export default function User() {
   }
 
   return eliminar ? (
-    <View style={{ flex: 1, justifyContent: "center" }}>
-      <View style={{ alignItems: "center", flex: 1 }}>
+    
+    <View style={{ flex: 1, justifyContent: "center" ,alignItems: "center"}}>
         <Text style={styles.question}>
           ¿Esta seguro que quiere eliminar el usuario?
         </Text>
@@ -272,7 +272,6 @@ export default function User() {
             <Text style={styles.textCancel}>Eliminar</Text>
           </TouchableOpacity>
         </View>
-      </View>
     </View>
   ) : (
     <View style={{ flex: 1, alignItems: "center" }}>

@@ -31,8 +31,9 @@ import {
   GET_VOUCHERS,
   GET_GEO_LOCATION,
   GET_SUPPLIER_BY_LOCATION_RATING,
-  GET_COMPLETED_BOOKINGS
-
+  GET_COMPLETED_BOOKINGS,
+  CHANGE_BOOKING_RATED,
+  RATE_SUPPLIER
 } from "../actions/index";
 import {
   findEmail,
@@ -122,6 +123,7 @@ const reducer = (state = initialState, action) => {
         boolean: false,
         authToken: null,
         googlesession: false,
+        completedBookings:[]
       };
     case CHANGE_USER_INFO:
       return {
@@ -189,19 +191,19 @@ const reducer = (state = initialState, action) => {
     case GET_BOOKINGS:
       return {
         ...state,
-        bookings: action.payload.hasOwnProperty("message")
+        bookings: action.payload?.hasOwnProperty("message")
           ? []
-          : action.payload,
+          : action.payload.result,
       };
     case GET_VOUCHERS:
       return {
         ...state,
-        vouchers: action.payload.hasOwnProperty("message") ? [] : action.payload,
+        vouchers: action.payload?.hasOwnProperty("message") ? [] : action.payload.result,
       }
     case GET_COMPLETED_BOOKINGS:
       return {
         ...state,
-        completedBookings: action.payload.hasOwnProperty("message") ? [] : [action.payload],
+        completedBookings: action.payload?.hasOwnProperty("message") ? [] : [action.payload.result],
       }
     case FIND_PAYMENT:
       return {
@@ -214,6 +216,11 @@ const reducer = (state = initialState, action) => {
         //messageBack: action.payload,
         flagBooking: !state.flagBooking,
       };
+    case CHANGE_BOOKING_RATED: 
+    return {
+      ...state,
+      completedBookings: [],
+    }
     case EDIT_BOOKING:
       return {
         ...state,

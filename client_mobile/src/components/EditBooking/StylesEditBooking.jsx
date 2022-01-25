@@ -25,9 +25,16 @@ export const styles = StyleSheet.create({
         flex:1,
         fontSize:18,
         fontWeight: '500',
-        paddingTop: 5,
         textAlign: 'center',
+        paddingBottom: 5
     },
+    title1: {
+      flex:1,
+      fontSize:18,
+      fontWeight: '500',
+      paddingTop: 5,
+      textAlign: 'center',
+  },
     column: {
         flex:1,
         flexDirection: 'row',
@@ -83,5 +90,6 @@ export const styles = StyleSheet.create({
         flexDirection: "row",
         //margin: 20,
         //justifyContent: "space-between",
+        alignItems: 'center'
       },
 })

@@ -7,18 +7,18 @@ export function findEmail(arr, email) {
 */
 
 export function findCourtByName(arr, name) {
-  console.log(arr?.find((court) => court.name === name));
+  //console.log(arr?.find((court) => court.name === name));
   return arr?.find((court) => court.name === name);
 }
 
 export function bestCourts(arr, location) {
-  console.log(
-    arr?.filter(
-      (court) =>
-        parseInt(court.location) - location <= 30 &&
-        parseInt(court.rating) >= 3.8
-    )
-  );
+  // console.log(
+  //   arr?.filter(
+  //     (court) =>
+  //       parseInt(court.location) - location <= 30 &&
+  //       parseInt(court.rating) >= 3.8
+  //   )
+  // );
   return arr?.filter(
     (court) =>
       parseInt(court.location) - location <= 100 &&
@@ -27,7 +27,7 @@ export function bestCourts(arr, location) {
 }
 
 export function getTypes(arr, type) {
-  console.log(arr?.filter((court) => court.type === type));
+  // console.log(arr?.filter((court) => court.type === type));
   return arr?.filter((court) => court.type === type);
 }
 
@@ -46,6 +46,7 @@ export function rutas(arr) {
       id: e.id,
       sport: sport,
       description: e.address,
+      phone: e.phone,
     };
   });
   return newArr;
