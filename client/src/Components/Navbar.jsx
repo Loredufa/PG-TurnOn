@@ -33,8 +33,8 @@ export default function Navbar() {
       </Link>
       {location.pathname.includes("/profile") ? (
         <div className="navbar-supplier">
-          <Link className="navbar-home-turn" to="/">
-            Turnos
+          <Link className="navbar-home-turn" to="/profile/guia">
+            Guia
           </Link>
           <Link className="navbar-home-gest" to="/profile/courts">
             Canchas
