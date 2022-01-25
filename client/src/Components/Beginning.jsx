@@ -8,7 +8,8 @@ export default function Beginning() {
             <div class="card">
     <div class="details">
       <div class="center">
-        <Title>Comencemos<br><span>Ingresa a cancha y luego a crear cancha </span></br></Title>
+        <Title>Comencemos</Title>
+        <span>Ingresa a cancha y luego a crear cancha </span>
         <img
         className="crearCancha"
         src={require("../Assets/Images/crearCancha.png")}
