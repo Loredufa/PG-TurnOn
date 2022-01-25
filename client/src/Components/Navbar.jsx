@@ -9,19 +9,7 @@ export default function Navbar() {
   const location = useLocation();
   const history = useHistory();
   return (
-    <div
-      className="navbar-contenedor"
-      /* style={{
-        display: "flex",
-        flexDirection: "row",
-        justifyContent: "space-between",
-        marginRight: "40px",
-        alignItems: "center",
-        height: "80px",
-        position: "relative",
-        backgroundColor: "#ffffff",
-      }} */
-    >
+    <div className="navbar-contenedor">
       <Link className="navbar-logo" to="/">
         <img
           style={{
