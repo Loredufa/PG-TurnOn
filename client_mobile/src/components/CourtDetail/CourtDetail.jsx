@@ -69,6 +69,7 @@ export default function CourtDetail({ route }) {
       )
     );
     setBookingRef({ court, day, timeSelected });
+    //console.log(court , day , timeSelected);
     setConfirmScreen(true);
   }
 
@@ -177,7 +178,7 @@ export default function CourtDetail({ route }) {
   const handlePress = async (url) => {
     // Checking if the link is supported for links with custom URL scheme.
     const supported = await Linking.canOpenURL(url);
-
+    //console.log(url);
     if (supported) {
       // Opening the link with some app, if the URL scheme is "http" the web link should be opened
       // by some browser in the mobile

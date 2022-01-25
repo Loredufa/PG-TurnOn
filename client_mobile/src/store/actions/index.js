@@ -165,7 +165,7 @@ export function MPbookingDetails(
   return async function (dispatch) {
     try {
       const state = "active";
-      amount = Math.round(amount.split("$")[1] / 10);
+      amount = Math.round(amount / 10);
       /*console.log(
         `${URL}user/mercadopago?amount=${amount}&idCourt=${idCourt}&idUser=${idUser}&idSupplier=${idSupplier}&reservationCode=${reservationCode}&state=${state}&courtName=${courtName}`
       );*/

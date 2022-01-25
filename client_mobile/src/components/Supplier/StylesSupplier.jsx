@@ -28,7 +28,8 @@ export const styles = StyleSheet.create({
   info: {
     flex: 2,
     flexDirection: "column",
-    marginLeft: 5,
+    paddingLeft: 10,
+    paddingRight: 10,
     //alignItems: "flex-start",
   },
   name: {
