@@ -1,14 +1,18 @@
 import React from 'react'
-import styled from "styled-components"
+//import styled from "styled-components"
+import "../Css/beginning.css"
 
 
 export default function Beginning() {
 
     return (
-            <div class="card">
-    <div class="details">
+      <div class="card">
+        <div class="image">
+      <img src="https://cdn.pixabay.com/photo/2017/08/10/01/38/grass-2616911_960_720.jpg"/>
+    </div>
+      <div class="details">
       <div class="center">
-        <Title>Comencemos</Title>
+        <h1>Comencemos</h1>
         <span>Ingresa a cancha y luego a crear cancha </span>
         <img
         className="crearCancha"
@@ -33,7 +37,7 @@ export default function Beginning() {
         src={require("../Assets/Images/franjaHoraria.png")}
         alt="franja"
       />
-        <h3>Ya puedes recibir reservas<br><span>Dentro de turnos podras encontrar todas tus reservas. Debes hacer click en el dia del calendario para verlas.</span></br></h3>
+        <h3>Ya puedes recibir reservas<br/><span>Dentro de turnos podras encontrar todas tus reservas. Debes hacer click en el dia del calendario para verlas.</span></h3>
         <img
         className="turnos"
         src={require("../Assets/Images/turnos.png")}
@@ -54,7 +58,7 @@ export default function Beginning() {
     )
 }
 
-export const Title = styled.h1`
-color: #81b214;
-margin-left: 2%;
-font-size: 300%`
+// export const Title = styled.h1`
+// color: #81b214;
+// margin-left: 2%;
+// font-size: 300%`

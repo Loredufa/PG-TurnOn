@@ -15,6 +15,7 @@ import Supplier from "./AdminTable/Tablas/Supplier";
 import UpdatePassword from "./Components/UpdatePassword";
 import User from "./AdminTable/Tablas/User";
 import { useSelector } from "react-redux";
+import Beginning from "./Components/Beginning";
 
 function App() {
   const { user } = useSelector((state) => state);
@@ -75,6 +76,16 @@ function App() {
                 <Redirect to="/panel" />
               ) : (
                 <Settings />
+              )
+            }
+          />
+               <Route
+            path="/profile/guia"
+            component={() =>
+              user && user.supplier.access === "admin" ? (
+                <Redirect to="/panel" />
+              ) : (
+                <Beginning />
               )
             }
           />
