@@ -8,22 +8,23 @@ function Home(){
 
 return(
     <div>
-        <div className='container-title'>
-            <h1 className='h1-home'>REVOLUCIONA TUS RESERVAS</h1>
-            <h3 className='h3-home'>No más filas. No más llamadas. No más espera.</h3>
-            
+        <div className='container-title'> 
+         
         </div>
+        <div className='container-frase'><h1 className='h1-home'>REVOLUCIONA TUS RESERVAS</h1>
+             <h3 className='h3-home'>No más filas. No más llamadas. No más espera.</h3></div>
         {/* Aca se termina el bloque */}
         
         <div id="performance">
         <Performance />
         </div>
+        <div className='trianguloGris'></div>
         {/* Aca se termina el bloque */}
  
         <div id="features">
         <Features />
         </div>
-
+        <div className='trianguloVerde'></div>
         <div id="contact">
             <Contact/>   
         </div>     

@@ -3,7 +3,7 @@
 .back-ground-contact{
     margin-top: -22px;
     background-color: var(--colorAppleGreen);
-    height: 32vw;
+    height: auto;
     font-family: 'Be Vietnam Pro', sans-serif;
 
 }
@@ -17,7 +17,6 @@
 }
 
 .titulo-contacto{
-    font-family:'Be Vietnam Pro', sans-serif;
     color:#ffffff;
     margin-left: 85px;
     margin-bottom: 45px;
@@ -25,7 +24,6 @@
 }
 
 .parrafo-info{
-    font-family: 'Be Vietnam Pro', sans-serif;
     font-size: 20px;  
     color:#dedede;
     text-align: left;
@@ -73,6 +71,7 @@
     height: 45px;
     margin-left: 550px;
     margin-top: 1px;
+    margin-bottom: 15px;
     background: #FFFFFF;
     border: 1px solid #fdfcfc;
     box-sizing: border-box;
