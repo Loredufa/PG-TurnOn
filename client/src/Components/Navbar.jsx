@@ -1,7 +1,5 @@
 import "../Css/navbar.css";
-
 import { Link, useLocation } from "react-router-dom";
-
 import { BiUserCircle } from "react-icons/bi";
 import React from "react";
 import { useHistory } from "react-router-dom";
@@ -55,7 +53,7 @@ export default function Navbar() {
               window.location.reload(false);
             }}
           >
-            Logout
+            Sign Out
           </button>
         </div>
       ) : (
@@ -83,25 +81,29 @@ export default function Navbar() {
             </>
           ) : (
             <>
-              <Link className="navbar-profile" to="/profile">
-                <BiUserCircle
-                  size="40"
-                  style={{
-                    color: "#81b214",
-                    marginTop: "0px",
-                    marginRight: "20px",
+              <div>
+                <button
+                  className="button-logout"
+                  onClick={() => {
+                    window.localStorage.removeItem("loguodeusuario");
+                    window.location.reload(false);
                   }}
-                />
-              </Link>
-              <button
-                className="button-logout"
-                onClick={() => {
-                  window.localStorage.removeItem("loguodeusuario");
-                  window.location.reload(false);
-                }}
-              >
-                Logout
-              </button>
+                >
+                  Sign Out
+                </button>
+              </div>
+              <div>
+                <Link className="navbar-profile" to="/profile">
+                  <BiUserCircle
+                    size="80"
+                    style={{
+                      color: "#81b214",
+                      marginTop: "0px",
+                      marginRight: "10px",
+                    }}
+                  />
+                </Link>
+              </div>
             </>
           )}
         </div>
