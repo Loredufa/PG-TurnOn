@@ -16,7 +16,8 @@ export const styles = StyleSheet.create({
         borderRadius: 20,
     },
     info: {
-        flex:5
+        flex:5,
+        padding: 10
     },
     title: {
         flex:1,
@@ -39,6 +40,10 @@ export const styles = StyleSheet.create({
         textAlign: 'justify',
         marginLeft: 5,
         marginRight: 5,
+        fontSize: 12,
+        fontStyle: 'italic',
+        paddingTop: 5,
+        paddingBottom: 5
     },
     buttons: {
         flex:1,

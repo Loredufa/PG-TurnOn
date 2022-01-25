@@ -114,7 +114,8 @@ export const styles = StyleSheet.create({
   buttons: {
       //flex: 1,
       flexDirection: 'row',
-      alignSelf: 'center'
+      alignSelf: 'center',
+      paddingBottom: 10,
   },
   btnEdit: {
     width: 130,

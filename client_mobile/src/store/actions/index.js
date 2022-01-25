@@ -41,15 +41,18 @@ const URL = "https://turnon1.herokuapp.com/";
 
 export function rateSupplier(supplierId, rating, bookingId) {
   return async function (dispatch) {
+    console.log("LA URL CON LA QUE DESPACHO:" , URL + "supplier/rating/" + supplierId, "los que van en body", rating,
+    bookingId,)
     try {
       const response = await axios.put(URL + "supplier/rating/" + supplierId, {
         number: rating,
         bookingId,
       });
-      dispatch({
-        type: RATE_SUPPLIER,
-        payload: response.data,
-      });
+      console.log("LA RESPUESTA CUANDO HAGO EL RATING" , response.data)
+      // dispatch({
+      //   type: RATE_SUPPLIER,
+      //   payload: response.data,
+      // });
     } catch (error) {
       console.log(error);
     }
@@ -372,7 +375,7 @@ export function deleteBooking(bookingId) {
 
 export function changeBookingRated(bookingId) {
   return async function (dispatch) {
-    let rated = await axios.put(URL + "user/bookings/" + bookingId, {
+    let change = await axios.put(URL + "user/bookings/" + bookingId, {
       rated: true,
     });
     dispatch({
