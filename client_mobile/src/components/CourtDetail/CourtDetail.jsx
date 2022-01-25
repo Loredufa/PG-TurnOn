@@ -241,6 +241,7 @@ export default function CourtDetail({ route }) {
           supplierID
         )
       );
+      //navigation.navigate("Home");   VER SI AGREGO ESTA LINEA
       // setRC(0);
       //navigation.navigate('Home');
     } else {

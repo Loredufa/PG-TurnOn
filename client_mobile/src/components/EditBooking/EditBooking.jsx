@@ -71,11 +71,13 @@ export default function EditBooking({ booking , visible , onClose , onEdit}) {
                 <View style={styles.info}>
                     <Text style={styles.title1}>Editar reserva en</Text>
                     <Text style={styles.title}>{booking.court.name}</Text>
+                    <View style={{flex:1, paddingTop:10}}>
                     <Text style={styles.text}>Seleccionar dia y horario para editar la reserva</Text>
                     <Text style={styles.text}>actuales {booking.booking.date} de {booking.booking.initialTime} a {booking.booking.endingTime} </Text>
-                    <View style={styles.optionsContainer}>
+                    </View>
           {/* <Text style={{ marginRight: 20, borderWidth: 1 }}>Horario</Text> */}
           {/* <Text style={styles.date}>Dia</Text> */}
+        <View style={styles.optionsContainer}>
           <DatePicker
             date={date}
             style={styles.date}
@@ -101,11 +103,11 @@ export default function EditBooking({ booking , visible , onClose , onEdit}) {
                 borderBottomWidth: 1,
               },
               placeholderText: {
-                fontSize: 17,
+                fontSize: 15,
                 color: "gray",
               },
               dateText: {
-                fontSize: 17,
+                fontSize: 15,
               },
             }}
             onDateChange={(newDate) => handlerDate(newDate)}

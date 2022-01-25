@@ -70,7 +70,7 @@ export const styles = StyleSheet.create({
   },
   date: {
     flex: 1,
-    marginLeft: 10,
+    marginLeft: 20,
     justifyContent: "flex-start",
     fontSize: 15,
     // borderWidth: 1,
@@ -83,7 +83,7 @@ export const styles = StyleSheet.create({
   
   phone: {
     flex: 1,
-    marginLeft: 10,
+    marginLeft: 20,
     justifyContent: "flex-start",
     alignSelf: 'center',
     fontSize: 15,

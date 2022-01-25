@@ -90,5 +90,6 @@ export const styles = StyleSheet.create({
         flexDirection: "row",
         //margin: 20,
         //justifyContent: "space-between",
+        alignItems: 'center'
       },
 })
