@@ -4,6 +4,7 @@ import HoursList from './HoursList'
 import DaysList from './DaysList'
 import styled from 'styled-components'
 import { orderHours } from './helpers/functions'
+import Swal from 'sweetalert2'
 
 export default function Form() {
     
@@ -17,7 +18,10 @@ export default function Form() {
     const handleAddTime = (e) => {
         e.preventDefault()
         if(time.start === time.end || Number(time.start.slice(0, 2)) >= Number(time.end.slice(0, 2))) {
-            alert("Datos incorrectos")
+            Swal.fire({
+                title: 'Error!',
+                text: 'Datos incorrectos.',
+            })
         }
         else {
             if(time.start && time.end) {
@@ -29,7 +33,10 @@ export default function Form() {
                 })
             }
             else {
-                alert("Datos incompletos")
+                Swal.fire({
+                    title: 'Error!',
+                    text: 'Datos incompletos.',
+                })
             }
         }
     }
@@ -110,7 +117,7 @@ const TimeAndHours = styled.div`
     flex-direction: column;
     font-family: 'Be Vietnam Pro', sans-serif;
     font-size: 16px;
-
+    width: 100%;
 `
 const HoursContainer = styled.div`
     margin-top: 4vh;
