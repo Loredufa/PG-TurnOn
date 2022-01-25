@@ -48,7 +48,7 @@ function Login() {
                   type="text"
                   id="user"
                   name="user"
-                  placeholder="username"
+                  placeholder="correo electrónico"
                   values={input.user}
                   onChange={handleChange}
                 />
