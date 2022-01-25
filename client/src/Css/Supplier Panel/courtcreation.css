@@ -190,7 +190,6 @@ input#imagen + label:hover{
 } 
 
 
-
 /* --Input Description-- */
 
 .cont-in-description-cc{}
@@ -262,17 +261,35 @@ input#imagen + label:hover{
 } 
 
 
-@media(max-width: 1050px) {
+@media(max-width: 1000px) {
 
     .contenedor-form-createcourt{
-       width:100%;
+        width:100%;
+    }
 
-    }
     .form-createcourt{
-        /* display:grid;
-        grid-template-columns: repeat(2,1fr);
-        column-gap:2rem; */
-        /* display:inline-block; */
-        width:100%
+        display:inline-block;
+        width:60%;
+        height:auto;
+        margin-bottom: 30px;
+        margin-top:60px;
+        /* overflow:hidden;  */
     }
+    .button-save-cc{
+        width:30%;
+        margin-bottom:5px;
+        margin-top:110px;
     }
+
+    .button-volver-cc {
+        position:absolute
+    }
+
+    .label-sport-cc{
+       margin-left:0px
+}
+    .select-cc{
+        margin-left:0px;
+    }
+
+}
