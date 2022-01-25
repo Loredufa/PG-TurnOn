@@ -82,6 +82,18 @@ const DivButtons = styled.div`
   height: 50px;
   transition: all 0.05s linear;
   font-family: inherit;
+  @media (max-height: 874px) {
+    float: left;
+    margin-top: 23rem;
+  }
+  @media (max-height: 816px) {
+    float: left;
+    margin-top: 21rem;
+  }
+  @media (max-height: 791px) {
+    float: left;
+    margin-top: 18rem;
+  }
 `;
 
 const Button2 = styled.button`
@@ -90,6 +102,7 @@ const Button2 = styled.button`
   font-size: 23px;
   cursor: pointer;
  margin-top: 1rem;
+ margin-left: 3rem;
  font-size: 12px;
  text-transform: uppercase;
  letter-spacing: 2.5px;
@@ -116,6 +129,7 @@ const Button2 = styled.button`
 `;
 const Button = styled.button`
  padding: 1.3em 3em;
+ margin-left: 3rem;
  margin-top: 3rem;
  font-size: 12px;
  text-transform: uppercase;
