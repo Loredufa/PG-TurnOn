@@ -11,7 +11,8 @@ export default function BookingItem ({ date, start, end, status, setBookings, id
     const states = {
         completed: "Completada",
         cancelled: "Cancelada",
-        voucher: "Voucher"
+        voucher: "Voucher",
+        active: "Activa"
     }
 
     const handleCompleted = () => {
@@ -80,9 +81,17 @@ export default function BookingItem ({ date, start, end, status, setBookings, id
 const Wrapper = styled.div`
     font-family: 'Be Vietnam Pro', sans-serif;
     text-align: center;
-    background: white;
+    background: #2a2d34;
+    color: white;
     border-radius: 20px;
-    padding: 5px;
+    padding: 10px;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    margin: 3px;
+    @media (max-width: 650px) {
+        width: 70%;
+    }
 `
 
 const ButtonComplete = styled.button`
@@ -119,5 +128,5 @@ const InfoContainer = styled.div`
 `
 
 const ButtonsContainer = styled.div`
-
+    margin-top: 5px;
 `
