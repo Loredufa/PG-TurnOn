@@ -15,7 +15,9 @@ function Login() {
     password: " ",
   });
 
-  if (user) {
+  if (user && user.supplier.access === "admin") {
+    history.push("/panel");
+  } else if (user && user.supplier.access !== "admin") {
     history.push("/");
   }
 
@@ -46,7 +48,7 @@ function Login() {
                   type="text"
                   id="user"
                   name="user"
-                  placeholder="username"
+                  placeholder="Correo electrónico"
                   values={input.user}
                   onChange={handleChange}
                 />
@@ -57,14 +59,14 @@ function Login() {
                     type="password"
                     id="password"
                     name="password"
-                    placeholder="password"
+                    placeholder="Password"
                     values={input.password}
                     onChange={handleChange}
                   />
                 </div>
               </div>
               <button className="boton" type="submit">
-                Login
+                Iniciar sesión
               </button>
               <p className="mensaje-error">{message}</p>
             </div>

@@ -1,8 +1,8 @@
-@import "./Variables/var.css";
+/* @import "./Variables/var.css";
 
 .div-father-features{
-    background-image: url('../Assets/Images/Apple\ green-wave.svg');
-    width: 100vw;
+    background-image: white;
+    width: 100vw; 
     height: 50vh;
     background-repeat: no-repeat;
     background-position: center;
@@ -20,6 +20,8 @@
     color: rgb(177, 177, 177);
 
 }
+
+
 
 .Wraper{
     display: grid;
@@ -113,3 +115,118 @@
     color: #ffffff;
 
 }
+
+ */
+
+ @import "./Variables/var.css";
+
+ .div-father-features{
+     background-image: white;
+     /* width: 100vw;  */
+     height: 50vh;
+     background-repeat: no-repeat;
+     background-position: center;
+     background-size: cover;
+     background-attachment: fixed;
+     position: relative;
+     margin: 0rem;
+ 
+ }
+ 
+ .h1-features{
+     padding-top: 20px;
+     font-weight: bold;
+     text-align:left;
+     font-size: 2.1rem;
+     margin-top: 4rem;
+     margin-left: 5.1rem;
+     color: rgb(177, 177, 177);
+ 
+ }
+ 
+ .Wraper{
+     display: flex;
+     flex-direction: row;
+     padding-right: 1rem;
+     padding-left: 1rem;
+     font-family: 'Be Vietnam Pro', sans-serif;
+     margin-top: 80px;
+     align-content: center;
+     gap: 20px;
+     justify-items: center;
+     flex-wrap: wrap;
+     justify-content: space-around;
+
+        
+ }
+ 
+ .div-features-1{
+     background-color: var(--colorGrey);
+     border-radius: 10px;
+     width: 20rem;
+     text-align: center;
+     padding: 15px;
+     box-shadow: 7px 5px 7px hsla(0, 0%, 51%, 0.438);
+ }
+ 
+ .div-features-2{
+     background-color: var(--colorGrey);
+     border-radius: 10px;
+     border-radius: 10px;
+     width: 20rem;
+     text-align: center;
+     padding: 15px;
+     box-shadow: 7px 5px 7px hsla(0, 0%, 51%, 0.438);
+ 
+ }
+ 
+ .div-features-3{
+     background-color: var(--colorGrey);
+     border-radius: 10px;
+     border-radius: 10px;
+     width: 20rem;
+     text-align: center;
+     padding: 15px;
+     box-shadow: 7px 5px 7px hsla(0, 0%, 51%, 0.438);
+ 
+ }
+ 
+ .div-features-4{
+    background-color: var(--colorGrey);
+    border-radius: 10px;
+    border-radius: 10px;
+    width: 20rem;
+    text-align: center;
+    padding: 15px;
+    box-shadow: 7px 5px 7px hsla(0, 0%, 51%, 0.438);
+ 
+ }
+ 
+ .div-features-5{
+    background-color: var(--colorGrey);
+     border-radius: 10px;
+     border-radius: 10px;
+     width: 20rem;
+     text-align: center;
+     padding: 15px;
+     box-shadow: 7px 5px 7px hsla(0, 0%, 51%, 0.438);
+ 
+ }
+ 
+ .title-features{
+     font-size: 18px;
+     color: var(--colorAppleGreen);
+   
+ 
+ }
+ 
+ .tex-freatures{
+     font-size: 15px;
+     padding-left: 5px;
+     padding-right: 5px;
+     padding-bottom: 10px;
+     color: var(--colorAppleGreen);
+ 
+ }
+ 
+ 

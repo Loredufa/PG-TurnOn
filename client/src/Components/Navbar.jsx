@@ -1,28 +1,15 @@
 import "../Css/navbar.css";
-
 import { Link, useLocation } from "react-router-dom";
-
 import { BiUserCircle } from "react-icons/bi";
 import React from "react";
+import { useHistory } from "react-router-dom";
 
 export default function Navbar() {
   const user = window.localStorage.getItem("loguodeusuario");
   const location = useLocation();
-
+  const history = useHistory();
   return (
-    <div
-      className="navbar-contenedor"
-      style={{
-        display: "flex",
-        flexDirection: "row",
-        justifyContent: "space-between",
-        marginRight: "40px",
-        alignItems: "center",
-        height: "80px",
-        position: "static",
-        backgroundColor: "#ffffff",
-      }}
-    >
+    <div className="navbar-contenedor">
       <Link className="navbar-logo" to="/">
         <img
           style={{
@@ -34,8 +21,8 @@ export default function Navbar() {
       </Link>
       {location.pathname.includes("/profile") ? (
         <div className="navbar-supplier">
-          <Link className="navbar-home-turn" to="/">
-            Turnos
+          <Link className="navbar-home-turn" to="/profile/guia">
+            Guia
           </Link>
           <Link className="navbar-home-gest" to="/profile/courts">
             Canchas
@@ -46,6 +33,16 @@ export default function Navbar() {
           <Link className="navbar-home-perfil" to="/profile/settings">
             Configuración/Perfil
           </Link>
+          <button
+            className="button-logout"
+            onClick={() => {
+              history.push("/");
+              window.localStorage.removeItem("loguodeusuario");
+              window.location.reload(false);
+            }}
+          >
+            Cerrar sesión
+          </button>
         </div>
       ) : (
         <div className="navbar-home">
@@ -72,25 +69,29 @@ export default function Navbar() {
             </>
           ) : (
             <>
-              <Link className="navbar-profile" to="/profile">
-                <BiUserCircle
-                  size="40"
-                  style={{
-                    color: "#81b214",
-                    marginTop:"0px",
-                    marginRight:"20px",
+              <div>
+                <button
+                  className="button-logout"
+                  onClick={() => {
+                    window.localStorage.removeItem("loguodeusuario");
+                    window.location.reload(false);
                   }}
-                />
-              </Link>
-              <button
-                className="button-logout"
-                onClick={() => {
-                  window.localStorage.removeItem("loguodeusuario");
-                  window.location.reload(false);
-                }}
-              >
-                Logout
-              </button>
+                >
+                  Cerrar sesión
+                </button>
+              </div>
+              <div>
+                <Link className="navbar-profile" to="/profile">
+                  <BiUserCircle
+                    size="80"
+                    style={{
+                      color: "#81b214",
+                      marginTop: "0px",
+                      marginRight: "10px",
+                    }}
+                  />
+                </Link>
+              </div>
             </>
           )}
         </div>

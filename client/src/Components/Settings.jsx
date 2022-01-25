@@ -130,8 +130,8 @@ export default function Settings() {
     >
       {({ errors, values }) =>
         !edit ? (
-          <Form>
-            <DivGlobal>
+          <DivGlobal>
+            <Form>
               <H1name>Configuración/Perfil</H1name>
               <DivForm>
                 <EditButton onClick={() => setEdit(true)}>Editar</EditButton>
@@ -152,11 +152,11 @@ export default function Settings() {
                   <label>{values.businessname}</label>
                 </LabelSetting2>
               </DivForm>
-            </DivGlobal>
-          </Form>
+            </Form>
+          </DivGlobal>
         ) : (
-          <Form>
-            <DivGlobal>
+          <DivGlobal>
+            <Form>
               <H1name>Configuración/Perfil</H1name>
               <DivForm>
                 {Object.values(errors).length > 0 ? (
@@ -241,8 +241,8 @@ export default function Settings() {
                   </label>
                 </div>
               </DivImagen>
-            </DivGlobal>
-          </Form>
+            </Form>
+          </DivGlobal>
         )
       }
     </Formik>

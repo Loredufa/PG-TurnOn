@@ -2,8 +2,8 @@ import React, { useContext } from 'react'
 import styled from 'styled-components'
 import { CourtContext } from './Context/CourtContext'
 import axios from 'axios'
-/* import { BiCalendar, BiTimeFive } from 'react-icons/bi'
- */
+import Swal from 'sweetalert2'
+
 export default function CourtCard({ courtInfo }) {
 
     const { 
@@ -14,19 +14,35 @@ export default function CourtCard({ courtInfo }) {
     } = useContext(CourtContext)
 
     const handleSection = (e) => {
-        console.log(e.target.value)
         setCurrentCourt(courtInfo)
         setSection(e.target.value)
     }
     
     const handleDelete = () => {
-        axios.delete(`/supplier/court/${courtInfo.id}`)
-            .then(() => {
-                axios.get(`/supplier/court/${supplier.id}`)
-                    .then(res => setSupplierCourts(res.data))
-                    .catch(err => console.log(err))
-            })
-            .catch(err => console.log(err))
+        Swal.fire({
+            title: 'Estas seguro?',
+            text: "La cancha será eliminada!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Eliminar!',
+            cancelButtonText: 'Cancelar'
+          }).then((result) => {
+            if (result.isConfirmed) {
+                axios.delete(`/supplier/court/${courtInfo.id}`)
+                .then(() => {
+                    axios.get(`/supplier/court/${supplier.id}`)
+                        .then(res => setSupplierCourts(res.data))
+                        .catch(err => console.log(err))
+                }).catch(err => console.log(err))
+                Swal.fire(
+                    'Eliminada!',
+                    'La cancha ha sido eliminada.',
+                    'success'
+                )
+            }
+          })
     }
 
     return (
@@ -38,7 +54,6 @@ export default function CourtCard({ courtInfo }) {
             <BottomDiv>
                 <Buttons1Container>
                         <Button onClick={handleSection} value="edit">Editar</Button>
-                        <Button>Desactivar</Button>
                         <ButtonRed onClick={handleDelete}>Eliminar</ButtonRed>
                 </Buttons1Container>
                 <Buttons2Container>
@@ -52,7 +67,7 @@ export default function CourtCard({ courtInfo }) {
 
 const Wrapper = styled.div`
     background: #81b214;
-    height: 44vh;
+    height: auto;
     width: 300px;
     margin: 5px;
     padding: 2%;
@@ -63,6 +78,7 @@ const Wrapper = styled.div`
     border-radius: 10px;
     font-family:'Be Vietnam Pro', sans-serif;
     box-shadow: 10px 10px 15px 1px #1169127c;
+    overflow: hidden;
 `
 
 const Button = styled.button`
@@ -114,15 +130,14 @@ const ButtonRed = styled.button`
 `
  */
 const Img = styled.img`
-    width: 250px;
-    border-radius: 12px;
-    height: 150px
+    width: 380px;
+    height: auto;
 `
 
 const Buttons1Container = styled.div`
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row;
+    justify-content: center;
     margin-bottom: 8px;
 `
 
@@ -132,7 +147,9 @@ const Info = styled.div`
     align-items: center;
     color: white;
     font-weight: 700;
-    font-size: 20px
+    font-size: 20px;
+    margin-top: -20px;
+    margin-bottom: 15px;
 `
 
 const Buttons2Container = styled.div`

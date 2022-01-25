@@ -10,6 +10,7 @@ export default function CourtList() {
 
     return (
         <Wrapper>
+            <H1name>CANCHAS</H1name>
             <CreateContainer>
                 <CreateLink to="/profile/courts/create">
                     <Button>CREAR CANCHA</Button>   
@@ -35,6 +36,13 @@ export default function CourtList() {
 const Wrapper = styled.div`
     height: 100%;
 `
+const H1name = styled.h1`
+  font-family: "Be Vietnam Pro", sans-serif;
+  margin-left: 50px;
+  padding-bottom: 5px;
+  color: #81b214;
+  font-size: 45px;
+`;
 
 const CourtCards = styled.div`
     display: flex;
@@ -69,15 +77,3 @@ const Button = styled.button`
         color:#81b214;
     }
 `
-
-/* :root {
-    --colorGrey: #e9ebed;
-    --colorBlack: #2a2d34;
-    --colorAppleGreen: #81b214;
-    --colorPastelGreen: #3fc959;
-    --colorSlimeGreen: #179f34;
-    --colorPakistanGreen: #116913;
-    --colorForestGreen: #0b4619;
-    --colorMikatoYellow: #ffc900;
-    --colorCornSlik: #f8f1d9;
-} */
