@@ -55,14 +55,14 @@ export default function Court({ item, supplierID, coordinates }) {
             width: "35%",
             padding: 3,
             borderRadius: 10,
-            marginLeft: 5
+            marginLeft: 5,
           }}
         />
         <View
           style={{
             flex: 1,
             flexDirection: "column",
-            marginLeft: 5
+            marginLeft: 5,
           }}
         >
           <Text style={styles.name}>{item.name}</Text>
@@ -71,7 +71,7 @@ export default function Court({ item, supplierID, coordinates }) {
             {/*<Text style={styles.text}>Horario: 16 a 23 hs</Text>*/}
           </View>
           <View style={styles.ref}>
-            <Text>Precio: {item.price}</Text>
+            <Text>Precio: ${item.price}</Text>
           </View>
         </View>
       </View>

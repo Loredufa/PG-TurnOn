@@ -20,7 +20,7 @@ import {
   setMessage,
   getBookings,
   deleteBooking,
-  getVouchers
+  getVouchers,
 } from "../../store/actions/index";
 import { styles } from "./StyleCourtDetail";
 import { Picker } from "@react-native-picker/picker";
@@ -35,9 +35,8 @@ import ConfirmBooking from "../ConfirmBooking/ConfirmBooking";
 export default function CourtDetail({ route }) {
   const navigation = useNavigation();
   const dispatch = useDispatch();
-  const { bookings , user, vouchers, messageBack, availables, payment } = useSelector(
-    (state) => state
-  );
+  const { bookings, user, vouchers, messageBack, availables, payment } =
+    useSelector((state) => state);
   // console.log("INFO DEL USUARIO" , user);
   // console.log("LAS DISPONIBLES" , availables);
   let { court, supplierID } = route.params;
@@ -73,8 +72,7 @@ export default function CourtDetail({ route }) {
     setConfirmScreen(true);
   }
 
-
-  function handlerVoucher () {
+  function handlerVoucher() {
     let code = Math.round(Math.random() * (9999 - 1000) + 1000);
     let dateArr = date.split("-");
     console.log(dateArr);
@@ -92,15 +90,23 @@ export default function CourtDetail({ route }) {
     let day = daysOfWeek[d];
 
     console.log(
-      "courtId: " , route.params.court.id,
-      " userId: " ,user.user.id,
-      " day: " ,day,
-      " date: ",dateArr.join("/"),
-      " code: " ,code,
-      " hour: " , timeSelected,
-      " supplierId: " , supplierID,
-      " paymentId: " , vouchers[0].booking.paymentId
-      )
+      "courtId: ",
+      route.params.court.id,
+      " userId: ",
+      user.user.id,
+      " day: ",
+      day,
+      " date: ",
+      dateArr.join("/"),
+      " code: ",
+      code,
+      " hour: ",
+      timeSelected,
+      " supplierId: ",
+      supplierID,
+      " paymentId: ",
+      vouchers[0].booking.paymentId
+    );
     dispatch(
       bookCourt(
         route.params.court.id,
@@ -111,7 +117,8 @@ export default function CourtDetail({ route }) {
         timeSelected,
         supplierID,
         vouchers[0].booking.paymentId
-        ))
+      )
+    );
     dispatch(deleteBooking(vouchers[0].booking.id));
     //navigation.navigate("Bookings");
   }
@@ -151,7 +158,7 @@ export default function CourtDetail({ route }) {
     ];
     let day1 = daysOfWeek[d];
     dispatch(courtAvailability(court.id, dateArr.join("/"), day1));
-    dispatch (getVouchers(user.user.id , true  , court.id, ));
+    dispatch(getVouchers(user.user.id, true, court.id));
     //dispatch (getBookings(user.user.id))
   }, []);
   //console.log(court);
@@ -372,7 +379,7 @@ export default function CourtDetail({ route }) {
         </View>
         <View style={styles.priceAndLocationContainer}>
           <View style={styles.priceContainer}>
-            <Text style={styles.textPrice}>Precio: {court.price}</Text>
+            <Text style={styles.textPrice}>Precio: ${court.price}</Text>
           </View>
           <TouchableOpacity
             style={styles.locationContainer}
@@ -398,30 +405,29 @@ export default function CourtDetail({ route }) {
             <Text style={styles.text}>Ver en el Mapa</Text>
           </TouchableOpacity>
         </View>
-        {
-        vouchers.length ===0 ?
-        <TouchableOpacity
-          style={styles.button}
-          onPress={handlerBooking}
-          disabled={
-            timeSelected === "Disponibles" || timeSelected === "Elegir fecha"
-          }
-        >
-          <Text style={styles.buttonText}>Reservar</Text>
-          {/* </View> */}
-        </TouchableOpacity>
-        :
-        <TouchableOpacity
-          style={styles.button}
-          onPress={handlerVoucher}
-          disabled={
-            timeSelected === "Disponibles" || timeSelected === "Elegir fecha"
-          }
-        >
-          <Text style={styles.buttonText}>Canjear Voucher</Text>
-          {/* </View> */}
-        </TouchableOpacity>
-        }
+        {vouchers.length === 0 ? (
+          <TouchableOpacity
+            style={styles.button}
+            onPress={handlerBooking}
+            disabled={
+              timeSelected === "Disponibles" || timeSelected === "Elegir fecha"
+            }
+          >
+            <Text style={styles.buttonText}>Reservar</Text>
+            {/* </View> */}
+          </TouchableOpacity>
+        ) : (
+          <TouchableOpacity
+            style={styles.button}
+            onPress={handlerVoucher}
+            disabled={
+              timeSelected === "Disponibles" || timeSelected === "Elegir fecha"
+            }
+          >
+            <Text style={styles.buttonText}>Canjear Voucher</Text>
+            {/* </View> */}
+          </TouchableOpacity>
+        )}
       </View>
     </View>
   );
