@@ -55,7 +55,7 @@ export default function GoogleLogout({route}) {
     }
 
   }
-  console.log("hola google")
+  //console.log("hola google")
   //console.log (route.params.name , route.params.mail)
   return (
 

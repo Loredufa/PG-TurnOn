@@ -47,7 +47,7 @@ export default function CourtDetail({ route }) {
   });
   const [confirmScreen, setConfirmScreen] = useState(false);
 
-  const screenWidth = useSelector((state) => state.screenWidth);
+  const {screenWidth , ScreenHeight } = useSelector((state) => state);
   const titleSize = useSelector((state) => state.titleSize);
   const [reservationCode, setRC] = useState(0);
 
@@ -69,6 +69,7 @@ export default function CourtDetail({ route }) {
       )
     );
     setBookingRef({ court, day, timeSelected });
+    //console.log(court , day , timeSelected);
     setConfirmScreen(true);
   }
 
@@ -177,7 +178,7 @@ export default function CourtDetail({ route }) {
   const handlePress = async (url) => {
     // Checking if the link is supported for links with custom URL scheme.
     const supported = await Linking.canOpenURL(url);
-
+    //console.log(url);
     if (supported) {
       // Opening the link with some app, if the URL scheme is "http" the web link should be opened
       // by some browser in the mobile
@@ -300,7 +301,7 @@ export default function CourtDetail({ route }) {
             borderRadius: 10,
           }}
         />
-        <View style={styles.descriptionContainer}>
+        <View style={[styles.descriptionContainer , {width: screenWidth/1.4}]}>
           <Text style={styles.description}>{court.description}</Text>
         </View>
         <View style={styles.optionsContainer}>
@@ -347,7 +348,9 @@ export default function CourtDetail({ route }) {
                 justifyContent: "center",
                 //marginTop: 20,
                 flex: 1,
+                paddingRight: 10,
               }}
+              
               itemStyle={styles.hourItem}
               selectedValue={timeSelected}
               onValueChange={(itemValue, itemIndex) => onChange(itemValue)}

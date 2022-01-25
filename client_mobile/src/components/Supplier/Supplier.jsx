@@ -83,7 +83,7 @@ export default function Supplier({ item, sport }) {
           style={styles.img}
         />
         <View style={styles.info}>
-          <Text style={styles.name}>{item.name}</Text>
+          <Text style={styles.name}>{item.name.charAt(0).toUpperCase() + item.name.slice(1)}</Text>
           <Text style={styles.sportText}>
             Deportes:
             {arrayAux.map((el, index) =>
