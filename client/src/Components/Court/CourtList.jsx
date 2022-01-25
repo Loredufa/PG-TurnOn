@@ -10,7 +10,7 @@ export default function CourtList() {
 
     return (
         <Wrapper>
-            <H1name>CREACIÓN DE CANCHAS</H1name>
+            <H1name>CANCHAS</H1name>
             <CreateContainer>
                 <CreateLink to="/profile/courts/create">
                     <Button>CREAR CANCHA</Button>   
@@ -77,15 +77,3 @@ const Button = styled.button`
         color:#81b214;
     }
 `
-
-/* :root {
-    --colorGrey: #e9ebed;
-    --colorBlack: #2a2d34;
-    --colorAppleGreen: #81b214;
-    --colorPastelGreen: #3fc959;
-    --colorSlimeGreen: #179f34;
-    --colorPakistanGreen: #116913;
-    --colorForestGreen: #0b4619;
-    --colorMikatoYellow: #ffc900;
-    --colorCornSlik: #f8f1d9;
-} */
