@@ -1,18 +1,15 @@
 import React from 'react'
-//import styled from "styled-components"
-import "../Css/beginning.css"
+import styled from "styled-components"
+
 
 
 export default function Beginning() {
 
     return (
       <div class="card">
-        <div class="image">
-      <img src="https://cdn.pixabay.com/photo/2017/08/10/01/38/grass-2616911_960_720.jpg"/>
-    </div>
       <div class="details">
       <div class="center">
-        <h1>Comencemos</h1>
+        <Title>Comencemos</Title>
         <span>Ingresa a cancha y luego a crear cancha </span>
         <img
         className="crearCancha"
@@ -58,7 +55,7 @@ export default function Beginning() {
     )
 }
 
-// export const Title = styled.h1`
-// color: #81b214;
-// margin-left: 2%;
-// font-size: 300%`
+export const Title = styled.h1`
+color: #81b214;
+margin-left: 2%;
+font-size: 300%`
