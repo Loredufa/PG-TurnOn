@@ -157,7 +157,7 @@ a:active {
 /* .navbar-profile{} */
 
 .button-logout {
-  width: 130px;
+  width: 150px;
   height: 45px;
   background: var(--colorAppleGreen);
   border: 1px solid #fdfcfc;
@@ -168,6 +168,7 @@ a:active {
   font-size: 18px;
   margin-left: 10px;
   margin-right: 10px;
+  /* display: flex; */
 }
 
 .button-logout:hover {
