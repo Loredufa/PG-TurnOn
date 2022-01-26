@@ -64,9 +64,13 @@ const ButtonContainer = styled.div`
 const Button = styled.button`
     width: 200px;
     margin-left: 10px;
-    background: #2a2d34;
+    background-color: #81b214;
     color: white;
     border-style: none;
-    border-radius: 20px;
-    height: 30px;
+    border-radius: 30px;
+    height: 45px;
+    font-size: 16px;
+    &:hover {
+        background-color: white;
+        color: #81b214;
 `
