@@ -11,10 +11,10 @@ export const orderAvailability = (array) => {
     let daysObj = {
         Lunes: 1,
         Martes: 2,
-        Miércoles: 3,
+        Miercoles: 3,
         Jueves: 4,
         Viernes: 5,
-        Sábado: 6,
+        Sabado: 6,
         Domingo: 7
     }
     response = response.sort((a, b) => {

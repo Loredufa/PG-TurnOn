@@ -34,7 +34,7 @@ export default function CourtList() {
 }
 
 const Wrapper = styled.div`
-    height: 100%;
+    height: 96%;
 `
 const H1name = styled.h1`
   font-family: "Be Vietnam Pro", sans-serif;

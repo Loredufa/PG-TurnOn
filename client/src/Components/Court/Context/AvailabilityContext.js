@@ -17,10 +17,10 @@ export const AvailabilityProvider = () => {
     const week = [
         "Lunes", 
         "Martes", 
-        "Miércoles", 
+        "Miercoles", 
         "Jueves", 
         "Viernes", 
-        "Sábado", 
+        "Sabado", 
         "Domingo"
     ]
 
@@ -56,16 +56,16 @@ export const AvailabilityProvider = () => {
 }
 
 const Wrapper = styled.div`
-  height: 88.5vh;
+  height: 90.5vh;
   width: 100vw;
 `
 
 const Container = styled.div`
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    height: 78.5vh;
-    background: white;
+    flex-direction: column;
+    /* justify-content: space-between; */
+    height: 80.5vh;
+    /* background: white; */
     border-radius: 30px;
 `
 

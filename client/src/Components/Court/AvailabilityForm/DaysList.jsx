@@ -20,11 +20,12 @@ export default function DaysList() {
 
 const DaysContainer = styled.div`
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
     background: white;
-    padding-top:20px;
-    padding-right: 10px;
-    padding-left: 25px;
+    padding: 20px;
     border-radius: 10px;
+    justify-content: center;
+    align-items: center;
     
 `

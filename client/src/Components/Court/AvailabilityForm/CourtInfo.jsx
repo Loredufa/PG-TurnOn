@@ -76,7 +76,8 @@ const Wrapper = styled.div`
     flex-direction: column;
     align-items: center;
     align-content: center;
-
+    padding: 5px;
+    padding-bottom: 20px;
     
 `
 const DayContainer = styled.div`
@@ -108,6 +109,8 @@ const MapContainer = styled.div`
     background: #81b214;
     border-radius: 12px;
     padding: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
 `
 
 const Title = styled.p`

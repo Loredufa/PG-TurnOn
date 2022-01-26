@@ -54,9 +54,9 @@ export default function Form() {
 
     return (
         <Wrapper>
-            <DaysList />
             <TimeAndHours>
                 <TimeContainer>
+                    <DaysList />
                     <Title>Franja horaria:</Title>
                     <Fields>
                         <TimeField
@@ -82,17 +82,20 @@ export default function Form() {
 
 const Wrapper = styled.div`
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     background: #e9ebed;
-    height: 100%;
+    height: auto;
 `
 
 const TimeContainer = styled.div`
     display: flex;
     flex-direction: column;
-    width: 35vw;
+    width: 50vw;
     align-items: center;
     background: #e9ebed;
+    @media (max-width: 951px) {
+        width: 100vw;
+    }
 `
 
 const Button = styled.button`
@@ -115,13 +118,24 @@ const TimeAndHours = styled.div`
     text-align: center;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    /* justify-content: space-evenly; */
     font-family: 'Be Vietnam Pro', sans-serif;
     font-size: 16px;
     width: 100%;
+    /* @media (max-width: 951px) {
+        flex-direction: column;
+    } */
 `
 const HoursContainer = styled.div`
     margin-top: 4vh;
-    
+    width: 50vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    @media (max-width: 951px) {
+        width: 100vw;
+    }
 `
 
 const Title = styled.p`
