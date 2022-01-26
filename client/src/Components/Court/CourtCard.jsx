@@ -130,8 +130,8 @@ const ButtonRed = styled.button`
 `
  */
 const Img = styled.img`
-    width: 380px;
-    height: auto;
+    width: auto;
+    height: 300px;
 `
 
 const Buttons1Container = styled.div`

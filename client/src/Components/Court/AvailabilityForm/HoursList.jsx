@@ -53,6 +53,7 @@ export default function HoursList({ hours, setHours }) {
 
     return (
         <Wrapper>
+        <Top>
             <DaysList>
                 {
                     days.map(day => <Day>{day}</Day>)
@@ -69,15 +70,26 @@ export default function HoursList({ hours, setHours }) {
                 />
             ))
         }
-        <Button onClick={handleClick}>GUARDAR</Button>
+        </Top>
+        <Button onClick={handleClick}>GUARDAR CAMBIOS</Button>
         </Wrapper>
     )
 }
 
 const Wrapper = styled.div`
     background: #e9ebed;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
     
 `
+const Top = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+`
+
 const DaysList = styled.div`
     display: flex;
     flex-direction: row;
@@ -89,7 +101,7 @@ const Day = styled.p`
 const Button = styled.button`
     border-radius: 20px;
     height: 41px;
-    width:140px;
+    width: 210px;
     border-style: none;
     font-family: 'Be Vietnam Pro', sans-serif;
     font-size: 16px;

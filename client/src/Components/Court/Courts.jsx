@@ -21,6 +21,7 @@ export default function Courts() {
 }
 
 const SectionContainer = styled.div`
+    margin-top: 80px;
     background: #e9ebed;
     background-size: cover;
     background-repeat: no-repeat;

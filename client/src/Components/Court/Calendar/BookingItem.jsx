@@ -11,6 +11,7 @@ export default function BookingItem ({ date, start, end, status, setBookings, id
     const states = {
         completed: "Completada",
         cancelled: "Cancelada",
+        canceled: "Cancelada",
         voucher: "Voucher",
         active: "Activa"
     }
