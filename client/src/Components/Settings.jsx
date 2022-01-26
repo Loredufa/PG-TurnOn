@@ -169,7 +169,7 @@ export default function Settings() {
                   </EditButton2>
                 )}
                 <VolverButton onClick={() => setEdit(false)}>
-                  volver
+                  Volver
                 </VolverButton>
                 <UpdateButton onClick={editPwdClick}>
                   Editar Contraseña

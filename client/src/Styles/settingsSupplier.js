@@ -2,7 +2,9 @@ import styled from "styled-components";
 
 export const DivGlobal = styled.div`
   width: 100%;
+
   height: 53.8rem;
+
   padding-top: 80px;
   background-position: fixed;
   background-color: #e9ebed;
@@ -54,9 +56,10 @@ export const DivImagen = styled.div`
     padding: 10px;
     background: #81b214;
     label {
-      width: 100%;
-      margin: 20%;
+      width: 20rem;
+      margin: 2.8rem;
     }
+
     img {
       margin-left: 24%;
       border-radius: 80px;
