@@ -47,7 +47,7 @@ export default function CourtDetail({ route }) {
   });
   const [confirmScreen, setConfirmScreen] = useState(false);
 
-  const {screenWidth , ScreenHeight } = useSelector((state) => state);
+  const { screenWidth, ScreenHeight } = useSelector((state) => state);
   const titleSize = useSelector((state) => state.titleSize);
   const [reservationCode, setRC] = useState(0);
 
@@ -246,7 +246,8 @@ export default function CourtDetail({ route }) {
           dateArr.join("/"),
           reservationCode,
           timeSelected,
-          supplierID
+          supplierID,
+          thePayment.id
         )
       );
       //navigation.navigate("Home");   VER SI AGREGO ESTA LINEA
@@ -301,7 +302,9 @@ export default function CourtDetail({ route }) {
             borderRadius: 10,
           }}
         />
-        <View style={[styles.descriptionContainer , {width: screenWidth/1.4}]}>
+        <View
+          style={[styles.descriptionContainer, { width: screenWidth / 1.4 }]}
+        >
           <Text style={styles.description}>{court.description}</Text>
         </View>
         <View style={styles.optionsContainer}>
@@ -350,7 +353,6 @@ export default function CourtDetail({ route }) {
                 flex: 1,
                 paddingRight: 10,
               }}
-              
               itemStyle={styles.hourItem}
               selectedValue={timeSelected}
               onValueChange={(itemValue, itemIndex) => onChange(itemValue)}

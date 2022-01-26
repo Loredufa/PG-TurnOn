@@ -90,7 +90,7 @@ export default function BookingDetail({ route }) {
   function handlerChangeBooking(bookingId, date, timeSelected) {
     dispatch(changeBooking(bookingId, date, timeSelected));
     setEditBooking(false);
-    navigation.navigate("Home");
+    navigation.navigate("Bookings");
   }
   useEffect(() => {}, [flagBooking]);
 
