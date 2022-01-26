@@ -11,18 +11,16 @@ a:active {
   flex-direction: row;
   justify-content: space-between;
   font-family: "Be Vietnam Pro", sans-serif;
-  /* position: fixed; */
-  /* margin-right: 40px; */
   align-items: center;
   height: 80px;
   position: relative;
   background-color: #ffffff;
   overflow: hidden;
-  /* background-color: #333; */
-  position: fixed; /* Set the navbar to fixed position */
-  top: 0; /* Position the navbar at the top of the page */
-  width: 100%; /* Full width */
+  position: fixed; 
+  top: 0; 
+  width: 100%;
   z-index: 4500;
+  text-align: center;
 }
 
 /* .navbar-logo{} */
@@ -108,8 +106,6 @@ a:active {
 
 .navbar-home-cont {
   padding-left: 10px;
-  /* padding-right: 10px; */
-  /* margin-right: 15px; */
   color: var(--colorBlack);
 }
 
@@ -174,4 +170,51 @@ a:active {
 .button-logout:hover {
   background: var(--colorGrey);
   color: var(--colorAppleGreen);
+}
+
+@media (max-width: 830px){
+  .navbar-contenedor {
+    justify-content: space-between;
+    align-items: center;
+    height: 5rem;
+    width: 100%; 
+  }
+  .navbar-supplier {
+    font-size: 1rem;
+    padding-left: 0.6rem;
+    align-items: center;
+    display: flex;
+  }
+  .navbar-home {
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    padding-left: 0.6rem;
+  }
+
+  .navbar-login {
+    width: 6rem;
+    height: 2.6rem;
+    border-radius: 30px;
+    font-size: 0.9rem;
+    margin-right: 0.6rem;
+    margin-left: 0.6rem;
+  }
+
+  .navbar-register {
+    width: 6rem;
+    height: 2.6rem;
+    font-size: 0.9rem;
+    margin-right: 0.6rem;
+  }
+   
+  .button-logout {
+    width: 6.4rem;
+    height: 3rem;
+    font-size: 1rem;
+    margin-left: 0.6rem;
+    margin-right: 0.6rem;
+
+  }
+
 }

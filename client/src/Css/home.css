@@ -49,28 +49,6 @@
   background-repeat: no-repeat;
 }
 
-@media (max-width: 1919px) {
-  .trianguloGris {
-    background-size: contain;
-  }
-}
-
-/*    .trianguloVerde{
-    display: block;
-    position: relative;
-    bottom:-2px;
-    height: 200px;
-    background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1920 200" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path fill="rgb(129, 178, 20,1)" d="M 0 0 L 967 125 L 967 0 L 0 0 Z" stroke-width="0"></path> <path fill="rgb(129, 178, 20,1)" d="M 966 125 L 1920 0 L 1920 0 L 966 0 Z" stroke-width="0"></path> </svg>');
-    background-size: cover;
-    background-repeat: no-repeat;
-    transform: rotate(180deg) rotateY(180deg);
-}
-   
-@media (max-width:1919px) {
-    .trianguloGris{
-      background-size: contain;
-    }
-} */
 
 .trianguloVerde {
   display: block;
@@ -81,4 +59,67 @@
   background-size: cover;
   background-repeat: no-repeat;
   transform: rotate(180deg);
+}
+
+@media (max-width: 1107px){
+
+  .container-title {
+    height: 20rem;
+    width: 100%;
+  }
+  .container-frase {
+    height: 16rem;
+    width: 100%;
+    position: relative;
+  }
+  .h1-home {
+    position: relative;
+    line-height: 50px;
+    font-size: 3.5rem;
+    position: static;
+    margin-top: 5rem;
+    margin-left: 5rem;
+    font-weight: 900;
+  }
+
+  .h3-home {
+    font-size: 2rem;
+    margin-left: 5rem;
+    margin-top: 1rem;
+  }
+
+}
+@media (max-width: 830px){
+
+  .container-title {
+    height: 20rem;
+    width: 100%;
+  }
+  .container-frase {
+    height: 20rem;
+    width: 100%;
+    position: relative;
+  }
+  .h1-home {
+    position: relative;
+    line-height: 50px;
+    font-size: 3.5rem;
+    position: static;
+    margin-top: 5rem;
+    margin-left: 5rem;
+    font-weight: 900;
+  }
+
+  .h3-home {
+    font-size: 2rem;
+    margin-left: 5rem;
+    margin-top: 1rem;
+  }
+
+}
+
+@media (max-width: 1919px) {
+  .trianguloGris {
+    background-size: contain;
+  }
 }
