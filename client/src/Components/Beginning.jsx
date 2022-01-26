@@ -87,11 +87,11 @@ export const P = styled.p`
 
 const DivCont = styled.div`
   .crearCancha {
-    width: 100%;
+    width: 90%;
     height: auto;
   }
   .franja {
-    width: 100%;
+    width: 70%;
     height: auto;
   }
   .turnos {
@@ -107,7 +107,7 @@ const DivCont = styled.div`
     height: auto;
   }
   .historial {
-    width: 100%;
+    width: 80%;
     height: auto;
   }
 `;
