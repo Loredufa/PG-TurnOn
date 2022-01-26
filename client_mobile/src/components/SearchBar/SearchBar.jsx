@@ -9,29 +9,33 @@ import {
 } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { styles } from "./StyleSearchBar";
-import { getSuppliersByName , getFavorites, getSupplierBySport } from "../../store/actions/index";
+import {
+  getSuppliersByName,
+  getFavorites,
+  getSupplierBySport,
+} from "../../store/actions/index";
 import MaterialCommunityIcons from "react-native-vector-icons/Ionicons";
 import { useNavigation } from "@react-navigation/native";
 import Suppliers from "../Suppliers/Suppliers";
 
-export default function SearchBar({screen}) {
+export default function SearchBar({ screen }) {
   const [input, setInput] = useState("");
   const dispatch = useDispatch();
-  const { court , user} = useSelector((state) => state);
+  //const { court , user} = useSelector((state) => state);
+  const { court, user, ScreenHeight } = useSelector((state) => state);
   const navigation = useNavigation();
 
-  const [find , setFind] = useState(false);
+  const [find, setFind] = useState(false);
 
   const screenWidth = useSelector((state) => state.screenWidth);
   function handlerFindCourt() {
-    if(screen === "Favoritos") {
+    if (screen === "Favoritos") {
       setFind(true);
-      dispatch(getFavorites(user.user.id , input))
-    } 
-    else if (screen){
+      dispatch(getFavorites(user.user.id, input));
+    } else if (screen) {
       setFind(true);
-      dispatch(getSuppliersByName(input , screen));
-    }else {
+      dispatch(getSuppliersByName(input, screen));
+    } else {
       dispatch(getSuppliersByName(input));
       setInput("");
       //if (court === input) {
@@ -44,11 +48,10 @@ export default function SearchBar({screen}) {
   }
   function handlerGoBack() {
     setFind(false);
-    if(screen === "Favoritos") {
+    if (screen === "Favoritos") {
       dispatch(getFavorites(user.user.id));
       setInput("");
-    } 
-    else if(screen) {
+    } else if (screen) {
       dispatch(getSupplierBySport(screen));
       setInput("");
     }
@@ -56,15 +59,21 @@ export default function SearchBar({screen}) {
 
   return (
     <View style={styles.containerSearch}>
-       {find &&<TouchableOpacity
-        style={[
-          styles.button,
-          { width: screenWidth / 10, height: ScreenHeight / 20 },
-        ]}
-        onPress={handlerGoBack}
-      >
-        <MaterialCommunityIcons name="chevron-back-outline" size={30} color="#179F34" />
-      </TouchableOpacity>}
+      {find && (
+        <TouchableOpacity
+          style={[
+            styles.button,
+            { width: screenWidth / 10, height: ScreenHeight / 20 },
+          ]}
+          onPress={handlerGoBack}
+        >
+          <MaterialCommunityIcons
+            name="chevron-back-outline"
+            size={30}
+            color="#179F34"
+          />
+        </TouchableOpacity>
+      )}
       <View style={[styles.posInput, { height: screenWidth / 8.2 }]}>
         <TextInput
           placeholder="Nombre"
