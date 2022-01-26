@@ -41,14 +41,19 @@ const URL = "https://turnon1.herokuapp.com/";
 
 export function rateSupplier(supplierId, rating, bookingId) {
   return async function (dispatch) {
-    console.log("LA URL CON LA QUE DESPACHO:" , URL + "supplier/rating/" + supplierId, "los que van en body", rating,
-    bookingId,)
+    console.log(
+      "LA URL CON LA QUE DESPACHO:",
+      URL + "supplier/rating/" + supplierId,
+      "los que van en body",
+      rating,
+      bookingId
+    );
     try {
       const response = await axios.put(URL + "supplier/rating/" + supplierId, {
         number: rating,
         bookingId,
       });
-      console.log("LA RESPUESTA CUANDO HAGO EL RATING" , response.data)
+      console.log("LA RESPUESTA CUANDO HAGO EL RATING", response.data);
       // dispatch({
       //   type: RATE_SUPPLIER,
       //   payload: response.data,
@@ -145,11 +150,16 @@ export function getSupplierBySport(sport) {
   };
 }
 
-export function setScreenDimensions(screenWidth, numColumns, titleSize, ScreenHeight) {
+export function setScreenDimensions(
+  screenWidth,
+  numColumns,
+  titleSize,
+  ScreenHeight
+) {
   return function (dispatch) {
     dispatch({
       type: SET_SCREEN_DIMENSIONS,
-      payload: { screenWidth, numColumns, titleSize , ScreenHeight},
+      payload: { screenWidth, numColumns, titleSize, ScreenHeight },
     });
   };
 }
@@ -260,6 +270,7 @@ export function bookCourt(
           status: "active",
           userId,
           supplierId,
+          paymentId,
         });
       }
       // console.log("La respuesta del post", postUser.data);
@@ -340,12 +351,19 @@ export function getCompletedBookings(userId, completed) {
   };
 }
 
-
-export function getVouchers(userId ,  voucher , courtId, ) {
+export function getVouchers(userId, voucher, courtId) {
   return async function (dispatch) {
     try {
-      let postUser = await axios.get(URL + "user/bookings/" + userId + '?voucher=' + true + "&courtId=" + courtId);
-      console.log("LOS VOUCHERS" , postUser.data)
+      let postUser = await axios.get(
+        URL +
+          "user/bookings/" +
+          userId +
+          "?voucher=" +
+          true +
+          "&courtId=" +
+          courtId
+      );
+      console.log("LOS VOUCHERS", postUser.data);
       dispatch({
         type: GET_VOUCHERS,
         payload: postUser.data,
@@ -382,7 +400,7 @@ export function changeBookingRated(bookingId) {
       type: CHANGE_BOOKING_RATED,
       payload: change.data,
     });
-  }
+  };
 }
 
 export function changeBooking(bookingId, date, timeSelected, status) {
