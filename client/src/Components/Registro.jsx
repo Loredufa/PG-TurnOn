@@ -33,6 +33,7 @@ export default function Registro() {
       title: "Usuario Creado con Exito",
       icon: "success",
       button: "Aceptar",
+      confirmButtonColor: "#81b214",
     });
     history.push("/login");
   }
@@ -133,157 +134,159 @@ export default function Registro() {
     return errors;
   }; */
 
-
   const handleChange = (e) => {
-    
-    const { name, value } = e.target
+    const { name, value } = e.target;
 
     if (name === "name") {
       setInfoSupplier({
         ...infoSupplier,
-        [name]: value
-      })
+        [name]: value,
+      });
       if (!/^[a-zA-ZÀ-ÿ\s]{1,40}$/.test(value) && value !== "") {
         setErrors({
           ...errors,
-          [name]: "El nombre sólo puede contener letras y espacios"
-        })
-        setDisabled(true)
-      }
-      else {
+          [name]: "El nombre sólo puede contener letras y espacios",
+        });
+        setDisabled(true);
+      } else {
         setErrors({
           ...errors,
-          [name]: ""
-        })
-        setDisabled(false)
+          [name]: "",
+        });
+        setDisabled(false);
       }
     }
     if (name === "phone") {
       setInfoSupplier({
         ...infoSupplier,
-        [name]: value
-      })
+        [name]: value,
+      });
       if (!/^([0-9])*$/.test(value) && value !== "") {
         setErrors({
           ...errors,
-          [name]: "El teléfono puede contener solo números"
-        })
-        setDisabled(true)
-      }
-      else {
+          [name]: "El teléfono puede contener solo números",
+        });
+        setDisabled(true);
+      } else {
         setErrors({
           ...errors,
-          [name]: ""
-        })
-        setDisabled(false)
+          [name]: "",
+        });
+        setDisabled(false);
       }
     }
     if (name === "cuit") {
       setInfoSupplier({
         ...infoSupplier,
-        [name]: value
-      })
-      if (!/^([0-9]{11}|[0-9]{2}-[0-9]{8}-[0-9]{1})$/g.test(value) && value !== "") {
+        [name]: value,
+      });
+      if (
+        !/^([0-9]{11}|[0-9]{2}-[0-9]{8}-[0-9]{1})$/g.test(value) &&
+        value !== ""
+      ) {
         setErrors({
           ...errors,
-          [name]: "CUIT inválido"
-        })
-        setDisabled(true)
-      }
-      else {
+          [name]: "CUIT inválido",
+        });
+        setDisabled(true);
+      } else {
         setErrors({
           ...errors,
-          [name]: ""
-        })
-        setDisabled(false)
+          [name]: "",
+        });
+        setDisabled(false);
       }
     }
     if (name === "businessname") {
       setInfoSupplier({
         ...infoSupplier,
-        [name]: value
-      })
+        [name]: value,
+      });
       if (!/^[a-zA-ZÀ-ÿ\s]{1,40}$/.test(value) && value !== "") {
         setErrors({
           ...errors,
-          [name]: "La Razon Social solo puede contener letras y espacios"
-        })
-        setDisabled(true)
-      }
-      else {
+          [name]: "La Razon Social solo puede contener letras y espacios",
+        });
+        setDisabled(true);
+      } else {
         setErrors({
           ...errors,
-          [name]: ""
-        })
-        setDisabled(false)
+          [name]: "",
+        });
+        setDisabled(false);
       }
     }
     if (name === "mail") {
       setInfoSupplier({
         ...infoSupplier,
-        [name]: value
-      })
-      if (!/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(value) && value !== "") {
+        [name]: value,
+      });
+      if (
+        !/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(value) &&
+        value !== ""
+      ) {
         setErrors({
           ...errors,
-          [name]: "E-mail inválido"
-        })
-        setDisabled(true)
-      }
-      else {
+          [name]: "E-mail inválido",
+        });
+        setDisabled(true);
+      } else {
         setErrors({
           ...errors,
-          [name]: ""
-        })
-        setDisabled(false)
+          [name]: "",
+        });
+        setDisabled(false);
       }
     }
     if (name === "password" || name === "password2") {
       setInfoSupplier({
         ...infoSupplier,
-        [name]: value
-      })
-      if (!/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/.test(value) && value !== "") {
+        [name]: value,
+      });
+      if (
+        !/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/.test(value) &&
+        value !== ""
+      ) {
         setErrors({
           ...errors,
-          [name]: "La contraseña debe tener entre 8 y 16 caracteres, al menos un dígito, al menos una minúscula y al menos una mayúscula. Puede tener otros símbolos."
-        })
-        setDisabled(true)
-      }
-      else {
-        if(name === "password") {
-          if(value !== infoSupplier.password2 && infoSupplier.password2 !== "") {
+          [name]:
+            "La contraseña debe tener entre 8 y 16 caracteres, al menos un dígito, al menos una minúscula y al menos una mayúscula. Puede tener otros símbolos.",
+        });
+        setDisabled(true);
+      } else {
+        if (name === "password") {
+          if (
+            value !== infoSupplier.password2 &&
+            infoSupplier.password2 !== ""
+          ) {
             setErrors({
               ...errors,
-              [name]: "Las contraseñas no coinciden"
-            })
+              [name]: "Las contraseñas no coinciden",
+            });
+          } else {
+            setErrors({
+              ...errors,
+              [name]: "",
+            });
+            setDisabled(false);
           }
-          else {
+        } else {
+          if (value !== infoSupplier.password && infoSupplier.password !== "") {
             setErrors({
               ...errors,
-              [name]: ""
-            })
-            setDisabled(false)
-          }
-        }
-        else {
-          if(value !== infoSupplier.password && infoSupplier.password !== "") {
+              [name]: "Las contraseñas no coinciden",
+            });
+          } else {
             setErrors({
               ...errors,
-              [name]: "Las contraseñas no coinciden"
-            })
-          }
-          else {
-            setErrors({
-              ...errors,
-              [name]: ""
-            })
-            setDisabled(false)
+              [name]: "",
+            });
+            setDisabled(false);
           }
         }
       }
     }
-  }
+  };
 
   return (
     <>
@@ -383,7 +386,7 @@ export default function Registro() {
                   value={infoSupplier.mail}
                   onChange={handleChange}
                   required
-                 /*  onBlur={handleBlur} */
+                  /*  onBlur={handleBlur} */
                 />
               </div>
               {errors.mail && (
