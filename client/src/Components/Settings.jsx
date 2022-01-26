@@ -135,23 +135,25 @@ export default function Settings() {
             <Form>
               <H1name>Configuración/Perfil</H1name>
               <DivForm>
-                <EditButton onClick={() => setEdit(true)}>Editar</EditButton>
-                <LabelSetting2>
-                  Nombre:
-                  <label>{values.name}</label>
-                </LabelSetting2>
-                <LabelSetting2>
-                  Email:
-                  <label>{values.mail}</label>
-                </LabelSetting2>
-                <LabelSetting2>
-                  Cuit:
-                  <label>{values.cuit}</label>
-                </LabelSetting2>
-                <LabelSetting2>
-                  Razón Social:
-                  <label>{values.businessname}</label>
-                </LabelSetting2>
+                <div>
+                  <EditButton onClick={() => setEdit(true)}>Editar</EditButton>
+                  <LabelSetting2>
+                    Nombre:
+                    <label>{values.name}</label>
+                  </LabelSetting2>
+                  <LabelSetting2>
+                    Email:
+                    <label>{values.mail}</label>
+                  </LabelSetting2>
+                  <LabelSetting2>
+                    Cuit:
+                    <label>{values.cuit}</label>
+                  </LabelSetting2>
+                  <LabelSetting2>
+                    Razón Social:
+                    <label>{values.businessname}</label>
+                  </LabelSetting2>
+                </div>
               </DivForm>
             </Form>
           </DivGlobal>
