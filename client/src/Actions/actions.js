@@ -56,7 +56,6 @@ export function changeSupplierProfile(id, values) {
   return async function (dispatch) {
     try {
       const updateinfo = await axios.put(`/supplier/supplier/${id}`, values);
-      console.log("QUE TRAE ID", updateinfo.data);
       return dispatch({
         type: SET_USER,
         payload: updateinfo.data,

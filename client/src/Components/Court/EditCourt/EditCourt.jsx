@@ -46,13 +46,13 @@ export default function EditCourt() {
       .put(`/supplier/court/${currentCourt.id}`, editInfo)
       .then((response) => {
         Swal.fire({
+          title: response.data.message,
           position: "center",
           icon: "success",
-          title: response.data.message,
           showConfirmButton: false,
           timer: 1200,
         });
-        setTimeout(() => setSection(""), 1200);
+        setTimeout(() => window.location.reload(), 1200);
       })
       .catch((error) => {
         console.log(error);

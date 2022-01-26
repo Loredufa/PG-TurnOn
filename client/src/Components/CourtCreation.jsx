@@ -65,9 +65,10 @@ export default function CourtCreation() {
     Swal.fire({
       title: "Cancha Creada con exito",
       icon: "success",
-      button: "Aceptar",
+      showConfirmButton: false,
+      timer: 1200,
     });
-    history.push("/profile/courts");
+    setTimeout(() => history.push("/profile/courts"), 1200);
   }
 
   const uploadImage = async (e) => {
@@ -110,7 +111,7 @@ export default function CourtCreation() {
     } else if (infoCourt.sport && infoCourt.sport === "Deportes") {
       errors.sport = "Debes seleccionar una opción";
       setDisabled(true);
-    }else if (!infoCourt.price.trim()) {
+    } else if (!infoCourt.price.trim()) {
       errors.price = "El campo precio es requerido";
       setDisabled(true);
     } else if (regexPrice.test(infoCourt.price.trim())) {
