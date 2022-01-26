@@ -30,25 +30,27 @@ export default function Courts({ route }) {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (route.params.sport !=="Tu busqueda" && route.params.sport !=="Favoritos" )
-    {
-
-      console.log(route.params.sport)
+    if (
+      route.params.sport !== "Tu busqueda" &&
+      route.params.sport !== "Favoritos"
+    ) {
+      console.log(route.params.sport);
       dispatch(getCourtBySportSupplier(route.params.name, route.params.sport));
-    }
-    else dispatch(getCourtsBySupplier(route.params.name));
+    } else dispatch(getCourtsBySupplier(route.params.name));
   }, []);
 
-  
   return (
     <View style={styles.container}>
-      <Text style={styles.title}> {route.params.name}</Text>
+      <Text style={styles.title}>
+        {" "}
+        {route.params.name.charAt(0).toUpperCase() + route.params.name.slice(1)}
+      </Text>
       {/*<View style={styles.searchBarPos}>
         <SearchBar />
       </View>*/}
-      {courtsBySports.length === 0? /*&&
-      (route.params.sport && courtsBySports[0].sport !== route.params.sport) ?*/ (
-        <ActivityIndicator
+      {courtsBySports.length === 0 ? (
+        /*&&
+      (route.params.sport && courtsBySports[0].sport !== route.params.sport) ?*/ <ActivityIndicator
           size="large"
           color="#00ff00"
           style={{ flex: 5, justifyContent: "center" }}
