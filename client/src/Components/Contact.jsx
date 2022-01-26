@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik"
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "../Css/contact.css"
+import { ContactMail } from "../Actions/actions";
 
 
 export default function Contact(){
 
 const [ FormularioEnvidado, cambiarFormularioEnvidado] = useState(false)
+const { message_contact } = useSelector((state) => state);
 
 const dispatch = useDispatch()
 
@@ -20,6 +22,7 @@ return (
             mail: '',
             phone: '',
             message: '',
+            origin:"web",
             
         }}
         validate={(valores) => {
@@ -32,11 +35,11 @@ return (
         }
 
  
-        /* if(!valores.phone){
+        if(!valores.phone){
             errores.phone = 'Por favor ingresa tu teléfono'
         } else if(!/^([+]?[\s0-9]+)?(\d{3}|[(]?[0-9]+[)])?([-]?[\s]?[0-9])+$/g.test(valores.phone)){
             errores.phone ='Tu teléfono debe contar con solo con numeros'
-        } */
+        }
 
         if(!valores.message){
             errores.message = 'Por favor ingresa tu mensaje'}
@@ -54,7 +57,7 @@ return (
 
         onSubmit={(valores, {resetForm})=>{
             
-            dispatch(Contact(valores))
+            dispatch(ContactMail(valores))
             resetForm()
             cambiarFormularioEnvidado(true)
             setTimeout(() => cambiarFormularioEnvidado(false), 5000 )
@@ -81,7 +84,7 @@ return (
         <ErrorMessage name="name" component={()=> 
         <div className="error-contact">{errors.name}</div>}/>
 
-        {/* <div className="label-input">
+        <div className="label-input">
             <label htmlFor="phone"></label>
             <Field 
                  type="text" 
@@ -92,7 +95,7 @@ return (
                  />
         </div>
         <ErrorMessage name="phone" component={()=> 
-        <div className="error-contact">{errors.phone}</div>}/> */}
+        <div className="error-contact">{errors.phone}</div>}/>
 
         <div className="label-input">
             <label htmlFor="mail"></label>
@@ -122,9 +125,9 @@ return (
         </div>
         <ErrorMessage name="message" component={()=> 
         <div className="error-contact">{errors.message}</div>}/>
-
+        {FormularioEnvidado && <p className="mess-contact">{message_contact && message_contact}</p> }
         <button type="submit" className="buttonSubmit-Cont">Enviar</button>
-        {FormularioEnvidado && <p className="mess-contact">Mensaje enviado con exito</p> }
+        
 
 
     </Form>

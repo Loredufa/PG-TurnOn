@@ -98,7 +98,14 @@
     margin-left: 90px;
 }
 
-.mess-contact{}
+.mess-contact{
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 18px;  
+    color:#ffffff;
+    margin-bottom: 10px;
+    text-align: left;
+    margin-left: 90px;
+}
 
 
 @media (max-width: 830px){
