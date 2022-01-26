@@ -212,7 +212,7 @@ export default function Registro() {
                 />
               </div>
               {errors.businessname && (
-                <p name="businessname" className="error-razon-social">
+                <p name="businessname" className="error-register">
                   {errors.businessname}
                 </p>
               )}

@@ -6,6 +6,7 @@ export const SET_USER = "SET_USER";
 export const CREATE_COURT = "CREATE_COURT";
 export const DELETE_USER = "DELETE_USER";
 export const UPDATE_PASSWORD = "UPDATE_PASSWORD";
+export const CONTACT_MAIL = "CONTACT_MAIL";
 
 export function Register(payload) {
   return async function (dispatch) {
@@ -111,6 +112,23 @@ export function updatePassword(id, oldPassword, newPassword) {
       });
       console.log("VER LO Q DA PWDUPDATE:", pwdupdate);
       return pwdupdate.data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
+export function ContactMail(payload) {
+  return async function (dispatch) {
+    try {
+      const info = await axios.post(`/user/contact`, payload);
+      if (info.data.message) {
+        console.log("VER LO Q TRAE INFO:", info, info.data.message);
+        return dispatch({
+          type: CONTACT_MAIL,
+          payload: info.data.message,
+        });
+      }
     } catch (error) {
       console.log(error);
     }

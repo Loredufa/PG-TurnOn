@@ -5,6 +5,7 @@ import {
   SET_MESSAGE_REG,
   SET_MESSAGE_USER,
   SET_USER,
+  CONTACT_MAIL,
 } from "../Actions/actions";
 
 const initialState = {
@@ -13,6 +14,7 @@ const initialState = {
   message_user: "",
   message_delete: "",
   user: JSON.parse(window.localStorage.getItem("loguodeusuario")),
+  message_contact:"",
 };
 
 function rootReducer(state = initialState, action) {
@@ -52,6 +54,12 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         message_delete: action.payload,
+      };
+
+    case CONTACT_MAIL:
+      return {
+        ...state,
+        message_contact: action.payload,
       };
 
     default:
