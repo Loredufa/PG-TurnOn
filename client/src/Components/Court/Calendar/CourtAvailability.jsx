@@ -41,6 +41,7 @@ const Wrapper = styled.div`
     height: 100%;
     width: 50vw;
     align-content: center;
+    border-radius: 10px;
     @media (max-width: 1025px) {
         width: 80%;
     }

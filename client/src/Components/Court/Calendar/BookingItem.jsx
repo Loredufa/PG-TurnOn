@@ -82,14 +82,17 @@ export default function BookingItem ({ date, start, end, status, setBookings, id
 const Wrapper = styled.div`
     font-family: 'Be Vietnam Pro', sans-serif;
     text-align: center;
-    background: #2a2d34;
+    background: #81b214;
     color: white;
     border-radius: 20px;
     padding: 10px;
     width: 50%;
     display: flex;
+    box-shadow: 7px 5px 7px hsla(0, 0%, 51%, 0.438);
     flex-direction: column;
-    margin: 3px;
+    margin: 7px;
+    padding-top: 17px;
+    padding-bottom: 17px;
     @media (max-width: 650px) {
         width: 70%;
     }
@@ -100,13 +103,14 @@ const ButtonComplete = styled.button`
     width: 100px;
     border-radius: 30px;
     border-style: none;
-    background: #179f34;
-    color: white;
+    background: white;
+    color: #116913;
     font-family: 'Be Vietnam Pro', sans-serif;
     font-size: 14px;
     margin: 5px;
     &:hover {
-        background: #116913;
+        background: #179f34;
+        color: white;
     }
 `
 const ButtonCancel = styled.button`
@@ -114,13 +118,14 @@ const ButtonCancel = styled.button`
     width: 100px;
     border-radius: 30px;
     border-style: none;
-    background: red;
-    color: white;
+    background: white;
+    color: #116913;
     font-family: 'Be Vietnam Pro', sans-serif;
     font-size: 14px;
     margin: 5px;
     &:hover {
-        background: darkred;
+        background: red;
+        color: white;
     }
 `
 
