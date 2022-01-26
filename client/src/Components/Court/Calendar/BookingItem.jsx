@@ -34,7 +34,7 @@ export default function BookingItem ({ date, start, end, status, setBookings, id
             if(rating) {
                 axios.put(`/supplier/bookings/${id}?status=completed&rating=${rating}`) // cambia de estado la reserva
                 .then(() => {
-                    axios.get(`/bookings/court?id=${currentCourt.id}&date=${date}`) // pide la lista actualizada
+                    axios.get(`/supplier/bookings/court?id=${currentCourt.id}&date=${date}`) // pide la lista actualizada
                     .then(res => setBookings(res.data))
                     .catch(err => console.log(err))
                 })
@@ -48,7 +48,7 @@ export default function BookingItem ({ date, start, end, status, setBookings, id
     const handleCancelled = () => {
         axios.put(`/supplier/bookings/${id}?status=voucher&rating=false`) // cambia de estado la reserva
         .then(() => {
-         axios.get(`/bookings/court?id=${currentCourt.id}&date=${date}`) // pide la lista actualizada
+         axios.get(`/supplier/bookings/court?id=${currentCourt.id}&date=${date}`) // pide la lista actualizada
          .then(res => setBookings(res.data))
          .catch(err => console.log(err))
          })
