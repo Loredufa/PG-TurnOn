@@ -2,12 +2,17 @@
 
 .back-ground-register{
     background-image: url('../Assets/Images/cancha-cesped.jpeg');
+    position:absolute;
+    margin:0;
+    left:0;
+    right:0;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    width: 100vw;
-    height: 100vh;
-    padding-top: 50px;
+    font-size: 16px;
+    display:inline-block;
+    padding-top:130px;
+    padding-bottom:130px;
 }
 
 .formulario-registro{
@@ -120,14 +125,14 @@
 .estas-registrado{
     margin-top: 10px;
     position: absolute;
-    margin-left: 80px;
+    margin-left: 100px;
     font-family: 'Be Vietnam Pro', sans-serif;
 }
 
 .inciar-sesion{
     margin-top: 10px;
     position: absolute;
-    margin-left: 300px;
+    margin-left: 310px;
     font-family: 'Be Vietnam Pro', sans-serif;
 
 }

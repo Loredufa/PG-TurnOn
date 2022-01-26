@@ -11,6 +11,7 @@
     /* overflow: scroll; */
     overflow-x: hidden;
     position: relative;
+    padding-top: 80px;
 }
 .input{
 font-family: 'Be Vietnam Pro', sans-serif;

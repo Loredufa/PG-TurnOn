@@ -82,7 +82,7 @@ export default function EditCourt() {
 
   const validate = (editInfo) => {
     let errors = {};
-    let regexName = /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/;
+    let regexName = /^[A-Za-z0-9\s]+$/g;
     let regexComments = /^.{1,100}$/;
     let regexPrice = /^[0-9]+[.,]{1,1}\[0]{2,2}$/;
 
@@ -90,12 +90,15 @@ export default function EditCourt() {
       errors.name = "El campo nombre es requerido";
       setDisabled(true);
     } else if (!regexName.test(editInfo.name.trim())) {
-      errors.name = "El nombre debe tener solo letras y espacios";
+      errors.name = "El nombre puede tener solo letras y numeros con espacios";
       setDisabled(true);
     } else if (!editInfo.sport) {
       errors.sport = "Debes seleccionar una opción";
       setDisabled(true);
-    } else if (!editInfo.price.trim()) {
+    } else if (editInfo.sport && editInfo.sport === "Deportes") {
+      errors.sport = "Debes seleccionar una opción";
+      setDisabled(true);
+    }else if (!editInfo.price.trim()) {
       errors.price = "El campo precio es requerido";
       setDisabled(true);
     } else if (regexPrice.test(editInfo.price.trim())) {
@@ -144,6 +147,9 @@ export default function EditCourt() {
             value={editInfo.sport}
             onChange={handlerselect}
           >
+            <option className="options-cc" value="Deportes">
+              Deportes
+            </option>
             <option className="options-cc" value="Futbol">
               Futbol
             </option>
