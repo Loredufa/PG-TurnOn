@@ -278,8 +278,9 @@ input#imagen + label:hover{
     }
     .button-save-cc{
         width:30%;
-        margin-bottom:5px;
-        margin-top:110px;
+        margin-bottom:20px;
+        margin-top:115px;
+        
     }
 
     .button-volver-cc {
@@ -292,5 +293,6 @@ input#imagen + label:hover{
     .select-cc{
         margin-left:0px;
     }
-
+    
+   
 }
