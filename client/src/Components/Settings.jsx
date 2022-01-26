@@ -17,10 +17,12 @@ import {
 } from "../Styles/settingsSupplier";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import React, { useState } from "react";
-import { changeSupplierProfile, deleteUser } from "../Actions/actions";
 import { useDispatch, useSelector } from "react-redux";
 
-import { confirmAlert } from "react-confirm-alert";
+import Swal from "sweetalert2";
+import axios from "axios";
+import { changeSupplierProfile } from "../Actions/actions";
+// import { confirmAlert } from "react-confirm-alert";
 import { useHistory } from "react-router-dom";
 
 export default function Settings() {
@@ -32,30 +34,53 @@ export default function Settings() {
   const editPwdClick = () => {
     history.push("/profile/password");
   };
+  // const handleClick = (e) => {
+  //   e.preventDefault();
+  //   confirmAlert({
+  //     title: "Borrar Usuario",
+  //     message: "Estas seguro de hacer esto?",
+  //     buttons: [
+  //       {
+  //         label: "Si",
+  //         onClick: () => {
+  //           dispatch(deleteUser(supplier.id));
+  //           setTimeout(() => {
+  //             history.push("/");
+  //             window.localStorage.removeItem("loguodeusuario");
+  //             window.location.reload(false);
+  //           }, 500);
+  //         },
+  //       },
+  //       {
+  //         label: "No",
+  //         onClick: null,
+  //       },
+  //     ],
+  //   });
+  // };
   const handleClick = (e) => {
     e.preventDefault();
-    confirmAlert({
-      title: "Borrar Usuario",
-      message: "Estas seguro de hacer esto?",
-      buttons: [
-        {
-          label: "Si",
-          onClick: () => {
-            dispatch(deleteUser(supplier.id));
-            setTimeout(() => {
-              history.push("/");
-              window.localStorage.removeItem("loguodeusuario");
-              window.location.reload(false);
-            }, 500);
-          },
-        },
-        {
-          label: "No",
-          onClick: null,
-        },
-      ],
+    Swal.fire({
+      title: "Borrar Usuario?",
+      text: "Estas seguro de hacer esto?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#81b214",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Borrar!",
+      cancelButtonText: "Cancelar",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios.delete(`/supplier/supplier/${supplier.id}`);
+        setTimeout(() => {
+          history.push("/");
+          window.localStorage.removeItem("loguodeusuario");
+          window.location.reload(false);
+        }, 500);
+      }
     });
   };
+
   const uploadImage = async (e) => {
     const files = e.target.files;
     const data = new FormData();
