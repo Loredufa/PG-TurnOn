@@ -24,6 +24,7 @@ export const styles = StyleSheet.create({
     padding: 3,
     borderRadius: 10,
     alignItems: "center",
+    marginLeft: 8,
   },
   info: {
     flex: 2,

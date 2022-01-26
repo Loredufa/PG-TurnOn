@@ -15,6 +15,7 @@ import Landing from "./src/components/Landing/Landing";
 import { Dimensions } from "react-native";
 import Phone from "./src/components/Phone/Phone";
 import { getAllSuppliers } from "./src/store/actions/index";
+import { LogBox } from "react-native";
 
 // EACH TIME A NAVIGATION OCCURS A THE NEW SCREEN WILL BE PUSHED
 // ON TOP OF A STACKNAVIGATOR. EACH BACK ACTION REMOVES THE SCREEN
@@ -59,6 +60,9 @@ const NavigationContainerStack = () => (
 );
 
 export default function App() {
+  //console.disableYellowBox = true;
+  LogBox.ignoreAllLogs(["Warning: ..."]);
+  LogBox.ignoreAllLogs();
   return (
     <Provider store={store}>
       <NavigationContainerStack />
