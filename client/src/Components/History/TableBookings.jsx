@@ -80,7 +80,7 @@ export default function TableBookings() {
             color: "#FFF",
             fontFamily: "Be Vietnam Pro",
             textAlign: "left",
-            border: "1px solid white",
+            border: "1px solid #daebfd",
           },
           rowStyle: {
             backgroundColor: "#e9ebed",
@@ -107,12 +107,20 @@ export default function TableBookings() {
 }
 
 export const Root = styled.div`
-  margin-left: 20px;
-  margin-right: 20px;
+  margin-left: 1.4rem;
+  margin-right: 1.4rem;
+
+  .MaterialTable {
+    background: black;
+  }
   table {
   }
 
-  td,
+  td {
+    text-align: center;
+    border: 1px solid #a8aaac;
+    color: "#2a2d34";
+  }
   th {
     border: 1px solid #a8aaac;
     color: "#2a2d34";

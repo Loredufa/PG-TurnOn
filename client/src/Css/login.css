@@ -121,14 +121,14 @@ border-radius: 30px;
        
 
 .registrate {
-    position: fixed;
+    position: absolute;
     margin-left: 240px;
     margin-top: 7.5rem;
     font-family: 'Be Vietnam Pro', sans-serif;
 }
 
 .no-estas-registrado {
-    position: fixed;
+    position: absolute;
     margin-left: 20px;
     margin-top: 7.5rem;
     font-family: 'Be Vietnam Pro', sans-serif; 

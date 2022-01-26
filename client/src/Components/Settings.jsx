@@ -32,7 +32,8 @@ export default function Settings() {
   const editPwdClick = () => {
     history.push("/profile/password");
   };
-  const handleClick = () => {
+  const handleClick = (e) => {
+    e.preventDefault();
     confirmAlert({
       title: "Borrar Usuario",
       message: "Estas seguro de hacer esto?",
