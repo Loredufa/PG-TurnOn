@@ -117,7 +117,7 @@ export default function EditCourt() {
   return (
     <div className="contenedor-form-createcourt">
       <h1 className="title-creationcourt">Editar datos de tu Cancha</h1>
-      <button onClick={() => setSection("")}>Volver</button>
+      <button className="button-volver-cc" onClick={() => setSection("")}>Volver</button>
       <form onSubmit={submitCourt} className="form-createcourt">
         <div className="cont-all-cc cont-in-name-cc">
           <label className="label-all-cc label-name-cc" htmlFor="name">
