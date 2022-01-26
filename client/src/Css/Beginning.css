@@ -1,0 +1,30 @@
+@import "./Variables/var.css";
+
+.card{
+    background-image: url('../Assets/Images/cancha-cesped.jpeg');
+    position:absolute;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100vw;
+    padding-top: 10px;
+}
+.details{
+    
+    text-align: center;
+    position: relative;
+    width: 70%;
+    height: 70%;
+    padding-top: 30px;
+    padding-bottom: 20px;
+    margin-left: 4%;
+    margin-top: 10%;
+    border-radius: 30px;
+    box-shadow: 10px 10px 15px 1px #1169127c;
+    display:flexbox;
+    flex-direction: column;
+    background-color: white;
+    white-space: initial;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    
+}

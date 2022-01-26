@@ -2,7 +2,9 @@ import styled from "styled-components";
 
 export const DivGlobal = styled.div`
   width: 100%;
-  height: 42rem;
+
+  height: 53.8rem;
+
   padding-top: 80px;
   background-position: fixed;
   background-color: #e9ebed;

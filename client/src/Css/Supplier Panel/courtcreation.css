@@ -17,7 +17,7 @@
     background-position: center;
     font-size: 16px;
     display:inline-block;
-
+    padding:80px
 }
 
 .form-createcourt{
@@ -27,7 +27,7 @@
     grid-template-rows: auto;
     padding: 2% 2% 0% 2%;
     width: 900px;
-    height: 650px;
+    height: 740px;
     margin-left: 5% ;
     margin-top: 1% ;
     margin-bottom: 2%;
@@ -35,8 +35,7 @@
    /*  border-radius: 5px; */
     border-radius: 30px;
     box-shadow: 10px 10px 15px 1px #1169127c;
-    
-    
+     
 }
   
 
@@ -150,6 +149,7 @@
     
     /* padding: 1%;
     margin: 2%; */
+      
 }
 
 .input-image-cc{
@@ -220,6 +220,7 @@ input#imagen + label:hover{
     background: #FFFFFF;
     border: 0px solid #ffffff;
     box-sizing: border-box;
+    cursor: pointer;
     border-radius: 30px;
     font-family: 'Be Vietnam Pro', sans-serif;
     font-size: 112.50%;

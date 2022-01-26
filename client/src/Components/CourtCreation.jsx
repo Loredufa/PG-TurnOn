@@ -1,18 +1,18 @@
+import "../Css/Supplier Panel/courtcreation.css";
+
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { createTurnCourt } from "../Actions/actions";
-import "../Css/Supplier Panel/courtcreation.css";
-import {useHistory } from 'react-router-dom';
+
 import Swal from "sweetalert2";
-
-
+import { createTurnCourt } from "../Actions/actions";
+import { useHistory } from "react-router-dom";
 
 export default function CourtCreation() {
   const dispatch = useDispatch();
   const supplierId = useSelector((e) => e.user.supplier.id);
   const [enviado, setEnviado] = useState(false);
-  const [ disabled, setDisabled] = useState(false)
-  const history = useHistory()
+  const [disabled, setDisabled] = useState(false);
+  const history = useHistory();
   const [infoCourt, setInfoCourt] = useState({
     name: "",
     address: "",
@@ -61,14 +61,14 @@ export default function CourtCreation() {
     setTimeout(() => setEnviado(false), 1000);
   };
 
-  if(enviado === true){
+  if (enviado === true) {
     Swal.fire({
-      title:'Cancha Creada con exito',
-      icon: 'success',
-      button: 'Aceptar',
-      })
-    history.push('/profile/courts')
-}
+      title: "Cancha Creada con exito",
+      icon: "success",
+      button: "Aceptar",
+    });
+    history.push("/profile/courts");
+  }
 
   const uploadImage = async (e) => {
     const files = e.target.files;
@@ -85,7 +85,7 @@ export default function CourtCreation() {
     );
 
     const file = await respuesta.json();
-    console.log("VER Q TRAE CLOUE",file.secure_url);
+    console.log("VER Q TRAE CLOUE", file.secure_url);
     setInfoCourt({
       ...infoCourt,
       image: file.secure_url,
@@ -97,7 +97,7 @@ export default function CourtCreation() {
     let regexName = /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/;
     let regexComments = /^.{1,100}$/;
     let regexPrice = /^[0-9]+[.,]{1,1}\[0]{2,2}$/;
-  
+
     if (!infoCourt.name.trim()) {
       errors.name = "El campo nombre es requerido";
       setDisabled(true);
@@ -111,29 +111,35 @@ export default function CourtCreation() {
       errors.price = "El campo precio es requerido";
       setDisabled(true);
     } else if (regexPrice.test(infoCourt.price.trim())) {
-      errors.price =
-        "El precio debe llevar enteros ej 100";
-        setDisabled(true);
+      errors.price = "El precio debe llevar enteros ej 100";
+      setDisabled(true);
     } else if (!infoCourt.description.trim()) {
       errors.description = "El campo características es requerido";
       setDisabled(true);
     } else if (!regexComments.test(infoCourt.description.trim())) {
       errors.description = "Debe tener un máximo de 100 carácteres";
       setDisabled(true);
-    } else{
-      setDisabled(false)
+    } else {
+      setDisabled(false);
     }
-  
+
     return errors;
   };
 
   return (
     <div className="contenedor-form-createcourt">
       <h1 className="title-creationcourt">Datos para creación de Cancha</h1>
-      <button className="button-volver-cc" onClick={() => window.history.back()}>Volver</button>
+      <button
+        className="button-volver-cc"
+        onClick={() => window.history.back()}
+      >
+        Volver
+      </button>
       <form onSubmit={submitCourt} className="form-createcourt">
         <div className="cont-all-cc cont-in-name-cc">
-          <label className="label-all-cc label-name-cc" htmlFor="name">Nombre de Cancha :</label>
+          <label className="label-all-cc label-name-cc" htmlFor="name">
+            Nombre de Cancha :
+          </label>
           <input
             className="input-all-cc input-name-cc"
             type="text"
@@ -147,25 +153,55 @@ export default function CourtCreation() {
         </div>
 
         <div className="cont-all-cc cont-in-sport-cc">
-          <label className="label-all-cc label-sport-cc">Tipo de Cancha :</label>
-          <select className="select-cc" 
-          value={infoCourt.sport} 
-          onChange={handlerselect}>
-            <option className="options-cc">Deporte</option>
-            <option className="options-cc"value="futbol">Futbol</option>
-            <option className="options-cc"value="tenis">Tenis</option>
-            <option className="options-cc" value="paddle">Paddle</option>
-            <option className="options-cc" value="basket">Basket</option>
-            <option className="options-cc" value="hockey">Hockey</option>
-            <option className="options-cc" value="golf">Golf</option>
-            <option className="options-cc" value="baseball">Baseball</option>
-            <option className="options-cc" value="otro">Otro</option>
+          <label className="label-all-cc label-sport-cc">
+            Tipo de Cancha :
+          </label>
+          <select
+            className="select-cc"
+            value={infoCourt.sport}
+            onChange={handlerselect}
+          >
+            <option className="options-cc" value="Futbol">
+              Futbol
+            </option>
+            <option className="options-cc" value="Tenis">
+              Tenis
+            </option>
+            <option className="options-cc" value="Paddle">
+              Paddle
+            </option>
+            <option className="options-cc" value="Basket">
+              Basket
+            </option>
+            <option className="options-cc" value="Hockey">
+              Hockey
+            </option>
+            <option className="options-cc" value="Golf">
+              Golf
+            </option>
+            <option className="options-cc" value="Baseball">
+              Baseball
+            </option>
+            <option className="options-cc" value="PingPong">
+              Ping Pong
+            </option>
+            <option className="options-cc" value="Voley">
+              Voleyball
+            </option>
+            <option className="options-cc" value="Squash">
+              Squash
+            </option>
+            <option className="options-cc" value="Pool">
+              Pool
+            </option>
           </select>
           {errors.sport && <p className="error-all-cc">{errors.sport}</p>}
         </div>
 
         <div className="cont-all-cc cont-in-price-cc">
-          <label className="label-all-cc label-price-cc" htmlFor="price">Precio $ :</label>
+          <label className="label-all-cc label-price-cc" htmlFor="price">
+            Precio $ :
+          </label>
           <input
             className="input-all-cc input-price-cc"
             type="text"
@@ -179,14 +215,34 @@ export default function CourtCreation() {
         </div>
 
         <div className="cont-in-image-cc">
-          <label className="label-all-cc label-image-cc" htmlFor="image">Imagen :</label><br/>
-            { infoCourt.image && <img src={infoCourt.image} alt="Imagen" width= "250px" height="150px"/>}
-          <input id="imagen" className="input-image-cc" type="file" name="file" onChange={uploadImage} />
-          <label htmlFor="imagen" className="input-image">Seleccionar archivo</label>
+          <label className="label-all-cc label-image-cc" htmlFor="image">
+            Imagen :
+          </label>
+          <br />
+          {infoCourt.image && (
+            <img
+              src={infoCourt.image}
+              alt="Imagen"
+              width="250px"
+              height="150px"
+            />
+          )}
+          <input
+            id="imagen"
+            className="input-image-cc"
+            type="file"
+            name="file"
+            onChange={uploadImage}
+          />
+          <label htmlFor="imagen" className="input-image">
+            Seleccionar archivo
+          </label>
         </div>
 
         <div className="cont-all-cc cont-in-description-cc">
-          <label className="label-all-cc label-image-cc" htmlFor="description">Características de la Cancha :</label>
+          <label className="label-all-cc label-image-cc" htmlFor="description">
+            Características de la Cancha :
+          </label>
           <textarea
             className="input-all-cc input-description-cc"
             type="text"
@@ -198,10 +254,14 @@ export default function CourtCreation() {
             onChange={infoChange}
             onBlur={handleBlur}
           />
-          {errors.description && <p className="error-all-cc">{errors.description}</p>}
+          {errors.description && (
+            <p className="error-all-cc">{errors.description}</p>
+          )}
         </div>
         <div>
-          <button disabled={disabled} className="button-save-cc" type="submit">Guardar</button>
+          <button disabled={disabled} className="button-save-cc" type="submit">
+            Guardar
+          </button>
           {enviado && <p className="menssage-cc">Datos guardados con exito</p>}
         </div>
       </form>
