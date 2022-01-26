@@ -8,16 +8,6 @@
     padding-top: 7rem;
     }
 
-/* .div-texto{
-
-    
-
-}
-
-.div-imagen{
-
-} */
-    
 .h1como{
     padding-top: 1rem;
     font-weight: bold;
@@ -48,4 +38,103 @@
     float: right;
     margin-right:18rem;
     margin-top: -3rem;
+   }
+
+   @media (max-width: 1366px){
+    .divPrincipalF{
+        height: 30rem;
+        padding-top: 2.5rem;
+        width: 100%;
+        }
+    
+    .h1como{
+        padding-top: 1rem;
+        text-align:left;
+        font-size: 1.9rem;
+        }
+        
+    .h2como{
+        padding-top: 3rem;
+        padding-left: 0.4rem;
+        padding-right: 0.4rem;
+        padding-top: 0.4rem;
+        padding-bottom: 1rem;
+        margin-left: 4.3rem;
+        width: 40rem;
+        font-size: 1.3rem;
+        text-align:left;
+        }
+        
+    .imgcomo{
+        height: 33vw;
+        float: right;
+        margin-right:4.8rem;
+        margin-top: 1rem;
+       }
+}
+
+@media (max-width: 1200px){
+    .divPrincipalF{
+        height: 30rem;
+        padding-top: 1.8rem;
+        width: 100%;
+        }
+    
+    .h1como{
+        padding-top: 1rem;
+        text-align:left;
+        font-size: 1.9rem;
+        }
+        
+    .h2como{
+        padding-top: 3rem;
+        padding-left: 0.4rem;
+        padding-right: 0.4rem;
+        padding-top: 0.4rem;
+        padding-bottom: 1rem;
+        margin-left: 4.3rem;
+        width: 40rem;
+        font-size: 1.3rem;
+        text-align:left;
+        }
+        
+    .imgcomo{
+        height: 33vw;
+        float: right;
+        margin-right:1rem;
+        margin-top: 1rem;
+       }
+}
+
+@media (max-width: 830px){
+    .divPrincipalF{
+        height: 23rem;
+        padding-top: 1.8rem;
+        width: 100%;
+        }
+    
+    .h1como{
+        padding-top: 1rem;
+        text-align:left;
+        font-size: 1.8rem;
+        }
+        
+    .h2como{
+        padding-top: 3rem;
+        padding-left: 0.4rem;
+        padding-right: 0.4rem;
+        padding-top: 0.4rem;
+        padding-bottom: 1rem;
+        margin-left: 4.3rem;
+        width: 30rem;
+        font-size: 1rem;
+        text-align:left;
+        }
+        
+    .imgcomo{
+        height: 33vw;
+        float: right;
+        margin-right:1rem;
+        margin-top: 1rem;
+       }
    }
