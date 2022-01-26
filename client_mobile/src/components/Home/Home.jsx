@@ -60,7 +60,7 @@ export default function Home() {
   const bestSuppliers = useSelector((state) => state.supplierByLocation);
   //console.log("CANCHAS CERCAS", bestSuppliers);
   const { user } = useSelector((state) => state);
-  const {screenWidth,ScreenHeight} = useSelector((state) => state);
+  const { screenWidth, ScreenHeight } = useSelector((state) => state);
   const titleSize = useSelector((state) => state.titleSize);
   //if (courts.length !== 0) setLoading(false);
 
@@ -79,7 +79,7 @@ export default function Home() {
       <View style={styles.searchBarPos}>
         <SearchBar />
       </View>
-      <View style={{ flex: 6, alignItems: "center"}}>
+      <View style={{ flex: 6, alignItems: "center" }}>
         <View
           style={{
             width: screenWidth,
@@ -107,15 +107,17 @@ export default function Home() {
                     style={{
                       height: ScreenHeight / 9,
                       width: titleSize + 30,
-                      padding: ScreenHeight/200,
-                      paddingTop: ScreenHeight/50,
+                      padding: ScreenHeight / 200,
+                      paddingTop: ScreenHeight / 50,
                       resizeMode: "contain",
                     }}
                   />
                 </TouchableOpacity>
               </View>
             )}
-            ItemSeparatorComponent={() => <View style={{ height: ScreenHeight/80 }} />}
+            ItemSeparatorComponent={() => (
+              <View style={{ height: ScreenHeight / 80 }} />
+            )}
             numColumns={3}
             key={3}
           />
@@ -130,10 +132,10 @@ export default function Home() {
                 //justifyContent: "center",
                 justifyContent: "flex-start",
                 marginLeft: 25,
-                fontSize: ScreenHeight/10/3.5,
+                fontSize: ScreenHeight / 10 / 3.5,
                 fontWeight: "bold",
-                paddingBottom: ScreenHeight/10/2,
-                paddingTop: 2
+                paddingBottom: ScreenHeight / 10 / 6,
+                paddingTop: 2,
                 //marginTop: 15,
               }}
             >
@@ -153,8 +155,8 @@ export default function Home() {
                   flexGrow: 1,
                   width: screenWidth,
                   //height: ScreenHeight/12 ,
-                  marginLeft: ScreenHeight/10/4,
-                  marginBottom: ScreenHeight/50,
+                  marginLeft: ScreenHeight / 10 / 4,
+                  marginBottom: ScreenHeight / 50,
                 }}
                 contentContainerStyle={{ alignItems: "center" }}
                 horizontal
@@ -173,7 +175,7 @@ export default function Home() {
                       style={[
                         styles.card2,
                         {
-                          height:  ScreenHeight / 4.2,
+                          height: ScreenHeight / 4.2,
                           width: (2.5 * screenWidth) / 4,
                         },
                       ]}
@@ -181,11 +183,14 @@ export default function Home() {
                       <Image
                         source={{ uri: item.image }}
                         style={{
-                          height:  ScreenHeight / 5.4,
-                          width: (2.5 * screenWidth) / 4 - 2,
+                          height: ScreenHeight / 6,
+                          width: (2.5 * screenWidth) / 5,
+                          alignSelf: "center",
+                          borderRadius: 20,
+                          marginTop: 25,
                           //padding: 3,
-                          borderTopLeftRadius: 25,
-                          borderTopRightRadius: 25,
+                          // borderTopLeftRadius: 25,
+                          // borderTopRightRadius: 25,
                           resizeMode: "stretch",
                         }}
                       />
@@ -193,11 +198,14 @@ export default function Home() {
                         style={{
                           flexDirection: "row",
                           width: (2.5 * screenWidth) / 4 - 2,
-                          justifyContent: "space-between",
-                          alignContent: 'center'
+                          justifyContent: "space-around",
+                          alignContent: "center",
                         }}
                       >
-                        <Text style={styles.supplier}>{item.name.charAt(0).toUpperCase() + item.name.slice(1)}</Text>
+                        <Text style={styles.supplier}>
+                          {item.name.charAt(0).toUpperCase() +
+                            item.name.slice(1)}
+                        </Text>
                         <View style={styles.ratingContainer}>
                           <MaterialCommunityIcons
                             name="star"

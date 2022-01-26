@@ -73,18 +73,19 @@ export const styles = StyleSheet.create({
   },
   supplier: {
     textAlign: "left",
-    marginLeft: 10,
+    //marginLeft: 10,
     fontSize: 15,
     fontWeight: "bold",
     paddingTop: 10,
-    paddingLeft: 15,
+
+    //paddingLeft: 15,
   },
   ratingContainer: {
-    marginRight: 10,
+    //marginRight: 10,
     flexDirection: "row",
     justifyContent: "flex-end",
     alignItems: "center",
-    paddingRight: 15,
+    //paddingRight: 15,
     paddingTop: 10,
   },
   title: {

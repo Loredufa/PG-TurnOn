@@ -32,7 +32,7 @@ export const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   optionsContainer: {
-    flex: 2,
+    flex: 4,
     flexDirection: "row",
     //margin: 20,
     //justifyContent: "space-between",
@@ -41,10 +41,10 @@ export const styles = StyleSheet.create({
     fontWeight: "700",
     fontSize: 18,
     margin: 10,
-    textAlign: 'center'
-  }, 
-  btn:{
-    height: '7%',
+    textAlign: "center",
+  },
+  btn: {
+    height: "7%",
     width: 130,
     alignItems: "center",
     backgroundColor: "#179F34",
