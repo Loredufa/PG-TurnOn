@@ -17,7 +17,7 @@ export default function Form() {
 
     const handleAddTime = (e) => {
         e.preventDefault()
-        if(time.start === time.end || Number(time.start.slice(0, 2)) >= Number(time.end.slice(0, 2))) {
+        if(time.start === time.end || time.start.slice(3) !== time.end.slice(3) || Number(time.start.slice(0, 2)) >= Number(time.end.slice(0, 2))) {
             Swal.fire({
                 title: 'Error!',
                 text: 'Datos incorrectos.',

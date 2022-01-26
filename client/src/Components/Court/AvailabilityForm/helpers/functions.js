@@ -51,10 +51,11 @@ export const splitHours = (array) => {
         }
         else if(difference > 1) {
             let start = Number(obj.start.slice(0, 2))
+            let end = Number(obj.start.slice(3))
             for (let i = 0; i < difference; i++) {
                 let obj = {
-                    start: `${start}:00`,
-                    end: `${start + 1}:00`
+                    start: `${start}:${end}`,
+                    end: `${start + 1}:${end}`
                 }
                 aux.push(obj)
                 start = start + 1

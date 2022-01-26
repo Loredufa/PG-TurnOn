@@ -46,10 +46,10 @@ export default function Registro() {
     console.log(infoSupplier);
   };
 
-  const handleBlur = (e) => {
-    infoChange(e);
+  /* const handleBlur = (e) => {
+   infoChange(e);
     setErrors(validate(infoSupplier));
-  };
+  }; */
 
   const submitSupplier = (e) => {
     e.preventDefault();
@@ -59,7 +59,7 @@ export default function Registro() {
     setTimeout(() => cambiarFormularioEnvidado(false), 5000);
   };
 
-  const validate = (infoSupplier) => {
+  /* const validate = (infoSupplier) => {
     let errors = {};
     dispatch({ type: "SET_MESSAGE_REG", payload: "" });
 
@@ -131,7 +131,159 @@ export default function Registro() {
     }
 
     return errors;
-  };
+  }; */
+
+
+  const handleChange = (e) => {
+    
+    const { name, value } = e.target
+
+    if (name === "name") {
+      setInfoSupplier({
+        ...infoSupplier,
+        [name]: value
+      })
+      if (!/^[a-zA-ZÀ-ÿ\s]{1,40}$/.test(value) && value !== "") {
+        setErrors({
+          ...errors,
+          [name]: "El nombre sólo puede contener letras y espacios"
+        })
+        setDisabled(true)
+      }
+      else {
+        setErrors({
+          ...errors,
+          [name]: ""
+        })
+        setDisabled(false)
+      }
+    }
+    if (name === "phone") {
+      setInfoSupplier({
+        ...infoSupplier,
+        [name]: value
+      })
+      if (!/^([0-9])*$/.test(value) && value !== "") {
+        setErrors({
+          ...errors,
+          [name]: "El teléfono puede contener solo números"
+        })
+        setDisabled(true)
+      }
+      else {
+        setErrors({
+          ...errors,
+          [name]: ""
+        })
+        setDisabled(false)
+      }
+    }
+    if (name === "cuit") {
+      setInfoSupplier({
+        ...infoSupplier,
+        [name]: value
+      })
+      if (!/^([0-9]{11}|[0-9]{2}-[0-9]{8}-[0-9]{1})$/g.test(value) && value !== "") {
+        setErrors({
+          ...errors,
+          [name]: "CUIT inválido"
+        })
+        setDisabled(true)
+      }
+      else {
+        setErrors({
+          ...errors,
+          [name]: ""
+        })
+        setDisabled(false)
+      }
+    }
+    if (name === "businessname") {
+      setInfoSupplier({
+        ...infoSupplier,
+        [name]: value
+      })
+      if (!/^[a-zA-ZÀ-ÿ\s]{1,40}$/.test(value) && value !== "") {
+        setErrors({
+          ...errors,
+          [name]: "La Razon Social solo puede contener letras y espacios"
+        })
+        setDisabled(true)
+      }
+      else {
+        setErrors({
+          ...errors,
+          [name]: ""
+        })
+        setDisabled(false)
+      }
+    }
+    if (name === "mail") {
+      setInfoSupplier({
+        ...infoSupplier,
+        [name]: value
+      })
+      if (!/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(value) && value !== "") {
+        setErrors({
+          ...errors,
+          [name]: "E-mail inválido"
+        })
+        setDisabled(true)
+      }
+      else {
+        setErrors({
+          ...errors,
+          [name]: ""
+        })
+        setDisabled(false)
+      }
+    }
+    if (name === "password" || name === "password2") {
+      setInfoSupplier({
+        ...infoSupplier,
+        [name]: value
+      })
+      if (!/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/.test(value) && value !== "") {
+        setErrors({
+          ...errors,
+          [name]: "La contraseña debe tener entre 8 y 16 caracteres, al menos un dígito, al menos una minúscula y al menos una mayúscula. Puede tener otros símbolos."
+        })
+        setDisabled(true)
+      }
+      else {
+        if(name === "password") {
+          if(value !== infoSupplier.password2 && infoSupplier.password2 !== "") {
+            setErrors({
+              ...errors,
+              [name]: "Las contraseñas no coinciden"
+            })
+          }
+          else {
+            setErrors({
+              ...errors,
+              [name]: ""
+            })
+            setDisabled(false)
+          }
+        }
+        else {
+          if(value !== infoSupplier.password && infoSupplier.password !== "") {
+            setErrors({
+              ...errors,
+              [name]: "Las contraseñas no coinciden"
+            })
+          }
+          else {
+            setErrors({
+              ...errors,
+              [name]: ""
+            })
+            setDisabled(false)
+          }
+        }
+      }
+    }
+  }
 
   return (
     <>
@@ -155,8 +307,9 @@ export default function Registro() {
                   placeholder="Nombre de Fantasia del negocio"
                   className="in-register"
                   value={infoSupplier.name}
-                  onChange={infoChange}
-                  onBlur={handleBlur}
+                  onChange={handleChange}
+                  required
+                  /* onBlur={handleBlur} */
                 />
               </div>
               {errors.name && <p className="error-register">{errors.name}</p>}
@@ -170,8 +323,9 @@ export default function Registro() {
                   placeholder="Teléfono de Contacto"
                   className="in-register"
                   value={infoSupplier.phone}
-                  onChange={infoChange}
-                  onBlur={handleBlur}
+                  onChange={handleChange}
+                  required
+                  /* onBlur={handleBlur} */
                 />
               </div>
               {errors.phone && (
@@ -186,11 +340,12 @@ export default function Registro() {
                   type="text"
                   id="cuit"
                   name="cuit"
-                  placeholder="CUIT: xx-xxxxxxxx-x"
+                  placeholder="CUIT"
                   className="in-register"
                   value={infoSupplier.cuit}
-                  onChange={infoChange}
-                  onBlur={handleBlur}
+                  onChange={handleChange}
+                  required
+                  /* onBlur={handleBlur} */
                 />
               </div>
               {errors.cuit && (
@@ -207,8 +362,9 @@ export default function Registro() {
                   placeholder="Razón Social"
                   className="in-register"
                   value={infoSupplier.businessname}
-                  onChange={infoChange}
-                  onBlur={handleBlur}
+                  onChange={handleChange}
+                  required
+                  /* onBlur={handleBlur} */
                 />
               </div>
               {errors.businessname && (
@@ -225,8 +381,9 @@ export default function Registro() {
                   placeholder="E-mail"
                   className="in-register"
                   value={infoSupplier.mail}
-                  onChange={infoChange}
-                  onBlur={handleBlur}
+                  onChange={handleChange}
+                  required
+                 /*  onBlur={handleBlur} */
                 />
               </div>
               {errors.mail && (
@@ -256,8 +413,9 @@ export default function Registro() {
                   placeholder="Contraseña"
                   className="in-register"
                   value={infoSupplier.password}
-                  onChange={infoChange}
-                  onBlur={handleBlur}
+                  onChange={handleChange}
+                  required
+                  /* onBlur={handleBlur} */
                 />
               </div>
               {errors.password && (
@@ -275,8 +433,9 @@ export default function Registro() {
                   placeholder="Confirmar Contraseña"
                   className="in-register"
                   value={infoSupplier.password2}
-                  onChange={infoChange}
-                  onBlur={handleBlur}
+                  onChange={handleChange}
+                  required
+                  /* onBlur={handleBlur} */
                 />
               </div>
               {errors.password2 && (
