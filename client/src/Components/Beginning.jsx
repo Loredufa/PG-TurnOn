@@ -107,7 +107,7 @@ const DivCont = styled.div`
     height: auto;
   }
   .historial {
-    width: 100%;
+    width: 80%;
     height: auto;
   }
 `;
