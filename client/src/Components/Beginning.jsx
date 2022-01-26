@@ -17,7 +17,7 @@ export default function Beginning() {
           />
           <P>
             Debes completar todos los datos, en especial el campo
-            caracteristicas donde colocaras las especificaciones y atributos del
+            "Características de la cancha" donde colocarás las especificaciones y atributos del
             lugar.
           </P>
           <img
@@ -32,8 +32,8 @@ export default function Beginning() {
             alt="horarios"
           />
           <P>
-            Selecciona los dias de trabajo y horario de apertura y cierre para
-            cada uno. Una vez finalizado vuelve a la lista de canchas.
+            Selecciona los días de trabajo y horario de apertura y cierre para
+            cada uno. Una vez finalizado, vuelve a la lista de canchas.
           </P>
           <img
             className="franja"
@@ -43,7 +43,7 @@ export default function Beginning() {
           <Title2>Ya puedes recibir reservas</Title2>
           <P>
             Dentro de "Turnos" podras encontrar todas tus reservas. Debes hacer
-            click en el dia del calendario para verlas.
+            click en el día del calendario para verlas.
           </P>
           <img
             className="turnos"
@@ -51,16 +51,16 @@ export default function Beginning() {
             alt="turnos"
           />
           <P>
-            Tienes opcion de cancelar un turno si decides que tu cancha no
+            Tienes opción de cancelar un turno si decides que tu cancha no
             estará disponible en ese horario
           </P>
-          <Title2>Tambien tienes una pestaña de "Historial"</Title2>
+          <Title2>También tienes una pestaña de "Historial"</Title2>
           <img
             className="historial"
             src={require("../Assets/Images/historial.png")}
             alt="historial"
           />
-          <P>Aqui te detallaremos todos los movimientos que se registraron.</P>
+          <P>Aquí te detallaremos todos los movimientos que se registraron.</P>
         </DivCont>
       </div>
     </div>
