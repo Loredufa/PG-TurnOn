@@ -109,7 +109,11 @@ export default function TableBookings() {
 export const Root = styled.div`
   margin-left: 1.4rem;
   margin-right: 1.4rem;
-  table {
+  div {
+    .MuiIconButton-root {
+      &:hover {
+        background-color: transparent;
+      }
   }
   td {
     text-align: center;
@@ -119,6 +123,10 @@ export const Root = styled.div`
   th {
     border: 1px solid #a8aaac;
     color: "#2a2d34";
+    .MuiTableSortLabel-icon {
+      color: grey;
+      opacity: 1;
+    }
   }
   svg {
     color: #81b214;

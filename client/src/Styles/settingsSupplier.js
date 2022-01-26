@@ -3,12 +3,12 @@ import styled from "styled-components";
 export const DivGlobal = styled.div`
   width: 100%;
   height: 53.8rem;
-  pbackground: #e9ebed;
+  background: #e9ebed;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   width: 100vw;
-  height: 90.5vh;
+  height: 91.2vh;
   background-attachment: fixed;
   overflow: visible;
   overflow-x: hidden;
@@ -20,7 +20,7 @@ export const DivGlobal = styled.div`
     background-repeat: no-repeat;
     background-position: center;
     width: 100vw;
-    height: 90.5vh;
+    height: 91.2vh;
     background-attachment: fixed;
     overflow: visible;
     overflow-x: hidden;
@@ -32,11 +32,14 @@ export const DivForm = styled.div`
   margin-top: 60px;
   box-shadow: 10px 10px 15px 1px #1169127c;
   padding: 25px;
-  padding-top: 20px;
+  top: 120rem;
+  padding-top: 0px;
+  padding-bottom: 3rem;
   width: 40rem;
   background-color: #81b214;
   border-radius: 20px;
   float: left;
+
   p {
     color: white;
     text-align: center;
@@ -55,7 +58,7 @@ export const DivImagen = styled.div`
   font-family: "Be Vietnam Pro", sans-serif;
   box-shadow: 10px 10px 15px 1px #1169127c;
   float: left;
-  margin: 60px;
+  margin: 4rem;
   background: #81b214;
   border-radius: 20px;
   width: 16rem;
@@ -91,11 +94,11 @@ export const ContenedorForm = styled.div`
 `;
 export const EditButton = styled.button`
   background-color: #81b214;
-  position: absolute;
+  position: relative;
   font-family: "Be Vietnam Pro", sans-serif;
   font-size: 20px;
-  top: 180px;
-  left: 3rem;
+  bottom: 7.6rem;
+  left: -1.6rem;
   width: 140px;
   height: 54px;
   cursor: pointer;
@@ -115,11 +118,11 @@ export const EditButton = styled.button`
 
 export const EditButton2 = styled.button`
   background-color: #81b214;
-  position: absolute;
+  position: relative;
   font-family: "Be Vietnam Pro", sans-serif;
   font-size: 20px;
-  top: 200px;
-  left: 3rem;
+  bottom: 8rem;
+  left: -1.6rem;
   width: 140px;
   height: 54px;
   cursor: pointer;
@@ -139,11 +142,11 @@ export const EditButton2 = styled.button`
 
 export const VolverButton = styled.button`
   background-color: #81b214;
-  position: absolute;
+  position: relative;
   font-family: "Be Vietnam Pro", sans-serif;
   font-size: 20px;
-  top: 200px;
-  left: 14rem;
+  bottom: 8rem;
+  left: -0.8rem;
   width: 140px;
   height: 54px;
   cursor: pointer;
@@ -159,11 +162,11 @@ export const VolverButton = styled.button`
 
 export const UpdateButton = styled.button`
   background-color: #81b214;
-  position: absolute;
+  position: relative;
   font-family: "Be Vietnam Pro", sans-serif;
   font-size: 14px;
-  top: 200px;
-  left: 25rem;
+  bottom: 7.5rem;
+  left: 0rem;
   width: 140px;
   height: 54px;
   cursor: pointer;
@@ -181,11 +184,11 @@ export const UpdateButton = styled.button`
 
 export const DeleteButton = styled.button`
   background-color: #81b214;
-  position: absolute;
+  position: relative;
   font-family: "Be Vietnam Pro", sans-serif;
   font-size: 14px;
-  top: 200px;
-  left: 36rem;
+  bottom: 8.1rem;
+  left: 1rem;
   width: 140px;
   height: 54px;
   cursor: pointer;

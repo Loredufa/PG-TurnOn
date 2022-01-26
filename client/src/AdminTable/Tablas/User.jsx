@@ -354,6 +354,10 @@ export const Root = styled.div`
     }
   }
   div {
+    .MuiIconButton-root {
+      &:hover {
+        background-color: transparent;
+      }
     h6 {
       font-family: "Be Vietnam Pro";
       color: #81b214;
@@ -367,6 +371,10 @@ export const Root = styled.div`
     text-align: left;
     border: 1px solid #a8aaac;
     color: "#2a2d34";
+    .MuiTableSortLabel-icon {
+      color: grey;
+      opacity: 1;
+    }
   }
   svg {
     color: #81b214;
