@@ -95,7 +95,10 @@ export default function EditCourt() {
     } else if (!editInfo.sport) {
       errors.sport = "Debes seleccionar una opción";
       setDisabled(true);
-    } else if (!editInfo.price.trim()) {
+    } else if (editInfo.sport && editInfo.sport === "Deportes") {
+      errors.sport = "Debes seleccionar una opción";
+      setDisabled(true);
+    }else if (!editInfo.price.trim()) {
       errors.price = "El campo precio es requerido";
       setDisabled(true);
     } else if (regexPrice.test(editInfo.price.trim())) {
@@ -144,6 +147,9 @@ export default function EditCourt() {
             value={editInfo.sport}
             onChange={handlerselect}
           >
+            <option className="options-cc" value="Deportes">
+              Deportes
+            </option>
             <option className="options-cc" value="Futbol">
               Futbol
             </option>
