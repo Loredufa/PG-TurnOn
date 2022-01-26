@@ -109,13 +109,8 @@ export default function TableBookings() {
 export const Root = styled.div`
   margin-left: 1.4rem;
   margin-right: 1.4rem;
-
-  .MaterialTable {
-    background: black;
-  }
   table {
   }
-
   td {
     text-align: center;
     border: 1px solid #a8aaac;

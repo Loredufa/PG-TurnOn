@@ -2,15 +2,28 @@ import styled from "styled-components";
 
 export const DivGlobal = styled.div`
   width: 100%;
-
   height: 53.8rem;
-
+  pbackground: #e9ebed;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 100vw;
+  height: 90.5vh;
+  background-attachment: fixed;
+  overflow: visible;
+  overflow-x: hidden;
   padding-top: 80px;
-  background-position: fixed;
-  background-color: #e9ebed;
   @media (max-width: 1241px) {
     height: 55rem;
-    background-color: #e9ebed;
+    background: #e9ebed;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100vw;
+    height: 90.5vh;
+    background-attachment: fixed;
+    overflow: visible;
+    overflow-x: hidden;
   }
 `;
 export const DivForm = styled.div`
