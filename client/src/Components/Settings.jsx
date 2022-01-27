@@ -61,7 +61,7 @@ export default function Settings() {
   const handleClick = (e) => {
     e.preventDefault();
     Swal.fire({
-      title: "Borrar Usuario?",
+      title: "Borrar Cuenta?",
       text: "Estas seguro de hacer esto?",
       icon: "warning",
       showCancelButton: true,
@@ -202,9 +202,7 @@ export default function Settings() {
                 <UpdateButton onClick={editPwdClick}>
                   Editar Contraseña
                 </UpdateButton>
-                <DeleteButton onClick={handleClick}>
-                  Borrar Usuario
-                </DeleteButton>
+                <DeleteButton onClick={handleClick}>Borrar Cuenta</DeleteButton>
                 <LabelSetting>
                   Nombre
                   <Field name="name" type="text" id="name" />
