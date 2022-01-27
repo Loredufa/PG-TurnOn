@@ -25,13 +25,18 @@ import { useSelector } from "react-redux";
         width: '100%'
     }
 
-})) */
+})) 
+
+
+
+
+*/
 
 const columns = [
-  { title: "Id", field: "id", type: "numeric" },
+  /* { title: "Id", field: "id", type: "numeric" }, */
+  { title: "Cancha", field: "nombreCancha" },
   { title: "Fecha", field: "date" },
   { title: "Día", field: "day" },
-  { title: "Cancha", field: "courtId" },
   { title: "Hora inicio", field: "initialTime" },
   { title: "Hora finalización", field: "endingTime" },
   { title: "Nombre", field: "user.name" },
@@ -47,6 +52,15 @@ const columns = [
 export default function TableBookings() {
   const { supplier } = useSelector((state) => state.user);
   const [info, setInfo] = useState([]);
+
+  useEffect(async () => {
+    let newArray = [];
+    for (let i = 0 ; i<info.allbookings.length ; i++) {
+        const court = await axios.get(`/supplier/court/detail/${info.allbookings[i].courtId}`)
+        newArray [i] = {...info.allbookings[i] ,  nombreCancha:court.data.name}
+    }
+    setInfo(newArray);
+}, [info.allbookings])
 
   useEffect(() => {
     axios
@@ -71,7 +85,7 @@ export default function TableBookings() {
       <br />
       <MaterialTable
         columns={columns}
-        data={info.allbookings}
+        data={info}        
         title="Movimientos"
         options={{
           actionsColumnIndex: -1,
