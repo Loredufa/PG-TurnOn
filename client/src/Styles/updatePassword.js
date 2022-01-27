@@ -13,7 +13,7 @@ export const DivGlobal = styled.div`
   }
 `;
 export const DivForm = styled.div`
-  width: 700px;
+  width: 45rem;
   height: auto;
   display: flex;
   margin-left: 50px;
@@ -28,11 +28,16 @@ export const DivForm = styled.div`
   padding-top: 30px;
   background-color: #81b214;
   border-radius: 20px;
+  box-shadow: 10px 10px 15px 1px #1169127c;
   p {
     color: white;
     text-align: center;
     margin-left: 32%;
     font-family: "Be Vietnam Pro", sans-serif;
+  }
+  
+  @media (max-width: 740px){
+    width: 37rem;
   }
 `;
 
@@ -86,19 +91,19 @@ export const LabelSetting = styled.label`
   flex-direction: row;
   justify-content: space-between;
   margin-top: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
   margin-left: 10px;
   color: rgb(255, 255, 255);
   input {
     font-family: "Be Vietnam Pro", sans-serif;
-    margin-right: 32px;
+    margin-left: 32px;
     font-size: 20px;
     padding-left: 20px;
     border-radius: 12px;
     color: black;
     text-shadow: 0px 0px 10px rgb(255, 255, 255, 0);
     border: none;
-    width: 380px;
+    width: 23.75rem;
     height: 41px;
     background-color: white;
     border-radius: 30px;
@@ -107,6 +112,12 @@ export const LabelSetting = styled.label`
     font-family: "Be Vietnam Pro", sans-serif;
     font-size: 15px;
     margin-left: 0px;
+  }
+  @media (max-width: 740px){
+    input {
+      margin-left: 18px;
+      width: 20rem;
+    }
   }
 `;
 

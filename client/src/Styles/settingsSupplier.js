@@ -52,11 +52,15 @@ export const DivForm = styled.div`
   @media (max-width: 840px) {
     width: 40rem;
   }
+
+  @media (max-width: 740px) {
+    width: 35rem;
+  }
 `;
 
 export const DivImagen = styled.div`
   font-family: "Be Vietnam Pro", sans-serif;
-  box-shadow: 10px 10px 15px 1px #1169127c;
+  box-shadow: 18px 10px 21px 2px #1169127c;
   float: left;
   margin: 4rem;
   background: #81b214;
@@ -97,7 +101,7 @@ export const EditButton = styled.button`
   position: relative;
   font-family: "Be Vietnam Pro", sans-serif;
   font-size: 20px;
-  bottom: 7.6rem;
+  bottom: 8rem;
   left: -1.6rem;
   width: 140px;
   height: 54px;
@@ -165,7 +169,7 @@ export const UpdateButton = styled.button`
   position: relative;
   font-family: "Be Vietnam Pro", sans-serif;
   font-size: 14px;
-  bottom: 7.5rem;
+  bottom: 8.6rem;
   left: 0rem;
   width: 140px;
   height: 54px;
@@ -215,7 +219,7 @@ export const LabelSetting = styled.label`
   flex-direction: row;
   justify-content: space-between;
   margin-top: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
   margin-left: 10px;
   color: rgb(255, 255, 255);
   input {
@@ -231,6 +235,12 @@ export const LabelSetting = styled.label`
     height: 41px;
     background-color: white;
     border-radius: 30px;
+  }
+  @media (max-width: 740px) {
+    margin-left: 8px;
+    input {
+      margin-left: 8px;
+    }
   }
 `;
 
