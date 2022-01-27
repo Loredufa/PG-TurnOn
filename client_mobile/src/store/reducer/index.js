@@ -33,7 +33,9 @@ import {
   GET_SUPPLIER_BY_LOCATION_RATING,
   GET_COMPLETED_BOOKINGS,
   CHANGE_BOOKING_RATED,
-  RATE_SUPPLIER
+  RATE_SUPPLIER,
+  RESET_ARRAY,
+  RESET_COURTS_ARRAY,
 } from "../actions/index";
 import {
   findEmail,
@@ -52,8 +54,8 @@ const initialState = {
   courtTypes: [],
   favorites: [],
   bookings: [],
-  vouchers:[],
-  completedBookings:[],
+  vouchers: [],
+  completedBookings: [],
   bookingsRate: [],
   authToken: null, //"abc123",
   screenWidth: 375,
@@ -124,7 +126,7 @@ const reducer = (state = initialState, action) => {
         boolean: false,
         authToken: null,
         googlesession: false,
-        completedBookings:[]
+        completedBookings: [],
       };
     case CHANGE_USER_INFO:
       return {
@@ -166,19 +168,19 @@ const reducer = (state = initialState, action) => {
         messageBack: action.payload,
         supplierAddFav: 0,
       };
-      case SET_MESSAGE:
-        return {
-          ...state,
-          messageBack: action.payload,
-        }
-      case COURT_AVAILABILITY: 
-        return {
-          ...state,
-          availables: action.payload.availability,
-        }
-    // case GET_VOUCHERS: 
+    case SET_MESSAGE:
+      return {
+        ...state,
+        messageBack: action.payload,
+      };
+    case COURT_AVAILABILITY:
+      return {
+        ...state,
+        availables: action.payload.availability,
+      };
+    // case GET_VOUCHERS:
     // return {
-    //   ...state, 
+    //   ...state,
     //   flagBooking: !state.flagBooking,
     //   vouchers:  action.payload.hasOwnProperty("booking")?  action.payload : []
     // }
@@ -199,13 +201,17 @@ const reducer = (state = initialState, action) => {
     case GET_VOUCHERS:
       return {
         ...state,
-        vouchers: action.payload?.hasOwnProperty("message") ? [] : action.payload.result,
-      }
+        vouchers: action.payload?.hasOwnProperty("message")
+          ? []
+          : action.payload.result,
+      };
     case GET_COMPLETED_BOOKINGS:
       return {
         ...state,
-        completedBookings: action.payload?.hasOwnProperty("message") ? [] : [action.payload.result],
-      }
+        completedBookings: action.payload?.hasOwnProperty("message")
+          ? []
+          : [action.payload.result],
+      };
     case FIND_PAYMENT:
       return {
         ...state,
@@ -217,11 +223,11 @@ const reducer = (state = initialState, action) => {
         //messageBack: action.payload,
         flagBooking: !state.flagBooking,
       };
-    case CHANGE_BOOKING_RATED: 
-    return {
-      ...state,
-      completedBookings: [],
-    }
+    case CHANGE_BOOKING_RATED:
+      return {
+        ...state,
+        completedBookings: [],
+      };
     case EDIT_BOOKING:
       return {
         ...state,
@@ -242,7 +248,7 @@ const reducer = (state = initialState, action) => {
         screenWidth: action.payload.screenWidth,
         numColumns: action.payload.numColumns,
         titleSize: action.payload.titleSize,
-        ScreenHeight: action.payload.ScreenHeight
+        ScreenHeight: action.payload.ScreenHeight,
       };
     case GET_COURT_BY_SPORT:
       return {
@@ -283,6 +289,16 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         supplierByLocation: action.payload,
+      };
+    case RESET_ARRAY:
+      return {
+        ...state,
+        suppliers: [],
+      };
+    case RESET_COURTS_ARRAY:
+      return {
+        ...state,
+        courtsBySports: [],
       };
     default:
       return state;

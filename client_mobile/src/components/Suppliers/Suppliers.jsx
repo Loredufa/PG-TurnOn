@@ -15,7 +15,11 @@ import SearchBar from "../SearchBar/SearchBar";
 import { styles } from "./StylesSuppliers";
 import Court from "../Court/Court";
 import { useDispatch, useSelector } from "react-redux";
-import { getFavorites, getSupplierBySport } from "../../store/actions";
+import {
+  getFavorites,
+  getSupplierBySport,
+  resetArray,
+} from "../../store/actions";
 import Supplier from "../Supplier/Supplier";
 import PickerModal from "../PickerModal/PickerModal";
 import { useNavigation } from "@react-navigation/native";
@@ -33,13 +37,18 @@ export default function Suppliers({ route }) {
   }
   */
   const [sportFilter, setSportFilter] = useState("");
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    //setLoading(true);
+
     if (route.params.sport === "Otros") {
       dispatch(getSupplierBySport("others"));
       setSportFilter("others");
+      dispatch(resetArray());
     } else {
       route.params.sport && dispatch(getSupplierBySport(route.params.sport));
+      dispatch(resetArray());
     }
   }, []);
 
@@ -48,9 +57,11 @@ export default function Suppliers({ route }) {
     if (value === "Otros") {
       setSportFilter("others");
       dispatch(getSupplierBySport("others"));
+      dispatch(resetArray());
     } else {
       setSportFilter(value);
       dispatch(getSupplierBySport(value));
+      dispatch(resetArray());
     }
   }
 

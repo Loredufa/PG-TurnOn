@@ -35,6 +35,8 @@ export const GET_SUPPLIER_BY_LOCATION_RATING =
 export const GET_COMPLETED_BOOKINGS = "GET_COMPLETED_BOOKINGS";
 export const GET_VOUCHERS = "GET_VOUCHERS";
 export const CHANGE_BOOKING_RATED = "CHANGE_BOOKING_RATED";
+export const RESET_ARRAY = "RESET_ARRAY";
+export const RESET_COURTS_ARRAY = "RESET_COURTS_ARRAY";
 
 //const URL = "http://localhost:3001/";
 const URL = "https://turnon1.herokuapp.com/";
@@ -717,5 +719,17 @@ export function getSupplierByLocationRating(latitude, longitude) {
     } catch (error) {
       console.log(error);
     }
+  };
+}
+
+export function resetArray() {
+  return {
+    type: RESET_ARRAY,
+  };
+}
+
+export function resetCourtsArray() {
+  return {
+    type: RESET_COURTS_ARRAY,
   };
 }
