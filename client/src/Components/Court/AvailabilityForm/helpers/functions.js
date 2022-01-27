@@ -50,8 +50,8 @@ export const splitHours = (array) => {
             newArray.push(obj)
         }
         else if(difference > 1) {
-            let start = Number(obj.start.slice(0, 2))
-            let end = Number(obj.start.slice(3))
+            let start = Number(obj.start.split(":")[0])
+            let end = obj.start.split(":")[1] == "0" ? "00" : obj.start.split(":")[1]
             for (let i = 0; i < difference; i++) {
                 let obj = {
                     start: `${start}:${end}`,
