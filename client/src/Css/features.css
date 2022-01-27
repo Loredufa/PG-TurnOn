@@ -44,7 +44,13 @@
   text-align: center;
   padding: 15px;
   box-shadow: 7px 5px 7px hsla(0, 0%, 51%, 0.438);
+  transition: all 0.25s;
 }
+.div-features-1:hover{
+  transform: translateY(-15px);
+  box-shadow: 13px 5px 10px hsla(0, 0%, 51%, 0.438);
+}
+
 
 .div-features-2 {
   background-color: var(--colorGrey);
@@ -54,6 +60,12 @@
   text-align: center;
   padding: 15px;
   box-shadow: 7px 5px 7px hsla(0, 0%, 51%, 0.438);
+  transition: all 0.25s;
+}
+
+.div-features-2:hover{
+  transform: translateY(-15px);
+  box-shadow: 13px 5px 10px hsla(0, 0%, 51%, 0.438);
 }
 
 .div-features-3 {
@@ -64,6 +76,12 @@
   text-align: center;
   padding: 15px;
   box-shadow: 7px 5px 7px hsla(0, 0%, 51%, 0.438);
+  transition: all 0.25s;
+}
+
+.div-features-3:hover{
+  transform: translateY(-15px);
+  box-shadow: 13px 5px 10px hsla(0, 0%, 51%, 0.438);
 }
 
 .div-features-4 {
@@ -74,6 +92,12 @@
   text-align: center;
   padding: 15px;
   box-shadow: 7px 5px 7px hsla(0, 0%, 51%, 0.438);
+  transition: all 0.25s;
+}
+
+.div-features-4:hover{
+  transform: translateY(-15px);
+  box-shadow: 13px 5px 10px hsla(0, 0%, 51%, 0.438);
 }
 
 .div-features-5 {
@@ -84,6 +108,12 @@
   text-align: center;
   padding: 15px;
   box-shadow: 7px 5px 7px hsla(0, 0%, 51%, 0.438);
+  transition: all 0.25s;
+}
+
+.div-features-5:hover{
+  transform: translateY(-15px);
+  box-shadow: 13px 5px 10px hsla(0, 0%, 51%, 0.438);
 }
 
 .title-features {

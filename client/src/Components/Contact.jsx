@@ -15,7 +15,11 @@ const dispatch = useDispatch()
 return (
 
     <div className="back-ground-contact">
-       
+    <img
+        className="img-pelotas"
+        src={require("../Assets/Images/pelotas.png")}
+        alt="img not found"
+      />
     <Formik 
         initialValues={{
             name: '',
@@ -133,6 +137,54 @@ return (
     </Form>
     )}
     </Formik>
+    <div className='trianguloGrisClaro'></div>
+    <div className="contenedor-todo">
+    <h2 className="titulo-cont">TurnON</h2>
+    <div className="cont-cont">
+    <img
+        className="img-cont"
+        src={require("../Assets/Icons/Telefono.png")}
+        alt="wsp"
+      /><p>(011) 155 245869</p>
+      </div>
+      <div className="cont-cont">
+    <img
+        className="img-cont"
+        src={require("../Assets/Icons/Marcador.png")}
+        alt="wsp"
+      /><p>Av.Libertador 351 - Buenos Aires - Argentina</p>
+      </div>
+      <div className="cont-cont">
+      <img
+        className="img-cont"
+        src={require("../Assets/Icons/Mail.png")}
+        alt="wsp"
+      /><p>info.turnon@turnon.com</p>
+      </div>
+    <div className="contenedor-iconos">
+    <img
+        className="imgiconos"
+        src={require("../Assets/Icons/whatsapp-2.png")}
+        alt="wsp"
+      />
+      <img
+        className="imgiconos"
+        src={require("../Assets/Icons/linkedin-2.png")}
+        alt="wsp"
+      />
+      <img
+        className="imgiconos"
+        src={require("../Assets/Icons/instagram-2.png")}
+        alt="wsp"
+      />
+      <img
+        className="imgiconos"
+        src={require("../Assets/Icons/facebook-2.png")}
+        alt="wsp"
+      />
+    </div>
+    </div>
+    
      </div>
 
 )
