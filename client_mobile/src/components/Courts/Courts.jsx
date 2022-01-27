@@ -18,6 +18,7 @@ import {
   getCourt,
   getCourtBySportSupplier,
   getCourtsBySupplier,
+  resetCourtsArray,
 } from "../../store/actions/index";
 import SearchBar from "../SearchBar/SearchBar";
 import Court from "../Court/Court";
@@ -36,7 +37,11 @@ export default function Courts({ route }) {
     ) {
       console.log(route.params.sport);
       dispatch(getCourtBySportSupplier(route.params.name, route.params.sport));
-    } else dispatch(getCourtsBySupplier(route.params.name));
+      dispatch(resetCourtsArray());
+    } else {
+      dispatch(getCourtsBySupplier(route.params.name));
+      dispatch(resetCourtsArray());
+    }
   }, []);
 
   return (
@@ -50,7 +55,8 @@ export default function Courts({ route }) {
       </View>*/}
       {courtsBySports.length === 0 ? (
         /*&&
-      (route.params.sport && courtsBySports[0].sport !== route.params.sport) ?*/ <ActivityIndicator
+      (route.params.sport && courtsBySports[0].sport !== route.params.sport) ?*/
+        <ActivityIndicator
           size="large"
           color="#00ff00"
           style={{ flex: 5, justifyContent: "center" }}
