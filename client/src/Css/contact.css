@@ -10,7 +10,7 @@
 
 
 .formulario-contacto{
-    padding-top: 40px;
+    padding-top: 53px;
     margin-top: 0px;
     margin-left: 5px;
     border-radius: 30px;    
@@ -19,9 +19,16 @@
 .titulo-contacto{
     color:#ffffff;
     margin-left: 85px;
-    margin-bottom: 45px;
+    margin-bottom: 30px;
     font-size: 2.1rem;;
 }
+
+.img-pelotas{
+    height: 20vw;
+    float: right;
+    margin-right:18rem;
+    margin-top: 10rem;
+   }
 
 .parrafo-info{
     font-size: 20px;  
@@ -29,6 +36,7 @@
     text-align: left;
     margin-left: 90px;
     margin-bottom: 25px;
+    width: 28rem;
 }
 
 .label-input{
@@ -107,6 +115,157 @@
     margin-left: 90px;
 }
 
+.titulo-cont{
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 2.1rem; 
+    color:#81b214;
+    margin-left: 1200px;
+}
+
+.contenedor-todo{
+    margin-top: -18px;
+    background-color: var(--colorGrey);
+}
+.cont-cont{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+    margin-left: 1200px;
+    font-size: 1.2rem;
+}
+.img-cont{
+    height: 2rem;  
+}
+.imgiconos{
+    transition: all 0.25s;
+    box-shadow: 0px 3px 3px hsla(0, 0%, 51%, 0.2);
+
+}
+
+.imgiconos:hover{
+    transform: translateY(-3px);
+    box-shadow: 13px 5px 10px hsla(0, 0%, 51%, 0.438);
+  }
+
+.contenedor-iconos{
+    margin-top: 3rem;
+    padding-bottom: 3rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 3rem;
+    margin-left: 1200px;
+}
+
+.trianguloGrisClaro{
+    display: block;
+    position: relative;
+    bottom: -15px;
+    height: 223px;
+    background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1920 223" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path fill="rgba(233, 235, 237, 1)" d="M 0 0 L 971 110 L 971 0 L 0 0 Z" stroke-width="0"></path> <path fill="rgba(233, 235, 237, 1)" d="M 970 110 L 1920 200 L 1920 0 L 970 0 Z" stroke-width="0"></path> </svg>');
+    background-size: cover;
+    background-repeat: no-repeat;
+    transform: rotate(180deg) rotateY(180deg);
+}
+
+@media (max-width: 1500px){
+    .titulo-cont{
+        font-family: 'Be Vietnam Pro', sans-serif;
+        font-size: 2.1rem; 
+        color:#81b214;
+        margin-left: 1200px;
+    }
+    .cont-cont{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 1rem;
+        margin-left: 1200px;
+        font-size: 1.2rem;
+    }
+    .contenedor-iconos{
+        margin-top: 3rem;
+        padding-bottom: 3rem;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 3rem;
+        margin-left: 1200px;
+    }
+    .titulo-cont{
+        font-size: 2.1rem; 
+        margin-left: 50rem;
+    }
+    .cont-cont{
+        gap: 1rem;
+        margin-left: 50rem;
+        font-size: 1.2rem;
+    }
+    .contenedor-iconos{
+        margin-top: 2rem;
+        padding-bottom: 1rem;
+        gap: 3rem;
+        margin-left: 50rem;
+    }
+
+    .img-pelotas{
+        height: 20vw;
+        float: right;
+        margin-right:7rem;
+        margin-top: 12rem;
+       }
+
+}
+
+@media (max-width: 1366px){
+    .titulo-cont{
+        font-size: 2.1rem; 
+        margin-left: 45rem;
+    }
+    .cont-cont{
+        gap: 1rem;
+        margin-left: 45rem;
+        font-size: 1.2rem;
+    }
+    .contenedor-iconos{
+        margin-top: 2rem;
+        padding-bottom: 1rem;
+        gap: 3rem;
+        margin-left: 45rem;
+    }
+
+    .img-pelotas{
+        height: 20vw;
+        float: right;
+        margin-right:7rem;
+        margin-top: 12rem;
+       }
+
+}
+
+@media (max-width: 1200px){
+    .titulo-cont{
+        font-size: 2.1rem; 
+        margin-left: 40rem;
+    }
+    .cont-cont{
+        gap: 1rem;
+        margin-left: 40rem;
+        font-size: 1.2rem;
+    }
+    .contenedor-iconos{
+        margin-top: 2rem;
+        padding-bottom: 1rem;
+        gap: 3rem;
+        margin-left: 40rem;;
+    }
+
+    .img-pelotas{
+        display:none;
+       }
+
+}
 
 @media (max-width: 830px){
     .buttonSubmit-Cont{
@@ -127,6 +286,25 @@
         margin-left: 5.2rem;
         width: 28rem;
     }
+    .titulo-cont{
+        font-size: 2.1rem; 
+        margin-left: 10rem;
+    }
+    .cont-cont{
+        gap: 1rem;
+        margin-left: 10rem;
+        font-size: 1.2rem;
+    }
+    .contenedor-iconos{
+        margin-top: 2rem;
+        padding-bottom: 1rem;
+        gap: 3rem;
+        margin-left: 10rem;
+    }
+
+    .img-pelotas{
+        display:none;
+       }
 
 
 }
