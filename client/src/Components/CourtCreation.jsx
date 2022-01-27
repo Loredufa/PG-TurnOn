@@ -39,6 +39,12 @@ export default function CourtCreation() {
       ...infoCourt,
       sport: e.target.value,
     });
+    if(e.target.value !== "Deportes") {
+      setErrors({
+        ...errors,
+        sport: ""
+      })
+    }
   };
 
   const handleBlur = (e) => {
@@ -48,17 +54,45 @@ export default function CourtCreation() {
 
   const submitCourt = (e) => {
     e.preventDefault();
-    console.log("este es el console:", infoCourt);
-    dispatch(createTurnCourt(supplierId, infoCourt));
-    setInfoCourt({
-      name: "",
-      sport: "",
-      price: "",
-      image: "",
-      description: "",
-    });
-    setEnviado(true);
-    setTimeout(() => setEnviado(false), 1000);
+    if(!infoCourt.sport && !infoCourt.image) {
+      setErrors({
+        ...errors,
+        sport: "Debes seleccionar una opción",
+        image: "Debes agregar una imagen"
+      })
+    }
+    else if(!infoCourt.sport === "Deportes" && !infoCourt.image) {
+      setErrors({
+        ...errors,
+        sport: "Debes seleccionar una opción",
+        image: "Debes agregar una imagen"
+      })
+    }
+    else if(!infoCourt.sport || infoCourt.sport === "Deportes") {
+      setErrors({
+        ...errors,
+        sport: "Debes seleccionar una opción",
+      })
+    }
+    else if (!infoCourt.image) {
+      setErrors({
+        ...errors,
+        image: "Debes agregar una imagen"
+      })
+    }
+    else {
+      console.log("este es el console:", infoCourt);
+      dispatch(createTurnCourt(supplierId, infoCourt));
+      setInfoCourt({
+        name: "",
+        sport: "",
+        price: "",
+        image: "",
+        description: "",
+      });
+      setEnviado(true);
+      setTimeout(() => setEnviado(false), 1000);
+    }
   };
 
   if (enviado === true) {
@@ -91,6 +125,10 @@ export default function CourtCreation() {
       ...infoCourt,
       image: file.secure_url,
     });
+    setErrors({
+      ...errors,
+      image: ""
+    })
   };
 
   const validate = (infoCourt) => {
@@ -130,6 +168,75 @@ export default function CourtCreation() {
     return errors;
   };
 
+  const handleChange = (e) => {
+
+    let regexName = /^[A-Za-z0-9\s]+$/g;
+    let regexComments = /^.{1,100}$/;
+    let regexPrice = /^(?:\d+|\d{1,3}(?:\,\d{3})+)$/
+
+    const { name, value } = e.target;
+
+    if (name === "name") {
+      setInfoCourt({
+        ...infoCourt,
+        [name]: value,
+      });
+      if (!regexName.test(value.trim()) && value !== "") {
+        setErrors({
+          ...errors,
+          [name]: "El nombre sólo puede contener letras y espacios",
+        });
+        setDisabled(true);
+      } else {
+        setErrors({
+          ...errors,
+          [name]: "",
+        });
+        setDisabled(false);
+      }
+    }
+    if (name === "price") {
+      setInfoCourt({
+        ...infoCourt,
+        [name]: value,
+      });
+      console.log("NAME", name)
+      console.log("VALUE", value)
+      if (!regexPrice.test(value.trim()) && value !== "") {
+        setErrors({
+          ...errors,
+          [name]: "El precio debe llevar enteros, ej 100",
+        });
+        setDisabled(true);
+      } else {
+        setErrors({
+          ...errors,
+          [name]: "",
+        });
+        setDisabled(false);
+      }
+    }
+    if (name === "description") {
+      setInfoCourt({
+        ...infoCourt,
+        [name]: value,
+      });
+      if (!regexComments.test(value.trim()) && value !== "") {
+        setErrors({
+          ...errors,
+          [name]: "Debe tener un máximo de 100 caracteres",
+        });
+        setDisabled(true);
+      } else {
+        setErrors({
+          ...errors,
+          [name]: "",
+        });
+        setDisabled(false);
+      }
+    }
+  }
+
   return (
     <div className="contenedor-form-createcourt">
       <h1 className="title-creationcourt">Datos para creación de Cancha</h1>
@@ -150,8 +257,9 @@ export default function CourtCreation() {
             placeholder="Nombre"
             name="name"
             value={infoCourt.name}
-            onChange={infoChange}
-            onBlur={handleBlur}
+            onChange={handleChange}
+            required
+            /* onBlur={handleBlur} */
           />
           {errors.name && <p className="error-all-cc">{errors.name}</p>}
         </div>
@@ -207,16 +315,17 @@ export default function CourtCreation() {
 
         <div className="cont-all-cc cont-in-price-cc">
           <label className="label-all-cc label-price-cc" htmlFor="price">
-            Precio $ :
+            Precio:
           </label>
           <input
             className="input-all-cc input-price-cc"
             type="text"
-            placeholder="Monto por hora Ej: $200"
+            placeholder="Monto por hora Ej: 200"
             name="price"
             value={infoCourt.price}
-            onChange={infoChange}
-            onBlur={handleBlur}
+            onChange={handleChange}
+            required
+            /* onBlur={handleBlur} */
           />
           {errors.price && <p className="error-all-cc">{errors.price}</p>}
         </div>
@@ -244,6 +353,7 @@ export default function CourtCreation() {
           <label htmlFor="imagen" className="input-image">
             Seleccionar archivo
           </label>
+          {errors.image && <p className="error-all-cc">{errors.image}</p>}
         </div>
 
         <div className="cont-all-cc cont-in-description-cc">
@@ -258,8 +368,9 @@ export default function CourtCreation() {
             placeholder="Ej: Futbol 5, Pasto sintetico..."
             name="description"
             value={infoCourt.description}
-            onChange={infoChange}
-            onBlur={handleBlur}
+            onChange={handleChange}
+            required
+           /*  onBlur={handleBlur} */
           />
           {errors.description && (
             <p className="error-all-cc">{errors.description}</p>
