@@ -2,15 +2,18 @@
 
 .divPrincipal{
     background-image: url(../Assets/Images/cancha-cesped.jpeg);
-    background-position: center;
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    right: 0; 
+    bottom: 0; 
+    margin: auto; 
+    min-width: 50%;
+    min-height: 50%;
     background-size: cover;
-    background-repeat: no-repeat;
-    width: 100vw;
-    height: 91.5vh;
-    background-attachment: fixed;
     /* overflow: scroll; */
-    overflow-x: hidden;
-    position: relative;
+    overflow: hidden;
+    /* position: relative; */
     padding-top: 80px;
 }
 .input{
