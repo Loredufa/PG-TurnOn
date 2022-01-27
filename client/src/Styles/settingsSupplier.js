@@ -68,23 +68,31 @@ export const DivImagen = styled.div`
   width: 16rem;
   height: 35%;
   margin-left: 140px;
+
   .divcont {
     border-radius: 20px;
     ${"" /* line-height: 44px; */}
-    height:242px;
+    height:20.6rem;
     width: 100%;
     padding: 10px;
     background: #81b214;
+
+    .browseL {
+      bottom: 6rem;
+    }
+
     label {
       width: 20rem;
       margin: 2.8rem;
     }
 
     img {
-      margin-left: 24%;
+      margin-top: 1rem;
+      margin-left: 0rem;
       border-radius: 80px;
       min-height: 150px;
-      width: 52%;
+      padding: 2.8rem;
+      width: 10rem;
     }
   }
 `;
