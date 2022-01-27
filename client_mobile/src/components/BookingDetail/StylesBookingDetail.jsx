@@ -57,11 +57,11 @@ export const styles = StyleSheet.create({
     fontSize: 16,
   },
   descriptionContainer: {
-    flex: 2,
+    flex: 1.5,
     justifyContent: "flex-start",
     marginTop: 20,
-    paddingLeft: 20,
-    paddingRight: 20,
+    paddingLeft: 55,
+    paddingRight: 55,
   },
 
   dateContainer: {
@@ -80,42 +80,42 @@ export const styles = StyleSheet.create({
     flex: 1,
     fontSize: 15,
   },
-  
+
   phone: {
     flex: 1,
     marginLeft: 20,
     justifyContent: "flex-start",
-    alignSelf: 'center',
+    alignSelf: "center",
     fontSize: 15,
     // borderWidth: 1,
   },
   location: {
     justifyContent: "flex-end",
     flex: 1,
-    flexDirection: 'row-reverse',
+    flexDirection: "row-reverse",
   },
   phoneAndLocationContainer: {
     flex: 1,
     flexDirection: "row",
   },
-  map: {alignSelf:"center" , textDecorationLine: 'underline' , fontSize: 15,},
+  map: { alignSelf: "center", textDecorationLine: "underline", fontSize: 15 },
   codigoContainer: {
-      flex: 1,
-      alignItems: 'center',
-      flexDirection: 'row',
+    flex: 1,
+    alignItems: "center",
+    flexDirection: "row",
   },
   textCod: {
-      fontSize: 18,
+    fontSize: 18,
   },
   numCod: {
     fontSize: 18,
-    fontWeight: 'bold'
+    fontWeight: "bold",
   },
   buttons: {
-      //flex: 1,
-      flexDirection: 'row',
-      alignSelf: 'center',
-      paddingBottom: 10,
+    //flex: 1,
+    flexDirection: "row",
+    alignSelf: "center",
+    paddingBottom: 10,
   },
   btnEdit: {
     width: 130,
@@ -125,7 +125,7 @@ export const styles = StyleSheet.create({
     borderRadius: 20,
     borderColor: "black",
     justifyContent: "center",
-    marginRight:5,
+    marginRight: 5,
     backgroundColor: "#179F34",
   },
   buttonText: {
@@ -142,7 +142,7 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "white",
     borderRadius: 20,
-    marginLeft:5,
+    marginLeft: 5,
     borderColor: "black",
     justifyContent: "center",
     backgroundColor: "#E9EBED",
@@ -151,12 +151,12 @@ export const styles = StyleSheet.create({
     fontWeight: "700",
     fontSize: 18,
     margin: 20,
-    textAlign: 'center'
+    textAlign: "center",
   },
   text: {
-    fontStyle: 'italic',
+    fontStyle: "italic",
     fontSize: 12,
     margin: 20,
-    textAlign: 'justify'
-  }
+    textAlign: "justify",
+  },
 });
